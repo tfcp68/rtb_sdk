@@ -1,0 +1,23 @@
+{
+  "ad_a": {
+    "id": "ad_a",
+    "targets": {"value": {"geo": ["msk"]}},
+    "volume": 3000,
+    "cpm": 100.0,
+    "ad_frequency_limit": {"value": {"d": 99999}}
+  },
+  "ad_b": {
+    "id": "ad_b",
+    "targets": {"value": {"geo": ["msk"]}},
+    "volume": 3000,
+    "cpm": 50.0,
+    "ad_frequency_limit": {"value": {"d": 99999}}
+  },
+  "ad_c": {
+    "id": "ad_c",
+    "targets": {"value": {"geo": ["msk"]}},
+    "volume": 3000,
+    "cpm": 1.0,
+    "ad_frequency_limit": {"value": {"d": 99999}}
+  }
+}

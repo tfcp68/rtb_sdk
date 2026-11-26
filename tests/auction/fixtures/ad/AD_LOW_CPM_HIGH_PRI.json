@@ -1,0 +1,15 @@
+{
+  "id": "ad_low_cpm_high_pri",
+  "targets": {},
+  "active": true,
+  "start_date": "0001-01-01T00:00:00",
+  "end_date": "9999-12-31T23:59:59.999999+00:00",
+  "cpm": 100.0,
+  "priority": 10.0,
+  "volume": 500,
+  "ad_frequency_limit": {"m": 500},
+  "user_frequency_limit": {},
+  "parasitic_freq_limit": {},
+  "vocabulary_weights": {},
+  "tag_weights": {}
+}

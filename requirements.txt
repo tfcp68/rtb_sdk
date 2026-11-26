@@ -1,0 +1,9 @@
+pytest
+pytest-describe
+pytest-rich
+polars
+pyarrow
+prophet
+python-dateutil
+auto_all
+ortools

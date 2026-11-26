@@ -1,0 +1,66 @@
+[
+  {
+    "description": "valid CommonModel typed prophet",
+    "input": {
+      "model": {
+        "__type": "CommonModel",
+        "type": "prophet",
+        "resolution": "d",
+        "description": null
+      }
+    },
+    "output": true,
+    "error": null
+  },
+  {
+    "description": "valid CommonModel description",
+    "input": {
+      "model": {
+        "__type": "CommonModel",
+        "type": "prophet",
+        "resolution": "h",
+        "description": "test model"
+      }
+    },
+    "output": true,
+    "error": null
+  },
+  {
+    "description": "slippery — hollow dict",
+    "input": {"model": {}},
+    "output": false,
+    "error": null
+  },
+  {
+    "description": "slippery — unknown model type",
+    "input": {
+      "model": {
+        "__type": "CommonModel",
+        "type": "unknown_model",
+        "resolution": "d",
+        "description": null
+      }
+    },
+    "output": false,
+    "error": null
+  },
+  {
+    "description": "slippery — false resolution",
+    "input": {
+      "model": {
+        "__type": "CommonModel",
+        "type": "prophet",
+        "resolution": "year",
+        "description": null
+      }
+    },
+    "output": false,
+    "error": null
+  },
+  {
+    "description": "slippery — None",
+    "input": {"model": null},
+    "output": false,
+    "error": null
+  }
+]

@@ -1,0 +1,52 @@
+[
+  {
+    "input": {
+      "priority_factor": 0.5,
+      "price_factor": 0.8,
+      "velocity_factor": 0.6
+    },
+    "output": 0.24,
+    "error": null,
+    "description": "The production of three non-zero factors"
+  },
+  {
+    "input": {
+      "priority_factor": 1.0,
+      "price_factor": 1.0,
+      "velocity_factor": 1.0
+    },
+    "output": 1.0,
+    "error": null,
+    "description": "All factors are maximum — result 1.0"
+  },
+  {
+    "input": {
+      "priority_factor": 0.0,
+      "price_factor": 0.9,
+      "velocity_factor": 0.7
+    },
+    "output": 0.0,
+    "error": null,
+    "description": "One factor is zero — workpiece 0.0"
+  },
+  {
+    "input": {
+      "priority_factor": 0.0,
+      "price_factor": 0.0,
+      "velocity_factor": 0.0
+    },
+    "output": 0.0,
+    "error": null,
+    "description": "All factors are zero — workpiece 0.0"
+  },
+  {
+    "input": {
+      "priority_factor": 1.0,
+      "price_factor": 1.0,
+      "velocity_factor": 1.5
+    },
+    "output": 1.5,
+    "error": null,
+    "description": "Velocity > 1.0 (Inadequately exceeds all limits) — workpiece > 1.0"
+  }
+]

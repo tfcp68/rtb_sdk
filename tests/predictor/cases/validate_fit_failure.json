@@ -1,0 +1,44 @@
+[
+  {
+    "description": "dismiss NaN",
+    "input": {"scenario": "nan_values"},
+    "output": null,
+    "error": "PARAMETER_ERROR_CODE"
+  },
+  {
+    "description": "dismiss Inf",
+    "input": {"scenario": "inf_values"},
+    "output": null,
+    "error": "PARAMETER_ERROR_CODE"
+  },
+  {
+    "description": "rejects length mismatch dates and values",
+    "input": {"scenario": "length_mismatch"},
+    "output": null,
+    "error": "PARAMETER_ERROR_CODE"
+  },
+  {
+    "description": "rejects duplicate dates",
+    "input": {"scenario": "duplicate_dates"},
+    "output": null,
+    "error": "PARAMETER_ERROR_CODE"
+  },
+  {
+    "description": "dismisses dates backwards",
+    "input": {"scenario": "reverse_dates"},
+    "output": null,
+    "error": "PARAMETER_ERROR_CODE"
+  },
+  {
+    "description": "Rejects the invalid date bar during deserialization",
+    "input": {"scenario": "invalid_date_string"},
+    "output": null,
+    "error": "PARAMETER_ERROR_CODE"
+  },
+  {
+    "description": "Rejects dates that do not correspond to the announced resolution",
+    "input": {"scenario": "resolution_mismatch"},
+    "output": null,
+    "error": "PARAMETER_ERROR_CODE"
+  }
+]

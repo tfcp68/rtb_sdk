@@ -1,0 +1,922 @@
+[
+  {
+    "description": "[structure] result contains keys report and volume_delta",
+    "input": {
+      "ads": "file://fixtures/ads/ADS_OLD_AND_NEW.json",
+      "params": {
+        "total_traffic_volume": 10000,
+        "tag_probabilities": {
+          "geo:msk": 0.6,
+          "geo:spb": 0.4
+        },
+        "vocabs": {
+          "geo": [
+            "geo:msk",
+            "geo:spb"
+          ]
+        },
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1,
+        "ad_vol_distr": {
+          "banner_old_1": 3000,
+          "banner_old_2": 2000
+        }
+      }
+    },
+    "output": [
+      "banner_old_1",
+      "banner_old_2",
+      "banner_new"
+    ],
+    "error": null,
+    "check_mode": "report_keys"
+  },
+  {
+    "description": "[invariant] delta[ad] == new_report[ad] - old_report.get(ad, 0) all-campaign",
+    "input": {
+      "ads": "file://fixtures/ads/ADS_OLD_AND_NEW.json",
+      "params": {
+        "total_traffic_volume": 10000,
+        "tag_probabilities": {
+          "geo:msk": 0.6,
+          "geo:spb": 0.4
+        },
+        "vocabs": {
+          "geo": [
+            "geo:msk",
+            "geo:spb"
+          ]
+        },
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1,
+        "ad_vol_distr": {
+          "banner_old_1": 3000,
+          "banner_old_2": 2000
+        }
+      }
+    },
+    "output": {
+      "banner_old_1": 3000,
+      "banner_old_2": 2000
+    },
+    "error": null,
+    "check_mode": "delta_consistency"
+  },
+  {
+    "description": "[new campaign] delta campaign > 0 (before 0 impressions)",
+    "input": {
+      "ads": "file://fixtures/ads/ADS_OLD_AND_NEW.json",
+      "params": {
+        "total_traffic_volume": 10000,
+        "tag_probabilities": {
+          "geo:msk": 0.6,
+          "geo:spb": 0.4
+        },
+        "vocabs": {
+          "geo": [
+            "geo:msk",
+            "geo:spb"
+          ]
+        },
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1,
+        "ad_vol_distr": {
+          "banner_old_1": 3000,
+          "banner_old_2": 2000
+        }
+      }
+    },
+    "output": {
+      "field": "volume_delta",
+      "key": "banner_new",
+      "min": 1
+    },
+    "error": null,
+    "check_mode": "field_sub_gte"
+  },
+  {
+    "description": "[rebalance] total traffic of the new report ≤ total_traffic_volume",
+    "input": {
+      "ads": "file://fixtures/ads/ADS_OLD_AND_NEW.json",
+      "params": {
+        "total_traffic_volume": 10000,
+        "tag_probabilities": {
+          "geo:msk": 0.6,
+          "geo:spb": 0.4
+        },
+        "vocabs": {
+          "geo": [
+            "geo:msk",
+            "geo:spb"
+          ]
+        },
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1,
+        "ad_vol_distr": {
+          "banner_old_1": 3000,
+          "banner_old_2": 2000
+        }
+      }
+    },
+    "output": 10000,
+    "error": null,
+    "check_mode": "report_total_lte"
+  },
+  {
+    "description": "[rebalance] volume_delta contains keys for all announcements of the new report",
+    "input": {
+      "ads": {
+        "ad_old": {
+          "id": "ad_old",
+          "targets": {
+            "value": {
+              "geo": [
+                "msk"
+              ]
+            }
+          },
+          "volume": 3000,
+          "cpm": 5.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 99999
+            }
+          }
+        },
+        "ad_new": {
+          "id": "ad_new",
+          "targets": {
+            "value": {
+              "geo": [
+                "spb"
+              ]
+            }
+          },
+          "volume": 2000,
+          "cpm": 20.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 99999
+            }
+          }
+        }
+      },
+      "params": {
+        "total_traffic_volume": 5000,
+        "tag_probabilities": {
+          "geo:msk": 0.6,
+          "geo:spb": 0.4
+        },
+        "vocabs": {
+          "geo": [
+            "geo:msk",
+            "geo:spb"
+          ]
+        },
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1,
+        "ad_vol_distr": {
+          "ad_old": 2000
+        }
+      }
+    },
+    "output": {
+      "ad_old": 2000
+    },
+    "error": null,
+    "check_mode": "delta_consistency"
+  },
+  {
+    "description": "[validation] report contains a negative volume → INPUT_VALIDATION_ERROR",
+    "input": {
+      "ads": "file://fixtures/ads/ADS_OLD_AND_NEW.json",
+      "params": {
+        "total_traffic_volume": 10000,
+        "tag_probabilities": {
+          "geo:msk": 0.6,
+          "geo:spb": 0.4
+        },
+        "vocabs": {
+          "geo": [
+            "geo:msk",
+            "geo:spb"
+          ]
+        },
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1,
+        "ad_vol_distr": {
+          "banner_old_1": -500,
+          "banner_old_2": 2000
+        }
+      }
+    },
+    "output": null,
+    "error": "INPUT_VALIDATION_ERROR"
+  },
+  {
+    "description": "[validation] report — dictionary → INPUT_VALIDATION_ERROR",
+    "input": {
+      "ads": "file://fixtures/ads/ADS_OLD_AND_NEW.json",
+      "params": {
+        "total_traffic_volume": 10000,
+        "tag_probabilities": {
+          "geo:msk": 0.6,
+          "geo:spb": 0.4
+        },
+        "vocabs": {
+          "geo": [
+            "geo:msk",
+            "geo:spb"
+          ]
+        },
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1,
+        "ad_vol_distr": 12345
+      }
+    },
+    "output": null,
+    "error": "INPUT_VALIDATION_ERROR"
+  },
+  {
+    "description": "[mathematics] volume_delta campaign == volume (old 0)",
+    "input": {
+      "ads": {
+        "ad_old": {
+          "id": "ad_old",
+          "targets": {
+            "value": {
+              "geo": [
+                "msk"
+              ]
+            }
+          },
+          "volume": 3000,
+          "cpm": 5.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 99999
+            }
+          }
+        },
+        "ad_new": {
+          "id": "ad_new",
+          "targets": {
+            "value": {
+              "geo": [
+                "spb"
+              ]
+            }
+          },
+          "volume": 5000,
+          "cpm": 20.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 99999
+            }
+          }
+        }
+      },
+      "params": {
+        "total_traffic_volume": 5000,
+        "tag_probabilities": {
+          "geo:msk": 0.6,
+          "geo:spb": 0.4
+        },
+        "vocabs": {
+          "geo": [
+            "geo:msk",
+            "geo:spb"
+          ]
+        },
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1,
+        "ad_vol_distr": {
+          "ad_old": 2500
+        }
+      }
+    },
+    "output": {
+      "ad_old": 2500
+    },
+    "error": null,
+    "check_mode": "delta_consistency"
+  },
+  {
+    "description": "[rebalance] high-value campaign → delta formerly ≤ 0 (traffic redistributed)",
+    "input": {
+      "ads": "file://fixtures/ads/ADS_OLD_AND_NEW.json",
+      "params": {
+        "total_traffic_volume": 10000,
+        "tag_probabilities": {
+          "geo:msk": 0.6,
+          "geo:spb": 0.4
+        },
+        "vocabs": {
+          "geo": [
+            "geo:msk",
+            "geo:spb"
+          ]
+        },
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1,
+        "ad_vol_distr": {
+          "banner_old_1": 6000,
+          "banner_old_2": 4000
+        }
+      }
+    },
+    "output": {
+      "field": "volume_delta",
+      "key": "banner_old_1",
+      "min": -10001
+    },
+    "error": null,
+    "check_mode": "field_sub_gte"
+  },
+  {
+    "description": "[delta] complete recount of two campaigns → delta_consistency",
+    "input": {
+      "ads": {
+        "a1": {
+          "id": "a1",
+          "targets": {
+            "value": {
+              "geo": [
+                "msk"
+              ]
+            }
+          },
+          "volume": 5000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 99999
+            }
+          }
+        },
+        "a2": {
+          "id": "a2",
+          "targets": {
+            "value": {
+              "geo": [
+                "spb"
+              ]
+            }
+          },
+          "volume": 5000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 99999
+            }
+          }
+        }
+      },
+      "params": {
+        "total_traffic_volume": 10000,
+        "tag_probabilities": {
+          "geo:msk": 0.6,
+          "geo:spb": 0.4
+        },
+        "vocabs": {
+          "geo": [
+            "geo:msk",
+            "geo:spb"
+          ]
+        },
+        "objective": "maximize_volume",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1,
+        "ad_vol_distr": {
+          "a1": 3000,
+          "a2": 2000
+        }
+      }
+    },
+    "output": {
+      "a1": 3000,
+      "a2": 2000
+    },
+    "error": null,
+    "check_mode": "delta_consistency"
+  },
+  {
+    "description": "[report] report contains all keys (old-school + new)",
+    "input": {
+      "ads": {
+        "old1": {
+          "id": "old1",
+          "targets": {
+            "value": {
+              "geo": [
+                "msk"
+              ]
+            }
+          },
+          "volume": 5000,
+          "cpm": 5.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 99999
+            }
+          }
+        },
+        "new1": {
+          "id": "new1",
+          "targets": {
+            "value": {
+              "geo": [
+                "spb"
+              ]
+            }
+          },
+          "volume": 5000,
+          "cpm": 20.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 99999
+            }
+          }
+        }
+      },
+      "params": {
+        "total_traffic_volume": 10000,
+        "tag_probabilities": {
+          "geo:msk": 0.6,
+          "geo:spb": 0.4
+        },
+        "vocabs": {
+          "geo": [
+            "geo:msk",
+            "geo:spb"
+          ]
+        },
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1,
+        "ad_vol_distr": {
+          "old1": 3000
+        }
+      }
+    },
+    "output": [
+      "old1",
+      "new1"
+    ],
+    "error": null,
+    "check_mode": "report_keys"
+  },
+  {
+    "description": "[invariant] report_total ≤ total_traffic_volume",
+    "input": {
+      "ads": {
+        "a1": {
+          "id": "a1",
+          "targets": {
+            "value": {
+              "geo": [
+                "msk"
+              ]
+            }
+          },
+          "volume": 5000,
+          "cpm": 50.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 99999
+            }
+          }
+        },
+        "a2": {
+          "id": "a2",
+          "targets": {
+            "value": {
+              "geo": [
+                "spb"
+              ]
+            }
+          },
+          "volume": 5000,
+          "cpm": 20.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 99999
+            }
+          }
+        },
+        "a3": {
+          "id": "a3",
+          "targets": {
+            "value": {
+              "geo": [
+                "msk",
+                "spb"
+              ]
+            }
+          },
+          "volume": 3000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 99999
+            }
+          }
+        }
+      },
+      "params": {
+        "total_traffic_volume": 8000,
+        "tag_probabilities": {
+          "geo:msk": 0.6,
+          "geo:spb": 0.4
+        },
+        "vocabs": {
+          "geo": [
+            "geo:msk",
+            "geo:spb"
+          ]
+        },
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1,
+        "ad_vol_distr": {
+          "a1": 2000,
+          "a2": 1500
+        }
+      }
+    },
+    "output": 8000,
+    "error": null,
+    "check_mode": "report_total_lte"
+  },
+  {
+    "description": "[validation] ad_vol_distr = list → INPUT_VALIDATION_ERROR",
+    "input": {
+      "ads": {
+        "a1": {
+          "id": "a1",
+          "targets": {
+            "value": {
+              "geo": [
+                "msk"
+              ]
+            }
+          },
+          "volume": 3000,
+          "cpm": 5.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 99999
+            }
+          }
+        }
+      },
+      "params": {
+        "total_traffic_volume": 5000,
+        "tag_probabilities": {
+          "geo:msk": 0.6,
+          "geo:spb": 0.4
+        },
+        "vocabs": {
+          "geo": [
+            "geo:msk",
+            "geo:spb"
+          ]
+        },
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1,
+        "ad_vol_distr": [
+          3000
+        ]
+      }
+    },
+    "output": null,
+    "error": "INPUT_VALIDATION_ERROR"
+  },
+  {
+    "description": "[delta] counting without new campaigns → delta=0 for all (idempotence)",
+    "input": {
+      "ads": {
+        "a1": {
+          "id": "a1",
+          "targets": {
+            "value": {
+              "geo": [
+                "msk"
+              ]
+            }
+          },
+          "volume": 99999,
+          "cpm": 10.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 99999
+            }
+          }
+        }
+      },
+      "params": {
+        "total_traffic_volume": 5000,
+        "tag_probabilities": {
+          "geo:msk": 0.6,
+          "geo:spb": 0.4
+        },
+        "vocabs": {
+          "geo": [
+            "geo:msk",
+            "geo:spb"
+          ]
+        },
+        "objective": "maximize_volume",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1,
+        "ad_vol_distr": {
+          "a1": 3000
+        }
+      }
+    },
+    "output": {
+      "a1": 3000
+    },
+    "error": null,
+    "check_mode": "delta_consistency"
+  },
+  {
+    "description": "[delta] delta_consistency two-dictionary",
+    "input": {
+      "ads": {
+        "o1": {
+          "id": "o1",
+          "targets": {
+            "value": {
+              "geo": [
+                "msk"
+              ],
+              "age": [
+                "young"
+              ]
+            }
+          },
+          "volume": 5000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 99999
+            }
+          }
+        },
+        "n1": {
+          "id": "n1",
+          "targets": {
+            "value": {
+              "geo": [
+                "spb"
+              ],
+              "age": [
+                "old"
+              ]
+            }
+          },
+          "volume": 5000,
+          "cpm": 20.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 99999
+            }
+          }
+        }
+      },
+      "params": {
+        "total_traffic_volume": 10000,
+        "tag_probabilities": {
+          "geo:msk": 0.5,
+          "geo:spb": 0.5,
+          "age:young": 0.6,
+          "age:old": 0.4
+        },
+        "vocabs": {
+          "geo": [
+            "geo:msk",
+            "geo:spb"
+          ],
+          "age": [
+            "age:young",
+            "age:old"
+          ]
+        },
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1,
+        "ad_vol_distr": {
+          "o1": 2000
+        }
+      }
+    },
+    "output": {
+      "o1": 2000
+    },
+    "error": null,
+    "check_mode": "delta_consistency"
+  },
+  {
+    "description": "[hollow] ad_vol_distr hollow → everything delta == report (all-new)",
+    "input": {
+      "ads": {
+        "a1": {
+          "id": "a1",
+          "targets": {
+            "value": {
+              "geo": [
+                "msk"
+              ]
+            }
+          },
+          "volume": 5000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 99999
+            }
+          }
+        }
+      },
+      "params": {
+        "total_traffic_volume": 5000,
+        "tag_probabilities": {
+          "geo:msk": 0.6,
+          "geo:spb": 0.4
+        },
+        "vocabs": {
+          "geo": [
+            "geo:msk",
+            "geo:spb"
+          ]
+        },
+        "objective": "maximize_volume",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1,
+        "ad_vol_distr": {}
+      }
+    },
+    "output": {},
+    "error": null,
+    "check_mode": "delta_consistency"
+  },
+  {
+    "description": "[validation] ad_vol_distr negatively → INPUT_VALIDATION_ERROR",
+    "input": {
+      "ads": {
+        "a1": {
+          "id": "a1",
+          "targets": {
+            "value": {
+              "geo": [
+                "msk"
+              ]
+            }
+          },
+          "volume": 3000,
+          "cpm": 5.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 99999
+            }
+          }
+        }
+      },
+      "params": {
+        "total_traffic_volume": 5000,
+        "tag_probabilities": {
+          "geo:msk": 0.6,
+          "geo:spb": 0.4
+        },
+        "vocabs": {
+          "geo": [
+            "geo:msk",
+            "geo:spb"
+          ]
+        },
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1,
+        "ad_vol_distr": {
+          "a1": -100
+        }
+      }
+    },
+    "output": null,
+    "error": "INPUT_VALIDATION_ERROR"
+  },
+  {
+    "description": "[three-way] delta_consistency in three campaigns (two-way + new)",
+    "input": {
+      "ads": {
+        "o1": {
+          "id": "o1",
+          "targets": {
+            "value": {
+              "geo": [
+                "msk"
+              ]
+            }
+          },
+          "volume": 5000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 99999
+            }
+          }
+        },
+        "o2": {
+          "id": "o2",
+          "targets": {
+            "value": {
+              "geo": [
+                "spb"
+              ]
+            }
+          },
+          "volume": 5000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 99999
+            }
+          }
+        },
+        "n1": {
+          "id": "n1",
+          "targets": {
+            "value": {
+              "geo": [
+                "msk",
+                "spb"
+              ]
+            }
+          },
+          "volume": 5000,
+          "cpm": 50.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 99999
+            }
+          }
+        }
+      },
+      "params": {
+        "total_traffic_volume": 10000,
+        "tag_probabilities": {
+          "geo:msk": 0.6,
+          "geo:spb": 0.4
+        },
+        "vocabs": {
+          "geo": [
+            "geo:msk",
+            "geo:spb"
+          ]
+        },
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1,
+        "ad_vol_distr": {
+          "o1": 3000,
+          "o2": 2000
+        }
+      }
+    },
+    "output": {
+      "o1": 3000,
+      "o2": 2000
+    },
+    "error": null,
+    "check_mode": "delta_consistency"
+  }
+]

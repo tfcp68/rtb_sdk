@@ -1,0 +1,9 @@
+{
+  "banner_1": {
+    "id": "banner_1",
+    "targets": {"value": {"geo": ["msk"]}},
+    "volume": 10000,
+    "cpm": 10.0,
+    "ad_frequency_limit": {"value": {"d": 99999}}
+  }
+}

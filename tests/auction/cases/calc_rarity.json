@@ -1,0 +1,73 @@
+[
+  {
+    "input": {
+      "ad_tags": {
+        "vocab1": [
+          "tag_a",
+          "tag_b"
+        ]
+      },
+      "tag_probs": {
+        "tag_a": 0.3,
+        "tag_b": 0.4
+      }
+    },
+    "output": 0.7,
+    "error": null,
+    "description": "One tag dictionary — summation"
+  },
+  {
+    "input": {
+      "ad_tags": {
+        "vocab1": [
+          "tag_a"
+        ],
+        "vocab2": [
+          "tag_b"
+        ]
+      },
+      "tag_probs": {
+        "tag_a": 0.5,
+        "tag_b": 0.4
+      }
+    },
+    "output": 0.2,
+    "error": null,
+    "description": "Two tag dictionaries — multiplies the sums for each"
+  },
+  {
+    "input": {
+      "ad_tags": {},
+      "tag_probs": {}
+    },
+    "output": 1.0,
+    "error": null,
+    "description": "Empty tags — return 1.0"
+  },
+  {
+    "input": {
+      "ad_tags": {
+        "vocab1": ["tag_a"]
+      },
+      "tag_probs": {
+        "tag_a": 1.0
+      }
+    },
+    "output": 1.0,
+    "error": null,
+    "description": "The only tag with probability 1.0 — return 1.0"
+  },
+  {
+    "input": {
+      "ad_tags": {
+        "vocab1": ["tag_a"]
+      },
+      "tag_probs": {
+        "tag_a": 0.0
+      }
+    },
+    "output": 0.0,
+    "error": null,
+    "description": "Zero probability tag — return 0.0"
+  }
+]

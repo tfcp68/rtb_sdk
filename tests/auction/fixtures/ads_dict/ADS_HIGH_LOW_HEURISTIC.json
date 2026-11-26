@@ -1,0 +1,4 @@
+{
+  "ad_high_heuristic": "file://fixtures/ad/AD_HIGH_HEURISTIC.json",
+  "ad_low_heuristic": "file://fixtures/ad/AD_LOW_HEURISTIC.json"
+}

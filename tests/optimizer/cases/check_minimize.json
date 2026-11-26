@@ -1,0 +1,20 @@
+[
+  {
+    "input": {"type_": "minimize"},
+    "output": true,
+    "error": null,
+    "description": "'minimize' — return True"
+  },
+  {
+    "input": {"type_": "maximize"},
+    "output": false,
+    "error": null,
+    "description": "'maximize' — not minimize — return False"
+  },
+  {
+    "input": {"type_": ""},
+    "output": false,
+    "error": null,
+    "description": "Empty line — return False"
+  }
+]

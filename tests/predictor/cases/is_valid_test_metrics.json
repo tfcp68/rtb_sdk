@@ -1,0 +1,64 @@
+[
+  {
+    "description": "valid TestMetrics",
+    "input": {
+      "metrics": {
+        "__type": "TestMetrics",
+        "accuracy": 0.9,
+        "precision": 0.8,
+        "mse": 1.0,
+        "autocorrelation": 0.1,
+        "mae": 0.5,
+        "lb_stat": 0.2,
+        "lb_sq_stat": 0.3
+      }
+    },
+    "output": true,
+    "error": null
+  },
+  {
+    "description": "valid TestMetrics zero-value",
+    "input": {
+      "metrics": {
+        "__type": "TestMetrics",
+        "accuracy": 1.0,
+        "precision": 1.0,
+        "mse": 0.0,
+        "autocorrelation": 0.0,
+        "mae": 0.0,
+        "lb_stat": 0.0,
+        "lb_sq_stat": 0.0
+      }
+    },
+    "output": true,
+    "error": null
+  },
+  {
+    "description": "slippery — hollow dict",
+    "input": {"metrics": {}},
+    "output": false,
+    "error": null
+  },
+  {
+    "description": "slippery — field accuracy",
+    "input": {
+      "metrics": {
+        "__type": "TestMetrics",
+        "precision": 0.8,
+        "mse": 1.0,
+        "autocorrelation": 0.1,
+        "mae": 0.5,
+        "lb_stat": 0.2,
+        "lb_sq_stat": 0.3
+      }
+    },
+    "output": false,
+    "error": null
+  },
+  {
+    "description": "slippery — None",
+    "input": {"metrics": null},
+    "output": false,
+    "error": null
+  }
+]

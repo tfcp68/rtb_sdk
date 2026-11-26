@@ -1,0 +1,80 @@
+[
+  {
+    "input": {
+      "decision_variables": {"x": [0, 1, 2], "y": ["A", "B"]},
+      "state": {
+        "best_vectors": [
+          {"x": 0, "y": "A"},
+          {"x": 1, "y": "B"}
+        ],
+        "population_size": 5,
+        "best_genome_size": 2,
+        "mutants_size": 1,
+        "crossover_size": 1,
+        "news_size": 1,
+        "n_epochs": 5,
+        "epoch": 1,
+        "mutation_gene_probability": 0.1,
+        "strategy_type": "maximize"
+      }
+    },
+    "output": null,
+    "check_output_type": true,
+    "error": null,
+    "description": "Genetic: next-generation 2 best + mutants + crossover + new"
+  },
+  {
+    "input": {
+      "decision_variables": {"alpha": [0.001, 0.01, 0.1], "mode": ["fast", "slow"]},
+      "state": {
+        "best_vectors": [
+          {"alpha": 0.01, "mode": "fast"},
+          {"alpha": 0.1,  "mode": "slow"},
+          {"alpha": 0.001, "mode": "fast"}
+        ],
+        "population_size": 10,
+        "best_genome_size": 3,
+        "mutants_size": 3,
+        "crossover_size": 2,
+        "news_size": 2,
+        "n_epochs": 10,
+        "epoch": 3,
+        "mutation_gene_probability": 0.2,
+        "strategy_type": "minimize"
+      }
+    },
+    "output": null,
+    "check_output_type": true,
+    "error": null,
+    "description": "Genetic minimize: next generation 3 parentage"
+  },
+  {
+    "input": {
+      "decision_variables": null,
+      "state": {
+        "best_vectors": [{"x": 0}],
+        "population_size": 2,
+        "best_genome_size": 1,
+        "mutants_size": 1,
+        "crossover_size": 1,
+        "news_size": 1,
+        "n_epochs": 5,
+        "epoch": 1,
+        "mutation_gene_probability": 0.1,
+        "strategy_type": "maximize"
+      }
+    },
+    "output": null,
+    "error": "OptimizerError(PARAMETER_ERROR_CODE)",
+    "description": "Mistake: decision_variables=null"
+  },
+  {
+    "input": {
+      "decision_variables": {"x": [0, 1]},
+      "state": null
+    },
+    "output": null,
+    "error": "OptimizerError(PARAMETER_ERROR_CODE)",
+    "description": "Mistake: state=null"
+  }
+]

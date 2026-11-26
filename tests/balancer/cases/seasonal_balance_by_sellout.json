@@ -1,0 +1,118 @@
+[
+  {
+    "description": "[edge] vocabulary → hollow report, sellout_percent=0.0",
+    "input": {
+      "ads": {},
+      "params": {
+        "total_traffic_volume": 10000,
+        "tag_probabilities": {"geo:msk": 0.6, "geo:spb": 0.4},
+        "vocabs": {"geo": ["geo:msk", "geo:spb"]},
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1,
+        "seasonal_context": {"mode": "hour_of_day", "context": {"0": {"weight": 1.0, "user_activity_ratio": {}, "tags_probability": null}}},
+        "period": {"period_start": "2024-01-01T00:00:00", "period_end": "2024-01-01T01:00:00"},
+        "accuracy_percent": 0.1
+      }
+    },
+    "output": {"report": {}, "sellout_percent": 0.0},
+    "error": null,
+    "check_mode": "sellout_eq"
+  },
+  {
+    "description": "[edge] hollow seasonal_context: all slots missed → report c zero, sellout_percent=0.0",
+    "input": {
+      "ads": {
+        "a": {"id": "a", "targets": {"value": {"geo": ["msk"]}}, "volume": 3000, "cpm": 10.0, "ad_frequency_limit": {"value": {"d": 1000000000}}}
+      },
+      "params": {
+        "total_traffic_volume": 10000,
+        "tag_probabilities": {"geo:msk": 0.6, "geo:spb": 0.4},
+        "vocabs": {"geo": ["geo:msk", "geo:spb"]},
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1,
+        "seasonal_context": {"mode": "hour_of_day", "context": {}},
+        "period": {"period_start": "2024-01-01T00:00:00", "period_end": "2024-01-02T00:00:00"},
+        "accuracy_percent": 0.1
+      }
+    },
+    "output": {"report": {"a": 0}, "sellout_percent": 0.0},
+    "error": null,
+    "check_mode": "sellout_eq"
+  },
+  {
+    "description": "[edge] All ads are unlimited (volume=0) → excluded min, sellout_percent=0.0",
+    "input": {
+      "ads": {
+        "u1": {"id": "u1", "targets": {"value": {"geo": ["msk"]}}, "volume": 0, "cpm": 10.0, "ad_frequency_limit": {"value": {"d": 1000000000}}},
+        "u2": {"id": "u2", "targets": {"value": {"geo": ["spb"]}}, "volume": 0, "cpm": 10.0, "ad_frequency_limit": {"value": {"d": 1000000000}}}
+      },
+      "params": {
+        "total_traffic_volume": 10000,
+        "tag_probabilities": {"geo:msk": 0.6, "geo:spb": 0.4},
+        "vocabs": {"geo": ["geo:msk", "geo:spb"]},
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1,
+        "seasonal_context": {"mode": "hour_of_day", "context": {"0": {"weight": 1.0, "user_activity_ratio": {}, "tags_probability": null}}},
+        "period": {"period_start": "2024-01-01T00:00:00", "period_end": "2024-01-01T01:00:00"},
+        "accuracy_percent": 0.1
+      }
+    },
+    "output": {"sellout_percent": 0.0},
+    "error": null,
+    "check_mode": "sellout_eq"
+  },
+  {
+    "description": "[max-min] pool msk=4500 (7500·0.6), a(vol=4000)+b(vol=2000): parcels → φ*=0.75, report {a:3000,b:1500}",
+    "input": {
+      "ads": {
+        "a": {"id": "a", "targets": {"value": {"geo": ["msk"]}}, "volume": 4000, "cpm": 10.0, "ad_frequency_limit": {"value": {"d": 1000000000}}},
+        "b": {"id": "b", "targets": {"value": {"geo": ["msk"]}}, "volume": 2000, "cpm": 10.0, "ad_frequency_limit": {"value": {"d": 1000000000}}}
+      },
+      "params": {
+        "total_traffic_volume": 7500,
+        "tag_probabilities": {"geo:msk": 0.6, "geo:spb": 0.4},
+        "vocabs": {"geo": ["geo:msk", "geo:spb"]},
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1,
+        "seasonal_context": {"mode": "hour_of_day", "context": {"0": {"weight": 1.0, "user_activity_ratio": {}, "tags_probability": null}}},
+        "period": {"period_start": "2024-01-01T00:00:00", "period_end": "2024-01-01T01:00:00"},
+        "accuracy_percent": 0.01
+      }
+    },
+    "output": {"report": {"a": 3000, "b": 1500}, "sellout_percent": 75.0},
+    "error": null,
+    "check_mode": "sellout_eq"
+  },
+  {
+    "description": "[tag-free] msk and spb noncompetitive, both sold out in full → sellout_percent=100",
+    "input": {
+      "ads": {
+        "a": {"id": "a", "targets": {"value": {"geo": ["msk"]}}, "volume": 3000, "cpm": 10.0, "ad_frequency_limit": {"value": {"d": 1000000000}}},
+        "b": {"id": "b", "targets": {"value": {"geo": ["spb"]}}, "volume": 2000, "cpm": 10.0, "ad_frequency_limit": {"value": {"d": 1000000000}}}
+      },
+      "params": {
+        "total_traffic_volume": 100000,
+        "tag_probabilities": {"geo:msk": 0.6, "geo:spb": 0.4},
+        "vocabs": {"geo": ["geo:msk", "geo:spb"]},
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1,
+        "seasonal_context": {"mode": "hour_of_day", "context": {"0": {"weight": 1.0, "user_activity_ratio": {}, "tags_probability": null}}},
+        "period": {"period_start": "2024-01-01T00:00:00", "period_end": "2024-01-01T01:00:00"},
+        "accuracy_percent": 0.1
+      }
+    },
+    "output": {"report": {"a": 3000, "b": 2000}, "sellout_percent": 100.0},
+    "error": null,
+    "check_mode": "sellout_eq"
+  }
+]

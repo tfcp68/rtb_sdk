@@ -1,0 +1,1069 @@
+[
+  {
+    "description": "[structure] new_ads_volumes It contains only the key to the new campaign",
+    "input": {
+      "ads": "file://fixtures/ads/ADS_OLD_AND_NEW.json",
+      "params": {
+        "total_traffic_volume": 10000,
+        "tag_probabilities": {
+          "geo:msk": 0.6,
+          "geo:spb": 0.4
+        },
+        "vocabs": {
+          "geo": [
+            "geo:msk",
+            "geo:spb"
+          ]
+        },
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1,
+        "ad_vol_distr": {
+          "banner_old_1": 3000,
+          "banner_old_2": 2000
+        }
+      }
+    },
+    "output": [
+      "banner_new"
+    ],
+    "error": null,
+    "check_mode": "new_ads_volumes_keys"
+  },
+  {
+    "description": "[structure] report contains all the campaigns (old-school + new)",
+    "input": {
+      "ads": "file://fixtures/ads/ADS_OLD_AND_NEW.json",
+      "params": {
+        "total_traffic_volume": 10000,
+        "tag_probabilities": {
+          "geo:msk": 0.6,
+          "geo:spb": 0.4
+        },
+        "vocabs": {
+          "geo": [
+            "geo:msk",
+            "geo:spb"
+          ]
+        },
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1,
+        "ad_vol_distr": {
+          "banner_old_1": 3000,
+          "banner_old_2": 2000
+        }
+      }
+    },
+    "output": [
+      "banner_old_1",
+      "banner_old_2",
+      "banner_new"
+    ],
+    "error": null,
+    "check_mode": "report_keys"
+  },
+  {
+    "description": "[invariant] traffic report ≤ total_traffic_volume",
+    "input": {
+      "ads": "file://fixtures/ads/ADS_OLD_AND_NEW.json",
+      "params": {
+        "total_traffic_volume": 10000,
+        "tag_probabilities": {
+          "geo:msk": 0.6,
+          "geo:spb": 0.4
+        },
+        "vocabs": {
+          "geo": [
+            "geo:msk",
+            "geo:spb"
+          ]
+        },
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1,
+        "ad_vol_distr": {
+          "banner_old_1": 3000,
+          "banner_old_2": 2000
+        }
+      }
+    },
+    "output": 10000,
+    "error": null,
+    "check_mode": "report_total_lte"
+  },
+  {
+    "description": "[documentation] Old campaign volumes do not change when new campaigns are added",
+    "input": {
+      "ads": "file://fixtures/ads/ADS_OLD_AND_NEW.json",
+      "params": {
+        "total_traffic_volume": 10000,
+        "tag_probabilities": {
+          "geo:msk": 0.6,
+          "geo:spb": 0.4
+        },
+        "vocabs": {
+          "geo": [
+            "geo:msk",
+            "geo:spb"
+          ]
+        },
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1,
+        "ad_vol_distr": {
+          "banner_old_1": 3000,
+          "banner_old_2": 2000
+        }
+      }
+    },
+    "output": {
+      "banner_old_1": 3000,
+      "banner_old_2": 2000
+    },
+    "error": null,
+    "check_mode": "report_old_preserved"
+  },
+  {
+    "description": "[validation] report — dictionary → INPUT_VALIDATION_ERROR",
+    "input": {
+      "ads": "file://fixtures/ads/ADS_OLD_AND_NEW.json",
+      "params": {
+        "total_traffic_volume": 10000,
+        "tag_probabilities": {
+          "geo:msk": 0.6,
+          "geo:spb": 0.4
+        },
+        "vocabs": {
+          "geo": [
+            "geo:msk",
+            "geo:spb"
+          ]
+        },
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1,
+        "ad_vol_distr": "not_a_dict"
+      }
+    },
+    "output": null,
+    "error": "INPUT_VALIDATION_ERROR"
+  },
+  {
+    "description": "[validation] report contains a negative volume → INPUT_VALIDATION_ERROR",
+    "input": {
+      "ads": "file://fixtures/ads/ADS_OLD_AND_NEW.json",
+      "params": {
+        "total_traffic_volume": 10000,
+        "tag_probabilities": {
+          "geo:msk": 0.6,
+          "geo:spb": 0.4
+        },
+        "vocabs": {
+          "geo": [
+            "geo:msk",
+            "geo:spb"
+          ]
+        },
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1,
+        "ad_vol_distr": {
+          "banner_old_1": -100,
+          "banner_old_2": 2000
+        }
+      }
+    },
+    "output": null,
+    "error": "INPUT_VALIDATION_ERROR"
+  },
+  {
+    "description": "[mathematics] volume=0 signifier unlimited → new_ad In the non-intersecting segment, the full flow",
+    "input": {
+      "ads": {
+        "old_ad": {
+          "id": "old_ad",
+          "targets": {
+            "value": {
+              "geo": [
+                "msk"
+              ]
+            }
+          },
+          "volume": 3000,
+          "cpm": 5.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 99999
+            }
+          }
+        },
+        "new_ad": {
+          "id": "new_ad",
+          "targets": {
+            "value": {
+              "geo": [
+                "spb"
+              ]
+            }
+          },
+          "volume": 0,
+          "cpm": 50.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 99999
+            }
+          }
+        }
+      },
+      "params": {
+        "total_traffic_volume": 5000,
+        "tag_probabilities": {
+          "geo:msk": 0.6,
+          "geo:spb": 0.4
+        },
+        "vocabs": {
+          "geo": [
+            "geo:msk",
+            "geo:spb"
+          ]
+        },
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1,
+        "ad_vol_distr": {
+          "old_ad": 2000
+        }
+      }
+    },
+    "output": {
+      "field": "new_ads_volumes",
+      "key": "new_ad",
+      "value": 2000
+    },
+    "error": null,
+    "check_mode": "field_sub_eq"
+  },
+  {
+    "description": "[mathematics] old zero-ballot campaigns report → report[old]=0 after adding a new",
+    "input": {
+      "ads": {
+        "old_ad": {
+          "id": "old_ad",
+          "targets": {
+            "value": {
+              "geo": [
+                "msk"
+              ]
+            }
+          },
+          "volume": 3000,
+          "cpm": 5.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 99999
+            }
+          }
+        },
+        "new_ad": {
+          "id": "new_ad",
+          "targets": {
+            "value": {
+              "geo": [
+                "spb"
+              ]
+            }
+          },
+          "volume": 2000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 99999
+            }
+          }
+        }
+      },
+      "params": {
+        "total_traffic_volume": 5000,
+        "tag_probabilities": {
+          "geo:msk": 0.6,
+          "geo:spb": 0.4
+        },
+        "vocabs": {
+          "geo": [
+            "geo:msk",
+            "geo:spb"
+          ]
+        },
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1,
+        "ad_vol_distr": {
+          "old_ad": 0
+        }
+      }
+    },
+    "output": {
+      "old_ad": 0
+    },
+    "error": null,
+    "check_mode": "report_old_preserved"
+  },
+  {
+    "description": "[fixation] old-timer report=0 stays 0 after adding a new",
+    "input": {
+      "ads": {
+        "old": {
+          "id": "old",
+          "targets": {
+            "value": {
+              "geo": [
+                "msk"
+              ]
+            }
+          },
+          "volume": 5000,
+          "cpm": 5.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 99999
+            }
+          }
+        },
+        "new": {
+          "id": "new",
+          "targets": {
+            "value": {
+              "geo": [
+                "spb"
+              ]
+            }
+          },
+          "volume": 5000,
+          "cpm": 50.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 99999
+            }
+          }
+        }
+      },
+      "params": {
+        "total_traffic_volume": 10000,
+        "tag_probabilities": {
+          "geo:msk": 0.6,
+          "geo:spb": 0.4
+        },
+        "vocabs": {
+          "geo": [
+            "geo:msk",
+            "geo:spb"
+          ]
+        },
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1,
+        "ad_vol_distr": {
+          "old": 0
+        }
+      }
+    },
+    "output": {
+      "old": 0
+    },
+    "error": null,
+    "check_mode": "report_old_preserved"
+  },
+  {
+    "description": "[keys] report It contains both old and new campaigns",
+    "input": {
+      "ads": {
+        "old": {
+          "id": "old",
+          "targets": {
+            "value": {
+              "geo": [
+                "msk"
+              ]
+            }
+          },
+          "volume": 3000,
+          "cpm": 5.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 99999
+            }
+          }
+        },
+        "new1": {
+          "id": "new1",
+          "targets": {
+            "value": {
+              "geo": [
+                "spb"
+              ]
+            }
+          },
+          "volume": 5000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 99999
+            }
+          }
+        },
+        "new2": {
+          "id": "new2",
+          "targets": {
+            "value": {
+              "geo": [
+                "spb"
+              ]
+            }
+          },
+          "volume": 5000,
+          "cpm": 8.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 99999
+            }
+          }
+        }
+      },
+      "params": {
+        "total_traffic_volume": 10000,
+        "tag_probabilities": {
+          "geo:msk": 0.6,
+          "geo:spb": 0.4
+        },
+        "vocabs": {
+          "geo": [
+            "geo:msk",
+            "geo:spb"
+          ]
+        },
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1,
+        "ad_vol_distr": {
+          "old": 2000
+        }
+      }
+    },
+    "output": [
+      "old",
+      "new1",
+      "new2"
+    ],
+    "error": null,
+    "check_mode": "report_keys"
+  },
+  {
+    "description": "[invariant] summative report ≤ total with two new campaigns",
+    "input": {
+      "ads": {
+        "old": {
+          "id": "old",
+          "targets": {
+            "value": {
+              "geo": [
+                "msk"
+              ]
+            }
+          },
+          "volume": 3000,
+          "cpm": 5.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 99999
+            }
+          }
+        },
+        "new1": {
+          "id": "new1",
+          "targets": {
+            "value": {
+              "geo": [
+                "spb"
+              ]
+            }
+          },
+          "volume": 5000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 99999
+            }
+          }
+        },
+        "new2": {
+          "id": "new2",
+          "targets": {
+            "value": {
+              "geo": [
+                "msk"
+              ]
+            }
+          },
+          "volume": 5000,
+          "cpm": 8.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 99999
+            }
+          }
+        }
+      },
+      "params": {
+        "total_traffic_volume": 10000,
+        "tag_probabilities": {
+          "geo:msk": 0.6,
+          "geo:spb": 0.4
+        },
+        "vocabs": {
+          "geo": [
+            "geo:msk",
+            "geo:spb"
+          ]
+        },
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1,
+        "ad_vol_distr": {
+          "old": 2000
+        }
+      }
+    },
+    "output": 10000,
+    "error": null,
+    "check_mode": "report_total_lte"
+  },
+  {
+    "description": "[fixation] Some of the old campaigns still have their size",
+    "input": {
+      "ads": {
+        "o1": {
+          "id": "o1",
+          "targets": {
+            "value": {
+              "geo": [
+                "msk"
+              ]
+            }
+          },
+          "volume": 5000,
+          "cpm": 5.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 99999
+            }
+          }
+        },
+        "o2": {
+          "id": "o2",
+          "targets": {
+            "value": {
+              "geo": [
+                "spb"
+              ]
+            }
+          },
+          "volume": 5000,
+          "cpm": 5.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 99999
+            }
+          }
+        },
+        "n1": {
+          "id": "n1",
+          "targets": {
+            "value": {
+              "geo": [
+                "msk"
+              ]
+            }
+          },
+          "volume": 3000,
+          "cpm": 100.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 99999
+            }
+          }
+        }
+      },
+      "params": {
+        "total_traffic_volume": 10000,
+        "tag_probabilities": {
+          "geo:msk": 0.6,
+          "geo:spb": 0.4
+        },
+        "vocabs": {
+          "geo": [
+            "geo:msk",
+            "geo:spb"
+          ]
+        },
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1,
+        "ad_vol_distr": {
+          "o1": 1500,
+          "o2": 1000
+        }
+      }
+    },
+    "output": {
+      "o1": 1500,
+      "o2": 1000
+    },
+    "error": null,
+    "check_mode": "report_old_preserved"
+  },
+  {
+    "description": "[validation] ad_vol_distr containing float → INPUT_VALIDATION_ERROR",
+    "input": {
+      "ads": {
+        "old": {
+          "id": "old",
+          "targets": {
+            "value": {
+              "geo": [
+                "msk"
+              ]
+            }
+          },
+          "volume": 3000,
+          "cpm": 5.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 99999
+            }
+          }
+        },
+        "new": {
+          "id": "new",
+          "targets": {
+            "value": {
+              "geo": [
+                "spb"
+              ]
+            }
+          },
+          "volume": 5000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 99999
+            }
+          }
+        }
+      },
+      "params": {
+        "total_traffic_volume": 5000,
+        "tag_probabilities": {
+          "geo:msk": 0.6,
+          "geo:spb": 0.4
+        },
+        "vocabs": {
+          "geo": [
+            "geo:msk",
+            "geo:spb"
+          ]
+        },
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1,
+        "ad_vol_distr": {
+          "old": 1500.5
+        }
+      }
+    },
+    "output": null,
+    "error": "INPUT_VALIDATION_ERROR"
+  },
+  {
+    "description": "[new] new_ads_volumes It contains only the keys to new campaigns, old",
+    "input": {
+      "ads": {
+        "o1": {
+          "id": "o1",
+          "targets": {
+            "value": {
+              "geo": [
+                "msk"
+              ]
+            }
+          },
+          "volume": 5000,
+          "cpm": 5.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 99999
+            }
+          }
+        },
+        "n1": {
+          "id": "n1",
+          "targets": {
+            "value": {
+              "geo": [
+                "spb"
+              ]
+            }
+          },
+          "volume": 5000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 99999
+            }
+          }
+        }
+      },
+      "params": {
+        "total_traffic_volume": 10000,
+        "tag_probabilities": {
+          "geo:msk": 0.6,
+          "geo:spb": 0.4
+        },
+        "vocabs": {
+          "geo": [
+            "geo:msk",
+            "geo:spb"
+          ]
+        },
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1,
+        "ad_vol_distr": {
+          "o1": 3000
+        }
+      }
+    },
+    "output": [
+      "n1"
+    ],
+    "error": null,
+    "check_mode": "new_ads_volumes_keys"
+  },
+  {
+    "description": "[bottleneck] The old campaign occupies almost the entire tag → newcomer",
+    "input": {
+      "ads": {
+        "old": {
+          "id": "old",
+          "targets": {
+            "value": {
+              "geo": [
+                "msk"
+              ]
+            }
+          },
+          "volume": 5900,
+          "cpm": 5.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 99999
+            }
+          }
+        },
+        "new": {
+          "id": "new",
+          "targets": {
+            "value": {
+              "geo": [
+                "msk"
+              ]
+            }
+          },
+          "volume": 5000,
+          "cpm": 100.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 99999
+            }
+          }
+        }
+      },
+      "params": {
+        "total_traffic_volume": 10000,
+        "tag_probabilities": {
+          "geo:msk": 0.6,
+          "geo:spb": 0.4
+        },
+        "vocabs": {
+          "geo": [
+            "geo:msk",
+            "geo:spb"
+          ]
+        },
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1,
+        "ad_vol_distr": {
+          "old": 5900
+        }
+      }
+    },
+    "output": {
+      "old": 5900
+    },
+    "error": null,
+    "check_mode": "report_old_preserved"
+  },
+  {
+    "description": "[mathematics] volume=0 signifier unlimited → A new campaign in the same segment receives the remainder of the frozen old",
+    "input": {
+      "ads": {
+        "old": {
+          "id": "old",
+          "targets": {
+            "value": {
+              "geo": [
+                "msk"
+              ]
+            }
+          },
+          "volume": 5000,
+          "cpm": 5.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 99999
+            }
+          }
+        },
+        "new_zero": {
+          "id": "new_zero",
+          "targets": {
+            "value": {
+              "geo": [
+                "msk"
+              ]
+            }
+          },
+          "volume": 0,
+          "cpm": 100.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 99999
+            }
+          }
+        }
+      },
+      "params": {
+        "total_traffic_volume": 10000,
+        "tag_probabilities": {
+          "geo:msk": 0.6,
+          "geo:spb": 0.4
+        },
+        "vocabs": {
+          "geo": [
+            "geo:msk",
+            "geo:spb"
+          ]
+        },
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1,
+        "ad_vol_distr": {
+          "old": 3000
+        }
+      }
+    },
+    "output": {
+      "field": "new_ads_volumes",
+      "key": "new_zero",
+      "value": 3000
+    },
+    "error": null,
+    "check_mode": "field_sub_eq"
+  },
+  {
+    "description": "[two-dictionary] Adding a new campaign with two dictionaries saves the old ones",
+    "input": {
+      "ads": {
+        "old_geo": {
+          "id": "old_geo",
+          "targets": {
+            "value": {
+              "geo": [
+                "msk"
+              ],
+              "age": [
+                "young"
+              ]
+            }
+          },
+          "volume": 5000,
+          "cpm": 5.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 99999
+            }
+          }
+        },
+        "new_all": {
+          "id": "new_all",
+          "targets": {
+            "value": {
+              "geo": [
+                "spb"
+              ],
+              "age": [
+                "old"
+              ]
+            }
+          },
+          "volume": 5000,
+          "cpm": 20.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 99999
+            }
+          }
+        }
+      },
+      "params": {
+        "total_traffic_volume": 10000,
+        "tag_probabilities": {
+          "geo:msk": 0.5,
+          "geo:spb": 0.5,
+          "age:young": 0.6,
+          "age:old": 0.4
+        },
+        "vocabs": {
+          "geo": [
+            "geo:msk",
+            "geo:spb"
+          ],
+          "age": [
+            "age:young",
+            "age:old"
+          ]
+        },
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1,
+        "ad_vol_distr": {
+          "old_geo": 2500
+        }
+      }
+    },
+    "output": {
+      "old_geo": 2500
+    },
+    "error": null,
+    "check_mode": "report_old_preserved"
+  },
+  {
+    "description": "[validation] ad_vol_distr = None → INPUT_VALIDATION_ERROR",
+    "input": {
+      "ads": {
+        "old": {
+          "id": "old",
+          "targets": {
+            "value": {
+              "geo": [
+                "msk"
+              ]
+            }
+          },
+          "volume": 3000,
+          "cpm": 5.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 99999
+            }
+          }
+        }
+      },
+      "params": {
+        "total_traffic_volume": 5000,
+        "tag_probabilities": {
+          "geo:msk": 0.6,
+          "geo:spb": 0.4
+        },
+        "vocabs": {
+          "geo": [
+            "geo:msk",
+            "geo:spb"
+          ]
+        },
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1,
+        "ad_vol_distr": null
+      }
+    },
+    "output": null,
+    "error": "INPUT_VALIDATION_ERROR"
+  },
+  {
+    "description": "[hollow] ad_vol_distr hollow → All campaigns are considered new",
+    "input": {
+      "ads": {
+        "b1": {
+          "id": "b1",
+          "targets": {
+            "value": {
+              "geo": [
+                "msk"
+              ]
+            }
+          },
+          "volume": 5000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 99999
+            }
+          }
+        }
+      },
+      "params": {
+        "total_traffic_volume": 5000,
+        "tag_probabilities": {
+          "geo:msk": 0.6,
+          "geo:spb": 0.4
+        },
+        "vocabs": {
+          "geo": [
+            "geo:msk",
+            "geo:spb"
+          ]
+        },
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1,
+        "ad_vol_distr": {}
+      }
+    },
+    "output": [
+      "b1"
+    ],
+    "error": null,
+    "check_mode": "new_ads_volumes_keys"
+  }
+]

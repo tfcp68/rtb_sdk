@@ -1,0 +1,26 @@
+[
+  {
+    "input": {"method": "grid"},
+    "output": true,
+    "error": null,
+    "description": "'grid' — string and correct method — return True"
+  },
+  {
+    "input": {"method": "genetic"},
+    "output": true,
+    "error": null,
+    "description": "'genetic' — string and correct method — return True"
+  },
+  {
+    "input": {"method": "unknown"},
+    "output": false,
+    "error": null,
+    "description": "'unknown' — line, but not the correct method — return False"
+  },
+  {
+    "input": {"method": ""},
+    "output": false,
+    "error": null,
+    "description": "Empty line — is not the correct method — return False"
+  }
+]

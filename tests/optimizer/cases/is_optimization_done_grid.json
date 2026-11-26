@@ -1,0 +1,101 @@
+[
+  {
+    "input": {
+      "decision_variables": {"x": [0, 1], "y": [0, 1]},
+      "state": {
+        "best_vectors": [],
+        "n_combinations": 4,
+        "n_step_combinations": 2,
+        "index": 0,
+        "strategy_type": "maximize"
+      }
+    },
+    "output": false,
+    "error": null,
+    "description": "Incomplete: index=0 < min(n_combinations=4, n_cartesian=4)"
+  },
+  {
+    "input": {
+      "decision_variables": {"x": [0, 1], "y": [0, 1]},
+      "state": {
+        "best_vectors": [],
+        "n_combinations": 4,
+        "n_step_combinations": 2,
+        "index": 2,
+        "strategy_type": "maximize"
+      }
+    },
+    "output": false,
+    "error": null,
+    "description": "Incomplete: index=2 < min(4, 4)=4"
+  },
+  {
+    "input": {
+      "decision_variables": {"x": [0, 1], "y": [0, 1]},
+      "state": {
+        "best_vectors": [],
+        "n_combinations": 4,
+        "n_step_combinations": 2,
+        "index": 4,
+        "strategy_type": "maximize"
+      }
+    },
+    "output": true,
+    "error": null,
+    "description": "Completed: index=4 >= min(4, 4)=4"
+  },
+  {
+    "input": {
+      "decision_variables": {"x": [0, 1], "y": [0, 1]},
+      "state": {
+        "best_vectors": [],
+        "n_combinations": 2,
+        "n_step_combinations": 2,
+        "index": 2,
+        "strategy_type": "minimize"
+      }
+    },
+    "output": true,
+    "error": null,
+    "description": "Completed: n_combinations=2 limit — index=2 >= min(2, 4)=2"
+  },
+  {
+    "input": {
+      "decision_variables": {"x": [0, 1], "y": [0, 1]},
+      "state": {
+        "best_vectors": [],
+        "n_combinations": 10,
+        "n_step_combinations": 2,
+        "index": 4,
+        "strategy_type": "maximize"
+      }
+    },
+    "output": true,
+    "error": null,
+    "description": "Completed: n_cartesian=4 limit — index=4 >= min(10, 4)=4"
+  },
+  {
+    "input": {
+      "decision_variables": {"x": [0, 1], "y": [0, 1]},
+      "state": {
+        "best_vectors": [],
+        "n_combinations": 10,
+        "n_step_combinations": 2,
+        "index": 3,
+        "strategy_type": "maximize"
+      }
+    },
+    "output": false,
+    "error": null,
+    "description": "Incomplete: index=3 < min(10, 4)=4"
+  },
+  {
+    "input": {
+      "decision_variables": {"x": [0, 1]},
+      "state": null
+    },
+    "output": null,
+    "error": "OptimizerError(PARAMETER_ERROR_CODE)",
+    "description": "Mistake: state=null — fails to pass validation"
+  }
+]

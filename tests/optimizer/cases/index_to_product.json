@@ -1,0 +1,56 @@
+[
+  {
+    "input": {
+      "decision_variables": {"x": [0, 1, 2], "y": ["A", "B"]},
+      "index": 0
+    },
+    "output": [0, "A"],
+    "error": null,
+    "description": "index=0 → first (0, A)"
+  },
+  {
+    "input": {
+      "decision_variables": {"x": [0, 1, 2], "y": ["A", "B"]},
+      "index": 1
+    },
+    "output": [0, "B"],
+    "error": null,
+    "description": "index=1 → (0, B)"
+  },
+  {
+    "input": {
+      "decision_variables": {"x": [0, 1, 2], "y": ["A", "B"]},
+      "index": 3
+    },
+    "output": [1, "B"],
+    "error": null,
+    "description": "index=3 → (1, B)"
+  },
+  {
+    "input": {
+      "decision_variables": {"x": [0, 1, 2], "y": ["A", "B"]},
+      "index": 5
+    },
+    "output": [2, "B"],
+    "error": null,
+    "description": "index=5 → last (2, B)"
+  },
+  {
+    "input": {
+      "decision_variables": {"a": ["p", "q"]},
+      "index": 1
+    },
+    "output": ["q"],
+    "error": null,
+    "description": "variable: index=1 → q"
+  },
+  {
+    "input": {
+      "decision_variables": {"x": [0, 1, 2], "y": ["A", "B"]},
+      "index": 7
+    },
+    "output": null,
+    "error": "OptimizerError(PARAMETER_ERROR_CODE)",
+    "description": "Mistake: index=7 transcend 6 combinations"
+  }
+]

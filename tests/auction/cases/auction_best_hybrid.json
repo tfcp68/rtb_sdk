@@ -1,0 +1,136 @@
+[
+  {
+    "input": {
+      "ads": {},
+      "parameters": {
+        "auction_type": "best_hybrid",
+        "ads_stats": {}
+      }
+    },
+    "output": null,
+    "error": null,
+    "description": "Empty dictionary — return None"
+  },
+  {
+    "input": {
+      "ads": {
+        "ad_1": {
+          "id": "ad_1", "cpm": 100, "priority": 1, "volume": 1000,
+          "start_date": "0001-01-01T00:00:00",
+          "end_date": "9999-12-31T23:59:59.999999+00:00",
+          "active": true,
+          "targets": {},
+          "ad_frequency_limit": {"m": 1000},
+          "user_frequency_limit": {},
+          "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}
+        }
+      },
+      "parameters": {
+        "auction_type": "best_hybrid",
+        "ads_stats": {}
+      }
+    },
+    "output": null,
+    "error": "AuctionError(WRONG_DATA_FORMAT_ERROR_CODE, 'Invalid velocity_threshold: None')",
+    "description": "Absent velocity_threshold — throw away AuctionError"
+  },
+  {
+    "input": {
+      "ads": {
+        "ad_1": {
+          "id": "ad_1", "cpm": 100, "priority": 1, "volume": 1000,
+          "start_date": "0001-01-01T00:00:00",
+          "end_date": "9999-12-31T23:59:59.999999+00:00",
+          "active": true,
+          "targets": {},
+          "ad_frequency_limit": {"m": 1000},
+          "user_frequency_limit": {},
+          "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}
+        },
+        "ad_2": {
+          "id": "ad_2", "cpm": 50, "priority": 1, "volume": 1000,
+          "start_date": "0001-01-01T00:00:00",
+          "end_date": "9999-12-31T23:59:59.999999+00:00",
+          "active": true,
+          "targets": {},
+          "ad_frequency_limit": {"m": 1000},
+          "user_frequency_limit": {},
+          "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}
+        }
+      },
+      "parameters": {
+        "auction_type": "best_hybrid",
+        "ads_stats": {
+          "ad_1": {"precise": {"m": 800}, "fuzzy": {}},
+          "ad_2": {"precise": {}, "fuzzy": {}}
+        },
+        "velocity_threshold": 0.5
+      }
+    },
+    "output": {
+      "id": "ad_2", "cpm": 50, "priority": 1, "volume": 1000,
+      "start_date": "0001-01-01T00:00:00",
+      "end_date": "9999-12-31T23:59:59.999999+00:00",
+      "active": true,
+      "targets": {},
+      "ad_frequency_limit": {"m": 1000},
+      "user_frequency_limit": {},
+      "parasitic_freq_limit": {},
+      "vocabulary_weights": {}, "tag_weights": {}
+    },
+    "error": null,
+    "description": "ad_2 missed the threshold 0.5 fulfillment (0.0) — used best_velocity, win ad_2"
+  },
+  {
+    "input": {
+      "ads": {
+        "ad_1": {
+          "id": "ad_1", "cpm": 100, "priority": 1, "volume": 1000,
+          "start_date": "0001-01-01T00:00:00",
+          "end_date": "9999-12-31T23:59:59.999999+00:00",
+          "active": true,
+          "targets": {},
+          "ad_frequency_limit": {"m": 1000},
+          "user_frequency_limit": {},
+          "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}
+        },
+        "ad_2": {
+          "id": "ad_2", "cpm": 50, "priority": 1, "volume": 1000,
+          "start_date": "0001-01-01T00:00:00",
+          "end_date": "9999-12-31T23:59:59.999999+00:00",
+          "active": true,
+          "targets": {},
+          "ad_frequency_limit": {"m": 1000},
+          "user_frequency_limit": {},
+          "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}
+        }
+      },
+      "parameters": {
+        "auction_type": "best_hybrid",
+        "ads_stats": {
+          "ad_1": {"precise": {"m": 800}, "fuzzy": {}},
+          "ad_2": {"precise": {"m": 500}, "fuzzy": {}}
+        },
+        "velocity_threshold": 0.1
+      }
+    },
+    "output": {
+      "id": "ad_1", "cpm": 100, "priority": 1, "volume": 1000,
+      "start_date": "0001-01-01T00:00:00",
+      "end_date": "9999-12-31T23:59:59.999999+00:00",
+      "active": true,
+      "targets": {},
+      "ad_frequency_limit": {"m": 1000},
+      "user_frequency_limit": {},
+      "parasitic_freq_limit": {},
+      "vocabulary_weights": {}, "tag_weights": {}
+    },
+    "error": null,
+    "description": "Both announcements fulfilled a plan at least below the threshold 0.1 (0.8 and 0.5) — used best_price, win ad_1"
+  }
+]

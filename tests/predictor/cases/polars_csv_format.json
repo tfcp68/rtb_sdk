@@ -1,0 +1,50 @@
+[
+  {
+    "description": "format '%Y-%m-%d %H:%M:%S' — fit and predict successfully",
+    "input": {"date_format": "%Y-%m-%d %H:%M:%S"},
+    "output": true,
+    "error": null
+  },
+  {
+    "description": "format '%Y-%m-%dT%H:%M:%S' (ISO) — fit and predict successfully",
+    "input": {"date_format": "%Y-%m-%dT%H:%M:%S"},
+    "output": true,
+    "error": null
+  },
+  {
+    "description": "format '%Y-%m-%d' (date) — fit and predict successfully",
+    "input": {"date_format": "%Y-%m-%d"},
+    "output": true,
+    "error": null
+  },
+  {
+    "description": "format '%Y/%m/%d %H:%M:%S' (slash) — fit and predict successfully",
+    "input": {"date_format": "%Y/%m/%d %H:%M:%S"},
+    "output": true,
+    "error": null
+  },
+  {
+    "description": "format '%d.%m.%Y %H:%M:%S' (point) — fit and predict successfully",
+    "input": {"date_format": "%d.%m.%Y %H:%M:%S"},
+    "output": true,
+    "error": null
+  },
+  {
+    "description": "format '%Y-%m-%d %H:%M:%S.%f' (fractional seconds) — fit and predict successfully",
+    "input": {"date_format": "%Y-%m-%d %H:%M:%S.%f"},
+    "output": true,
+    "error": null
+  },
+  {
+    "description": "format '%Y-%m-%dT%H:%M:%SZ' (UTC suffix) — fit and predict successfully",
+    "input": {"date_format": "%Y-%m-%dT%H:%M:%SZ"},
+    "output": true,
+    "error": null
+  },
+  {
+    "description": "format '%Y-%m-%dT%H:%M:%S+03:00' (offset) — fit and predict successfully",
+    "input": {"date_format": "%Y-%m-%dT%H:%M:%S+03:00"},
+    "output": true,
+    "error": null
+  }
+]

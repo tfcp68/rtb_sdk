@@ -1,0 +1,20 @@
+[
+  {
+    "description": "round-trip seasonality",
+    "input": {"name": "monthly", "period": 30.5, "fourier_order": 5},
+    "output": true,
+    "error": null
+  },
+  {
+    "description": "round-trip weekly",
+    "input": {"name": "weekly", "period": 7.0, "fourier_order": 3},
+    "output": true,
+    "error": null
+  },
+  {
+    "description": "round-trip day-season",
+    "input": {"name": "daily", "period": 1.0, "fourier_order": 4},
+    "output": true,
+    "error": null
+  }
+]

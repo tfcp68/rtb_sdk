@@ -1,0 +1,67 @@
+[
+  {
+    "description": "valid TestResult day-data",
+    "input": {
+      "result": {
+        "__type": "TestResult",
+        "training_dates": [
+          "2024-01-01T00:00:00", "2024-01-02T00:00:00",
+          "2024-01-03T00:00:00"
+        ],
+        "training_values": [100.0, 101.0, 102.0],
+        "predict_dates": [
+          "2024-01-04T00:00:00", "2024-01-05T00:00:00"
+        ],
+        "predict_values": [103.0, 104.0],
+        "expected_values": [104.0, 105.0],
+        "resolution": "d"
+      }
+    },
+    "output": true,
+    "error": null
+  },
+  {
+    "description": "slippery — length-match expected_values",
+    "input": {
+      "result": {
+        "__type": "TestResult",
+        "training_dates": ["2024-01-01T00:00:00", "2024-01-02T00:00:00"],
+        "training_values": [100.0, 101.0],
+        "predict_dates": ["2024-01-03T00:00:00"],
+        "predict_values": [102.0],
+        "expected_values": [103.0, 104.0],
+        "resolution": "d"
+      }
+    },
+    "output": false,
+    "error": null
+  },
+  {
+    "description": "slippery — hollow dict",
+    "input": {"result": {}},
+    "output": false,
+    "error": null
+  },
+  {
+    "description": "slippery — None",
+    "input": {"result": null},
+    "output": false,
+    "error": null
+  },
+  {
+    "description": "slippery — false resolution",
+    "input": {
+      "result": {
+        "__type": "TestResult",
+        "training_dates": ["2024-01-01T00:00:00", "2024-01-02T00:00:00"],
+        "training_values": [100.0, 101.0],
+        "predict_dates": ["2024-01-03T00:00:00"],
+        "predict_values": [102.0],
+        "expected_values": [103.0],
+        "resolution": "year"
+      }
+    },
+    "output": false,
+    "error": null
+  }
+]

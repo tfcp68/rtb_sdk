@@ -1,0 +1,3028 @@
+[
+  {
+    "description": "[structure] banner → report contains the key",
+    "input": {
+      "ads": {
+        "banner_1": {
+          "id": "banner_1",
+          "targets": {
+            "value": {
+              "geo": [
+                "msk"
+              ]
+            }
+          },
+          "volume": 3000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 99999
+            }
+          }
+        }
+      },
+      "params": {
+        "total_traffic_volume": 10000,
+        "tag_probabilities": {
+          "geo:msk": 0.6,
+          "geo:spb": 0.4
+        },
+        "vocabs": {
+          "geo": [
+            "geo:msk",
+            "geo:spb"
+          ]
+        },
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1
+      }
+    },
+    "output": [
+      "banner_1"
+    ],
+    "error": null,
+    "check_mode": "report_keys"
+  },
+  {
+    "description": "[structure] two banners on different tags → both keys are present in report",
+    "input": {
+      "ads": {
+        "ad_msk": {
+          "id": "ad_msk",
+          "targets": {
+            "value": {
+              "geo": [
+                "msk"
+              ]
+            }
+          },
+          "volume": 3000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 99999
+            }
+          }
+        },
+        "ad_spb": {
+          "id": "ad_spb",
+          "targets": {
+            "value": {
+              "geo": [
+                "spb"
+              ]
+            }
+          },
+          "volume": 2000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 99999
+            }
+          }
+        }
+      },
+      "params": {
+        "total_traffic_volume": 10000,
+        "tag_probabilities": {
+          "geo:msk": 0.6,
+          "geo:spb": 0.4
+        },
+        "vocabs": {
+          "geo": [
+            "geo:msk",
+            "geo:spb"
+          ]
+        },
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1
+      }
+    },
+    "output": [
+      "ad_msk",
+      "ad_spb"
+    ],
+    "error": null,
+    "check_mode": "report_keys"
+  },
+  {
+    "description": "[sell-off] banner, traffic (vol=3000 ≤ total·P(msk)=6000) → 100%, give away",
+    "input": {
+      "ads": {
+        "banner_1": {
+          "id": "banner_1",
+          "targets": {
+            "value": {
+              "geo": [
+                "msk"
+              ]
+            }
+          },
+          "volume": 3000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 99999
+            }
+          }
+        }
+      },
+      "params": {
+        "total_traffic_volume": 10000,
+        "tag_probabilities": {
+          "geo:msk": 0.6,
+          "geo:spb": 0.4
+        },
+        "vocabs": {
+          "geo": [
+            "geo:msk",
+            "geo:spb"
+          ]
+        },
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1
+      }
+    },
+    "output": {
+      "report": {
+        "banner_1": 3000
+      },
+      "sellout_percent": 100.0
+    },
+    "error": null,
+    "check_mode": "sellout_eq"
+  },
+  {
+    "description": "[sell-off] Two banners split the pool exactly (2×3000 = total·P(msk)=6000) → both 100%",
+    "input": {
+      "ads": {
+        "a1": {
+          "id": "a1",
+          "targets": {
+            "value": {
+              "geo": [
+                "msk"
+              ]
+            }
+          },
+          "volume": 3000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 99999
+            }
+          }
+        },
+        "a2": {
+          "id": "a2",
+          "targets": {
+            "value": {
+              "geo": [
+                "msk"
+              ]
+            }
+          },
+          "volume": 3000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 99999
+            }
+          }
+        }
+      },
+      "params": {
+        "total_traffic_volume": 10000,
+        "tag_probabilities": {
+          "geo:msk": 0.6,
+          "geo:spb": 0.4
+        },
+        "vocabs": {
+          "geo": [
+            "geo:msk",
+            "geo:spb"
+          ]
+        },
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1
+      }
+    },
+    "output": {
+      "report": {
+        "a1": 3000,
+        "a2": 3000
+      },
+      "sellout_percent": 100.0
+    },
+    "error": null,
+    "check_mode": "sellout_eq"
+  },
+  {
+    "description": "[sell-off] two banners share a narrow pool (2×3000 want to, pool total·P(msk)=3000) → uniformly 50%",
+    "input": {
+      "ads": {
+        "a1": {
+          "id": "a1",
+          "targets": {
+            "value": {
+              "geo": [
+                "msk"
+              ]
+            }
+          },
+          "volume": 3000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 99999
+            }
+          }
+        },
+        "a2": {
+          "id": "a2",
+          "targets": {
+            "value": {
+              "geo": [
+                "msk"
+              ]
+            }
+          },
+          "volume": 3000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 99999
+            }
+          }
+        }
+      },
+      "params": {
+        "total_traffic_volume": 5000,
+        "tag_probabilities": {
+          "geo:msk": 0.6,
+          "geo:spb": 0.4
+        },
+        "vocabs": {
+          "geo": [
+            "geo:msk",
+            "geo:spb"
+          ]
+        },
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1
+      }
+    },
+    "output": {
+      "report": {
+        "a1": 1500,
+        "a2": 1500
+      },
+      "sellout_percent": 50.0
+    },
+    "error": null,
+    "check_mode": "sellout_eq"
+  },
+  {
+    "description": "[sell-off] narrow-pool, but accuracy_percent=0.5 → The result does not depend on accuracy, by-still 50%",
+    "input": {
+      "ads": {
+        "a1": {
+          "id": "a1",
+          "targets": {
+            "value": {
+              "geo": [
+                "msk"
+              ]
+            }
+          },
+          "volume": 3000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 99999
+            }
+          }
+        },
+        "a2": {
+          "id": "a2",
+          "targets": {
+            "value": {
+              "geo": [
+                "msk"
+              ]
+            }
+          },
+          "volume": 3000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 99999
+            }
+          }
+        }
+      },
+      "params": {
+        "total_traffic_volume": 5000,
+        "tag_probabilities": {
+          "geo:msk": 0.6,
+          "geo:spb": 0.4
+        },
+        "vocabs": {
+          "geo": [
+            "geo:msk",
+            "geo:spb"
+          ]
+        },
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1,
+        "accuracy_percent": 0.5
+      }
+    },
+    "output": {
+      "report": {
+        "a1": 1500,
+        "a2": 1500
+      },
+      "sellout_percent": 50.0
+    },
+    "error": null,
+    "check_mode": "sellout_eq"
+  },
+  {
+    "description": "[sell-off] One banner is restricted to traffic (vol=10000 > total·P(msk)=3000) → 30%, gives away all available volume (regression IndexError solverically)",
+    "input": {
+      "ads": {
+        "banner_1": {
+          "id": "banner_1",
+          "targets": {
+            "value": {
+              "geo": [
+                "msk"
+              ]
+            }
+          },
+          "volume": 10000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 99999
+            }
+          }
+        }
+      },
+      "params": {
+        "total_traffic_volume": 5000,
+        "tag_probabilities": {
+          "geo:msk": 0.6,
+          "geo:spb": 0.4
+        },
+        "vocabs": {
+          "geo": [
+            "geo:msk",
+            "geo:spb"
+          ]
+        },
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1
+      }
+    },
+    "output": {
+      "report": {
+        "banner_1": 3000
+      },
+      "sellout_percent": 30.0
+    },
+    "error": null,
+    "check_mode": "sellout_eq"
+  },
+  {
+    "description": "[sell-off] two banners on independent tags, both fit → each = total·P(tag), 100%",
+    "input": {
+      "ads": {
+        "m": {
+          "id": "m",
+          "targets": {
+            "value": {
+              "geo": [
+                "msk"
+              ]
+            }
+          },
+          "volume": 6000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 99999
+            }
+          }
+        },
+        "s": {
+          "id": "s",
+          "targets": {
+            "value": {
+              "geo": [
+                "spb"
+              ]
+            }
+          },
+          "volume": 4000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 99999
+            }
+          }
+        }
+      },
+      "params": {
+        "total_traffic_volume": 10000,
+        "tag_probabilities": {
+          "geo:msk": 0.6,
+          "geo:spb": 0.4
+        },
+        "vocabs": {
+          "geo": [
+            "geo:msk",
+            "geo:spb"
+          ]
+        },
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1
+      }
+    },
+    "output": {
+      "report": {
+        "m": 6000,
+        "s": 4000
+      },
+      "sellout_percent": 100.0
+    },
+    "error": null,
+    "check_mode": "sellout_eq"
+  },
+  {
+    "description": "[restriction] totality report no more total_traffic_volume",
+    "input": {
+      "ads": {
+        "m": {
+          "id": "m",
+          "targets": {
+            "value": {
+              "geo": [
+                "msk"
+              ]
+            }
+          },
+          "volume": 3000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 99999
+            }
+          }
+        },
+        "s": {
+          "id": "s",
+          "targets": {
+            "value": {
+              "geo": [
+                "spb"
+              ]
+            }
+          },
+          "volume": 2000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 99999
+            }
+          }
+        }
+      },
+      "params": {
+        "total_traffic_volume": 10000,
+        "tag_probabilities": {
+          "geo:msk": 0.6,
+          "geo:spb": 0.4
+        },
+        "vocabs": {
+          "geo": [
+            "geo:msk",
+            "geo:spb"
+          ]
+        },
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1
+      }
+    },
+    "output": 10000,
+    "error": null,
+    "check_mode": "report_total_lte"
+  },
+  {
+    "description": "[logic] bottleneck: borderline f put out a limited announcement. ad1(msk,vol=10000) leans in real_max=total·P=6000 → max 0.6; ad2(spb) maybe 100%, but f takes the worst → 60%, ad1 ceilingd",
+    "input": {
+      "ads": {
+        "ad1": {
+          "id": "ad1",
+          "targets": {
+            "value": {
+              "geo": [
+                "msk"
+              ]
+            }
+          },
+          "volume": 10000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 1000000000
+            }
+          }
+        },
+        "ad2": {
+          "id": "ad2",
+          "targets": {
+            "value": {
+              "geo": [
+                "spb"
+              ]
+            }
+          },
+          "volume": 2000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 1000000000
+            }
+          }
+        }
+      },
+      "params": {
+        "total_traffic_volume": 10000,
+        "tag_probabilities": {
+          "geo:msk": 0.6,
+          "geo:spb": 0.4
+        },
+        "vocabs": {
+          "geo": [
+            "geo:msk",
+            "geo:spb"
+          ]
+        },
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1
+      }
+    },
+    "output": {
+      "report": {
+        "ad1": 6000,
+        "ad2": 2000
+      },
+      "sellout_percent": 60.0
+    },
+    "error": null,
+    "check_mode": "sellout_eq"
+  },
+  {
+    "description": "[logic] cross-border: traffic bottleneck P(msk)=0.55 → real_max=5500 → flatly 55% (regardless eps, volt.toward. ad1 ceilingd)",
+    "input": {
+      "ads": {
+        "ad1": {
+          "id": "ad1",
+          "targets": {
+            "value": {
+              "geo": [
+                "msk"
+              ]
+            }
+          },
+          "volume": 10000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 1000000000
+            }
+          }
+        },
+        "ad2": {
+          "id": "ad2",
+          "targets": {
+            "value": {
+              "geo": [
+                "spb"
+              ]
+            }
+          },
+          "volume": 1000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 1000000000
+            }
+          }
+        }
+      },
+      "params": {
+        "total_traffic_volume": 10000,
+        "tag_probabilities": {
+          "geo:msk": 0.55,
+          "geo:spb": 0.45
+        },
+        "vocabs": {
+          "geo": [
+            "geo:msk",
+            "geo:spb"
+          ]
+        },
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1
+      }
+    },
+    "output": {
+      "report": {
+        "ad1": 5500,
+        "ad2": 1000
+      },
+      "sellout_percent": 55.0
+    },
+    "error": null,
+    "check_mode": "sellout_eq"
+  },
+  {
+    "description": "[logic] freq bottleneck: ad1(vol=10000, pool=10000) limited freq=4000 → real_max=4000 → 40% (boundary is drawn from any of the {max_vol, total·P, freq})",
+    "input": {
+      "ads": {
+        "ad1": {
+          "id": "ad1",
+          "targets": {
+            "value": {
+              "geo": [
+                "msk"
+              ]
+            }
+          },
+          "volume": 10000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 4000
+            }
+          }
+        }
+      },
+      "params": {
+        "total_traffic_volume": 10000,
+        "tag_probabilities": {
+          "geo:msk": 1.0
+        },
+        "vocabs": {
+          "geo": [
+            "geo:msk"
+          ]
+        },
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1
+      }
+    },
+    "output": {
+      "report": {
+        "ad1": 4000
+      },
+      "sellout_percent": 40.0
+    },
+    "error": null,
+    "check_mode": "sellout_eq"
+  },
+  {
+    "description": "[logic] convergence to an irrational border: 3 share-pool 3000 (vol=3000 each) → f=3000/9000=1/3. Primary accuracy_percent=0.01 questing ≈33.333%",
+    "input": {
+      "ads": {
+        "a": {
+          "id": "a",
+          "targets": {
+            "value": {
+              "geo": [
+                "msk"
+              ]
+            }
+          },
+          "volume": 3000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 1000000000
+            }
+          }
+        },
+        "b": {
+          "id": "b",
+          "targets": {
+            "value": {
+              "geo": [
+                "msk"
+              ]
+            }
+          },
+          "volume": 3000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 1000000000
+            }
+          }
+        },
+        "c": {
+          "id": "c",
+          "targets": {
+            "value": {
+              "geo": [
+                "msk"
+              ]
+            }
+          },
+          "volume": 3000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 1000000000
+            }
+          }
+        }
+      },
+      "params": {
+        "total_traffic_volume": 5000,
+        "tag_probabilities": {
+          "geo:msk": 0.6,
+          "geo:spb": 0.4
+        },
+        "vocabs": {
+          "geo": [
+            "geo:msk",
+            "geo:spb"
+          ]
+        },
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1,
+        "accuracy_percent": 0.01
+      }
+    },
+    "output": {
+      "sellout_percent": 33.333
+    },
+    "error": null,
+    "check_mode": "sellout_eq"
+  },
+  {
+    "description": "[logic] accuracy precision: same 1/3-rough-screen accuracy_percent=2.0 → The search stops early on ≈32.8% (low-score — boundary is sought from the side of feasibility). Notably below the exact 33.33% ⇒ proverb, what accuracy impact",
+    "input": {
+      "ads": {
+        "a": {
+          "id": "a",
+          "targets": {
+            "value": {
+              "geo": [
+                "msk"
+              ]
+            }
+          },
+          "volume": 3000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 1000000000
+            }
+          }
+        },
+        "b": {
+          "id": "b",
+          "targets": {
+            "value": {
+              "geo": [
+                "msk"
+              ]
+            }
+          },
+          "volume": 3000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 1000000000
+            }
+          }
+        },
+        "c": {
+          "id": "c",
+          "targets": {
+            "value": {
+              "geo": [
+                "msk"
+              ]
+            }
+          },
+          "volume": 3000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 1000000000
+            }
+          }
+        }
+      },
+      "params": {
+        "total_traffic_volume": 5000,
+        "tag_probabilities": {
+          "geo:msk": 0.6,
+          "geo:spb": 0.4
+        },
+        "vocabs": {
+          "geo": [
+            "geo:msk",
+            "geo:spb"
+          ]
+        },
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1,
+        "accuracy_percent": 2.0
+      }
+    },
+    "output": {
+      "sellout_percent": 32.8
+    },
+    "error": null,
+    "check_mode": "sellout_eq"
+  },
+  {
+    "description": "[fallback] Empty advertising breaks a uniform sale: ad_rare tagging (P=0.001 < min_category_probability=0.01) → optimize forsit 0 roundabout min_vol. _sellout_is_complete does not pass on any sample → best_sellout hollow → fallback baseline min_vol=0. min-by-Advertisements extinguish the percentage to 0; ad_normal served",
+    "input": {
+      "ads": {
+        "ad_normal": {
+          "id": "ad_normal",
+          "targets": {
+            "value": {
+              "geo": [
+                "msk"
+              ]
+            }
+          },
+          "volume": 3000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 1000000000
+            }
+          }
+        },
+        "ad_rare": {
+          "id": "ad_rare",
+          "targets": {
+            "value": {
+              "geo": [
+                "rare_city"
+              ]
+            }
+          },
+          "volume": 1000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 1000000000
+            }
+          }
+        }
+      },
+      "params": {
+        "total_traffic_volume": 10000,
+        "tag_probabilities": {
+          "geo:msk": 0.6,
+          "geo:rare_city": 0.001,
+          "geo:other": 0.399
+        },
+        "vocabs": {
+          "geo": [
+            "geo:msk",
+            "geo:rare_city",
+            "geo:other"
+          ]
+        },
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 0.01,
+        "n_threads": 1
+      }
+    },
+    "output": {
+      "report": {
+        "ad_normal": 3000,
+        "ad_rare": 0
+      },
+      "sellout_percent": 0.0
+    },
+    "error": null,
+    "check_mode": "sellout_eq"
+  },
+  {
+    "description": "[validation] total_traffic_volume=-1 → INPUT_VALIDATION_ERROR",
+    "input": {
+      "ads": {
+        "banner_1": {
+          "id": "banner_1",
+          "targets": {
+            "value": {
+              "geo": [
+                "msk"
+              ]
+            }
+          },
+          "volume": 3000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 99999
+            }
+          }
+        }
+      },
+      "params": {
+        "total_traffic_volume": -1,
+        "tag_probabilities": {
+          "geo:msk": 0.6,
+          "geo:spb": 0.4
+        },
+        "vocabs": {
+          "geo": [
+            "geo:msk",
+            "geo:spb"
+          ]
+        },
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1
+      }
+    },
+    "output": null,
+    "error": "INPUT_VALIDATION_ERROR"
+  },
+  {
+    "description": "[validation] ads — dictionary → INPUT_VALIDATION_ERROR",
+    "input": {
+      "ads": "not_a_dict",
+      "params": {
+        "total_traffic_volume": 5000,
+        "tag_probabilities": {
+          "geo:msk": 0.6,
+          "geo:spb": 0.4
+        },
+        "vocabs": {
+          "geo": [
+            "geo:msk",
+            "geo:spb"
+          ]
+        },
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1
+      }
+    },
+    "output": null,
+    "error": "INPUT_VALIDATION_ERROR"
+  },
+  {
+    "description": "[edge] volume=0: ad s volume=0 receiver 0 in report, fall off",
+    "input": {
+      "ads": {
+        "zero_ad": {
+          "id": "zero_ad",
+          "targets": {
+            "value": {
+              "geo": [
+                "msk"
+              ]
+            }
+          },
+          "volume": 0,
+          "cpm": 10.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 99999
+            }
+          }
+        },
+        "normal_ad": {
+          "id": "normal_ad",
+          "targets": {
+            "value": {
+              "geo": [
+                "msk"
+              ]
+            }
+          },
+          "volume": 3000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 99999
+            }
+          }
+        }
+      },
+      "params": {
+        "total_traffic_volume": 5000,
+        "tag_probabilities": {
+          "geo:msk": 0.6,
+          "geo:spb": 0.4
+        },
+        "vocabs": {
+          "geo": [
+            "geo:msk",
+            "geo:spb"
+          ]
+        },
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1
+      }
+    },
+    "output": {
+      "report": {
+        "zero_ad": 0,
+        "normal_ad": 3000
+      },
+      "sellout_percent": 100.0
+    },
+    "error": null,
+    "check_mode": "sellout_eq"
+  },
+  {
+    "description": "[edge] total_traffic_volume=0: everything ads receiver 0, sellout_percent=0",
+    "input": {
+      "ads": {
+        "ad1": {
+          "id": "ad1",
+          "targets": {
+            "value": {
+              "geo": [
+                "msk"
+              ]
+            }
+          },
+          "volume": 3000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 99999
+            }
+          }
+        }
+      },
+      "params": {
+        "total_traffic_volume": 0,
+        "tag_probabilities": {
+          "geo:msk": 0.6,
+          "geo:spb": 0.4
+        },
+        "vocabs": {
+          "geo": [
+            "geo:msk",
+            "geo:spb"
+          ]
+        },
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1
+      }
+    },
+    "output": {
+      "report": {
+        "ad1": 0
+      },
+      "sellout_percent": 0.0
+    },
+    "error": null,
+    "check_mode": "sellout_eq"
+  },
+  {
+    "description": "[edge] freq=0 It is interpreted as the absence of a limit, ad receiver max of {vol, pool}",
+    "input": {
+      "ads": {
+        "ad1": {
+          "id": "ad1",
+          "targets": {
+            "value": {
+              "geo": [
+                "msk"
+              ]
+            }
+          },
+          "volume": 6000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 0
+            }
+          }
+        }
+      },
+      "params": {
+        "total_traffic_volume": 10000,
+        "tag_probabilities": {
+          "geo:msk": 1.0
+        },
+        "vocabs": {
+          "geo": [
+            "geo:msk"
+          ]
+        },
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1
+      }
+    },
+    "output": {
+      "report": {
+        "ad1": 6000
+      },
+      "sellout_percent": 100.0
+    },
+    "error": null,
+    "check_mode": "sellout_eq"
+  },
+  {
+    "description": "[edge] three ads tagged, it all depends on freq limit: φ=freq/vol=2000/10000=0.2 → 20%",
+    "input": {
+      "ads": {
+        "a1": {
+          "id": "a1",
+          "targets": {
+            "value": {
+              "geo": [
+                "msk"
+              ]
+            }
+          },
+          "volume": 10000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 2000
+            }
+          }
+        },
+        "a2": {
+          "id": "a2",
+          "targets": {
+            "value": {
+              "geo": [
+                "msk"
+              ]
+            }
+          },
+          "volume": 10000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 2000
+            }
+          }
+        },
+        "a3": {
+          "id": "a3",
+          "targets": {
+            "value": {
+              "geo": [
+                "msk"
+              ]
+            }
+          },
+          "volume": 10000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 2000
+            }
+          }
+        }
+      },
+      "params": {
+        "total_traffic_volume": 10000,
+        "tag_probabilities": {
+          "geo:msk": 0.6,
+          "geo:spb": 0.4
+        },
+        "vocabs": {
+          "geo": [
+            "geo:msk",
+            "geo:spb"
+          ]
+        },
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1
+      }
+    },
+    "output": {
+      "report": {
+        "a1": 2000,
+        "a2": 2000,
+        "a3": 2000
+      },
+      "sellout_percent": 20.0
+    },
+    "error": null,
+    "check_mode": "sellout_eq"
+  },
+  {
+    "description": "[validation] off-tag vocabs → INPUT_VALIDATION_ERROR",
+    "input": {
+      "ads": {
+        "ghost_ad": {
+          "id": "ghost_ad",
+          "targets": {
+            "value": {
+              "geo": [
+                "tokyo"
+              ]
+            }
+          },
+          "volume": 5000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 99999
+            }
+          }
+        }
+      },
+      "params": {
+        "total_traffic_volume": 10000,
+        "tag_probabilities": {
+          "geo:msk": 0.6,
+          "geo:spb": 0.4
+        },
+        "vocabs": {
+          "geo": [
+            "geo:msk",
+            "geo:spb"
+          ]
+        },
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1
+      }
+    },
+    "output": null,
+    "error": "INPUT_VALIDATION_ERROR"
+  },
+  {
+    "description": "[logic] single-handed ad targeting tagged P=0 (plainly) → receiver 0, sellout_percent=0",
+    "input": {
+      "ads": {
+        "zero_tag_ad": {
+          "id": "zero_tag_ad",
+          "targets": {
+            "value": {
+              "geo": [
+                "empty"
+              ]
+            }
+          },
+          "volume": 5000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 99999
+            }
+          }
+        }
+      },
+      "params": {
+        "total_traffic_volume": 10000,
+        "tag_probabilities": {
+          "geo:msk": 0.6,
+          "geo:spb": 0.4,
+          "geo:empty": 0.0
+        },
+        "vocabs": {
+          "geo": [
+            "geo:msk",
+            "geo:spb",
+            "geo:empty"
+          ]
+        },
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1
+      }
+    },
+    "output": {
+      "report": {
+        "zero_tag_ad": 0
+      },
+      "sellout_percent": 0.0
+    },
+    "error": null,
+    "check_mode": "sellout_eq"
+  },
+  {
+    "description": "[logic] small: ad s vol=1 upon total=10000, P(msk)=0.6 → fits in, 100%",
+    "input": {
+      "ads": {
+        "tiny_ad": {
+          "id": "tiny_ad",
+          "targets": {
+            "value": {
+              "geo": [
+                "msk"
+              ]
+            }
+          },
+          "volume": 1,
+          "cpm": 10.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 99999
+            }
+          }
+        }
+      },
+      "params": {
+        "total_traffic_volume": 10000,
+        "tag_probabilities": {
+          "geo:msk": 0.6,
+          "geo:spb": 0.4
+        },
+        "vocabs": {
+          "geo": [
+            "geo:msk",
+            "geo:spb"
+          ]
+        },
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1
+      }
+    },
+    "output": {
+      "report": {
+        "tiny_ad": 1
+      },
+      "sellout_percent": 100.0
+    },
+    "error": null,
+    "check_mode": "sellout_eq"
+  },
+  {
+    "description": "[logic] accuracy_percent=10 (grossly): 2 ads narrow-ball 3000, precise f=0.5, rough-searching ≤50%",
+    "input": {
+      "ads": {
+        "a1": {
+          "id": "a1",
+          "targets": {
+            "value": {
+              "geo": [
+                "msk"
+              ]
+            }
+          },
+          "volume": 3000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 99999
+            }
+          }
+        },
+        "a2": {
+          "id": "a2",
+          "targets": {
+            "value": {
+              "geo": [
+                "msk"
+              ]
+            }
+          },
+          "volume": 3000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 99999
+            }
+          }
+        }
+      },
+      "params": {
+        "total_traffic_volume": 5000,
+        "tag_probabilities": {
+          "geo:msk": 0.6,
+          "geo:spb": 0.4
+        },
+        "vocabs": {
+          "geo": [
+            "geo:msk",
+            "geo:spb"
+          ]
+        },
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1,
+        "accuracy_percent": 10.0
+      }
+    },
+    "output": {
+      "report": {
+        "a1": 1500,
+        "a2": 1500
+      },
+      "sellout_percent": 50.0
+    },
+    "error": null,
+    "check_mode": "sellout_eq"
+  },
+  {
+    "description": "[logic] single-handed ad, larger total but freq limit: vol=20000, freq=1000, pool=6000 → limit freq → 1000/20000=5%",
+    "input": {
+      "ads": {
+        "big_limited": {
+          "id": "big_limited",
+          "targets": {
+            "value": {
+              "geo": [
+                "msk"
+              ]
+            }
+          },
+          "volume": 20000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 1000
+            }
+          }
+        }
+      },
+      "params": {
+        "total_traffic_volume": 10000,
+        "tag_probabilities": {
+          "geo:msk": 0.6,
+          "geo:spb": 0.4
+        },
+        "vocabs": {
+          "geo": [
+            "geo:msk",
+            "geo:spb"
+          ]
+        },
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1
+      }
+    },
+    "output": {
+      "report": {
+        "big_limited": 1000
+      },
+      "sellout_percent": 5.0
+    },
+    "error": null,
+    "check_mode": "sellout_eq"
+  },
+  {
+    "description": "[edge] sellout_percent always-range [0, 100]: case of rough searching and narrow shoulder",
+    "input": {
+      "ads": {
+        "受限1": {
+          "id": "受限1",
+          "targets": {
+            "value": {
+              "geo": [
+                "msk"
+              ]
+            }
+          },
+          "volume": 10000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 500
+            }
+          }
+        },
+        "受限2": {
+          "id": "受限2",
+          "targets": {
+            "value": {
+              "geo": [
+                "msk"
+              ]
+            }
+          },
+          "volume": 10000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 500
+            }
+          }
+        }
+      },
+      "params": {
+        "total_traffic_volume": 5000,
+        "tag_probabilities": {
+          "geo:msk": 0.5,
+          "geo:spb": 0.5
+        },
+        "vocabs": {
+          "geo": [
+            "geo:msk",
+            "geo:spb"
+          ]
+        },
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1,
+        "accuracy_percent": 0.5
+      }
+    },
+    "output": {
+      "report": {
+        "受限1": 500,
+        "受限2": 500
+      },
+      "sellout_percent": 5.0
+    },
+    "error": null,
+    "check_mode": "sellout_eq"
+  },
+  {
+    "description": "[scripture] three promos multi-tag (geo×age) and maximize_volume: pool total=50000, But each promo rests on its daytime freq limit → gives it exactly (10000/8000/5000). sellout = min share = 50%",
+    "input": {
+      "ads": {
+        "promo_1": {
+          "id": "promo_1",
+          "targets": {
+            "value": {
+              "geo": [
+                "msk"
+              ],
+              "age": [
+                "18-24",
+                "25-34"
+              ]
+            }
+          },
+          "volume": 20000,
+          "cpm": 30.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 10000
+            }
+          }
+        },
+        "promo_2": {
+          "id": "promo_2",
+          "targets": {
+            "value": {
+              "geo": [
+                "msk",
+                "spb"
+              ],
+              "age": [
+                "25-34"
+              ]
+            }
+          },
+          "volume": 15000,
+          "cpm": 20.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 8000
+            }
+          }
+        },
+        "promo_3": {
+          "id": "promo_3",
+          "targets": {
+            "value": {}
+          },
+          "volume": 10000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 5000
+            }
+          }
+        }
+      },
+      "params": {
+        "total_traffic_volume": 50000,
+        "tag_probabilities": {
+          "geo:msk": 0.5,
+          "geo:spb": 0.3,
+          "geo:ekb": 0.2,
+          "age:18-24": 0.25,
+          "age:25-34": 0.45,
+          "age:35-44": 0.3
+        },
+        "vocabs": {
+          "geo": [
+            "geo:msk",
+            "geo:spb",
+            "geo:ekb"
+          ],
+          "age": [
+            "age:18-24",
+            "age:25-34",
+            "age:35-44"
+          ]
+        },
+        "objective": "maximize_volume",
+        "max_n_categories": 500,
+        "min_category_probability": 1e-08,
+        "n_threads": 1,
+        "accuracy_percent": 0.1
+      }
+    },
+    "output": {
+      "report": {
+        "promo_1": 10000,
+        "promo_2": 8000,
+        "promo_3": 5000
+      },
+      "sellout_percent": 50.0
+    },
+    "error": null,
+    "check_mode": "sellout_eq"
+  },
+  {
+    "description": "[scripture] maximin-fairness: narrowpool (total=20000, P(msk)=0.75 → pool msk=15000), three ad on msk different CPM, summons 23000 > pool. balance_by_sellout equalize → sellout≈65% (volt.her. even the cheapest lo_cpm sold-out ~65%, and not starving in 0, sort of maximize_money)",
+    "input": {
+      "ads": {
+        "hi_cpm": {
+          "id": "hi_cpm",
+          "targets": {
+            "value": {
+              "geo": [
+                "msk"
+              ]
+            }
+          },
+          "volume": 10000,
+          "cpm": 30.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 10000
+            }
+          }
+        },
+        "mid_cpm": {
+          "id": "mid_cpm",
+          "targets": {
+            "value": {
+              "geo": [
+                "msk"
+              ]
+            }
+          },
+          "volume": 8000,
+          "cpm": 20.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 8000
+            }
+          }
+        },
+        "lo_cpm": {
+          "id": "lo_cpm",
+          "targets": {
+            "value": {
+              "geo": [
+                "msk"
+              ]
+            }
+          },
+          "volume": 5000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 5000
+            }
+          }
+        }
+      },
+      "params": {
+        "total_traffic_volume": 20000,
+        "tag_probabilities": {
+          "geo:msk": 0.75,
+          "geo:spb": 0.25
+        },
+        "vocabs": {
+          "geo": [
+            "geo:msk",
+            "geo:spb"
+          ]
+        },
+        "objective": "maximize_volume",
+        "max_n_categories": 500,
+        "min_category_probability": 1e-08,
+        "n_threads": 1,
+        "accuracy_percent": 0.1
+      }
+    },
+    "output": {
+      "sellout_percent": 65.1
+    },
+    "error": null,
+    "check_mode": "sellout_eq"
+  },
+  {
+    "description": "[consistency] sellout_percent summarise report, not intermediate best_sellout: limited tiny(vol=1) delite msk limitless big(vol=0, dear). In the final optimize big oust tiny → tiny=0. sellout_percent must 0 (tiny sold-out 0%), not 100% (regression: beforehand best_sellout non-limited competitor)",
+    "input": {
+      "ads": {
+        "tiny": {
+          "id": "tiny",
+          "targets": {
+            "value": {
+              "geo": [
+                "msk"
+              ]
+            }
+          },
+          "volume": 1,
+          "cpm": 10.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 1000000000
+            }
+          }
+        },
+        "big": {
+          "id": "big",
+          "targets": {
+            "value": {
+              "geo": [
+                "msk"
+              ]
+            }
+          },
+          "volume": 0,
+          "cpm": 100.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 1000000000
+            }
+          }
+        }
+      },
+      "params": {
+        "total_traffic_volume": 5000,
+        "tag_probabilities": {
+          "geo:msk": 0.6,
+          "geo:spb": 0.4
+        },
+        "vocabs": {
+          "geo": [
+            "geo:msk",
+            "geo:spb"
+          ]
+        },
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1
+      }
+    },
+    "output": {
+      "report": {
+        "tiny": 0,
+        "big": 3000
+      },
+      "sellout_percent": 0.0
+    },
+    "error": null,
+    "check_mode": "sellout_eq"
+  },
+  {
+    "description": "[consistency] different percentages: bottleneck spb-pool → φ*=50%, but b=100% and c=83%",
+    "input": {
+      "ads": {
+        "a": {
+          "id": "a",
+          "targets": {
+            "value": {
+              "geo": [
+                "spb"
+              ]
+            }
+          },
+          "volume": 3000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 1000000000
+            }
+          }
+        },
+        "b": {
+          "id": "b",
+          "targets": {
+            "value": {
+              "geo": [
+                "msk"
+              ]
+            }
+          },
+          "volume": 1000,
+          "cpm": 15.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 1000000000
+            }
+          }
+        },
+        "c": {
+          "id": "c",
+          "targets": {
+            "value": {
+              "geo": [
+                "msk", "spb"
+              ]
+            }
+          },
+          "volume": 3000,
+          "cpm": 9.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 1000000000
+            }
+          }
+        }
+      },
+      "params": {
+        "total_traffic_volume": 5000,
+        "tag_probabilities": {
+          "geo:msk": 0.7,
+          "geo:spb": 0.3
+        },
+        "vocabs": {
+          "geo": [
+            "geo:msk",
+            "geo:spb"
+          ]
+        },
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1
+      }
+    },
+    "output": {
+      "report": {
+        "a": 1500,
+        "b": 1000,
+        "c": 2500
+      },
+      "sellout_percent": 50
+    },
+    "error": null,
+    "check_mode": "sellout_eq"
+  },
+  {
+    "description": "[optimality] N=4 symmetry msk: pool=3000, summons=12000. φ*=25%, everyone gets 750. Pool saturated (4×750=3000=pool), therefore min_vol=750 It is the only permissible point LP — give up-or no longer without violating the total limitation.",
+    "input": {
+      "ads": {
+        "a0": {
+          "id": "a0",
+          "targets": {"value": {"geo": ["msk"]}},
+          "volume": 3000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {"value": {"d": 1000000000}}
+        },
+        "a1": {
+          "id": "a1",
+          "targets": {"value": {"geo": ["msk"]}},
+          "volume": 3000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {"value": {"d": 1000000000}}
+        },
+        "a2": {
+          "id": "a2",
+          "targets": {"value": {"geo": ["msk"]}},
+          "volume": 3000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {"value": {"d": 1000000000}}
+        },
+        "a3": {
+          "id": "a3",
+          "targets": {"value": {"geo": ["msk"]}},
+          "volume": 3000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {"value": {"d": 1000000000}}
+        }
+      },
+      "params": {
+        "total_traffic_volume": 5000,
+        "tag_probabilities": {"geo:msk": 0.6, "geo:spb": 0.4},
+        "vocabs": {"geo": ["geo:msk", "geo:spb"]},
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1,
+        "accuracy_percent": 0.1
+      }
+    },
+    "output": {
+      "report": {"a0": 750, "a1": 750, "a2": 750, "a3": 750},
+      "sellout_percent": 25.0
+    },
+    "error": null,
+    "check_mode": "sellout_eq"
+  },
+  {
+    "description": "[optimality] Uneven volumes compete for one pool: big(vol=6000) and small(vol=3000) on msk, pool=3000. Theoretical max-min: v_big/6000 = v_small/3000 → φ*=1/3≈33.33%. Proves, The algorithm equalizes the shares in proportion to the volume, It doesn’t split the pool equally (otherwise sellout would have been less).",
+    "input": {
+      "ads": {
+        "big": {
+          "id": "big",
+          "targets": {"value": {"geo": ["msk"]}},
+          "volume": 6000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {"value": {"d": 1000000000}}
+        },
+        "small": {
+          "id": "small",
+          "targets": {"value": {"geo": ["msk"]}},
+          "volume": 3000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {"value": {"d": 1000000000}}
+        }
+      },
+      "params": {
+        "total_traffic_volume": 5000,
+        "tag_probabilities": {"geo:msk": 0.6, "geo:spb": 0.4},
+        "vocabs": {"geo": ["geo:msk", "geo:spb"]},
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1,
+        "accuracy_percent": 0.1
+      }
+    },
+    "output": {
+      "sellout_percent": 33.33
+    },
+    "error": null,
+    "check_mode": "sellout_eq"
+  },
+  {
+    "description": "[optimality] two independent tags, narrow-pool φ*: a1(msk, pool=6000) and a2(spb, pool=4000), both vol=10000. φ* = 4000/10000 = 40% — narrowly spb-pool; upon φ+ε a2 demand >4000 (impossible). In the final optimize a1 rises up msk-pool (6000 > φ*×vol=4000). sellout = min(60%, 40%) = 40%.",
+    "input": {
+      "ads": {
+        "a1": {
+          "id": "a1",
+          "targets": {"value": {"geo": ["msk"]}},
+          "volume": 10000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {"value": {"d": 1000000000}}
+        },
+        "a2": {
+          "id": "a2",
+          "targets": {"value": {"geo": ["spb"]}},
+          "volume": 10000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {"value": {"d": 1000000000}}
+        }
+      },
+      "params": {
+        "total_traffic_volume": 10000,
+        "tag_probabilities": {"geo:msk": 0.6, "geo:spb": 0.4},
+        "vocabs": {"geo": ["geo:msk", "geo:spb"]},
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1
+      }
+    },
+    "output": {
+      "report": {"a1": 6000, "a2": 4000},
+      "sellout_percent": 40.0
+    },
+    "error": null,
+    "check_mode": "sellout_eq"
+  },
+  {
+    "description": "[bottleneck] freq-tag-limit φ* tagged independently: a1(msk, freq=3000) → real_max=3000, φ_max=30%; a2(spb, pool=4000) → φ_max=40%. φ*=min(30%,40%)=30% — set freq. In the final optimize a2 rise up pool(4000), but sellout=min(30%,40%)=30%.",
+    "input": {
+      "ads": {
+        "a1": {
+          "id": "a1",
+          "targets": {"value": {"geo": ["msk"]}},
+          "volume": 10000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {"value": {"d": 3000}}
+        },
+        "a2": {
+          "id": "a2",
+          "targets": {"value": {"geo": ["spb"]}},
+          "volume": 10000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {"value": {"d": 1000000000}}
+        }
+      },
+      "params": {
+        "total_traffic_volume": 10000,
+        "tag_probabilities": {"geo:msk": 0.6, "geo:spb": 0.4},
+        "vocabs": {"geo": ["geo:msk", "geo:spb"]},
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1
+      }
+    },
+    "output": {
+      "report": {"a1": 3000, "a2": 4000},
+      "sellout_percent": 30.0
+    },
+    "error": null,
+    "check_mode": "sellout_eq"
+  },
+  {
+    "description": "[bottleneck] vol-limit vs pool-single-ballet: small(msk, vol=4000) — vol-limited (real_max=vol=4000 < pool=5000), big(msk, vol=6000) — pool-limited (real_max=pool=5000 < vol=6000). Shared demand 10000 > pool=5000; φ*=50%. P(msk)=0.5 (precisely float64): floor(0.5×4000)=2000+floor(0.5×6000)=3000=pool → single-point LP.",
+    "input": {
+      "ads": {
+        "small": {
+          "id": "small",
+          "targets": {"value": {"geo": ["msk"]}},
+          "volume": 4000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {"value": {"d": 1000000000}}
+        },
+        "big": {
+          "id": "big",
+          "targets": {"value": {"geo": ["msk"]}},
+          "volume": 6000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {"value": {"d": 1000000000}}
+        }
+      },
+      "params": {
+        "total_traffic_volume": 10000,
+        "tag_probabilities": {"geo:msk": 0.5, "geo:spb": 0.5},
+        "vocabs": {"geo": ["geo:msk", "geo:spb"]},
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1
+      }
+    },
+    "output": {
+      "report": {"small": 2000, "big": 3000},
+      "sellout_percent": 50.0
+    },
+    "error": null,
+    "check_mode": "sellout_eq"
+  },
+  {
+    "description": "[bottleneck] Three ads with different types of restrictions: a1(msk, freq=2000) — freq-limited, φ_max=20%; a2(msk, vol=5000) — vol-limited, φ_max=100%; a3(spb, pool=4000) — pool-limited, φ_max=40%. φ*=20% (set freq a1). In the final optimize a2 and a3 rise to their own real_max (4000 each): sellout=min(20%,80%,40%)=20%.",
+    "input": {
+      "ads": {
+        "a1": {
+          "id": "a1",
+          "targets": {"value": {"geo": ["msk"]}},
+          "volume": 10000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {"value": {"d": 2000}}
+        },
+        "a2": {
+          "id": "a2",
+          "targets": {"value": {"geo": ["msk"]}},
+          "volume": 5000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {"value": {"d": 1000000000}}
+        },
+        "a3": {
+          "id": "a3",
+          "targets": {"value": {"geo": ["spb"]}},
+          "volume": 10000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {"value": {"d": 1000000000}}
+        }
+      },
+      "params": {
+        "total_traffic_volume": 10000,
+        "tag_probabilities": {"geo:msk": 0.6, "geo:spb": 0.4},
+        "vocabs": {"geo": ["geo:msk", "geo:spb"]},
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1
+      }
+    },
+    "output": {
+      "report": {"a1": 2000, "a2": 4000, "a3": 4000},
+      "sellout_percent": 20.0
+    },
+    "error": null,
+    "check_mode": "sellout_eq"
+  },
+  {
+    "description": "[scripture] three promos multi-tag (geo×age), maximize_money, freq=30000 (limit): bottleneck — overlapping geo×age. promo_1 and promo_2 compete msk×25-34; LP binary-searcher φ*≈69.3%. promo_3 (targets={}) sold-out. sellout=min(promo_1_pct, promo_2_pct)≈69.3%.",
+    "input": {
+      "ads": {
+        "promo_1": {
+          "id": "promo_1",
+          "targets": {"value": {"geo": ["msk"], "age": ["18-24", "25-34"]}},
+          "volume": 20000,
+          "cpm": 30.0,
+          "ad_frequency_limit": {"value": {"d": 30000}}
+        },
+        "promo_2": {
+          "id": "promo_2",
+          "targets": {"value": {"geo": ["msk", "spb"], "age": ["25-34"]}},
+          "volume": 15000,
+          "cpm": 20.0,
+          "ad_frequency_limit": {"value": {"d": 30000}}
+        },
+        "promo_3": {
+          "id": "promo_3",
+          "targets": {"value": {}},
+          "volume": 10000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {"value": {"d": 30000}}
+        }
+      },
+      "params": {
+        "total_traffic_volume": 50000,
+        "tag_probabilities": {
+          "geo:msk": 0.5, "geo:spb": 0.3, "geo:ekb": 0.2,
+          "age:18-24": 0.25, "age:25-34": 0.45, "age:35-44": 0.3
+        },
+        "vocabs": {
+          "geo": ["geo:msk", "geo:spb", "geo:ekb"],
+          "age": ["age:18-24", "age:25-34", "age:35-44"]
+        },
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-8,
+        "n_threads": 1,
+        "accuracy_percent": 0.01
+      }
+    },
+    "output": {
+      "sellout_percent": 69.3
+    },
+    "error": null,
+    "check_mode": "sellout_eq"
+  },
+  {
+    "description": "[season] user_activity_ratio=0 all ad: prepare_hour_ads zeroing effective_vol → slot_ads hollow → early return. sellout=0, each ad receiver 0.",
+    "input": {
+      "ads": {
+        "a1": {
+          "id": "a1",
+          "targets": {"value": {"geo": ["msk"]}},
+          "volume": 3000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {"value": {"d": 1000000000}}
+        },
+        "a2": {
+          "id": "a2",
+          "targets": {"value": {"geo": ["spb"]}},
+          "volume": 3000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {"value": {"d": 1000000000}}
+        }
+      },
+      "params": {
+        "total_traffic_volume": 5000,
+        "tag_probabilities": {"geo:msk": 0.5, "geo:spb": 0.5},
+        "vocabs": {"geo": ["geo:msk", "geo:spb"]},
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1,
+        "seasonal_context": {
+          "weight": 1.0,
+          "user_activity_ratio": {"a1": 0.0, "a2": 0.0},
+          "tags_probability": null
+        }
+      }
+    },
+    "output": {
+      "report": {"a1": 0, "a2": 0},
+      "sellout_percent": 0.0
+    },
+    "error": null,
+    "check_mode": "sellout_eq"
+  },
+  {
+    "description": "[season] user_activity_ratio=0.5 diminish effective_vol twice: both ad vol=6000 → seasonal_vol=3000. Pool msk=3000 (total=6000, P=0.5). Binary search operate on seasonal_vol: φ*=50%, {a1:1500, a2:1500}. sellout_percent=50% counted seasonal_vol (1500/3000), not the original vol.",
+    "input": {
+      "ads": {
+        "a1": {
+          "id": "a1",
+          "targets": {"value": {"geo": ["msk"]}},
+          "volume": 6000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {"value": {"d": 1000000000}}
+        },
+        "a2": {
+          "id": "a2",
+          "targets": {"value": {"geo": ["msk"]}},
+          "volume": 6000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {"value": {"d": 1000000000}}
+        }
+      },
+      "params": {
+        "total_traffic_volume": 6000,
+        "tag_probabilities": {"geo:msk": 0.5, "geo:spb": 0.5},
+        "vocabs": {"geo": ["geo:msk", "geo:spb"]},
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1,
+        "seasonal_context": {
+          "weight": 1.0,
+          "user_activity_ratio": {"a1": 0.5, "a2": 0.5},
+          "tags_probability": null
+        }
+      }
+    },
+    "output": {
+      "report": {"a1": 1500, "a2": 1500},
+      "sellout_percent": 50.0
+    },
+    "error": null,
+    "check_mode": "sellout_eq"
+  },
+  {
+    "description": "[season] tags_probability redefines pool proportions for this hour: globally P(msk)=0.6, but in a seasonal context P(msk)=0.3, P(spb)=0.7. a1(msk) leans in seasonal-pool=3000 → φ*=30%. In the final optimize a2(spb) rise up seasonal-pool=7000. sellout=min(30%,70%)=30%.",
+    "input": {
+      "ads": {
+        "a1": {
+          "id": "a1",
+          "targets": {"value": {"geo": ["msk"]}},
+          "volume": 10000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {"value": {"d": 1000000000}}
+        },
+        "a2": {
+          "id": "a2",
+          "targets": {"value": {"geo": ["spb"]}},
+          "volume": 10000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {"value": {"d": 1000000000}}
+        }
+      },
+      "params": {
+        "total_traffic_volume": 10000,
+        "tag_probabilities": {"geo:msk": 0.6, "geo:spb": 0.4},
+        "vocabs": {"geo": ["geo:msk", "geo:spb"]},
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1,
+        "seasonal_context": {
+          "weight": 1.0,
+          "user_activity_ratio": {},
+          "tags_probability": {"geo": {"msk": 0.3, "spb": 0.7}}
+        }
+      }
+    },
+    "output": {
+      "report": {"a1": 3000, "a2": 7000},
+      "sellout_percent": 30.0
+    },
+    "error": null,
+    "check_mode": "sellout_eq"
+  },
+  {
+    "description": "[season] daytime freq hourly-limit (d/24): a1 freq.d=2400 → hour_limit=100, a2 freq.d=4800 → hour_limit=200. Original vol=5000 both, but effective_vol cut off 100/200. Total demand 300 << pool=3000 → φ*=100%, {a1:100, a2:200}.",
+    "input": {
+      "ads": {
+        "a1": {
+          "id": "a1",
+          "targets": {"value": {"geo": ["msk"]}},
+          "volume": 5000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {"value": {"d": 2400}}
+        },
+        "a2": {
+          "id": "a2",
+          "targets": {"value": {"geo": ["msk"]}},
+          "volume": 5000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {"value": {"d": 4800}}
+        }
+      },
+      "params": {
+        "total_traffic_volume": 5000,
+        "tag_probabilities": {"geo:msk": 0.6, "geo:spb": 0.4},
+        "vocabs": {"geo": ["geo:msk", "geo:spb"]},
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1,
+        "seasonal_context": {
+          "weight": 1.0,
+          "user_activity_ratio": {},
+          "tags_probability": null
+        }
+      }
+    },
+    "output": {
+      "report": {"a1": 100, "a2": 200},
+      "sellout_percent": 100.0
+    },
+    "error": null,
+    "check_mode": "sellout_eq"
+  },
+  {
+    "description": "[bottleneck] undeclared tag compresses the real pool: a(msk+spb,vol=3000), b(msk,vol=3000), c(msk+spb,vol=5000). geo:ekb=20% Traffic is not targeted by anyone → 1000 show off; pool=msk(2500)+spb(1500)=4000, total in report=4000, not 5000. b You can only receive impressions from msk, competitively msk s a and c. Theoretical φ*=4000/11000≈36.36% (of 2×3000φ+5000φ≤4000); practically ~35.9% of-behind floor+LP-margin of error.",
+    "input": {
+      "ads": {
+        "a": {
+          "id": "a",
+          "targets": {"value": {"geo": ["msk", "spb"]}},
+          "volume": 3000,
+          "cpm": 30.0,
+          "ad_frequency_limit": {"value": {"d": 30000}}
+        },
+        "b": {
+          "id": "b",
+          "targets": {"value": {"geo": ["msk"]}},
+          "volume": 3000,
+          "cpm": 20.0,
+          "ad_frequency_limit": {"value": {"d": 30000}}
+        },
+        "c": {
+          "id": "c",
+          "targets": {"value": {"geo": ["msk", "spb"]}},
+          "volume": 5000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {"value": {"d": 30000}}
+        }
+      },
+      "params": {
+        "total_traffic_volume": 5000,
+        "tag_probabilities": {
+          "geo:msk": 0.5, "geo:spb": 0.3, "geo:ekb": 0.2
+        },
+        "vocabs": {
+          "geo": ["geo:msk", "geo:spb", "geo:ekb"]
+        },
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-8,
+        "n_threads": 1,
+        "accuracy_percent": 0.01
+      }
+    },
+    "output": {"sellout_percent": 35.9},
+    "error": null,
+    "check_mode": "sellout_eq"
+  },
+  {
+    "description": "[bottleneck] three ad on msk+spb, ekb unreportedly: pool=4000. φ*=4000/11000=36.36% — same-ceiling, Like the previous test, but LP reaches out: b no longer locked in one pool, distribute-liberty floor-error. Outcome: a=1091,b=1091,c=1818, total=4000, sellout=min(1091/3000,1818/5000)=36.36%.",
+    "input": {
+      "ads": {
+        "a": {
+          "id": "a",
+          "targets": {"value": {"geo": ["msk", "spb"]}},
+          "volume": 3000,
+          "cpm": 30.0,
+          "ad_frequency_limit": {"value": {"d": 30000}}
+        },
+        "b": {
+          "id": "b",
+          "targets": {"value": {"geo": ["msk", "spb"]}},
+          "volume": 3000,
+          "cpm": 20.0,
+          "ad_frequency_limit": {"value": {"d": 30000}}
+        },
+        "c": {
+          "id": "c",
+          "targets": {"value": {"geo": ["msk", "spb"]}},
+          "volume": 5000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {"value": {"d": 30000}}
+        }
+      },
+      "params": {
+        "total_traffic_volume": 5000,
+        "tag_probabilities": {
+          "geo:msk": 0.5, "geo:spb": 0.3, "geo:ekb": 0.2
+        },
+        "vocabs": {
+          "geo": ["geo:msk", "geo:spb", "geo:ekb"]
+        },
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-8,
+        "n_threads": 1,
+        "accuracy_percent": 0.001
+      }
+    },
+    "output": {
+      "report": {"a": 1091, "b": 1091, "c": 1818},
+      "sellout_percent": 36.36
+    },
+    "error": null,
+    "check_mode": "sellout_eq"
+  },
+  {
+    "description": "[limitless] Unlimited competitor on his tag is not included in min: lim(msk,vol=3000) sold out entirely on his own bullet (P=0.6→6000≥3000) → 100%; unl(spb,vol=0→MAX_VOL_UNLIMITED) Excluded from binary search when func_replace_infinity=None, Its share is not determined and does not draw sellout_percent in 0. README: publicity volume=0 Don’t pull the percentage down.",
+    "input": {
+      "ads": {
+        "lim": {
+          "id": "lim",
+          "targets": {"value": {"geo": ["msk"]}},
+          "volume": 3000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {"value": {"d": 1000000000}}
+        },
+        "unl": {
+          "id": "unl",
+          "targets": {"value": {"geo": ["spb"]}},
+          "volume": 0,
+          "cpm": 10.0,
+          "ad_frequency_limit": {"value": {"d": 1000000000}}
+        }
+      },
+      "params": {
+        "total_traffic_volume": 10000,
+        "tag_probabilities": {"geo:msk": 0.6, "geo:spb": 0.4},
+        "vocabs": {"geo": ["geo:msk", "geo:spb"]},
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1
+      }
+    },
+    "output": {
+      "report": {"lim": 3000, "unl": 4000},
+      "sellout_percent": 100.0
+    },
+    "error": null,
+    "check_mode": "sellout_eq"
+  },
+  {
+    "description": "[limitless/degenerate] All ads are unlimited (vol=0): binary-search φ doesn’t happen, sellout_percent≈0.0 (formally min(vol/MAX_VOL_UNLIMITED)·100 ≈ 0 any distribution). README: in this case, be guided by report, not a percentage. report And it’s still spreading the pool by tags (msk=6000, spb=4000).",
+    "input": {
+      "ads": {
+        "u1": {
+          "id": "u1",
+          "targets": {"value": {"geo": ["msk"]}},
+          "volume": 0,
+          "cpm": 10.0,
+          "ad_frequency_limit": {"value": {"d": 1000000000}}
+        },
+        "u2": {
+          "id": "u2",
+          "targets": {"value": {"geo": ["spb"]}},
+          "volume": 0,
+          "cpm": 10.0,
+          "ad_frequency_limit": {"value": {"d": 1000000000}}
+        }
+      },
+      "params": {
+        "total_traffic_volume": 10000,
+        "tag_probabilities": {"geo:msk": 0.6, "geo:spb": 0.4},
+        "vocabs": {"geo": ["geo:msk", "geo:spb"]},
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1
+      }
+    },
+    "output": {
+      "report": {"u1": 6000, "u2": 4000},
+      "sellout_percent": 0.0
+    },
+    "error": null,
+    "check_mode": "sellout_eq"
+  },
+  {
+    "description": "[limitless] Unlimited competitor in the same pool does not drown the sold-out of the limited: lim(msk,vol=2000) split-pool msk=6000 s unl(msk,vol=0,dear cpm=100). lim fittingly → ~100%; unl (excluded min) take the rest of the pool. sellout_percent is considered only lim ≈ 99.9%, not 0 (Wed. s tiny/big-case, starved 0).",
+    "input": {
+      "ads": {
+        "lim": {
+          "id": "lim",
+          "targets": {"value": {"geo": ["msk"]}},
+          "volume": 2000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {"value": {"d": 1000000000}}
+        },
+        "unl": {
+          "id": "unl",
+          "targets": {"value": {"geo": ["msk"]}},
+          "volume": 0,
+          "cpm": 100.0,
+          "ad_frequency_limit": {"value": {"d": 1000000000}}
+        }
+      },
+      "params": {
+        "total_traffic_volume": 10000,
+        "tag_probabilities": {"geo:msk": 0.6, "geo:spb": 0.4},
+        "vocabs": {"geo": ["geo:msk", "geo:spb"]},
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1
+      }
+    },
+    "output": {
+      "sellout_percent": 99.9
+    },
+    "error": null,
+    "check_mode": "sellout_eq"
+  },
+  {
+    "description": "[granularity/base] The basic regime honestly limits only the daytime 'd': vol=3000, d=500, pool msk=60000≫vol → real_max=d=500 → 500/3000=16.67%. (ad_to_inner read freq.d)",
+    "input": {
+      "ads": {
+        "a": {
+          "id": "a",
+          "targets": {"value": {"geo": ["msk"]}},
+          "volume": 3000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {"value": {"d": 500}}
+        }
+      },
+      "params": {
+        "total_traffic_volume": 100000,
+        "tag_probabilities": {"geo:msk": 0.6, "geo:spb": 0.4},
+        "vocabs": {"geo": ["geo:msk", "geo:spb"]},
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1
+      }
+    },
+    "output": {
+      "report": {"a": 500},
+      "sellout_percent": 16.67
+    },
+    "error": null,
+    "check_mode": "sellout_eq"
+  },
+  {
+    "description": "[granularity/base] In the basic mode is taken into account only daily 'd'; t/h/w/m ignored (ad_to_inner read freq.d). Four ad self-tag (pond-pool 25000≫vol), Everyone asks only one thing-'d' granularity → freq=MAX_VOL_UNLIMITED → volume is limited vol=3000 → sold-out 100%. (conversion t×6/d÷24/… — seasonality, centimetre. [granularity/season])",
+    "input": {
+      "ads": {
+        "ten_min": {
+          "id": "ten_min",
+          "targets": {"value": {"geo": ["msk"]}},
+          "volume": 3000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {"value": {"t": 1}}
+        },
+        "hourly": {
+          "id": "hourly",
+          "targets": {"value": {"geo": ["spb"]}},
+          "volume": 3000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {"value": {"h": 1}}
+        },
+        "weekly": {
+          "id": "weekly",
+          "targets": {"value": {"geo": ["ekb"]}},
+          "volume": 3000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {"value": {"w": 1}}
+        },
+        "monthly": {
+          "id": "monthly",
+          "targets": {"value": {"geo": ["nsk"]}},
+          "volume": 3000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {"value": {"m": 1}}
+        }
+      },
+      "params": {
+        "total_traffic_volume": 100000,
+        "tag_probabilities": {"geo:msk": 0.25, "geo:spb": 0.25, "geo:ekb": 0.25, "geo:nsk": 0.25},
+        "vocabs": {"geo": ["geo:msk", "geo:spb", "geo:ekb", "geo:nsk"]},
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1
+      }
+    },
+    "output": {
+      "report": {"ten_min": 3000, "hourly": 3000, "weekly": 3000, "monthly": 3000},
+      "sellout_percent": 100.0
+    },
+    "error": null,
+    "check_mode": "sellout_eq"
+  },
+  {
+    "description": "[granularity/season] 10-minute 't' → impressions/hour = t×6: t=100 → hour_limit=600. vol=10000, pool msk=100000≫600 → effective_vol=600, sold-out → report=600, 100%.",
+    "input": {
+      "ads": {
+        "a": {
+          "id": "a",
+          "targets": {"value": {"geo": ["msk"]}},
+          "volume": 10000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {"value": {"t": 100}}
+        }
+      },
+      "params": {
+        "total_traffic_volume": 100000,
+        "tag_probabilities": {"geo:msk": 1.0},
+        "vocabs": {"geo": ["geo:msk"]},
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1,
+        "seasonal_context": {
+          "weight": 1.0,
+          "user_activity_ratio": {},
+          "tags_probability": null
+        }
+      }
+    },
+    "output": {
+      "report": {"a": 600},
+      "sellout_percent": 100.0
+    },
+    "error": null,
+    "check_mode": "sellout_eq"
+  },
+  {
+    "description": "[granularity/season] clockwork 'h' → impressions/hour = h (how): h=500 → hour_limit=500 → report=500, 100%.",
+    "input": {
+      "ads": {
+        "a": {
+          "id": "a",
+          "targets": {"value": {"geo": ["msk"]}},
+          "volume": 10000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {"value": {"h": 500}}
+        }
+      },
+      "params": {
+        "total_traffic_volume": 100000,
+        "tag_probabilities": {"geo:msk": 1.0},
+        "vocabs": {"geo": ["geo:msk"]},
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1,
+        "seasonal_context": {
+          "weight": 1.0,
+          "user_activity_ratio": {},
+          "tags_probability": null
+        }
+      }
+    },
+    "output": {
+      "report": {"a": 500},
+      "sellout_percent": 100.0
+    },
+    "error": null,
+    "check_mode": "sellout_eq"
+  },
+  {
+    "description": "[granularity/season] daytime 'd' → impressions/hour = d/24: d=4800 → hour_limit=200 → report=200, 100%.",
+    "input": {
+      "ads": {
+        "a": {
+          "id": "a",
+          "targets": {"value": {"geo": ["msk"]}},
+          "volume": 10000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {"value": {"d": 4800}}
+        }
+      },
+      "params": {
+        "total_traffic_volume": 100000,
+        "tag_probabilities": {"geo:msk": 1.0},
+        "vocabs": {"geo": ["geo:msk"]},
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1,
+        "seasonal_context": {
+          "weight": 1.0,
+          "user_activity_ratio": {},
+          "tags_probability": null
+        }
+      }
+    },
+    "output": {
+      "report": {"a": 200},
+      "sellout_percent": 100.0
+    },
+    "error": null,
+    "check_mode": "sellout_eq"
+  },
+  {
+    "description": "[granularity/season] weekly 'w' → impressions/hour = w/168: w=16800 → hour_limit=100 → report=100, 100%.",
+    "input": {
+      "ads": {
+        "a": {
+          "id": "a",
+          "targets": {"value": {"geo": ["msk"]}},
+          "volume": 10000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {"value": {"w": 16800}}
+        }
+      },
+      "params": {
+        "total_traffic_volume": 100000,
+        "tag_probabilities": {"geo:msk": 1.0},
+        "vocabs": {"geo": ["geo:msk"]},
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1,
+        "seasonal_context": {
+          "weight": 1.0,
+          "user_activity_ratio": {},
+          "tags_probability": null
+        }
+      }
+    },
+    "output": {
+      "report": {"a": 100},
+      "sellout_percent": 100.0
+    },
+    "error": null,
+    "check_mode": "sellout_eq"
+  },
+  {
+    "description": "[granularity/season] monthly 'm' → impressions/hour = m/(24·30.44): m=73056 → hour_limit≈99.9998 → floor=99 → report=99, 100%. (off-by-one — consequence float-presentation 24·30.44≈730.56000000000001)",
+    "input": {
+      "ads": {
+        "a": {
+          "id": "a",
+          "targets": {"value": {"geo": ["msk"]}},
+          "volume": 10000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {"value": {"m": 73056}}
+        }
+      },
+      "params": {
+        "total_traffic_volume": 100000,
+        "tag_probabilities": {"geo:msk": 1.0},
+        "vocabs": {"geo": ["geo:msk"]},
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1,
+        "seasonal_context": {
+          "weight": 1.0,
+          "user_activity_ratio": {},
+          "tags_probability": null
+        }
+      }
+    },
+    "output": {
+      "report": {"a": 99},
+      "sellout_percent": 100.0
+    },
+    "error": null,
+    "check_mode": "sellout_eq"
+  },
+  {
+    "description": "[granularity/season] With several granularities, the most careful is taken (min show-off/hour): d=4800→200 and h=100→100 → min=100 → report=100, 100%.",
+    "input": {
+      "ads": {
+        "a": {
+          "id": "a",
+          "targets": {"value": {"geo": ["msk"]}},
+          "volume": 10000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {"value": {"d": 4800, "h": 100}}
+        }
+      },
+      "params": {
+        "total_traffic_volume": 100000,
+        "tag_probabilities": {"geo:msk": 1.0},
+        "vocabs": {"geo": ["geo:msk"]},
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1,
+        "seasonal_context": {
+          "weight": 1.0,
+          "user_activity_ratio": {},
+          "tags_probability": null
+        }
+      }
+    },
+    "output": {
+      "report": {"a": 100},
+      "sellout_percent": 100.0
+    },
+    "error": null,
+    "check_mode": "sellout_eq"
+  },
+  {
+    "description": "[season/optimality] user_activity_ratio sets a non-target maximum: ratio {a:1.0,b:0.5} → seasonal_vol a=6000, b=3000 (ΣV=9000). Pool msk=10000·0.6=6000. max-min on seasonal_vol: φ*=6000/9000=0.667 → a=4000, b=2000 (=φ*·seasonal_vol), sum=6000=saturated. sellout_percent=66.67% (from seasonal_vol) — maximum.",
+    "input": {
+      "ads": {
+        "a": {
+          "id": "a",
+          "targets": {"value": {"geo": ["msk"]}},
+          "volume": 6000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {"value": {"d": 1000000000}}
+        },
+        "b": {
+          "id": "b",
+          "targets": {"value": {"geo": ["msk"]}},
+          "volume": 6000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {"value": {"d": 1000000000}}
+        }
+      },
+      "params": {
+        "total_traffic_volume": 10000,
+        "tag_probabilities": {"geo:msk": 0.6, "geo:spb": 0.4},
+        "vocabs": {"geo": ["geo:msk", "geo:spb"]},
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1,
+        "accuracy_percent": 0.01,
+        "seasonal_context": {
+          "weight": 1.0,
+          "user_activity_ratio": {"a": 1.0, "b": 0.5},
+          "tags_probability": null
+        }
+      }
+    },
+    "output": {
+      "report": {"a": 4000, "b": 2000},
+      "sellout_percent": 66.67
+    },
+    "error": null,
+    "check_mode": "sellout_eq"
+  },
+  {
+    "description": "[edge/regression] vocabulary → hollow report, sellout_percent=0.0 (beforehand ValueError: min() flat-out _calculate_sellout_percent)",
+    "input": {
+      "ads": {},
+      "params": {
+        "total_traffic_volume": 10000,
+        "tag_probabilities": {"geo:msk": 0.6, "geo:spb": 0.4},
+        "vocabs": {"geo": ["geo:msk", "geo:spb"]},
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1
+      }
+    },
+    "output": {"report": {}, "sellout_percent": 0.0},
+    "error": null,
+    "check_mode": "sellout_eq"
+  },
+  {
+    "description": "[edge] limitless (volume=0) not included min sell-out: sold-out 100%",
+    "input": {
+      "ads": {
+        "lim": {"id": "lim", "targets": {"value": {"geo": ["msk"]}}, "volume": 3000, "cpm": 10.0, "ad_frequency_limit": {"value": {"d": 999999999}}},
+        "unl": {"id": "unl", "targets": {"value": {"geo": ["spb"]}}, "volume": 0, "cpm": 10.0, "ad_frequency_limit": {"value": {"d": 999999999}}}
+      },
+      "params": {
+        "total_traffic_volume": 10000,
+        "tag_probabilities": {"geo:msk": 0.6, "geo:spb": 0.4},
+        "vocabs": {"geo": ["geo:msk", "geo:spb"]},
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1
+      }
+    },
+    "output": {"sellout_percent": 100.0},
+    "error": null,
+    "check_mode": "sellout_eq"
+  },
+  {
+    "description": "[targetless] three ad hollow targets compete for the entire pool (geo:msk=0.5,spb=0.3,ekb=0.2). total=5720=0.52×11000 → φ*=52.0%, every one of them gets exactly 52% volume: a=1560,b=1560,c=2600",
+    "input": {
+      "ads": {
+        "a": {
+          "id": "a",
+          "targets": {"value": {}},
+          "volume": 3000,
+          "cpm": 30.0,
+          "ad_frequency_limit": {"value": {"d": 30000}}
+        },
+        "b": {
+          "id": "b",
+          "targets": {"value": {}},
+          "volume": 3000,
+          "cpm": 20.0,
+          "ad_frequency_limit": {"value": {"d": 30000}}
+        },
+        "c": {
+          "id": "c",
+          "targets": {"value": {}},
+          "volume": 5000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {"value": {"d": 30000}}
+        }
+      },
+      "params": {
+        "total_traffic_volume": 5720,
+        "tag_probabilities": {"geo:msk": 0.5, "geo:spb": 0.3, "geo:ekb": 0.2},
+        "vocabs": {"geo": ["geo:msk", "geo:spb", "geo:ekb"]},
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-08,
+        "n_threads": 1
+      }
+    },
+    "output": {
+      "sellout_percent": 52.0
+    },
+    "error": null,
+    "check_mode": "sellout_eq"
+  },
+  {
+    "description": "[targetless] three ad hollow targets, total=8320≈0.756×11000 → φ*=75.6%. sellout_percent=total/Σvol×100=8320/11000×100≈75.6%",
+    "input": {
+      "ads": {
+        "a": {
+          "id": "a",
+          "targets": {"value": {}},
+          "volume": 3000,
+          "cpm": 30.0,
+          "ad_frequency_limit": {"value": {"d": 30000}}
+        },
+        "b": {
+          "id": "b",
+          "targets": {"value": {}},
+          "volume": 3000,
+          "cpm": 20.0,
+          "ad_frequency_limit": {"value": {"d": 30000}}
+        },
+        "c": {
+          "id": "c",
+          "targets": {"value": {}},
+          "volume": 5000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {"value": {"d": 30000}}
+        }
+      },
+      "params": {
+        "total_traffic_volume": 8320,
+        "tag_probabilities": {"geo:msk": 0.5, "geo:spb": 0.3, "geo:ekb": 0.2},
+        "vocabs": {"geo": ["geo:msk", "geo:spb", "geo:ekb"]},
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-08,
+        "n_threads": 1
+      }
+    },
+    "output": {
+      "sellout_percent": 75.6
+    },
+    "error": null,
+    "check_mode": "sellout_eq"
+  }
+]

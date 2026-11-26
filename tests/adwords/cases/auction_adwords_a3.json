@@ -1,0 +1,118 @@
+[
+  {
+    "input": {
+      "ads": {
+        "ad_1": {
+          "id": "ad_1", "cpm": 10.0, "priority": 1, "volume": 0, "budget": 100.0,
+          "start_date": "0001-01-01T00:00:00",
+          "end_date": "9999-12-31T23:59:59.999999",
+          "active": true,
+          "targets": {},
+          "ad_frequency_limit": {},
+          "user_frequency_limit": {},
+          "parasitic_freq_limit": {},
+          "vocabulary_weights": {},
+          "tag_weights": {}
+        },
+        "ad_2": {
+          "id": "ad_2", "cpm": 5.0, "priority": 1, "volume": 0, "budget": 50.0,
+          "start_date": "0001-01-01T00:00:00",
+          "end_date": "9999-12-31T23:59:59.999999",
+          "active": true,
+          "targets": {},
+          "ad_frequency_limit": {},
+          "user_frequency_limit": {},
+          "parasitic_freq_limit": {},
+          "vocabulary_weights": {},
+          "tag_weights": {}
+        }
+      },
+      "state": {
+        "__type": "AdwordsState",
+        "algorithm": "a3_small",
+        "query_count": 0,
+        "ad_states": {
+          "ad_1": {
+            "__type": "AdwordsAdState",
+            "id": "ad_1", "price": 0.5, "matches": 0,
+            "remaining_budget": 100.0, "real_spend": 0.0, "fake_spend": 0.0
+          },
+          "ad_2": {
+            "__type": "AdwordsAdState",
+            "id": "ad_2", "price": 0.2, "matches": 0,
+            "remaining_budget": 50.0, "real_spend": 0.0, "fake_spend": 0.0
+          }
+        }
+      }
+    },
+    "output": "ad_1",
+    "error": null,
+    "description": "A3: ad_1 win (effective_bid=5.0 > 4.0), both have budgets"
+  },
+  {
+    "input": {
+      "ads": {
+        "ad_1": {
+          "id": "ad_1", "cpm": 10.0, "priority": 1, "volume": 0, "budget": 100.0,
+          "start_date": "0001-01-01T00:00:00",
+          "end_date": "9999-12-31T23:59:59.999999",
+          "active": true,
+          "targets": {},
+          "ad_frequency_limit": {},
+          "user_frequency_limit": {},
+          "parasitic_freq_limit": {},
+          "vocabulary_weights": {},
+          "tag_weights": {}
+        }
+      },
+      "state": {
+        "__type": "AdwordsState",
+        "algorithm": "a3_small",
+        "query_count": 10,
+        "ad_states": {
+          "ad_1": {
+            "__type": "AdwordsAdState",
+            "id": "ad_1", "price": 0.5, "matches": 10,
+            "remaining_budget": 0.0, "real_spend": 100.0, "fake_spend": 0.0
+          }
+        }
+      }
+    },
+    "output": null,
+    "error": null,
+    "description": "A3: remaining_budget=0 → no winner (Lj=0 fails > 0)"
+  },
+  {
+    "input": {
+      "ads": {
+        "ad_1": {
+          "id": "ad_1", "cpm": 10.0, "priority": 1, "volume": 0, "budget": 15.0,
+          "start_date": "0001-01-01T00:00:00",
+          "end_date": "9999-12-31T23:59:59.999999",
+          "active": true,
+          "targets": {},
+          "ad_frequency_limit": {},
+          "user_frequency_limit": {},
+          "parasitic_freq_limit": {},
+          "vocabulary_weights": {},
+          "tag_weights": {}
+        }
+      },
+      "state": {
+        "__type": "AdwordsState",
+        "algorithm": "a3_small",
+        "query_count": 1,
+        "ad_states": {
+          "ad_1": {
+            "__type": "AdwordsAdState",
+            "id": "ad_1", "price": 0.3, "matches": 1,
+            "remaining_budget": 5.0, "real_spend": 10.0, "fake_spend": 0.0
+          }
+        }
+      }
+    },
+    "output": "ad_1",
+    "error": null,
+    "description": "A3: remaining_budget=5>0 → ad_1 admitted, winner"
+  }
+]

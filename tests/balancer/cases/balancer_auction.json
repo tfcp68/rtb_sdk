@@ -1,0 +1,931 @@
+[
+  {
+    "description": "[idle ads] vocabulary → None",
+    "input": {
+      "ads": {},
+      "params": {
+        "request": {
+          "geo": "msk"
+        },
+        "vocabs": {},
+        "balancer_data": {
+          "vocabs": {
+            "geo": [
+              "geo:msk"
+            ]
+          },
+          "tag_probabilities": {
+            "geo": {
+              "msk": 1.0
+            }
+          },
+          "ads_distribution": {},
+          "ads_probabilities": {},
+          "ads_total": 0
+        }
+      }
+    },
+    "output": null,
+    "error": null
+  },
+  {
+    "description": "[no balancer_data] balancer_data=None → None",
+    "input": {
+      "ads": {
+        "banner_1": {
+          "id": "banner_1"
+        }
+      },
+      "params": {
+        "request": {
+          "geo": "msk"
+        },
+        "vocabs": {},
+        "balancer_data": null
+      }
+    },
+    "output": null,
+    "error": null
+  },
+  {
+    "description": "[zero volume] full-scale = 0 → None",
+    "input": {
+      "ads": {
+        "banner_1": {
+          "id": "banner_1"
+        },
+        "banner_2": {
+          "id": "banner_2"
+        }
+      },
+      "params": {
+        "request": {
+          "geo": "msk"
+        },
+        "vocabs": {},
+        "balancer_data": {
+          "vocabs": {
+            "geo": [
+              "geo:msk"
+            ]
+          },
+          "tag_probabilities": {
+            "geo": {
+              "msk": 1.0
+            }
+          },
+          "ads_distribution": {
+            "banner_1": 0,
+            "banner_2": 0
+          },
+          "ads_probabilities": {
+            "banner_1": 1.0,
+            "banner_2": 1.0
+          },
+          "ads_total": 0
+        }
+      }
+    },
+    "output": null,
+    "error": null
+  },
+  {
+    "description": "[choice] one non-zero-volume advertisement → returns this ad",
+    "input": {
+      "ads": {
+        "banner_1": {
+          "id": "banner_1",
+          "price": 10.0
+        }
+      },
+      "params": {
+        "request": {
+          "geo": "msk"
+        },
+        "vocabs": {},
+        "balancer_data": {
+          "vocabs": {
+            "geo": [
+              "geo:msk"
+            ]
+          },
+          "tag_probabilities": {
+            "geo": {
+              "msk": 1.0
+            }
+          },
+          "ads_distribution": {
+            "banner_1": 5000
+          },
+          "ads_probabilities": {
+            "banner_1": 1.0
+          },
+          "ads_total": 5000
+        }
+      }
+    },
+    "output": null,
+    "error": null,
+    "check_mode": "output_type"
+  },
+  {
+    "description": "[choice] two different-volume ads → returns one",
+    "input": {
+      "ads": {
+        "banner_1": {
+          "id": "banner_1"
+        },
+        "banner_2": {
+          "id": "banner_2"
+        }
+      },
+      "params": {
+        "request": {
+          "geo": "msk"
+        },
+        "vocabs": {},
+        "balancer_data": {
+          "vocabs": {
+            "geo": [
+              "geo:msk",
+              "geo:spb"
+            ]
+          },
+          "tag_probabilities": {
+            "geo": {
+              "msk": 0.6,
+              "spb": 0.4
+            }
+          },
+          "ads_distribution": {
+            "banner_1": 3000,
+            "banner_2": 1000
+          },
+          "ads_probabilities": {
+            "banner_1": 0.6,
+            "banner_2": 0.4
+          },
+          "ads_total": 4000
+        }
+      }
+    },
+    "output": null,
+    "error": null,
+    "check_mode": "output_type"
+  },
+  {
+    "description": "[tagged] request contains a tag outside the dictionary → req_prob=0 → None",
+    "input": {
+      "ads": {
+        "banner_1": {
+          "id": "banner_1"
+        }
+      },
+      "params": {
+        "request": {
+          "geo": "nsk"
+        },
+        "vocabs": {},
+        "balancer_data": {
+          "vocabs": {
+            "geo": [
+              "geo:msk",
+              "geo:spb"
+            ]
+          },
+          "tag_probabilities": {
+            "geo": {
+              "msk": 0.6,
+              "spb": 0.4
+            }
+          },
+          "ads_distribution": {
+            "banner_1": 5000
+          },
+          "ads_probabilities": {
+            "banner_1": 1.0
+          },
+          "ads_total": 5000
+        }
+      }
+    },
+    "output": null,
+    "error": null
+  },
+  {
+    "description": "[zero-probability] ad_prob=0 → volume=0 → None",
+    "input": {
+      "ads": {
+        "banner_1": {
+          "id": "banner_1"
+        }
+      },
+      "params": {
+        "request": {
+          "geo": "msk"
+        },
+        "vocabs": {},
+        "balancer_data": {
+          "vocabs": {
+            "geo": [
+              "geo:msk"
+            ]
+          },
+          "tag_probabilities": {
+            "geo": {
+              "msk": 1.0
+            }
+          },
+          "ads_distribution": {
+            "banner_1": 5000
+          },
+          "ads_probabilities": {
+            "banner_1": 0.0
+          },
+          "ads_total": 5000
+        }
+      }
+    },
+    "output": null,
+    "error": null
+  },
+  {
+    "description": "[mathematics] banners: voluminous 0, non-zero → non-zero",
+    "input": {
+      "ads": {
+        "winner": {
+          "id": "winner"
+        },
+        "loser": {
+          "id": "loser"
+        }
+      },
+      "params": {
+        "request": {
+          "geo": "msk"
+        },
+        "vocabs": {},
+        "balancer_data": {
+          "vocabs": {
+            "geo": [
+              "geo:msk"
+            ]
+          },
+          "tag_probabilities": {
+            "geo": {
+              "msk": 1.0
+            }
+          },
+          "ads_distribution": {
+            "winner": 9999,
+            "loser": 0
+          },
+          "ads_probabilities": {
+            "winner": 1.0,
+            "loser": 1.0
+          },
+          "ads_total": 9999
+        }
+      }
+    },
+    "output": null,
+    "error": null,
+    "check_mode": "output_type"
+  },
+  {
+    "description": "[vulnerability] query vocab generally → req_prob=0 → None",
+    "input": {
+      "ads": {
+        "banner_1": {
+          "id": "banner_1"
+        }
+      },
+      "params": {
+        "request": {
+          "device": "mobile"
+        },
+        "vocabs": {},
+        "balancer_data": {
+          "vocabs": {
+            "geo": [
+              "geo:msk",
+              "geo:spb"
+            ]
+          },
+          "tag_probabilities": {
+            "geo": {
+              "msk": 0.6,
+              "spb": 0.4
+            }
+          },
+          "ads_distribution": {
+            "banner_1": 5000
+          },
+          "ads_probabilities": {
+            "banner_1": 1.0
+          },
+          "ads_total": 5000
+        }
+      }
+    },
+    "output": null,
+    "error": null
+  },
+  {
+    "description": "[vulnerability] ads_total=0, but ads_distribution empty → choice (no-dividing 0)",
+    "input": {
+      "ads": {
+        "banner_1": {
+          "id": "banner_1"
+        }
+      },
+      "params": {
+        "request": {
+          "geo": "msk"
+        },
+        "vocabs": {},
+        "balancer_data": {
+          "vocabs": {
+            "geo": [
+              "geo:msk"
+            ]
+          },
+          "tag_probabilities": {
+            "geo": {
+              "msk": 1.0
+            }
+          },
+          "ads_distribution": {
+            "banner_1": 100
+          },
+          "ads_probabilities": {
+            "banner_1": 1.0
+          },
+          "ads_total": 0
+        }
+      }
+    },
+    "output": null,
+    "error": null,
+    "check_mode": "output_type"
+  },
+  {
+    "description": "[OTHER fallback] query tag tag_probabilities, but ':OTHER' → winner found",
+    "input": {
+      "ads": {
+        "banner_1": {
+          "id": "banner_1"
+        }
+      },
+      "params": {
+        "request": {
+          "gender": "F"
+        },
+        "vocabs": {},
+        "balancer_data": {
+          "vocabs": {
+            "gender": [
+              "gender:M",
+              "gender::OTHER"
+            ]
+          },
+          "tag_probabilities": {
+            "gender": {
+              "M": 0.5,
+              ":OTHER": 0.5
+            }
+          },
+          "ads_distribution": {
+            "banner_1": 5000
+          },
+          "ads_probabilities": {
+            "banner_1": 0.5
+          },
+          "ads_total": 5000
+        }
+      }
+    },
+    "output": null,
+    "error": null,
+    "check_mode": "output_type"
+  },
+  {
+    "description": "[OTHER fallback] two-way vocab: one-tag, second ':OTHER' → winner found",
+    "input": {
+      "ads": {
+        "banner_1": {
+          "id": "banner_1"
+        }
+      },
+      "params": {
+        "request": {
+          "geo": "msk",
+          "gender": "F"
+        },
+        "vocabs": {},
+        "balancer_data": {
+          "vocabs": {
+            "geo": [
+              "geo:msk",
+              "geo:spb"
+            ],
+            "gender": [
+              "gender:M",
+              "gender::OTHER"
+            ]
+          },
+          "tag_probabilities": {
+            "geo": {
+              "msk": 0.6,
+              "spb": 0.4
+            },
+            "gender": {
+              "M": 0.5,
+              ":OTHER": 0.5
+            }
+          },
+          "ads_distribution": {
+            "banner_1": 5000
+          },
+          "ads_probabilities": {
+            "banner_1": 0.3
+          },
+          "ads_total": 5000
+        }
+      }
+    },
+    "output": null,
+    "error": null,
+    "check_mode": "output_type"
+  },
+  {
+    "description": "[OTHER fallback] tag is not in the table And no ':OTHER' → req_prob=0 → None",
+    "input": {
+      "ads": {
+        "banner_1": {
+          "id": "banner_1"
+        }
+      },
+      "params": {
+        "request": {
+          "geo": "ekb"
+        },
+        "vocabs": {},
+        "balancer_data": {
+          "vocabs": {
+            "geo": [
+              "geo:msk",
+              "geo:spb"
+            ]
+          },
+          "tag_probabilities": {
+            "geo": {
+              "msk": 0.6,
+              "spb": 0.4
+            }
+          },
+          "ads_distribution": {
+            "banner_1": 5000
+          },
+          "ads_probabilities": {
+            "banner_1": 1.0
+          },
+          "ads_total": 5000
+        }
+      }
+    },
+    "output": null,
+    "error": null
+  },
+  {
+    "description": "[choice] two banners with equal volumes → return one of them",
+    "input": {
+      "ads": {
+        "b1": {
+          "id": "b1"
+        },
+        "b2": {
+          "id": "b2"
+        }
+      },
+      "params": {
+        "request": {
+          "geo": "msk"
+        },
+        "vocabs": {},
+        "balancer_data": {
+          "vocabs": {
+            "geo": [
+              "geo:msk"
+            ]
+          },
+          "tag_probabilities": {
+            "geo": {
+              "msk": 1.0
+            }
+          },
+          "ads_distribution": {
+            "b1": 5000,
+            "b2": 5000
+          },
+          "ads_probabilities": {
+            "b1": 1.0,
+            "b2": 1.0
+          },
+          "ads_total": 10000
+        }
+      }
+    },
+    "output": null,
+    "error": null,
+    "check_mode": "output_type"
+  },
+  {
+    "description": "[two-dictionary] double-tag → pick up",
+    "input": {
+      "ads": {
+        "b1": {
+          "id": "b1",
+          "price": 10.0
+        }
+      },
+      "params": {
+        "request": {
+          "geo": "msk",
+          "age": "young"
+        },
+        "vocabs": {},
+        "balancer_data": {
+          "vocabs": {
+            "geo": [
+              "geo:msk",
+              "geo:spb"
+            ],
+            "age": [
+              "age:young",
+              "age:old"
+            ]
+          },
+          "tag_probabilities": {
+            "geo": {
+              "msk": 0.6,
+              "spb": 0.4
+            },
+            "age": {
+              "young": 0.5,
+              "old": 0.5
+            }
+          },
+          "ads_distribution": {
+            "b1": 3000
+          },
+          "ads_probabilities": {
+            "b1": 0.3
+          },
+          "ads_total": 3000
+        }
+      }
+    },
+    "output": null,
+    "error": null,
+    "check_mode": "output_type"
+  },
+  {
+    "description": "[zero-point distribution] distribution[b1]=0, distribution[b2]=1000 → choose b1",
+    "input": {
+      "ads": {
+        "b2": {
+          "id": "b2"
+        }
+      },
+      "params": {
+        "request": {
+          "geo": "msk"
+        },
+        "vocabs": {},
+        "balancer_data": {
+          "vocabs": {
+            "geo": [
+              "geo:msk"
+            ]
+          },
+          "tag_probabilities": {
+            "geo": {
+              "msk": 1.0
+            }
+          },
+          "ads_distribution": {
+            "b2": 1000
+          },
+          "ads_probabilities": {
+            "b2": 1.0
+          },
+          "ads_total": 1000
+        }
+      }
+    },
+    "output": null,
+    "error": null,
+    "check_mode": "output_type"
+  },
+  {
+    "description": "[hollow request] request tagless → req_prob = 1.0 (no dictionary in vocabs) → choose",
+    "input": {
+      "ads": {
+        "b1": {
+          "id": "b1"
+        }
+      },
+      "params": {
+        "request": {},
+        "vocabs": {},
+        "balancer_data": {
+          "vocabs": {},
+          "tag_probabilities": {},
+          "ads_distribution": {
+            "b1": 5000
+          },
+          "ads_probabilities": {
+            "b1": 1.0
+          },
+          "ads_total": 5000
+        }
+      }
+    },
+    "output": null,
+    "error": null,
+    "check_mode": "output_type"
+  },
+  {
+    "description": "[banners] 5 banner → choose one",
+    "input": {
+      "ads": {
+        "b1": {
+          "id": "b1"
+        },
+        "b2": {
+          "id": "b2"
+        },
+        "b3": {
+          "id": "b3"
+        },
+        "b4": {
+          "id": "b4"
+        },
+        "b5": {
+          "id": "b5"
+        }
+      },
+      "params": {
+        "request": {
+          "geo": "msk"
+        },
+        "vocabs": {},
+        "balancer_data": {
+          "vocabs": {
+            "geo": [
+              "geo:msk"
+            ]
+          },
+          "tag_probabilities": {
+            "geo": {
+              "msk": 1.0
+            }
+          },
+          "ads_distribution": {
+            "b1": 1000,
+            "b2": 2000,
+            "b3": 3000,
+            "b4": 500,
+            "b5": 500
+          },
+          "ads_probabilities": {
+            "b1": 1.0,
+            "b2": 1.0,
+            "b3": 1.0,
+            "b4": 1.0,
+            "b5": 1.0
+          },
+          "ads_total": 7000
+        }
+      }
+    },
+    "output": null,
+    "error": null,
+    "check_mode": "output_type"
+  },
+  {
+    "description": "[OTHER] query tag, eat :OTHER → pick-up",
+    "input": {
+      "ads": {
+        "b1": {
+          "id": "b1"
+        }
+      },
+      "params": {
+        "request": {
+          "geo": "ekb"
+        },
+        "vocabs": {},
+        "balancer_data": {
+          "vocabs": {
+            "geo": [
+              "geo:msk",
+              "geo::OTHER"
+            ]
+          },
+          "tag_probabilities": {
+            "geo": {
+              "msk": 0.6,
+              ":OTHER": 0.4
+            }
+          },
+          "ads_distribution": {
+            "b1": 5000
+          },
+          "ads_probabilities": {
+            "b1": 0.4
+          },
+          "ads_total": 5000
+        }
+      }
+    },
+    "output": null,
+    "error": null,
+    "check_mode": "output_type"
+  },
+  {
+    "description": "[tagged] query tag vocabs no :OTHER → None",
+    "input": {
+      "ads": {
+        "b1": {
+          "id": "b1"
+        }
+      },
+      "params": {
+        "request": {
+          "geo": "novosibirsk"
+        },
+        "vocabs": {},
+        "balancer_data": {
+          "vocabs": {
+            "geo": [
+              "geo:msk",
+              "geo:spb"
+            ]
+          },
+          "tag_probabilities": {
+            "geo": {
+              "msk": 0.6,
+              "spb": 0.4
+            }
+          },
+          "ads_distribution": {
+            "b1": 5000
+          },
+          "ads_probabilities": {
+            "b1": 1.0
+          },
+          "ads_total": 5000
+        }
+      }
+    },
+    "output": null,
+    "error": null
+  },
+  {
+    "description": "[everything zero dist] everything distribution = 0 → None",
+    "input": {
+      "ads": {
+        "b1": {
+          "id": "b1"
+        },
+        "b2": {
+          "id": "b2"
+        }
+      },
+      "params": {
+        "request": {
+          "geo": "msk"
+        },
+        "vocabs": {},
+        "balancer_data": {
+          "vocabs": {
+            "geo": [
+              "geo:msk"
+            ]
+          },
+          "tag_probabilities": {
+            "geo": {
+              "msk": 1.0
+            }
+          },
+          "ads_distribution": {
+            "b1": 0,
+            "b2": 0
+          },
+          "ads_probabilities": {
+            "b1": 1.0,
+            "b2": 1.0
+          },
+          "ads_total": 0
+        }
+      }
+    },
+    "output": null,
+    "error": null
+  },
+  {
+    "description": "[solitary] the only banner with a large volume → always",
+    "input": {
+      "ads": {
+        "solo": {
+          "id": "solo",
+          "price": 99.0
+        }
+      },
+      "params": {
+        "request": {
+          "geo": "spb"
+        },
+        "vocabs": {},
+        "balancer_data": {
+          "vocabs": {
+            "geo": [
+              "geo:msk",
+              "geo:spb"
+            ]
+          },
+          "tag_probabilities": {
+            "geo": {
+              "msk": 0.6,
+              "spb": 0.4
+            }
+          },
+          "ads_distribution": {
+            "solo": 99999
+          },
+          "ads_probabilities": {
+            "solo": 0.4
+          },
+          "ads_total": 99999
+        }
+      }
+    },
+    "output": null,
+    "error": null,
+    "check_mode": "output_type"
+  },
+  {
+    "description": "[three vocab] three-dictionary → right-choice",
+    "input": {
+      "ads": {
+        "b1": {
+          "id": "b1"
+        }
+      },
+      "params": {
+        "request": {
+          "geo": "msk",
+          "age": "young",
+          "device": "mobile"
+        },
+        "vocabs": {},
+        "balancer_data": {
+          "vocabs": {
+            "geo": [
+              "geo:msk"
+            ],
+            "age": [
+              "age:young"
+            ],
+            "device": [
+              "device:mobile"
+            ]
+          },
+          "tag_probabilities": {
+            "geo": {
+              "msk": 1.0
+            },
+            "age": {
+              "young": 1.0
+            },
+            "device": {
+              "mobile": 1.0
+            }
+          },
+          "ads_distribution": {
+            "b1": 5000
+          },
+          "ads_probabilities": {
+            "b1": 1.0
+          },
+          "ads_total": 5000
+        }
+      }
+    },
+    "output": null,
+    "error": null,
+    "check_mode": "output_type"
+  }
+]

@@ -1,0 +1,8 @@
+[
+  {
+    "description": "full-cycle: fit → serialize_model → deserialize_model → predict",
+    "input": {"n_train": 30},
+    "output": true,
+    "error": null
+  }
+]

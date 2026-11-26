@@ -1,0 +1,111 @@
+[
+  {
+    "input": {
+      "decision_variables": {"x": [0, 1, 2]},
+      "state": {
+        "best_vectors": [],
+        "population_size": 10,
+        "best_genome_size": 3,
+        "mutants_size": 3,
+        "crossover_size": 2,
+        "news_size": 2,
+        "n_epochs": 10,
+        "epoch": 1,
+        "mutation_gene_probability": 0.1,
+        "strategy_type": "maximize"
+      }
+    },
+    "output": false,
+    "error": null,
+    "description": "Incomplete: epoch=1 < n_epochs=10"
+  },
+  {
+    "input": {
+      "decision_variables": {"x": [0, 1, 2]},
+      "state": {
+        "best_vectors": [],
+        "population_size": 10,
+        "best_genome_size": 3,
+        "mutants_size": 3,
+        "crossover_size": 2,
+        "news_size": 2,
+        "n_epochs": 10,
+        "epoch": 5,
+        "mutation_gene_probability": 0.1,
+        "strategy_type": "minimize"
+      }
+    },
+    "output": false,
+    "error": null,
+    "description": "Incomplete: epoch=5 < n_epochs=10"
+  },
+  {
+    "input": {
+      "decision_variables": {"x": [0, 1, 2]},
+      "state": {
+        "best_vectors": [],
+        "population_size": 10,
+        "best_genome_size": 3,
+        "mutants_size": 3,
+        "crossover_size": 2,
+        "news_size": 2,
+        "n_epochs": 10,
+        "epoch": 10,
+        "mutation_gene_probability": 0.1,
+        "strategy_type": "maximize"
+      }
+    },
+    "output": true,
+    "error": null,
+    "description": "Completed: epoch=10 >= n_epochs=10"
+  },
+  {
+    "input": {
+      "decision_variables": {"x": [0, 1, 2]},
+      "state": {
+        "best_vectors": [],
+        "population_size": 10,
+        "best_genome_size": 3,
+        "mutants_size": 3,
+        "crossover_size": 2,
+        "news_size": 2,
+        "n_epochs": 10,
+        "epoch": 12,
+        "mutation_gene_probability": 0.1,
+        "strategy_type": "maximize"
+      }
+    },
+    "output": true,
+    "error": null,
+    "description": "Completed: epoch=12 > n_epochs=10 (era overstepped the limit)"
+  },
+  {
+    "input": {
+      "decision_variables": {"x": [0, 1]},
+      "state": null
+    },
+    "output": null,
+    "error": "OptimizerError(PARAMETER_ERROR_CODE)",
+    "description": "Mistake: state=null — fails to pass validation"
+  },
+  {
+    "input": {
+      "decision_variables": {"x": [0, 1, 2]},
+      "state": {
+        "best_vectors": [],
+        "population_size": 3,
+        "best_genome_size": 1,
+        "mutants_size": 1,
+        "crossover_size": 1,
+        "news_size": 1,
+        "n_epochs": 1,
+        "epoch": 1,
+        "mutation_gene_probability": 0.1,
+        "strategy_type": "maximize"
+      }
+    },
+    "output": true,
+    "error": null,
+    "description": "The boundary case: epoch=1 == n_epochs=1 — finished"
+  }
+]

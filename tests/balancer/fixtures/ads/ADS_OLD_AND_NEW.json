@@ -1,0 +1,23 @@
+{
+  "banner_old_1": {
+    "id": "banner_old_1",
+    "targets": {"value": {"geo": ["msk"]}},
+    "volume": 4000,
+    "cpm": 5.0,
+    "ad_frequency_limit": {"value": {"d": 99999}}
+  },
+  "banner_old_2": {
+    "id": "banner_old_2",
+    "targets": {"value": {"geo": ["spb"]}},
+    "volume": 3000,
+    "cpm": 5.0,
+    "ad_frequency_limit": {"value": {"d": 99999}}
+  },
+  "banner_new": {
+    "id": "banner_new",
+    "targets": {"value": {"geo": ["msk"]}},
+    "volume": 3000,
+    "cpm": 100.0,
+    "ad_frequency_limit": {"value": {"d": 99999}}
+  }
+}

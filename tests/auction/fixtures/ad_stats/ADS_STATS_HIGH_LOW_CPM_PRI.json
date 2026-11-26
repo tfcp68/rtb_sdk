@@ -1,0 +1,10 @@
+{
+  "ad_high_cpm_low_pri": {
+    "precise": {"m": 490},
+    "fuzzy":   {}
+  },
+  "ad_low_cpm_high_pri": {
+    "precise": {},
+    "fuzzy":   {}
+  }
+}

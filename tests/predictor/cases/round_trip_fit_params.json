@@ -1,0 +1,20 @@
+[
+  {
+    "description": "round-trip daytime FitParams (3 point)",
+    "input": {"n": 3, "resolution": "d"},
+    "output": true,
+    "error": null
+  },
+  {
+    "description": "round-trip clockwork FitParams (5 point)",
+    "input": {"n": 5, "resolution": "h"},
+    "output": true,
+    "error": null
+  },
+  {
+    "description": "round-trip 10-minute FitParams (5 point)",
+    "input": {"n": 5, "resolution": "t"},
+    "output": true,
+    "error": null
+  }
+]

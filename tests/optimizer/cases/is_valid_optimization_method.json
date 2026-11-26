@@ -1,0 +1,32 @@
+[
+  {
+    "input": {"method": "grid"},
+    "output": true,
+    "error": null,
+    "description": "'grid' — optimisation"
+  },
+  {
+    "input": {"method": "genetic"},
+    "output": true,
+    "error": null,
+    "description": "'genetic' — optimisation"
+  },
+  {
+    "input": {"method": "random"},
+    "output": false,
+    "error": null,
+    "description": "'random' — non-existence — return False"
+  },
+  {
+    "input": {"method": ""},
+    "output": false,
+    "error": null,
+    "description": "Empty line — return False"
+  },
+  {
+    "input": {"method": "Grid"},
+    "output": false,
+    "error": null,
+    "description": "Register is important: 'Grid' ≠ 'grid' — return False"
+  }
+]

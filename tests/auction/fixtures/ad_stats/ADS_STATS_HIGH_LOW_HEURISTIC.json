@@ -1,0 +1,10 @@
+{
+  "ad_high_heuristic": {
+    "precise": {},
+    "fuzzy":   {}
+  },
+  "ad_low_heuristic": {
+    "precise": {"m": 200},
+    "fuzzy":   {}
+  }
+}

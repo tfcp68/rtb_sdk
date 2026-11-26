@@ -1,0 +1,10 @@
+{
+  "ad_high_velocity": {
+    "precise": {},
+    "fuzzy":   {}
+  },
+  "ad_low_velocity": {
+    "precise": {"m": 400},
+    "fuzzy":   {}
+  }
+}

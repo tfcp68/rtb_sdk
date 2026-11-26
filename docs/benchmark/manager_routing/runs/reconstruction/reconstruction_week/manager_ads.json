@@ -1,0 +1,220 @@
+{
+  "meta": {
+    "generator": "reconstruction_rectangles_v1",
+    "seed": 42,
+    "scenario": "targeting",
+    "min_coverage": 0.025,
+    "max_coverage": 0.2,
+    "max_iou": 0.6,
+    "max_union": 0.85,
+    "union_coverage": 0.42388492253458426,
+    "campaigns": [
+      {
+        "id": "Campaign_66064f3dd9c1af0b",
+        "coverage": 0.15355275093517215,
+        "max_previous_iou": 0.0,
+        "exclusive_coverage": 0.13525834493561859
+      },
+      {
+        "id": "Campaign_e0698aae09dcee95",
+        "coverage": 0.030859713209572755,
+        "max_previous_iou": 0.013516580149207163,
+        "exclusive_coverage": 0.008552357382214763
+      },
+      {
+        "id": "Campaign_064b76319fb7a73c",
+        "coverage": 0.036643006176845926,
+        "max_previous_iou": 0.047023724960931955,
+        "exclusive_coverage": 0.01516662774148345
+      },
+      {
+        "id": "Campaign_45ed2c60a5c996aa",
+        "coverage": 0.02624675641394545,
+        "max_previous_iou": 0.012676475299178551,
+        "exclusive_coverage": 0.020675078807366794
+      },
+      {
+        "id": "Campaign_4961bb5390cb999b",
+        "coverage": 0.10526702890743247,
+        "max_previous_iou": 0.06603919896089798,
+        "exclusive_coverage": 0.08276096109503209
+      },
+      {
+        "id": "Campaign_3218c1beec1563dc",
+        "coverage": 0.048990246338344576,
+        "max_previous_iou": 0.04585021039831332,
+        "exclusive_coverage": 0.038713997969008665
+      },
+      {
+        "id": "Campaign_853541fecb118ddf",
+        "coverage": 0.03245973179043369,
+        "max_previous_iou": 0.4359874754923476,
+        "exclusive_coverage": 0.011614328424459123
+      },
+      {
+        "id": "Campaign_3f4ead5ce72d78b1",
+        "coverage": 0.05367804271275409,
+        "max_previous_iou": 0.05111235554650512,
+        "exclusive_coverage": 0.04979154596634025
+      }
+    ],
+    "training_days": [
+      0,
+      4
+    ],
+    "sample": 0.01,
+    "pool_devices": [
+      "ANDROID_TV_A",
+      "ANDROID_SET_TOP_BOX_A",
+      "SET_TOP_BOX_A",
+      "SMART_TV_PLATFORM_A",
+      "SMART_TV_PLATFORM_B",
+      "SMART_TV_PLATFORM_C",
+      "STREAMING_TV_BOX_A"
+    ],
+    "prepared_signature": "8d878284379be2535b0445785f09ebecfda7c718308eb51ed2df9c4ec8ee5a81"
+  },
+  "ads": [
+    {
+      "id": "Campaign_66064f3dd9c1af0b",
+      "name": "Campaign_60cee5d0fedc8ac0",
+      "targets": {
+        "Category": [
+          "937456303809"
+        ]
+      },
+      "cpm": 109,
+      "priority": 1,
+      "limits": "none",
+      "min_interval": 0
+    },
+    {
+      "id": "Campaign_e0698aae09dcee95",
+      "name": "Campaign_9f8e504a42840b5e",
+      "targets": {
+        "Device": [
+          "ANDROID_SET_TOP_BOX_A",
+          "SMART_TV_PLATFORM_C",
+          "STREAMING_TV_BOX_A"
+        ],
+        "Child": [
+          "false",
+          "true"
+        ]
+      },
+      "cpm": 250,
+      "priority": 1,
+      "limits": "none",
+      "min_interval": 0
+    },
+    {
+      "id": "Campaign_064b76319fb7a73c",
+      "name": "Campaign_a9d340f137e0e669",
+      "targets": {
+        "Region": [
+          "978039453340"
+        ],
+        "Device": [
+          "SET_TOP_BOX_A",
+          "ANDROID_SET_TOP_BOX_A"
+        ],
+        "Child": [
+          "false",
+          "true"
+        ]
+      },
+      "cpm": 245,
+      "priority": 1,
+      "limits": "none",
+      "min_interval": 0
+    },
+    {
+      "id": "Campaign_45ed2c60a5c996aa",
+      "name": "Campaign_e8e6a576e3d10ca6",
+      "targets": {
+        "Region": [
+          "952038632934",
+          "967133361069",
+          "975742714340"
+        ]
+      },
+      "cpm": 292,
+      "priority": 1,
+      "limits": "none",
+      "min_interval": 0
+    },
+    {
+      "id": "Campaign_4961bb5390cb999b",
+      "name": "Campaign_ae5cbe0bc0b62ef8",
+      "targets": {
+        "Device": [
+          "SET_TOP_BOX_A",
+          "SMART_TV_PLATFORM_A",
+          "SMART_TV_PLATFORM_C"
+        ],
+        "Child": [
+          "true"
+        ]
+      },
+      "cpm": 297,
+      "priority": 1,
+      "limits": "none",
+      "min_interval": 0
+    },
+    {
+      "id": "Campaign_3218c1beec1563dc",
+      "name": "Campaign_b78b0dd363227a01",
+      "targets": {
+        "Device": [
+          "SET_TOP_BOX_A",
+          "ANDROID_SET_TOP_BOX_A"
+        ],
+        "Child": [
+          "false",
+          "true"
+        ],
+        "Category": [
+          "998574152217"
+        ]
+      },
+      "cpm": 138,
+      "priority": 1,
+      "limits": "none",
+      "min_interval": 0
+    },
+    {
+      "id": "Campaign_853541fecb118ddf",
+      "name": "Campaign_fca41f57f3dac4e4",
+      "targets": {
+        "Category": [
+          "937708072325",
+          "937461435530"
+        ]
+      },
+      "cpm": 198,
+      "priority": 1,
+      "limits": "none",
+      "min_interval": 0
+    },
+    {
+      "id": "Campaign_3f4ead5ce72d78b1",
+      "name": "Campaign_1a37b432430e4d4f",
+      "targets": {
+        "Device": [
+          "ANDROID_SET_TOP_BOX_A",
+          "SMART_TV_PLATFORM_A",
+          "SMART_TV_PLATFORM_B"
+        ],
+        "Channel": [
+          "<other>",
+          "966362174317",
+          "972814775321"
+        ]
+      },
+      "cpm": 147,
+      "priority": 1,
+      "limits": "none",
+      "min_interval": 0
+    }
+  ]
+}

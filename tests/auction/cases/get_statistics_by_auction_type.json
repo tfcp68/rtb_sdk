@@ -1,0 +1,50 @@
+[
+  {
+    "input": {
+      "statistics": {
+        "precise": {"m": 200},
+        "fuzzy":   {"m": 100}
+      },
+      "auction_type": "precise"
+    },
+    "output": {"m": 200},
+    "error": null,
+    "description": "Type 'precise' — returns the counter"
+  },
+  {
+    "input": {
+      "statistics": {
+        "precise": {},
+        "fuzzy":   {}
+      },
+      "auction_type": "fuzzy"
+    },
+    "output": {},
+    "error": null,
+    "description": "Type 'fuzzy', statistics — returns the empty counter"
+  },
+  {
+    "input": {
+      "statistics": {
+        "precise": {},
+        "fuzzy":   {}
+      },
+      "auction_type": "invalid_type"
+    },
+    "output": null,
+    "error": "AuctionError(WRONG_DATA_FORMAT_ERROR_CODE, 'Wrong data format')",
+    "description": "Disabled auction type — throw away AuctionError"
+  },
+  {
+    "input": {
+      "statistics": {
+        "precise": {"m": 100},
+        "fuzzy":   {"m": 30, "d": 5}
+      },
+      "auction_type": "fuzzy"
+    },
+    "output": {"m": 30, "d": 5},
+    "error": null,
+    "description": "Type 'fuzzy' data-free — return fuzzy-counter"
+  }
+]

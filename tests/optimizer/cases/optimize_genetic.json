@@ -1,0 +1,131 @@
+[
+  {
+    "input": {
+      "decision_variables": {"x": [0, 1, 2, 3]},
+      "estimated_candidates": [
+        {"parameters": {"x": 0}, "estimation": 3.0},
+        {"parameters": {"x": 1}, "estimation": 7.0},
+        {"parameters": {"x": 2}, "estimation": 1.0},
+        {"parameters": {"x": 3}, "estimation": 9.0}
+      ],
+      "state": {
+        "population_size": 4,
+        "best_genome_size": 2,
+        "mutants_size": 1,
+        "crossover_size": 1,
+        "news_size": 1,
+        "n_epochs": 5,
+        "epoch": 1,
+        "mutation_gene_probability": 0.1,
+        "strategy_type": "maximize"
+      }
+    },
+    "output": {"estimation": 9.0, "parameters": {"x": 3}},
+    "error": null,
+    "description": "Genetic maximize: best — x=3 (estimation=9.0)"
+  },
+  {
+    "input": {
+      "decision_variables": {"x": [0, 1, 2, 3]},
+      "estimated_candidates": [
+        {"parameters": {"x": 0}, "estimation": 3.0},
+        {"parameters": {"x": 1}, "estimation": 7.0},
+        {"parameters": {"x": 2}, "estimation": 1.0},
+        {"parameters": {"x": 3}, "estimation": 9.0}
+      ],
+      "state": {
+        "population_size": 4,
+        "best_genome_size": 2,
+        "mutants_size": 1,
+        "crossover_size": 1,
+        "news_size": 1,
+        "n_epochs": 5,
+        "epoch": 1,
+        "mutation_gene_probability": 0.1,
+        "strategy_type": "minimize"
+      }
+    },
+    "output": {"estimation": 1.0, "parameters": {"x": 2}},
+    "error": null,
+    "description": "Genetic minimize: best — x=2 (estimation=1.0)"
+  },
+  {
+    "input": {
+      "decision_variables": {"x": ["low", "mid", "high"], "y": [false, true]},
+      "estimated_candidates": [
+        {"parameters": {"x": "low",  "y": false}, "estimation": 0.2},
+        {"parameters": {"x": "mid",  "y": false}, "estimation": 0.5},
+        {"parameters": {"x": "high", "y": true},  "estimation": 0.8},
+        {"parameters": {"x": "low",  "y": true},  "estimation": 0.1}
+      ],
+      "state": {
+        "population_size": 4,
+        "best_genome_size": 1,
+        "mutants_size": 1,
+        "crossover_size": 1,
+        "news_size": 1,
+        "n_epochs": 3,
+        "epoch": 2,
+        "mutation_gene_probability": 0.2,
+        "strategy_type": "maximize"
+      }
+    },
+    "output": {"estimation": 0.8, "parameters": {"x": "high", "y": true}},
+    "error": null,
+    "description": "Genetic maximize two-parameter: best x=high, y=true"
+  },
+  {
+    "input": {
+      "decision_variables": null,
+      "estimated_candidates": [
+        {"parameters": {"x": 0}, "estimation": 1.0}
+      ],
+      "state": {
+        "population_size": 1,
+        "best_genome_size": 1,
+        "mutants_size": 1,
+        "crossover_size": 1,
+        "news_size": 1,
+        "n_epochs": 5,
+        "epoch": 1,
+        "mutation_gene_probability": 0.1,
+        "strategy_type": "maximize"
+      }
+    },
+    "output": null,
+    "error": "OptimizerError(PARAMETER_ERROR_CODE)",
+    "description": "Mistake: decision_variables=null"
+  },
+  {
+    "input": {
+      "decision_variables": {"x": [0, 1]},
+      "estimated_candidates": null,
+      "state": {
+        "population_size": 2,
+        "best_genome_size": 1,
+        "mutants_size": 1,
+        "crossover_size": 1,
+        "news_size": 1,
+        "n_epochs": 5,
+        "epoch": 1,
+        "mutation_gene_probability": 0.1,
+        "strategy_type": "maximize"
+      }
+    },
+    "output": null,
+    "error": "OptimizerError(PARAMETER_ERROR_CODE)",
+    "description": "Mistake: estimated_candidates=null"
+  },
+  {
+    "input": {
+      "decision_variables": {"x": [0, 1]},
+      "estimated_candidates": [
+        {"parameters": {"x": 0}, "estimation": 1.0}
+      ],
+      "state": null
+    },
+    "output": null,
+    "error": "OptimizerError(PARAMETER_ERROR_CODE)",
+    "description": "Mistake: state=null"
+  }
+]

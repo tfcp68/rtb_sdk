@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rtb_sdk"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = [
+    "polars",
+    "pyarrow",
+    "prophet",
+    "python-dateutil",
+    "auto_all",
+    "ortools",
+]
+
+[project.optional-dependencies]
+benchmark = [
+    "numpy",
+    "matplotlib",
+]
+dev = [
+    "pytest",
+    "pytest-describe",
+    "pytest-rich",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]

@@ -1,0 +1,32 @@
+[
+  {
+    "description": "receives the correct continuous TestResult",
+    "input": {"scenario": "accepts_continuous"},
+    "output": true,
+    "error": null
+  },
+  {
+    "description": "deflects in case of length mismatch expected_values",
+    "input": {"scenario": "rejects_length_mismatch"},
+    "output": false,
+    "error": null
+  },
+  {
+    "description": "rejects series (shifted-date)",
+    "input": {"scenario": "rejects_non_continuous"},
+    "output": false,
+    "error": null
+  },
+  {
+    "description": "deflect resolution",
+    "input": {"scenario": "rejects_missing_resolution"},
+    "output": false,
+    "error": null
+  },
+  {
+    "description": "dismissively __type",
+    "input": {"scenario": "rejects_wrong_type"},
+    "output": false,
+    "error": null
+  }
+]

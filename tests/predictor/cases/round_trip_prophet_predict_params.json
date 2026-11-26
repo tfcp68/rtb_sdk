@@ -1,0 +1,20 @@
+[
+  {
+    "description": "round-trip ProphetModelPredictParams (d, 7 period)",
+    "input": {"resolution": "d", "forecast_periods": 7},
+    "output": true,
+    "error": null
+  },
+  {
+    "description": "round-trip ProphetModelPredictParams (d, 30 period)",
+    "input": {"resolution": "d", "forecast_periods": 30},
+    "output": true,
+    "error": null
+  },
+  {
+    "description": "round-trip ProphetModelPredictParams (h, 1 period)",
+    "input": {"resolution": "h", "forecast_periods": 1},
+    "output": true,
+    "error": null
+  }
+]

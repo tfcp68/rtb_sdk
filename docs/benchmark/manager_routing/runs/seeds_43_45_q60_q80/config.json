@@ -1,0 +1,34 @@
+{
+  "seeds": [
+    43,
+    44,
+    45
+  ],
+  "quotas": [
+    0.6,
+    0.8
+  ],
+  "policies": [
+    "xgboost",
+    "xgb_fb",
+    "xgb_user",
+    "catboost",
+    "catboost_fb",
+    "catboost_user"
+  ],
+  "train_days": [
+    0,
+    4
+  ],
+  "test_days": [
+    5,
+    7
+  ],
+  "train_rows": 1542430,
+  "sample": 0.05834053566692987,
+  "epsilon": 0.02,
+  "open_seed": 42,
+  "xgboost": "3.4.1",
+  "catboost": "1.2.10",
+  "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]"
+}

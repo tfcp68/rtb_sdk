@@ -1,0 +1,47 @@
+[
+  {
+    "input": {
+      "price": 50.0,
+      "max_price": 100.0
+    },
+    "output": 0.5,
+    "error": null,
+    "description": "The price is half the maximum — factor 0.5"
+  },
+  {
+    "input": {
+      "price": 0,
+      "max_price": 100.0
+    },
+    "output": 0.0,
+    "error": null,
+    "description": "Zero price — factor 0.0"
+  },
+  {
+    "input": {
+      "price": 100.0,
+      "max_price": 100.0
+    },
+    "output": 1.0,
+    "error": null,
+    "description": "Price equals maximum — result 1.0"
+  },
+  {
+    "input": {
+      "price": 50.0,
+      "max_price": 0
+    },
+    "output": null,
+    "error": "AuctionError(AUCTION_MATH_ERROR_CODE, 'zero division')",
+    "description": "Max_price = 0 — zeroing, throw away AuctionError"
+  },
+  {
+    "input": {
+      "price": 150.0,
+      "max_price": 100.0
+    },
+    "output": 1.5,
+    "error": null,
+    "description": "Price above maximum — factor > 1.0"
+  }
+]

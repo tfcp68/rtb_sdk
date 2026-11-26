@@ -1,0 +1,54 @@
+[
+  {
+    "input": {
+      "ads": {},
+      "parameters": {
+        "auction_type": "random_velocity",
+        "ads_stats": {}
+      }
+    },
+    "output": null,
+    "error": null,
+    "description": "Empty dictionary — return None"
+  },
+  {
+    "input": {
+      "ads": "file://fixtures/ads_dict/ADS_HIGH_LOW_VELOCITY.json",
+      "parameters": {
+        "auction_type": "random_velocity",
+        "ads_stats": "file://fixtures/ad_stats/ADS_STATS_HIGH_LOW_VELOCITY.json"
+      }
+    },
+    "output": null,
+    "check_output_type": true,
+    "error": null,
+    "description": "Probabilistic choice with advertising priority with less spin"
+  },
+  {
+    "input": {
+      "ads": {
+        "ad_1": {
+          "id": "ad_1", "cpm": 200, "priority": 1, "volume": 500,
+          "start_date": "0001-01-01T00:00:00",
+          "end_date": "9999-12-31T23:59:59.999999+00:00",
+          "active": true,
+          "targets": {},
+          "ad_frequency_limit": {"m": 500},
+          "user_frequency_limit": {},
+          "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}
+        }
+      },
+      "parameters": {
+        "auction_type": "random_velocity",
+        "ads_stats": {
+          "ad_1": {"precise": {}, "fuzzy": {}}
+        }
+      }
+    },
+    "output": null,
+    "check_output_type": true,
+    "error": null,
+    "description": "One announcement — random choice"
+  }
+]

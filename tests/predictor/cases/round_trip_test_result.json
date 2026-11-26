@@ -1,0 +1,8 @@
+[
+  {
+    "description": "round-trip TestResult",
+    "input": {"n_train": 2, "n_predict": 2},
+    "output": true,
+    "error": null
+  }
+]

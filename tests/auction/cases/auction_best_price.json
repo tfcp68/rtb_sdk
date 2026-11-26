@@ -1,0 +1,95 @@
+[
+  {
+    "input": {
+      "ads": {},
+      "parameters": {}
+    },
+    "output": null,
+    "error": null,
+    "description": "Empty dictionary — return None"
+  },
+  {
+    "input": {
+      "ads": {
+        "ad_1": {
+          "id": "ad_1", "cpm": 50, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00",
+          "end_date": "9999-12-31T23:59:59.999999+00:00",
+          "active": true,
+          "targets": {},
+          "ad_frequency_limit": {},
+          "user_frequency_limit": {},
+          "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}
+        },
+        "ad_2": {
+          "id": "ad_2", "cpm": 200, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00",
+          "end_date": "9999-12-31T23:59:59.999999+00:00",
+          "active": true,
+          "targets": {},
+          "ad_frequency_limit": {},
+          "user_frequency_limit": {},
+          "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}
+        },
+        "ad_3": {
+          "id": "ad_3", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00",
+          "end_date": "9999-12-31T23:59:59.999999+00:00",
+          "active": true,
+          "targets": {},
+          "ad_frequency_limit": {},
+          "user_frequency_limit": {},
+          "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}
+        }
+      },
+      "parameters": {}
+    },
+    "output": {
+      "id": "ad_2", "cpm": 200, "priority": 1, "volume": 100,
+      "start_date": "0001-01-01T00:00:00",
+      "end_date": "9999-12-31T23:59:59.999999+00:00",
+      "active": true,
+      "targets": {},
+      "ad_frequency_limit": {},
+      "user_frequency_limit": {},
+      "parasitic_freq_limit": {},
+      "vocabulary_weights": {}, "tag_weights": {}
+    },
+    "error": null,
+    "description": "Three announcements — returns at maximum cost (ad_2, price=200)"
+  },
+  {
+    "input": {
+      "ads": {
+        "ad_1": {
+          "id": "ad_1", "cpm": 750, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00",
+          "end_date": "9999-12-31T23:59:59.999999+00:00",
+          "active": true,
+          "targets": {},
+          "ad_frequency_limit": {},
+          "user_frequency_limit": {},
+          "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}
+        }
+      },
+      "parameters": {}
+    },
+    "output": {
+      "id": "ad_1", "cpm": 750, "priority": 1, "volume": 100,
+      "start_date": "0001-01-01T00:00:00",
+      "end_date": "9999-12-31T23:59:59.999999+00:00",
+      "active": true,
+      "targets": {},
+      "ad_frequency_limit": {},
+      "user_frequency_limit": {},
+      "parasitic_freq_limit": {},
+      "vocabulary_weights": {}, "tag_weights": {}
+    },
+    "error": null,
+    "description": "One announcement — single-winner"
+  }
+]

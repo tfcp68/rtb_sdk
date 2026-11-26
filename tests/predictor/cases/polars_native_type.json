@@ -1,0 +1,20 @@
+[
+  {
+    "description": "Polars datetime type — define resolution='d'",
+    "input": {"scenario": "datetime"},
+    "output": true,
+    "error": null
+  },
+  {
+    "description": "Polars date type — define resolution='d' and convert datetime",
+    "input": {"scenario": "date"},
+    "output": true,
+    "error": null
+  },
+  {
+    "description": "DataFrame mixed-date — sort out",
+    "input": {"scenario": "sorts_automatically"},
+    "output": true,
+    "error": null
+  }
+]

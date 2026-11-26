@@ -1,0 +1,14 @@
+[
+  {
+    "description": "round-trip ProphetOptions seasonally",
+    "input": {"with_seasonality": false},
+    "output": true,
+    "error": null
+  },
+  {
+    "description": "round-trip ProphetOptions seasonally",
+    "input": {"with_seasonality": true},
+    "output": true,
+    "error": null
+  }
+]

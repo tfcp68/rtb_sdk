@@ -1,0 +1,4 @@
+{
+  "ad_high_velocity": "file://fixtures/ad/AD_HIGH_VELOCITY.json",
+  "ad_low_velocity": "file://fixtures/ad/AD_LOW_VELOCITY.json"
+}

@@ -1,0 +1,62 @@
+[
+  {
+    "description": "validation Prophet",
+    "input": {
+      "options": {
+        "__type": "ProphetOptions",
+        "model_type": "prophet",
+        "growth": "linear",
+        "changepoint_prior_scale": 0.05,
+        "seasonality_mode": "additive",
+        "seasonality_prior_scale": 10.0,
+        "yearly_seasonality": true,
+        "weekly_seasonality": true,
+        "n_changepoints": 25,
+        "changepoint_range": 0.8,
+        "seasonalities": {}
+      }
+    },
+    "output": true,
+    "error": null
+  },
+  {
+    "description": "valid basic options ModelOptions",
+    "input": {
+      "options": {
+        "__type": "ModelOptions",
+        "model_type": "prophet"
+      }
+    },
+    "output": true,
+    "error": null
+  },
+  {
+    "description": "slippery — hollow dict",
+    "input": {"options": {}},
+    "output": false,
+    "error": null
+  },
+  {
+    "description": "slippery — unknown model_type",
+    "input": {
+      "options": {
+        "__type": "ModelOptions",
+        "model_type": "unknown"
+      }
+    },
+    "output": false,
+    "error": null
+  },
+  {
+    "description": "slippery — not dict (line)",
+    "input": {"options": "prophet"},
+    "output": false,
+    "error": null
+  },
+  {
+    "description": "slippery — None",
+    "input": {"options": null},
+    "output": false,
+    "error": null
+  }
+]

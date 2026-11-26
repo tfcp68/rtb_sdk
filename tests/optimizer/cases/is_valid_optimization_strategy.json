@@ -1,0 +1,32 @@
+[
+  {
+    "input": {"strategy": "maximize"},
+    "output": true,
+    "error": null,
+    "description": "'maximize' — Correct optimization strategy"
+  },
+  {
+    "input": {"strategy": "minimize"},
+    "output": true,
+    "error": null,
+    "description": "'minimize' — Correct optimization strategy"
+  },
+  {
+    "input": {"strategy": "max"},
+    "output": false,
+    "error": null,
+    "description": "'max' — reduction — return False"
+  },
+  {
+    "input": {"strategy": ""},
+    "output": false,
+    "error": null,
+    "description": "Empty line — return False"
+  },
+  {
+    "input": {"strategy": "Maximize"},
+    "output": false,
+    "error": null,
+    "description": "Register is important: 'Maximize' ≠ 'maximize' — return False"
+  }
+]

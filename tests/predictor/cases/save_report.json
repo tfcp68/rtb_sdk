@@ -1,0 +1,59 @@
+[
+  {
+    "description": "preservation md-report",
+    "input": {
+      "result": {
+        "__type": "TestResult",
+        "training_dates": ["2024-01-01T00:00:00", "2024-01-02T00:00:00"],
+        "training_values": [100.0, 102.5],
+        "predict_dates": ["2024-01-03T00:00:00", "2024-01-04T00:00:00"],
+        "predict_values": [105.0, 107.5],
+        "expected_values": [104.0, 106.0],
+        "resolution": "d"
+      },
+      "output_report_path": "tests/predictor/tmp/test_report.md",
+      "report_type": "md"
+    },
+    "output": null,
+    "error": null,
+    "check_output_type": true
+  },
+  {
+    "description": "preservation json-report",
+    "input": {
+      "result": {
+        "__type": "TestResult",
+        "training_dates": ["2024-01-01T00:00:00", "2024-01-02T00:00:00"],
+        "training_values": [100.0, 102.5],
+        "predict_dates": ["2024-01-03T00:00:00", "2024-01-04T00:00:00"],
+        "predict_values": [105.0, 107.5],
+        "expected_values": [104.0, 106.0],
+        "resolution": "d"
+      },
+      "output_report_path": "tests/predictor/tmp/test_report.json",
+      "report_type": "json"
+    },
+    "output": null,
+    "error": null,
+    "check_output_type": true
+  },
+  {
+    "description": "preservation png-report",
+    "input": {
+      "result": {
+        "__type": "TestResult",
+        "training_dates": ["2024-01-01T00:00:00", "2024-01-02T00:00:00"],
+        "training_values": [100.0, 102.5],
+        "predict_dates": ["2024-01-03T00:00:00", "2024-01-04T00:00:00"],
+        "predict_values": [105.0, 107.5],
+        "expected_values": [104.0, 106.0],
+        "resolution": "d"
+      },
+      "output_report_path": "tests/predictor/tmp/test_report.png",
+      "report_type": "png"
+    },
+    "output": null,
+    "error": null,
+    "check_output_type": true
+  }
+]

@@ -1,0 +1,44 @@
+[
+  {
+    "input": {"val": "best_one"},
+    "output": true,
+    "error": null,
+    "description": "'best_one' — choice-function"
+  },
+  {
+    "input": {"val": "random_price"},
+    "output": true,
+    "error": null,
+    "description": "'random_price' — choice-function"
+  },
+  {
+    "input": {"val": "best_heuristics"},
+    "output": true,
+    "error": null,
+    "description": "'best_heuristics' — choice-function"
+  },
+  {
+    "input": {"val": "random_velocity"},
+    "output": true,
+    "error": null,
+    "description": "'random_velocity' — choice-function"
+  },
+  {
+    "input": {"val": "precise"},
+    "output": false,
+    "error": null,
+    "description": "'precise' — auction-type, not a choice — return False"
+  },
+  {
+    "input": {"val": ""},
+    "output": false,
+    "error": null,
+    "description": "Empty line — return False"
+  },
+  {
+    "input": {"val": "invalid"},
+    "output": false,
+    "error": null,
+    "description": "A random line — return False"
+  }
+]

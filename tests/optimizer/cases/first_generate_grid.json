@@ -1,0 +1,95 @@
+[
+  {
+    "input": {
+      "decision_variables": {"x": [0, 1], "y": [0, 1]},
+      "options": {
+        "n_step_combinations": 2,
+        "strategy_type": "maximize"
+      }
+    },
+    "output": {"n_candidates": 2, "state_index": 2},
+    "error": null,
+    "description": "Grid: first 2 candidate 4 combinations (x∈{0,1}, y∈{0,1})"
+  },
+  {
+    "input": {
+      "decision_variables": {"x": [0, 1], "y": [0, 1]},
+      "options": {
+        "n_step_combinations": 1,
+        "strategy_type": "minimize"
+      }
+    },
+    "output": {"n_candidates": 1, "state_index": 1},
+    "error": null,
+    "description": "Grid: first 1 candidate 4 combinations"
+  },
+  {
+    "input": {
+      "decision_variables": {"x": [0, 1], "y": [0, 1]},
+      "options": {
+        "n_step_combinations": 4,
+        "strategy_type": "maximize"
+      }
+    },
+    "output": {"n_candidates": 4, "state_index": 4},
+    "error": null,
+    "description": "Grid: step equals the size of the work — everything 4 single-call"
+  },
+  {
+    "input": {
+      "decision_variables": {"x": [0, 1], "y": [0, 1]},
+      "options": {
+        "n_step_combinations": 10,
+        "strategy_type": "maximize"
+      }
+    },
+    "output": {"n_candidates": 4, "state_index": 4},
+    "error": null,
+    "description": "Grid: step — cut off 4 (Cartesian)"
+  },
+  {
+    "input": {
+      "decision_variables": {"a": ["A1", "A2", "A3"], "b": [1, 2], "c": [false, true]},
+      "options": {
+        "n_step_combinations": 3,
+        "strategy_type": "minimize"
+      }
+    },
+    "output": {"n_candidates": 3, "state_index": 3},
+    "error": null,
+    "description": "Grid: dictionary, step 3"
+  },
+  {
+    "input": {
+      "decision_variables": null,
+      "options": {
+        "n_step_combinations": 2,
+        "strategy_type": "maximize"
+      }
+    },
+    "output": null,
+    "error": "OptimizerError(PARAMETER_ERROR_CODE)",
+    "description": "Mistake: decision_variables=null — fails to pass validation"
+  },
+  {
+    "input": {
+      "decision_variables": {"x": [0, 1]},
+      "options": null
+    },
+    "output": null,
+    "error": "OptimizerError(PARAMETER_ERROR_CODE)",
+    "description": "Mistake: options=null — fails to pass validation"
+  },
+  {
+    "input": {
+      "decision_variables": {"only": [42]},
+      "options": {
+        "n_step_combinations": 5,
+        "strategy_type": "minimize"
+      }
+    },
+    "output": {"n_candidates": 1, "state_index": 1},
+    "error": null,
+    "description": "One variable with one value — always 1 candidate"
+  }
+]

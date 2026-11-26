@@ -1,0 +1,50 @@
+[
+  {
+    "description": "valid ProphetModelPredictParams",
+    "input": {
+      "data": {
+        "__type": "ProphetModelPredictParams",
+        "forecast_periods": 7,
+        "resolution": "d"
+      }
+    },
+    "output": true,
+    "error": null
+  },
+  {
+    "description": "valid ProphetModelPredictParams hourly",
+    "input": {
+      "data": {
+        "__type": "ProphetModelPredictParams",
+        "forecast_periods": 24,
+        "resolution": "h"
+      }
+    },
+    "output": true,
+    "error": null
+  },
+  {
+    "description": "slippery — hollow dict (no __type)",
+    "input": {"data": {}},
+    "output": false,
+    "error": null
+  },
+  {
+    "description": "slippery — false __type",
+    "input": {
+      "data": {
+        "__type": "FitParams",
+        "forecast_periods": 7,
+        "resolution": "d"
+      }
+    },
+    "output": false,
+    "error": null
+  },
+  {
+    "description": "slippery — None",
+    "input": {"data": null},
+    "output": false,
+    "error": null
+  }
+]

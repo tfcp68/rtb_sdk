@@ -1,0 +1,16 @@
+{
+  "banner_high": {
+    "id": "banner_high",
+    "targets": {"value": {"geo": ["msk"]}},
+    "volume": 5000,
+    "cpm": 100.0,
+    "ad_frequency_limit": {"value": {"d": 99999}}
+  },
+  "banner_low": {
+    "id": "banner_low",
+    "targets": {"value": {"geo": ["msk"]}},
+    "volume": 5000,
+    "cpm": 10.0,
+    "ad_frequency_limit": {"value": {"d": 99999}}
+  }
+}

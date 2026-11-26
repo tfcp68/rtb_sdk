@@ -1,0 +1,210 @@
+[
+  {
+    "input": {
+      "ads": {},
+      "ad_total_counts": {}
+    },
+    "output": {},
+    "error": null,
+    "description": "Empty list of ads — empty AdsDict"
+  },
+  {
+    "input": {
+      "ads": {
+        "ad_1": {
+          "id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {},
+          "ad_frequency_limit": {}, "user_frequency_limit": {},
+          "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}
+        }
+      },
+      "ad_total_counts": {"ad_1": {"fuzzy": 1000}}
+    },
+    "output": {
+      "ad_1": {
+        "id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+        "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+        "active": true, "targets": {},
+        "ad_frequency_limit": {}, "user_frequency_limit": {},
+        "parasitic_freq_limit": {},
+        "vocabulary_weights": {}, "tag_weights": {}
+      }
+    },
+    "error": null,
+    "description": "Announcement without parasitic_freq_limit — passes through any amount FUZZY-impressions"
+  },
+  {
+    "input": {
+      "ads": {
+        "ad_1": {
+          "id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {},
+          "ad_frequency_limit": {}, "user_frequency_limit": {},
+          "parasitic_freq_limit": {"m": 50},
+          "vocabulary_weights": {}, "tag_weights": {}
+        }
+      },
+      "ad_total_counts": {"ad_1": {"fuzzy": 10}}
+    },
+    "output": {
+      "ad_1": {
+        "id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+        "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+        "active": true, "targets": {},
+        "ad_frequency_limit": {}, "user_frequency_limit": {},
+        "parasitic_freq_limit": {"m": 50},
+        "vocabulary_weights": {}, "tag_weights": {}
+      }
+    },
+    "error": null,
+    "description": "FUZZY-counter (10 < 50) — announcement"
+  },
+  {
+    "input": {
+      "ads": {
+        "ad_1": {
+          "id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {},
+          "ad_frequency_limit": {}, "user_frequency_limit": {},
+          "parasitic_freq_limit": {"m": 50},
+          "vocabulary_weights": {}, "tag_weights": {}
+        }
+      },
+      "ad_total_counts": {"ad_1": {"fuzzy": 50}}
+    },
+    "output": {},
+    "error": null,
+    "description": "FUZZY-counter (50 == 50) — filtered out (stringent <)"
+  },
+  {
+    "input": {
+      "ads": {
+        "ad_1": {
+          "id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {},
+          "ad_frequency_limit": {}, "user_frequency_limit": {},
+          "parasitic_freq_limit": {"m": 50},
+          "vocabulary_weights": {}, "tag_weights": {}
+        }
+      },
+      "ad_total_counts": {"ad_1": {"fuzzy": 100}}
+    },
+    "output": {},
+    "error": null,
+    "description": "FUZZY-counter (100 > 50) — filtered out"
+  },
+  {
+    "input": {
+      "ads": {
+        "ad_1": {
+          "id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {},
+          "ad_frequency_limit": {}, "user_frequency_limit": {},
+          "parasitic_freq_limit": {"m": 50},
+          "vocabulary_weights": {}, "tag_weights": {}
+        }
+      },
+      "ad_total_counts": {}
+    },
+    "output": {
+      "ad_1": {
+        "id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+        "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+        "active": true, "targets": {},
+        "ad_frequency_limit": {}, "user_frequency_limit": {},
+        "parasitic_freq_limit": {"m": 50},
+        "vocabulary_weights": {}, "tag_weights": {}
+      }
+    },
+    "error": null,
+    "description": "The announcement is missing in ad_total_counts — FUZZY-counter 0, passing"
+  },
+  {
+    "input": {
+      "ads": {
+        "ad_1": {
+          "id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {},
+          "ad_frequency_limit": {}, "user_frequency_limit": {},
+          "parasitic_freq_limit": {"m": 50},
+          "vocabulary_weights": {}, "tag_weights": {}
+        }
+      },
+      "ad_total_counts": {"ad_1": {"precise": 1000, "fuzzy": 10}}
+    },
+    "output": {
+      "ad_1": {
+        "id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+        "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+        "active": true, "targets": {},
+        "ad_frequency_limit": {}, "user_frequency_limit": {},
+        "parasitic_freq_limit": {"m": 50},
+        "vocabulary_weights": {}, "tag_weights": {}
+      }
+    },
+    "error": null,
+    "description": "Only FUZZY-counting — thousand PRECISE-screenings not blocked"
+  },
+  {
+    "input": {
+      "ads": {
+        "ad_pass": {
+          "id": "ad_pass", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {},
+          "ad_frequency_limit": {}, "user_frequency_limit": {},
+          "parasitic_freq_limit": {"m": 50},
+          "vocabulary_weights": {}, "tag_weights": {}
+        },
+        "ad_blocked": {
+          "id": "ad_blocked", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {},
+          "ad_frequency_limit": {}, "user_frequency_limit": {},
+          "parasitic_freq_limit": {"m": 30},
+          "vocabulary_weights": {}, "tag_weights": {}
+        },
+        "ad_unlimited": {
+          "id": "ad_unlimited", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {},
+          "ad_frequency_limit": {}, "user_frequency_limit": {},
+          "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}
+        }
+      },
+      "ad_total_counts": {
+        "ad_pass":      {"fuzzy": 10},
+        "ad_blocked":   {"fuzzy": 40},
+        "ad_unlimited": {"fuzzy": 1000}
+      }
+    },
+    "output": {
+      "ad_pass": {
+        "id": "ad_pass", "cpm": 100, "priority": 1, "volume": 100,
+        "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+        "active": true, "targets": {},
+        "ad_frequency_limit": {}, "user_frequency_limit": {},
+        "parasitic_freq_limit": {"m": 50},
+        "vocabulary_weights": {}, "tag_weights": {}
+      },
+      "ad_unlimited": {
+        "id": "ad_unlimited", "cpm": 100, "priority": 1, "volume": 100,
+        "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+        "active": true, "targets": {},
+        "ad_frequency_limit": {}, "user_frequency_limit": {},
+        "parasitic_freq_limit": {},
+        "vocabulary_weights": {}, "tag_weights": {}
+      }
+    },
+    "error": null,
+    "description": "Three announcements: one-way, one over the limit, limitless — come back"
+  }
+]

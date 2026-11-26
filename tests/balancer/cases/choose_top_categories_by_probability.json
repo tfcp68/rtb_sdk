@@ -1,0 +1,1117 @@
+[
+  {
+    "description": "[basic] dictionary, two-tag → flatly 2 category",
+    "input": {
+      "ads_vocabs_tags": {
+        "ad_1": {
+          "geo": [
+            "geo:msk",
+            "geo:spb"
+          ]
+        }
+      },
+      "new_vocabs": {
+        "geo": [
+          "geo:msk",
+          "geo:spb"
+        ]
+      },
+      "tag_probabilities": {
+        "geo:msk": 0.7,
+        "geo:spb": 0.3
+      },
+      "max_n_categories": 100,
+      "min_category_probability": 1e-09
+    },
+    "output": {
+      "ad_1": 2
+    },
+    "error": null,
+    "check_mode": "category_counts"
+  },
+  {
+    "description": "[basic] two-tag → flatly 4 category (Cartesian)",
+    "input": {
+      "ads_vocabs_tags": {
+        "ad_1": {
+          "geo": [
+            "geo:msk",
+            "geo:spb"
+          ],
+          "age": [
+            "age:18-24",
+            "age:25-34"
+          ]
+        }
+      },
+      "new_vocabs": {
+        "geo": [
+          "geo:msk",
+          "geo:spb"
+        ],
+        "age": [
+          "age:18-24",
+          "age:25-34"
+        ]
+      },
+      "tag_probabilities": {
+        "geo:msk": 0.6,
+        "geo:spb": 0.4,
+        "age:18-24": 0.4,
+        "age:25-34": 0.6
+      },
+      "max_n_categories": 100,
+      "min_category_probability": 1e-09
+    },
+    "output": {
+      "ad_1": 4
+    },
+    "error": null,
+    "check_mode": "category_counts"
+  },
+  {
+    "description": "[routine] Categories are ordered by decreasing probability",
+    "input": {
+      "ads_vocabs_tags": {
+        "ad_1": {
+          "geo": [
+            "geo:msk",
+            "geo:spb"
+          ],
+          "age": [
+            "age:18-24",
+            "age:25-34"
+          ]
+        }
+      },
+      "new_vocabs": {
+        "geo": [
+          "geo:msk",
+          "geo:spb"
+        ],
+        "age": [
+          "age:18-24",
+          "age:25-34"
+        ]
+      },
+      "tag_probabilities": {
+        "geo:msk": 0.6,
+        "geo:spb": 0.4,
+        "age:18-24": 0.3,
+        "age:25-34": 0.7
+      },
+      "max_n_categories": 100,
+      "min_category_probability": 1e-09
+    },
+    "output": null,
+    "error": null,
+    "check_mode": "categories_sorted"
+  },
+  {
+    "description": "[max_n_categories] max_n_categories=1 → more 1 category",
+    "input": {
+      "ads_vocabs_tags": {
+        "ad_1": {
+          "geo": [
+            "geo:msk",
+            "geo:spb"
+          ],
+          "age": [
+            "age:18-24",
+            "age:25-34"
+          ]
+        },
+        "ad_2": {
+          "geo": [
+            "geo:msk",
+            "geo:spb"
+          ]
+        }
+      },
+      "new_vocabs": {
+        "geo": [
+          "geo:msk",
+          "geo:spb"
+        ],
+        "age": [
+          "age:18-24",
+          "age:25-34"
+        ]
+      },
+      "tag_probabilities": {
+        "geo:msk": 0.6,
+        "geo:spb": 0.4,
+        "age:18-24": 0.3,
+        "age:25-34": 0.7
+      },
+      "max_n_categories": 1,
+      "min_category_probability": 1e-09
+    },
+    "output": {
+      "ad_1": 1,
+      "ad_2": 1
+    },
+    "error": null,
+    "check_mode": "category_counts"
+  },
+  {
+    "description": "[min_category_probability] threshold 0.3 cut off low-grade categories",
+    "input": {
+      "ads_vocabs_tags": {
+        "ad_1": {
+          "geo": [
+            "geo:msk",
+            "geo:spb"
+          ],
+          "age": [
+            "age:18-24",
+            "age:25-34"
+          ]
+        }
+      },
+      "new_vocabs": {
+        "geo": [
+          "geo:msk",
+          "geo:spb"
+        ],
+        "age": [
+          "age:18-24",
+          "age:25-34"
+        ]
+      },
+      "tag_probabilities": {
+        "geo:msk": 0.6,
+        "geo:spb": 0.4,
+        "age:18-24": 0.3,
+        "age:25-34": 0.7
+      },
+      "max_n_categories": 100,
+      "min_category_probability": 0.3
+    },
+    "output": 0.3,
+    "error": null,
+    "check_mode": "categories_min_prob"
+  },
+  {
+    "description": "[tag] single-tag → flatly 1 category",
+    "input": {
+      "ads_vocabs_tags": {
+        "ad_1": {
+          "geo": [
+            "geo:msk"
+          ]
+        }
+      },
+      "new_vocabs": {
+        "geo": [
+          "geo:msk"
+        ]
+      },
+      "tag_probabilities": {
+        "geo:msk": 1.0
+      },
+      "max_n_categories": 100,
+      "min_category_probability": 1e-09
+    },
+    "output": {
+      "ad_1": 1
+    },
+    "error": null,
+    "check_mode": "category_counts"
+  },
+  {
+    "description": "[probability] P category = workpiece P tagging",
+    "input": {
+      "ads_vocabs_tags": {
+        "ad_1": {
+          "geo": [
+            "geo:msk"
+          ],
+          "age": [
+            "age:25-34"
+          ]
+        }
+      },
+      "new_vocabs": {
+        "geo": [
+          "geo:msk"
+        ],
+        "age": [
+          "age:25-34"
+        ]
+      },
+      "tag_probabilities": {
+        "geo:msk": 0.7,
+        "age:25-34": 0.8
+      },
+      "max_n_categories": 100,
+      "min_category_probability": 1e-09
+    },
+    "output": {
+      "ad_1": 0.56
+    },
+    "error": null,
+    "check_mode": "first_cat_prob"
+  },
+  {
+    "description": "[few announcements] in each independent category, keys match ads",
+    "input": {
+      "ads_vocabs_tags": {
+        "ad_1": {
+          "geo": [
+            "geo:msk"
+          ]
+        },
+        "ad_2": {
+          "geo": [
+            "geo:spb"
+          ]
+        }
+      },
+      "new_vocabs": {
+        "geo": [
+          "geo:msk",
+          "geo:spb"
+        ]
+      },
+      "tag_probabilities": {
+        "geo:msk": 0.6,
+        "geo:spb": 0.4
+      },
+      "max_n_categories": 100,
+      "min_category_probability": 1e-09
+    },
+    "output": [
+      "ad_1",
+      "ad_2"
+    ],
+    "error": null,
+    "check_mode": "keys_present"
+  },
+  {
+    "description": "[bottleneck] high-end min_category_probability=0.99 → all categories except the best",
+    "input": {
+      "ads_vocabs_tags": {
+        "ad_1": {
+          "geo": [
+            "geo:msk",
+            "geo:spb"
+          ],
+          "age": [
+            "age:18-24",
+            "age:25-34"
+          ]
+        }
+      },
+      "new_vocabs": {
+        "geo": [
+          "geo:msk",
+          "geo:spb"
+        ],
+        "age": [
+          "age:18-24",
+          "age:25-34"
+        ]
+      },
+      "tag_probabilities": {
+        "geo:msk": 0.6,
+        "geo:spb": 0.4,
+        "age:18-24": 0.3,
+        "age:25-34": 0.7
+      },
+      "max_n_categories": 100,
+      "min_category_probability": 0.99
+    },
+    "output": {
+      "ad_1": 1
+    },
+    "error": null,
+    "check_mode": "categories_max_count"
+  },
+  {
+    "description": "[mathematics] three-dictionary 2 tag → flatly 8 category (2³ = Cartesian)",
+    "input": {
+      "ads_vocabs_tags": {
+        "ad_1": {
+          "geo": [
+            "geo:msk",
+            "geo:spb"
+          ],
+          "age": [
+            "age:18-24",
+            "age:25-34"
+          ],
+          "type": [
+            "type:banner",
+            "type:video"
+          ]
+        }
+      },
+      "new_vocabs": {
+        "geo": [
+          "geo:msk",
+          "geo:spb"
+        ],
+        "age": [
+          "age:18-24",
+          "age:25-34"
+        ],
+        "type": [
+          "type:banner",
+          "type:video"
+        ]
+      },
+      "tag_probabilities": {
+        "geo:msk": 0.6,
+        "geo:spb": 0.4,
+        "age:18-24": 0.4,
+        "age:25-34": 0.6,
+        "type:banner": 0.7,
+        "type:video": 0.3
+      },
+      "max_n_categories": 100,
+      "min_category_probability": 1e-09
+    },
+    "output": {
+      "ad_1": 8
+    },
+    "error": null,
+    "check_mode": "category_counts"
+  },
+  {
+    "description": "[mathematics] P(top-ranked) = P(geo:msk) × P(age:25-34) × P(type:banner) = 0.6×0.6×0.7 = 0.252",
+    "input": {
+      "ads_vocabs_tags": {
+        "ad_1": {
+          "geo": [
+            "geo:msk",
+            "geo:spb"
+          ],
+          "age": [
+            "age:18-24",
+            "age:25-34"
+          ],
+          "type": [
+            "type:banner",
+            "type:video"
+          ]
+        }
+      },
+      "new_vocabs": {
+        "geo": [
+          "geo:msk",
+          "geo:spb"
+        ],
+        "age": [
+          "age:18-24",
+          "age:25-34"
+        ],
+        "type": [
+          "type:banner",
+          "type:video"
+        ]
+      },
+      "tag_probabilities": {
+        "geo:msk": 0.6,
+        "geo:spb": 0.4,
+        "age:18-24": 0.4,
+        "age:25-34": 0.6,
+        "type:banner": 0.7,
+        "type:video": 0.3
+      },
+      "max_n_categories": 100,
+      "min_category_probability": 1e-09
+    },
+    "output": {
+      "ad_1": 0.252
+    },
+    "error": null,
+    "check_mode": "first_cat_prob"
+  },
+  {
+    "description": "[bottleneck] max_n_categories=3 upon 8 possible → flatly 3 category",
+    "input": {
+      "ads_vocabs_tags": {
+        "ad_1": {
+          "geo": [
+            "geo:msk",
+            "geo:spb"
+          ],
+          "age": [
+            "age:18-24",
+            "age:25-34"
+          ],
+          "type": [
+            "type:banner",
+            "type:video"
+          ]
+        }
+      },
+      "new_vocabs": {
+        "geo": [
+          "geo:msk",
+          "geo:spb"
+        ],
+        "age": [
+          "age:18-24",
+          "age:25-34"
+        ],
+        "type": [
+          "type:banner",
+          "type:video"
+        ]
+      },
+      "tag_probabilities": {
+        "geo:msk": 0.6,
+        "geo:spb": 0.4,
+        "age:18-24": 0.4,
+        "age:25-34": 0.6,
+        "type:banner": 0.7,
+        "type:video": 0.3
+      },
+      "max_n_categories": 3,
+      "min_category_probability": 1e-09
+    },
+    "output": {
+      "ad_1": 3
+    },
+    "error": null,
+    "check_mode": "category_counts"
+  },
+  {
+    "description": "[routine] upon max_n_categories=3 of 8 — chosen 3 sorted by decreasing probability",
+    "input": {
+      "ads_vocabs_tags": {
+        "ad_1": {
+          "geo": [
+            "geo:msk",
+            "geo:spb"
+          ],
+          "age": [
+            "age:18-24",
+            "age:25-34"
+          ],
+          "type": [
+            "type:banner",
+            "type:video"
+          ]
+        }
+      },
+      "new_vocabs": {
+        "geo": [
+          "geo:msk",
+          "geo:spb"
+        ],
+        "age": [
+          "age:18-24",
+          "age:25-34"
+        ],
+        "type": [
+          "type:banner",
+          "type:video"
+        ]
+      },
+      "tag_probabilities": {
+        "geo:msk": 0.6,
+        "geo:spb": 0.4,
+        "age:18-24": 0.4,
+        "age:25-34": 0.6,
+        "type:banner": 0.7,
+        "type:video": 0.3
+      },
+      "max_n_categories": 3,
+      "min_category_probability": 1e-09
+    },
+    "output": null,
+    "error": null,
+    "check_mode": "categories_sorted"
+  },
+  {
+    "description": "[mathematics] single-tag P=1.0 → P(category)=1.0",
+    "input": {
+      "ads_vocabs_tags": {
+        "ad_1": {
+          "geo": [
+            "geo:msk"
+          ]
+        }
+      },
+      "new_vocabs": {
+        "geo": [
+          "geo:msk"
+        ]
+      },
+      "tag_probabilities": {
+        "geo:msk": 1.0
+      },
+      "max_n_categories": 100,
+      "min_category_probability": 1e-09
+    },
+    "output": {
+      "ad_1": 1.0
+    },
+    "error": null,
+    "check_mode": "first_cat_prob"
+  },
+  {
+    "description": "[one-tag dictionary] one-off, tag → flatly 1 category P=tag_prob",
+    "input": {
+      "ads_vocabs_tags": {
+        "ad_1": {
+          "geo": [
+            "geo:spb"
+          ]
+        }
+      },
+      "new_vocabs": {
+        "geo": [
+          "geo:spb"
+        ]
+      },
+      "tag_probabilities": {
+        "geo:spb": 0.4
+      },
+      "max_n_categories": 100,
+      "min_category_probability": 1e-09
+    },
+    "output": {
+      "ad_1": 0.4
+    },
+    "error": null,
+    "check_mode": "first_cat_prob"
+  },
+  {
+    "description": "[max_n_categories=2] of 4 Possible is taken exactly 2",
+    "input": {
+      "ads_vocabs_tags": {
+        "ad_1": {
+          "geo": [
+            "geo:msk",
+            "geo:spb"
+          ],
+          "age": [
+            "age:young",
+            "age:old"
+          ]
+        }
+      },
+      "new_vocabs": {
+        "geo": [
+          "geo:msk",
+          "geo:spb"
+        ],
+        "age": [
+          "age:young",
+          "age:old"
+        ]
+      },
+      "tag_probabilities": {
+        "geo:msk": 0.6,
+        "geo:spb": 0.4,
+        "age:young": 0.5,
+        "age:old": 0.5
+      },
+      "max_n_categories": 2,
+      "min_category_probability": 1e-09
+    },
+    "output": {
+      "ad_1": 2
+    },
+    "error": null,
+    "check_mode": "category_counts"
+  },
+  {
+    "description": "[routine] 2 of 4 category → descended",
+    "input": {
+      "ads_vocabs_tags": {
+        "ad_1": {
+          "geo": [
+            "geo:msk",
+            "geo:spb"
+          ],
+          "age": [
+            "age:young",
+            "age:old"
+          ]
+        }
+      },
+      "new_vocabs": {
+        "geo": [
+          "geo:msk",
+          "geo:spb"
+        ],
+        "age": [
+          "age:young",
+          "age:old"
+        ]
+      },
+      "tag_probabilities": {
+        "geo:msk": 0.7,
+        "geo:spb": 0.3,
+        "age:young": 0.8,
+        "age:old": 0.2
+      },
+      "max_n_categories": 2,
+      "min_category_probability": 1e-09
+    },
+    "output": null,
+    "error": null,
+    "check_mode": "categories_sorted"
+  },
+  {
+    "description": "[few announcements] Three ads with different targets → keynote",
+    "input": {
+      "ads_vocabs_tags": {
+        "a": {
+          "geo": [
+            "geo:msk"
+          ]
+        },
+        "b": {
+          "geo": [
+            "geo:spb"
+          ]
+        },
+        "c": {
+          "geo": [
+            "geo:msk",
+            "geo:spb"
+          ]
+        }
+      },
+      "new_vocabs": {
+        "geo": [
+          "geo:msk",
+          "geo:spb"
+        ]
+      },
+      "tag_probabilities": {
+        "geo:msk": 0.6,
+        "geo:spb": 0.4
+      },
+      "max_n_categories": 100,
+      "min_category_probability": 1e-09
+    },
+    "output": [
+      "a",
+      "b",
+      "c"
+    ],
+    "error": null,
+    "check_mode": "keys_present"
+  },
+  {
+    "description": "[mathematics] P(msk)*P(young) = 0.5*0.5 = 0.25 → first-class",
+    "input": {
+      "ads_vocabs_tags": {
+        "ad_1": {
+          "geo": [
+            "geo:msk"
+          ],
+          "age": [
+            "age:young"
+          ]
+        }
+      },
+      "new_vocabs": {
+        "geo": [
+          "geo:msk"
+        ],
+        "age": [
+          "age:young"
+        ]
+      },
+      "tag_probabilities": {
+        "geo:msk": 0.5,
+        "age:young": 0.5
+      },
+      "max_n_categories": 100,
+      "min_category_probability": 1e-09
+    },
+    "output": {
+      "ad_1": 0.25
+    },
+    "error": null,
+    "check_mode": "first_cat_prob"
+  },
+  {
+    "description": "[min_prob] threshold 0.5 cut off all categories P<0.5",
+    "input": {
+      "ads_vocabs_tags": {
+        "ad_1": {
+          "geo": [
+            "geo:msk",
+            "geo:spb"
+          ]
+        }
+      },
+      "new_vocabs": {
+        "geo": [
+          "geo:msk",
+          "geo:spb"
+        ]
+      },
+      "tag_probabilities": {
+        "geo:msk": 0.7,
+        "geo:spb": 0.3
+      },
+      "max_n_categories": 100,
+      "min_category_probability": 0.5
+    },
+    "output": 0.5,
+    "error": null,
+    "check_mode": "categories_min_prob"
+  },
+  {
+    "description": "[4 dictionary] 4 dictionary 2 tag = 16 category",
+    "input": {
+      "ads_vocabs_tags": {
+        "ad_1": {
+          "geo": [
+            "geo:a",
+            "geo:b"
+          ],
+          "age": [
+            "age:x",
+            "age:y"
+          ],
+          "dev": [
+            "dev:m",
+            "dev:d"
+          ],
+          "os": [
+            "os:i",
+            "os:a"
+          ]
+        }
+      },
+      "new_vocabs": {
+        "geo": [
+          "geo:a",
+          "geo:b"
+        ],
+        "age": [
+          "age:x",
+          "age:y"
+        ],
+        "dev": [
+          "dev:m",
+          "dev:d"
+        ],
+        "os": [
+          "os:i",
+          "os:a"
+        ]
+      },
+      "tag_probabilities": {
+        "geo:a": 0.5,
+        "geo:b": 0.5,
+        "age:x": 0.5,
+        "age:y": 0.5,
+        "dev:m": 0.5,
+        "dev:d": 0.5,
+        "os:i": 0.5,
+        "os:a": 0.5
+      },
+      "max_n_categories": 100,
+      "min_category_probability": 1e-09
+    },
+    "output": {
+      "ad_1": 16
+    },
+    "error": null,
+    "check_mode": "category_counts"
+  },
+  {
+    "description": "[max_n=5 of 16] 4 dictionary 2 tag, max_n=5 → flatly 5 category",
+    "input": {
+      "ads_vocabs_tags": {
+        "ad_1": {
+          "geo": [
+            "geo:a",
+            "geo:b"
+          ],
+          "age": [
+            "age:x",
+            "age:y"
+          ],
+          "dev": [
+            "dev:m",
+            "dev:d"
+          ],
+          "os": [
+            "os:i",
+            "os:a"
+          ]
+        }
+      },
+      "new_vocabs": {
+        "geo": [
+          "geo:a",
+          "geo:b"
+        ],
+        "age": [
+          "age:x",
+          "age:y"
+        ],
+        "dev": [
+          "dev:m",
+          "dev:d"
+        ],
+        "os": [
+          "os:i",
+          "os:a"
+        ]
+      },
+      "tag_probabilities": {
+        "geo:a": 0.6,
+        "geo:b": 0.4,
+        "age:x": 0.7,
+        "age:y": 0.3,
+        "dev:m": 0.8,
+        "dev:d": 0.2,
+        "os:i": 0.9,
+        "os:a": 0.1
+      },
+      "max_n_categories": 5,
+      "min_category_probability": 1e-09
+    },
+    "output": {
+      "ad_1": 5
+    },
+    "error": null,
+    "check_mode": "category_counts"
+  },
+  {
+    "description": "[brute force] 2×2 Cartesian — descend-order P everywhere 4 category",
+    "input": {
+      "ads_vocabs_tags": {
+        "ad_1": {
+          "geo": [
+            "geo:a",
+            "geo:b"
+          ],
+          "age": [
+            "age:x",
+            "age:y"
+          ]
+        }
+      },
+      "new_vocabs": {
+        "geo": [
+          "geo:a",
+          "geo:b"
+        ],
+        "age": [
+          "age:x",
+          "age:y"
+        ]
+      },
+      "tag_probabilities": {
+        "geo:a": 0.7,
+        "geo:b": 0.3,
+        "age:x": 0.4,
+        "age:y": 0.6
+      },
+      "max_n_categories": 100,
+      "min_category_probability": 1e-09
+    },
+    "output": null,
+    "error": null,
+    "check_mode": "brute_force_topk"
+  },
+  {
+    "description": "[brute force] 3×2 = 8 category, max_n=2 — spot-top-2",
+    "input": {
+      "ads_vocabs_tags": {
+        "ad_1": {
+          "geo": [
+            "geo:a",
+            "geo:b"
+          ],
+          "age": [
+            "age:x",
+            "age:y"
+          ],
+          "type": [
+            "type:p",
+            "type:q"
+          ]
+        }
+      },
+      "new_vocabs": {
+        "geo": [
+          "geo:a",
+          "geo:b"
+        ],
+        "age": [
+          "age:x",
+          "age:y"
+        ],
+        "type": [
+          "type:p",
+          "type:q"
+        ]
+      },
+      "tag_probabilities": {
+        "geo:a": 0.6,
+        "geo:b": 0.4,
+        "age:x": 0.3,
+        "age:y": 0.7,
+        "type:p": 0.8,
+        "type:q": 0.2
+      },
+      "max_n_categories": 2,
+      "min_category_probability": 1e-09
+    },
+    "output": null,
+    "error": null,
+    "check_mode": "brute_force_topk"
+  },
+  {
+    "description": "[brute force] min_p=0.1 cut off — threshold-reference",
+    "input": {
+      "ads_vocabs_tags": {
+        "ad_1": {
+          "geo": [
+            "geo:a",
+            "geo:b"
+          ],
+          "age": [
+            "age:x",
+            "age:y"
+          ],
+          "type": [
+            "type:p",
+            "type:q"
+          ]
+        }
+      },
+      "new_vocabs": {
+        "geo": [
+          "geo:a",
+          "geo:b"
+        ],
+        "age": [
+          "age:x",
+          "age:y"
+        ],
+        "type": [
+          "type:p",
+          "type:q"
+        ]
+      },
+      "tag_probabilities": {
+        "geo:a": 0.6,
+        "geo:b": 0.4,
+        "age:x": 0.3,
+        "age:y": 0.7,
+        "type:p": 0.8,
+        "type:q": 0.2
+      },
+      "max_n_categories": 100,
+      "min_category_probability": 0.1
+    },
+    "output": null,
+    "error": null,
+    "check_mode": "brute_force_topk"
+  },
+  {
+    "description": "[brute force] two ads with different dictionaries — independent examination of each",
+    "input": {
+      "ads_vocabs_tags": {
+        "ad_1": {
+          "geo": [
+            "geo:a",
+            "geo:b"
+          ],
+          "age": [
+            "age:x",
+            "age:y"
+          ]
+        },
+        "ad_2": {
+          "type": [
+            "type:p",
+            "type:q"
+          ],
+          "device": [
+            "device:mobile",
+            "device:desktop"
+          ]
+        }
+      },
+      "new_vocabs": {
+        "geo": [
+          "geo:a",
+          "geo:b"
+        ],
+        "age": [
+          "age:x",
+          "age:y"
+        ],
+        "type": [
+          "type:p",
+          "type:q"
+        ],
+        "device": [
+          "device:mobile",
+          "device:desktop"
+        ]
+      },
+      "tag_probabilities": {
+        "geo:a": 0.7,
+        "geo:b": 0.3,
+        "age:x": 0.4,
+        "age:y": 0.6,
+        "type:p": 0.9,
+        "type:q": 0.1,
+        "device:mobile": 0.6,
+        "device:desktop": 0.4
+      },
+      "max_n_categories": 100,
+      "min_category_probability": 1e-09
+    },
+    "output": null,
+    "error": null,
+    "check_mode": "brute_force_topk"
+  },
+  {
+    "description": "[border] category P Exactly == min_category_probability switch on (two-cell P=0.5/0.2, min_p=0.1 → top {0.25, 0.1, 0.1})",
+    "input": {
+      "ads_vocabs_tags": {
+        "ad": {
+          "v0": [
+            "v0:t0",
+            "v0:t1"
+          ],
+          "v1": [
+            "v1:t0",
+            "v1:t1"
+          ]
+        }
+      },
+      "new_vocabs": {
+        "v0": [
+          "v0:t0",
+          "v0:t1"
+        ],
+        "v1": [
+          "v1:t0",
+          "v1:t1"
+        ]
+      },
+      "tag_probabilities": {
+        "v0:t0": 0.5,
+        "v0:t1": 0.2,
+        "v1:t0": 0.5,
+        "v1:t1": 0.2
+      },
+      "max_n_categories": 100,
+      "min_category_probability": 0.1
+    },
+    "output": null,
+    "error": null,
+    "check_mode": "brute_force_topk"
+  }
+]

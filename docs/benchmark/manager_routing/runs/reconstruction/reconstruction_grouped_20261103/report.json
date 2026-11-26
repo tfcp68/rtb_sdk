@@ -1,0 +1,1012 @@
+{
+  "config": {
+    "name": "reconstruction_grouped_20261103",
+    "prepared": "/home/gnevich/auction_platform/benchmarks/closed_stand/../logs/prepared_20261012",
+    "manager_ads": "/home/gnevich/auction_platform/benchmarks/closed_stand/manager_target50_20261012.json",
+    "output_root": "/home/gnevich/auction_platform/benchmarks/closed_stand/../results/closed_stand/reconstruction",
+    "days": "0:4",
+    "split_day": 3,
+    "sample": 0.002,
+    "q": 0.8,
+    "seed": 42,
+    "pool_devices": [
+      "ANDROID_TV_A",
+      "ANDROID_SET_TOP_BOX_A",
+      "SET_TOP_BOX_A",
+      "SMART_TV_PLATFORM_A",
+      "SMART_TV_PLATFORM_B",
+      "SMART_TV_PLATFORM_C",
+      "STREAMING_TV_BOX_A"
+    ],
+    "max_rules": 12,
+    "depth": 3,
+    "min_support": 30,
+    "beam_width": 12
+  },
+  "prepared_signature": "8d878284379be2535b0445785f09ebecfda7c718308eb51ed2df9c4ec8ee5a81",
+  "train_n": 89464,
+  "test_n": 29998,
+  "truth": [
+    {
+      "id": "Campaign_ea5f7d580a451649",
+      "name": "Campaign_4d61f9faeb01d35c",
+      "targets": {
+        "Device": [
+          "ANDROID_TV_A",
+          "ANDROID_SET_TOP_BOX_A",
+          "SET_TOP_BOX_A"
+        ],
+        "Region": [
+          "978039453340",
+          "915202053340",
+          "946620753340",
+          "952038632934"
+        ]
+      },
+      "volume": 9812,
+      "cpm": 180.0,
+      "min_interval": 30,
+      "ad_lims": [
+        [
+          64,
+          600
+        ],
+        [
+          256,
+          3600
+        ],
+        [
+          3987,
+          86400
+        ]
+      ],
+      "user_lims": [
+        [
+          15,
+          86400
+        ],
+        [
+          52,
+          604800
+        ]
+      ],
+      "start_s": 0,
+      "end_s": 1152921504606846976,
+      "train_impressions": 3981,
+      "test_impressions": 1354
+    },
+    {
+      "id": "Campaign_1984973edd3946de",
+      "name": "Campaign_78f39f90f4505c10",
+      "targets": {
+        "Channel": [
+          "952037271457",
+          "965158348951",
+          "952026274912"
+        ]
+      },
+      "volume": 13730,
+      "cpm": 240.0,
+      "min_interval": 20,
+      "ad_lims": [
+        [
+          626,
+          3600
+        ],
+        [
+          7724,
+          86400
+        ]
+      ],
+      "user_lims": [
+        [
+          21,
+          86400
+        ],
+        [
+          67,
+          604800
+        ]
+      ],
+      "start_s": 0,
+      "end_s": 1152921504606846976,
+      "train_impressions": 6587,
+      "test_impressions": 2200
+    },
+    {
+      "id": "Campaign_99cdede9ce7aa975",
+      "name": "Campaign_0823aa18c3c2ca3c",
+      "targets": {
+        "Channel": [
+          "952038842392",
+          "965160024615",
+          "952038318747",
+          "965157930035",
+          "952039366037"
+        ],
+        "Device": [
+          "ANDROID_TV_A",
+          "ANDROID_SET_TOP_BOX_A"
+        ]
+      },
+      "volume": 3151,
+      "cpm": 170.0,
+      "min_interval": 30,
+      "ad_lims": [
+        [
+          21,
+          600
+        ],
+        [
+          83,
+          3600
+        ],
+        [
+          1281,
+          86400
+        ]
+      ],
+      "user_lims": [
+        [
+          12,
+          86400
+        ],
+        [
+          37,
+          604800
+        ]
+      ],
+      "start_s": 0,
+      "end_s": 1152921504606846976,
+      "train_impressions": 1605,
+      "test_impressions": 524
+    },
+    {
+      "id": "Campaign_2be6940a55eb7fa0",
+      "name": "Campaign_bfbd684ea6d38f9c",
+      "targets": {
+        "Device": [
+          "SMART_TV_PLATFORM_A",
+          "SMART_TV_PLATFORM_B",
+          "SMART_TV_PLATFORM_C",
+          "ANDROID_TV_A",
+          "ANDROID_SET_TOP_BOX_A"
+        ]
+      },
+      "volume": 48485,
+      "cpm": 150.0,
+      "min_interval": 30,
+      "ad_lims": [
+        [
+          316,
+          600
+        ],
+        [
+          1263,
+          3600
+        ],
+        [
+          19698,
+          86400
+        ]
+      ],
+      "user_lims": [
+        [
+          12,
+          86400
+        ],
+        [
+          37,
+          604800
+        ]
+      ],
+      "start_s": 0,
+      "end_s": 1152921504606846976,
+      "train_impressions": 18903,
+      "test_impressions": 5825
+    },
+    {
+      "id": "Campaign_9e11981cace96198",
+      "name": "Campaign_30b60302c20096a3",
+      "targets": {
+        "Category": [
+          "937456303809",
+          "937473479365"
+        ]
+      },
+      "volume": 14731,
+      "cpm": 210.0,
+      "min_interval": 60,
+      "ad_lims": [
+        [
+          96,
+          600
+        ],
+        [
+          384,
+          3600
+        ],
+        [
+          5985,
+          86400
+        ]
+      ],
+      "user_lims": [
+        [
+          9,
+          86400
+        ],
+        [
+          30,
+          604800
+        ]
+      ],
+      "start_s": 0,
+      "end_s": 1152921504606846976,
+      "train_impressions": 3381,
+      "test_impressions": 1181
+    },
+    {
+      "id": "Campaign_cf47c19ce9ef3c4d",
+      "name": "Campaign_18a033858fcef7cd",
+      "targets": {
+        "Device": [
+          "SET_TOP_BOX_A"
+        ],
+        "Region": [
+          "925674953340",
+          "936147853340",
+          "967566553340",
+          "946621486443",
+          "982166824201"
+        ]
+      },
+      "volume": 358,
+      "cpm": 190.0,
+      "min_interval": 60,
+      "ad_lims": [
+        [
+          2,
+          600
+        ],
+        [
+          7,
+          3600
+        ],
+        [
+          124,
+          86400
+        ],
+        [
+          807,
+          604800
+        ]
+      ],
+      "user_lims": [
+        [
+          7,
+          86400
+        ],
+        [
+          22,
+          604800
+        ]
+      ],
+      "start_s": 0,
+      "end_s": 1152921504606846976,
+      "train_impressions": 97,
+      "test_impressions": 42
+    },
+    {
+      "id": "Children_6bf1ef19c6c58f11",
+      "name": "Children_b0f1e3ceb0b3da30",
+      "targets": {
+        "Device": [
+          "ANDROID_TV_A"
+        ],
+        "Child": [
+          "true"
+        ]
+      },
+      "volume": 342,
+      "cpm": 260.0,
+      "min_interval": 120,
+      "ad_lims": [
+        [
+          2,
+          600
+        ],
+        [
+          7,
+          3600
+        ],
+        [
+          118,
+          86400
+        ],
+        [
+          771,
+          604800
+        ]
+      ],
+      "user_lims": [
+        [
+          4,
+          86400
+        ],
+        [
+          15,
+          604800
+        ]
+      ],
+      "start_s": 0,
+      "end_s": 1152921504606846976,
+      "train_impressions": 66,
+      "test_impressions": 17
+    },
+    {
+      "id": "Campaign_d2be11d252e8975a",
+      "name": "Campaign_15cc393e200b3c64",
+      "targets": {
+        "Region": [
+          "946621486443",
+          "982166824201",
+          "936148481714"
+        ],
+        "Device": [
+          "ANDROID_TV_A",
+          "ANDROID_SET_TOP_BOX_A"
+        ]
+      },
+      "volume": 1889,
+      "cpm": 170.0,
+      "min_interval": 30,
+      "ad_lims": [
+        [
+          13,
+          600
+        ],
+        [
+          50,
+          3600
+        ],
+        [
+          768,
+          86400
+        ]
+      ],
+      "user_lims": [
+        [
+          9,
+          86400
+        ],
+        [
+          30,
+          604800
+        ]
+      ],
+      "start_s": 0,
+      "end_s": 1152921504606846976,
+      "train_impressions": 781,
+      "test_impressions": 269
+    },
+    {
+      "id": "Campaign_ddf62e380a1dc1a3",
+      "name": "Campaign_a16460025af591cd",
+      "targets": {
+        "Category": [
+          "937473688823",
+          "961393278034"
+        ]
+      },
+      "volume": 4047,
+      "cpm": 300.0,
+      "min_interval": 15,
+      "ad_lims": [
+        [
+          185,
+          3600
+        ],
+        [
+          2277,
+          86400
+        ]
+      ],
+      "user_lims": [
+        [
+          15,
+          86400
+        ],
+        [
+          45,
+          604800
+        ]
+      ],
+      "start_s": 138240,
+      "end_s": 241919,
+      "train_impressions": 812,
+      "test_impressions": 0
+    },
+    {
+      "id": "Campaign_924ddc03b0454da6",
+      "name": "Campaign_82eaaf51f6f9f1de",
+      "targets": {
+        "Device": [
+          "ANDROID_TV_A"
+        ],
+        "Region": [
+          "978039453340",
+          "915202053340",
+          "946620753340",
+          "952038632934",
+          "925674953340",
+          "936147853340",
+          "967566553340",
+          "946621486443",
+          "982166824201",
+          "936148481714"
+        ]
+      },
+      "volume": 5138,
+      "cpm": 110.0,
+      "min_interval": 30,
+      "ad_lims": [
+        [
+          34,
+          600
+        ],
+        [
+          134,
+          3600
+        ],
+        [
+          2088,
+          86400
+        ]
+      ],
+      "user_lims": [
+        [
+          12,
+          86400
+        ],
+        [
+          37,
+          604800
+        ]
+      ],
+      "start_s": 0,
+      "end_s": 1152921504606846976,
+      "train_impressions": 383,
+      "test_impressions": 158
+    },
+    {
+      "id": "Campaign_e8fc9f0e665e7017",
+      "name": "Campaign_b3953d44c96cf68e",
+      "targets": {
+        "Device": [
+          "SET_TOP_BOX_A",
+          "ANDROID_SET_TOP_BOX_A",
+          "ANDROID_TV_A"
+        ]
+      },
+      "volume": 53774,
+      "cpm": 100.0,
+      "min_interval": 45,
+      "ad_lims": [
+        [
+          257,
+          600
+        ],
+        [
+          1051,
+          3600
+        ],
+        [
+          18485,
+          86400
+        ],
+        [
+          121160,
+          604800
+        ]
+      ],
+      "user_lims": [
+        [
+          7,
+          86400
+        ],
+        [
+          27,
+          604800
+        ]
+      ],
+      "start_s": 0,
+      "end_s": 1152921504606846976,
+      "train_impressions": 7624,
+      "test_impressions": 2803
+    }
+  ],
+  "algorithms": {
+    "single_feature": {
+      "hypotheses": [
+        {
+          "targets": {
+            "Device": [
+              "ANDROID_TV_A"
+            ]
+          },
+          "probability": 0.8157514810574004,
+          "support": 20085,
+          "successes": 16385,
+          "cooldown_seconds": 0
+        },
+        {
+          "targets": {
+            "Channel": [
+              "965158348951"
+            ]
+          },
+          "probability": 0.969383354894351,
+          "support": 2317,
+          "successes": 2247,
+          "cooldown_seconds": 0
+        },
+        {
+          "targets": {
+            "Channel": [
+              "952037271457"
+            ]
+          },
+          "probability": 0.9559519475791772,
+          "support": 2745,
+          "successes": 2625,
+          "cooldown_seconds": 0
+        },
+        {
+          "targets": {
+            "Channel": [
+              "952026274912"
+            ]
+          },
+          "probability": 0.9633273703041145,
+          "support": 2234,
+          "successes": 2153,
+          "cooldown_seconds": 0
+        },
+        {
+          "targets": {
+            "Device": [
+              "SMART_TV_PLATFORM_A"
+            ]
+          },
+          "probability": 0.7560765756076575,
+          "support": 4647,
+          "successes": 3514,
+          "cooldown_seconds": 0
+        },
+        {
+          "targets": {
+            "Channel": [
+              "952038842392"
+            ]
+          },
+          "probability": 0.8888888888888888,
+          "support": 763,
+          "successes": 679,
+          "cooldown_seconds": 0
+        },
+        {
+          "targets": {
+            "Channel": [
+              "924619333696"
+            ]
+          },
+          "probability": 0.8894009216589862,
+          "support": 432,
+          "successes": 385,
+          "cooldown_seconds": 0
+        },
+        {
+          "targets": {
+            "Channel": [
+              "952074659710"
+            ]
+          },
+          "probability": 0.9030470914127424,
+          "support": 359,
+          "successes": 325,
+          "cooldown_seconds": 0
+        },
+        {
+          "targets": {
+            "Channel": [
+              "952074240794"
+            ]
+          },
+          "probability": 0.8958333333333334,
+          "support": 382,
+          "successes": 343,
+          "cooldown_seconds": 0
+        },
+        {
+          "targets": {
+            "Region": [
+              "919962195848"
+            ]
+          },
+          "probability": 0.8141263940520446,
+          "support": 267,
+          "successes": 218,
+          "cooldown_seconds": 0
+        },
+        {
+          "targets": {
+            "Region": [
+              "936148586443"
+            ]
+          },
+          "probability": 0.9900990099009901,
+          "support": 301,
+          "successes": 299,
+          "cooldown_seconds": 0
+        },
+        {
+          "targets": {
+            "Region": [
+              "925675058069"
+            ]
+          },
+          "probability": 0.965,
+          "support": 198,
+          "successes": 192,
+          "cooldown_seconds": 0
+        }
+      ],
+      "response": {
+        "n": 29998,
+        "brier": 0.19555097494559084,
+        "logloss": 0.5753792416821991,
+        "accuracy": 0.7231815454363624,
+        "precision": 0.7957314101939382,
+        "recall": 0.5680790370834203
+      },
+      "targeting": {
+        "best_matches": [
+          {
+            "hypothesis": 1,
+            "closest_truth": "Campaign_2be6940a55eb7fa0",
+            "iou": 0.39591376135891193
+          },
+          {
+            "hypothesis": 2,
+            "closest_truth": "Campaign_1984973edd3946de",
+            "iou": 0.3205389955083708
+          },
+          {
+            "hypothesis": 3,
+            "closest_truth": "Campaign_1984973edd3946de",
+            "iou": 0.37117190690077584
+          },
+          {
+            "hypothesis": 4,
+            "closest_truth": "Campaign_1984973edd3946de",
+            "iou": 0.30828909759085343
+          },
+          {
+            "hypothesis": 5,
+            "closest_truth": "Campaign_2be6940a55eb7fa0",
+            "iou": 0.10078992694660568
+          },
+          {
+            "hypothesis": 6,
+            "closest_truth": "Campaign_99cdede9ce7aa975",
+            "iou": 0.21808510638297873
+          },
+          {
+            "hypothesis": 7,
+            "closest_truth": "Campaign_2be6940a55eb7fa0",
+            "iou": 0.008073133087973406
+          },
+          {
+            "hypothesis": 8,
+            "closest_truth": "Campaign_924ddc03b0454da6",
+            "iou": 0.010836584308625921
+          },
+          {
+            "hypothesis": 9,
+            "closest_truth": "Campaign_924ddc03b0454da6",
+            "iou": 0.009569377990430622
+          },
+          {
+            "hypothesis": 10,
+            "closest_truth": "Children_6bf1ef19c6c58f11",
+            "iou": 0.03870967741935484
+          },
+          {
+            "hypothesis": 11,
+            "closest_truth": "Campaign_1984973edd3946de",
+            "iou": 0.01909307875894988
+          },
+          {
+            "hypothesis": 12,
+            "closest_truth": "Campaign_2be6940a55eb7fa0",
+            "iou": 0.003919938231276355
+          }
+        ],
+        "greedy_assignments": [],
+        "campaign_precision": 0.0,
+        "campaign_recall": 0.0,
+        "union_iou": 0.34205613707580507
+      },
+      "seconds": 0.20456955400004517
+    },
+    "dnf_beam": {
+      "hypotheses": [
+        {
+          "targets": {
+            "Region": [
+              "919962195848"
+            ]
+          },
+          "probability": 0.8141263940520446,
+          "support": 267,
+          "successes": 218,
+          "cooldown_seconds": 0
+        },
+        {
+          "targets": {
+            "Region": [
+              "936148586443",
+              "925675058069"
+            ]
+          },
+          "probability": 0.9820359281437125,
+          "support": 499,
+          "successes": 491,
+          "cooldown_seconds": 0
+        },
+        {
+          "targets": {
+            "Device": [
+              "SMART_TV_PLATFORM_A"
+            ]
+          },
+          "probability": 0.7560765756076575,
+          "support": 4647,
+          "successes": 3514,
+          "cooldown_seconds": 0
+        },
+        {
+          "targets": {
+            "Device": [
+              "ANDROID_TV_A"
+            ]
+          },
+          "probability": 0.8157514810574004,
+          "support": 20085,
+          "successes": 16385,
+          "cooldown_seconds": 0
+        },
+        {
+          "targets": {
+            "Channel": [
+              "952038842392",
+              "924619333696",
+              "952074240794",
+              "952074659710"
+            ]
+          },
+          "probability": 0.8942208462332302,
+          "support": 1936,
+          "successes": 1732,
+          "cooldown_seconds": 0
+        },
+        {
+          "targets": {
+            "Channel": [
+              "952037271457",
+              "965158348951",
+              "952026274912"
+            ]
+          },
+          "probability": 0.9627295149355988,
+          "support": 7296,
+          "successes": 7025,
+          "cooldown_seconds": 0
+        }
+      ],
+      "response": {
+        "n": 29998,
+        "brier": 0.1955521551513821,
+        "logloss": 0.5753103567009331,
+        "accuracy": 0.7231815454363624,
+        "precision": 0.7957314101939382,
+        "recall": 0.5680790370834203
+      },
+      "targeting": {
+        "best_matches": [
+          {
+            "hypothesis": 1,
+            "closest_truth": "Children_6bf1ef19c6c58f11",
+            "iou": 0.03870967741935484
+          },
+          {
+            "hypothesis": 2,
+            "closest_truth": "Campaign_1984973edd3946de",
+            "iou": 0.02097902097902098
+          },
+          {
+            "hypothesis": 3,
+            "closest_truth": "Campaign_2be6940a55eb7fa0",
+            "iou": 0.10078992694660568
+          },
+          {
+            "hypothesis": 4,
+            "closest_truth": "Campaign_2be6940a55eb7fa0",
+            "iou": 0.39591376135891193
+          },
+          {
+            "hypothesis": 5,
+            "closest_truth": "Campaign_99cdede9ce7aa975",
+            "iou": 0.1532137518684604
+          },
+          {
+            "hypothesis": 6,
+            "closest_truth": "Campaign_1984973edd3946de",
+            "iou": 1.0
+          }
+        ],
+        "greedy_assignments": [
+          {
+            "hypothesis": 6,
+            "truth": "Campaign_1984973edd3946de",
+            "iou": 1.0
+          }
+        ],
+        "campaign_precision": 0.16666666666666666,
+        "campaign_recall": 0.09090909090909091,
+        "union_iou": 0.34205613707580507
+      },
+      "seconds": 0.2751701779998257
+    },
+    "dnf_cooldown_fsm": {
+      "hypotheses": [
+        {
+          "targets": {
+            "Region": [
+              "919962195848"
+            ]
+          },
+          "probability": 0.8141263940520446,
+          "support": 267,
+          "successes": 218,
+          "cooldown_seconds": 0
+        },
+        {
+          "targets": {
+            "Region": [
+              "936148586443",
+              "925675058069"
+            ]
+          },
+          "probability": 0.9820359281437125,
+          "support": 499,
+          "successes": 491,
+          "cooldown_seconds": 0
+        },
+        {
+          "targets": {
+            "Device": [
+              "SMART_TV_PLATFORM_A"
+            ]
+          },
+          "probability": 0.7560765756076575,
+          "support": 4647,
+          "successes": 3514,
+          "cooldown_seconds": 0
+        },
+        {
+          "targets": {
+            "Device": [
+              "ANDROID_TV_A"
+            ]
+          },
+          "probability": 0.8157514810574004,
+          "support": 20085,
+          "successes": 16385,
+          "cooldown_seconds": 0
+        },
+        {
+          "targets": {
+            "Channel": [
+              "952038842392",
+              "924619333696",
+              "952074240794",
+              "952074659710"
+            ]
+          },
+          "probability": 0.8942208462332302,
+          "support": 1936,
+          "successes": 1732,
+          "cooldown_seconds": 0
+        },
+        {
+          "targets": {
+            "Channel": [
+              "952037271457",
+              "965158348951",
+              "952026274912"
+            ]
+          },
+          "probability": 0.9627295149355988,
+          "support": 7296,
+          "successes": 7025,
+          "cooldown_seconds": 0
+        }
+      ],
+      "response": {
+        "n": 29998,
+        "brier": 0.1955521551513821,
+        "logloss": 0.5753103567009331,
+        "accuracy": 0.7231815454363624,
+        "precision": 0.7957314101939382,
+        "recall": 0.5680790370834203
+      },
+      "targeting": {
+        "best_matches": [
+          {
+            "hypothesis": 1,
+            "closest_truth": "Children_6bf1ef19c6c58f11",
+            "iou": 0.03870967741935484
+          },
+          {
+            "hypothesis": 2,
+            "closest_truth": "Campaign_1984973edd3946de",
+            "iou": 0.02097902097902098
+          },
+          {
+            "hypothesis": 3,
+            "closest_truth": "Campaign_2be6940a55eb7fa0",
+            "iou": 0.10078992694660568
+          },
+          {
+            "hypothesis": 4,
+            "closest_truth": "Campaign_2be6940a55eb7fa0",
+            "iou": 0.39591376135891193
+          },
+          {
+            "hypothesis": 5,
+            "closest_truth": "Campaign_99cdede9ce7aa975",
+            "iou": 0.1532137518684604
+          },
+          {
+            "hypothesis": 6,
+            "closest_truth": "Campaign_1984973edd3946de",
+            "iou": 1.0
+          }
+        ],
+        "greedy_assignments": [
+          {
+            "hypothesis": 6,
+            "truth": "Campaign_1984973edd3946de",
+            "iou": 1.0
+          }
+        ],
+        "campaign_precision": 0.16666666666666666,
+        "campaign_recall": 0.09090909090909091,
+        "union_iou": 0.34205613707580507
+      },
+      "seconds": 1.783866752000904
+    }
+  },
+  "constant_baseline": {
+    "n": 29998,
+    "brier": 0.24979389777556776,
+    "logloss": 0.6927349595391894,
+    "accuracy": 0.5208680578705247,
+    "precision": 0.0,
+    "recall": 0.0
+  },
+  "evaluation_domain": "sent test requests; traffic-weighted targeting IoU",
+  "matching": "greedy one-to-one IoU >= 0.5"
+}

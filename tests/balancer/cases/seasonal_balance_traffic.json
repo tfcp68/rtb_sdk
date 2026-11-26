@@ -1,0 +1,421 @@
+[
+  {
+    "description": "[capacity] totality total_traffic_volume (Total constraint staged LP)",
+    "input": {
+      "ads": {
+        "a": {"id": "a", "targets": {"value": {"geo": ["msk"]}}, "volume": 9000, "cpm": 10.0, "ad_frequency_limit": {"value": {"d": 1000000000}}},
+        "b": {"id": "b", "targets": {"value": {"geo": ["spb"]}}, "volume": 9000, "cpm": 10.0, "ad_frequency_limit": {"value": {"d": 1000000000}}}
+      },
+      "params": {
+        "total_traffic_volume": 5000,
+        "tag_probabilities": {"geo:msk": 0.6, "geo:spb": 0.4},
+        "vocabs": {"geo": ["geo:msk", "geo:spb"]},
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1,
+        "seasonal_context": {"mode": "hour_of_day", "context": {"0": {"weight": 1.0, "user_activity_ratio": {}, "tags_probability": null}}},
+        "period": {"period_start": "2024-01-01T00:00:00", "period_end": "2024-01-01T01:00:00"}
+      }
+    },
+    "output": 5000,
+    "error": null,
+    "check_mode": "total_lte"
+  },
+  {
+    "description": "[full delivery] slot (weight=1.0), traffic overflow (pool msk=60000≫vol) → The announcement receives the entire contract volume 3000",
+    "input": {
+      "ads": {
+        "a": {"id": "a", "targets": {"value": {"geo": ["msk"]}}, "volume": 3000, "cpm": 10.0, "ad_frequency_limit": {"value": {"d": 1000000000}}}
+      },
+      "params": {
+        "total_traffic_volume": 100000,
+        "tag_probabilities": {"geo:msk": 0.6, "geo:spb": 0.4},
+        "vocabs": {"geo": ["geo:msk", "geo:spb"]},
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1,
+        "seasonal_context": {"mode": "hour_of_day", "context": {"0": {"weight": 1.0, "user_activity_ratio": {}, "tags_probability": null}}},
+        "period": {"period_start": "2024-01-01T00:00:00", "period_end": "2024-01-01T01:00:00"}
+      }
+    },
+    "output": {"key": "a", "value": 3000},
+    "error": null,
+    "check_mode": "key_value"
+  },
+  {
+    "description": "[slotting] two-slot (weight 0.5+0.5), traffic overflow → Slot volumes are summed up in the full contract volume 3000",
+    "input": {
+      "ads": {
+        "a": {"id": "a", "targets": {"value": {"geo": ["msk"]}}, "volume": 3000, "cpm": 10.0, "ad_frequency_limit": {"value": {"d": 1000000000}}}
+      },
+      "params": {
+        "total_traffic_volume": 100000,
+        "tag_probabilities": {"geo:msk": 0.6, "geo:spb": 0.4},
+        "vocabs": {"geo": ["geo:msk", "geo:spb"]},
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1,
+        "seasonal_context": {"mode": "hour_of_day", "context": {"0": {"weight": 0.5, "user_activity_ratio": {}, "tags_probability": null}, "1": {"weight": 0.5, "user_activity_ratio": {}, "tags_probability": null}}},
+        "period": {"period_start": "2024-01-01T00:00:00", "period_end": "2024-01-01T02:00:00"}
+      }
+    },
+    "output": {"key": "a", "value": 3000},
+    "error": null,
+    "check_mode": "key_value"
+  },
+  {
+    "description": "[target-limit] Targeting is being considered: poster msk s vol=10000 tag-bound Σx ≤ total·P(msk)=5000·0.6=3000 (Tag constraint)",
+    "input": {
+      "ads": {
+        "a": {"id": "a", "targets": {"value": {"geo": ["msk"]}}, "volume": 10000, "cpm": 10.0, "ad_frequency_limit": {"value": {"d": 1000000000}}}
+      },
+      "params": {
+        "total_traffic_volume": 5000,
+        "tag_probabilities": {"geo:msk": 0.6, "geo:spb": 0.4},
+        "vocabs": {"geo": ["geo:msk", "geo:spb"]},
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1,
+        "seasonal_context": {"mode": "hour_of_day", "context": {"0": {"weight": 1.0, "user_activity_ratio": {}, "tags_probability": null}}},
+        "period": {"period_start": "2024-01-01T00:00:00", "period_end": "2024-01-01T01:00:00"}
+      }
+    },
+    "output": {"key": "a", "value": 3000},
+    "error": null,
+    "check_mode": "key_value"
+  },
+  {
+    "description": "[target-limit/tagging] tagging (P=0.1): singular RequestFlow (geo:rare) limited x ≤ total·P=10000·0.1=1000, maximize_money fill-pool → flatly 1000. Targeting is taken into account (contrast open_balance_traffic, where the same data gives the whole vol=5000).",
+    "input": {
+      "ads": {
+        "a": {"id": "a", "targets": {"value": {"geo": ["rare"]}}, "volume": 5000, "cpm": 10.0, "ad_frequency_limit": {"value": {"d": 1000000000}}}
+      },
+      "params": {
+        "total_traffic_volume": 10000,
+        "tag_probabilities": {"geo:msk": 0.9, "geo:rare": 0.1},
+        "vocabs": {"geo": ["geo:msk", "geo:rare"]},
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1,
+        "seasonal_context": {"mode": "hour_of_day", "context": {"0": {"weight": 1.0, "user_activity_ratio": {}, "tags_probability": null}}},
+        "period": {"period_start": "2024-01-01T00:00:00", "period_end": "2024-01-01T01:00:00"}
+      }
+    },
+    "output": {"key": "a", "value": 1000},
+    "error": null,
+    "check_mode": "key_value"
+  },
+  {
+    "description": "[season/weight] weight<1.0 compresses slot traffic: weight=0.5 → total_t=round(10000·0.5)=5000 → pool msk=5000·0.6=3000, declaration (vol=10000) fill up → flatly 3000 (upon weight=1.0 would’ve 6000). Field weight impact.",
+    "input": {
+      "ads": {
+        "a": {"id": "a", "targets": {"value": {"geo": ["msk"]}}, "volume": 10000, "cpm": 10.0, "ad_frequency_limit": {"value": {"d": 1000000000}}}
+      },
+      "params": {
+        "total_traffic_volume": 10000,
+        "tag_probabilities": {"geo:msk": 0.6, "geo:spb": 0.4},
+        "vocabs": {"geo": ["geo:msk", "geo:spb"]},
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1,
+        "seasonal_context": {"mode": "hour_of_day", "context": {"0": {"weight": 0.5, "user_activity_ratio": {}, "tags_probability": null}}},
+        "period": {"period_start": "2024-01-01T00:00:00", "period_end": "2024-01-01T01:00:00"}
+      }
+    },
+    "output": {"key": "a", "value": 3000},
+    "error": null,
+    "check_mode": "key_value"
+  },
+  {
+    "description": "[season/user_activity_ratio=0] saturation 0 → Advertising does not receive traffic: traffic overflow (pool 60000), but uar[a]=0 drop-off → flatly 0. Field user_activity_ratio impact.",
+    "input": {
+      "ads": {
+        "a": {"id": "a", "targets": {"value": {"geo": ["msk"]}}, "volume": 3000, "cpm": 10.0, "ad_frequency_limit": {"value": {"d": 1000000000}}}
+      },
+      "params": {
+        "total_traffic_volume": 100000,
+        "tag_probabilities": {"geo:msk": 0.6, "geo:spb": 0.4},
+        "vocabs": {"geo": ["geo:msk", "geo:spb"]},
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1,
+        "seasonal_context": {"mode": "hour_of_day", "context": {"0": {"weight": 1.0, "user_activity_ratio": {"a": 0.0}, "tags_probability": null}}},
+        "period": {"period_start": "2024-01-01T00:00:00", "period_end": "2024-01-01T01:00:00"}
+      }
+    },
+    "output": {"key": "a", "value": 0},
+    "error": null,
+    "check_mode": "key_value"
+  },
+  {
+    "description": "[season/user_activity_ratio=0.5] saturation 0.5 halves the volume delivered: vol=6000, pooled (60000), but uar[a]=0.5 → effective_vol=6000·0.5=3000 → flatly 3000. No uar the announcement would have taken all 6000.",
+    "input": {
+      "ads": {
+        "a": {"id": "a", "targets": {"value": {"geo": ["msk"]}}, "volume": 6000, "cpm": 10.0, "ad_frequency_limit": {"value": {"d": 1000000000}}}
+      },
+      "params": {
+        "total_traffic_volume": 100000,
+        "tag_probabilities": {"geo:msk": 0.6, "geo:spb": 0.4},
+        "vocabs": {"geo": ["geo:msk", "geo:spb"]},
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1,
+        "seasonal_context": {"mode": "hour_of_day", "context": {"0": {"weight": 1.0, "user_activity_ratio": {"a": 0.5}, "tags_probability": null}}},
+        "period": {"period_start": "2024-01-01T00:00:00", "period_end": "2024-01-01T01:00:00"}
+      }
+    },
+    "output": {"key": "a", "value": 3000},
+    "error": null,
+    "check_mode": "key_value"
+  },
+  {
+    "description": "[season/tags_probability] Hourly Probabilities of Tags Redefined Global: globally P(msk)=0.6, slot tags_probability fixture P(msk)=0.2 → pool=10000·0.2=2000, declaration (vol=10000) narrowly → flatly 2000 (globally 6000). Field tags_probability impact.",
+    "input": {
+      "ads": {
+        "a": {"id": "a", "targets": {"value": {"geo": ["msk"]}}, "volume": 10000, "cpm": 10.0, "ad_frequency_limit": {"value": {"d": 1000000000}}}
+      },
+      "params": {
+        "total_traffic_volume": 10000,
+        "tag_probabilities": {"geo:msk": 0.6, "geo:spb": 0.4},
+        "vocabs": {"geo": ["geo:msk", "geo:spb"]},
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1,
+        "seasonal_context": {"mode": "hour_of_day", "context": {"0": {"weight": 1.0, "user_activity_ratio": {}, "tags_probability": {"geo": {"msk": 0.2, "spb": 0.8}}}}},
+        "period": {"period_start": "2024-01-01T00:00:00", "period_end": "2024-01-01T01:00:00"}
+      }
+    },
+    "output": {"key": "a", "value": 2000},
+    "error": null,
+    "check_mode": "key_value"
+  },
+  {
+    "description": "[season/all together] weight + user_activity_ratio + tags_probability work together. total=20000, weight=0.5 → total_t=10000. tags_probability {msk:0.5,spb:0.5} (redefines the global 0.6/0.4) → pool msk=5000, pool spb=5000. m(msk,vol=8000,uar=0.5): effective_vol=4000 < pool 5000 → uar-limited = 4000. s(spb,vol=20000,uar=1.0): effective_vol=20000, pool 5000 → pool-limited = 5000. Outcome {m:4000, s:5000} — Each field contributes, You can see both types of limitations.",
+    "input": {
+      "ads": {
+        "m": {"id": "m", "targets": {"value": {"geo": ["msk"]}}, "volume": 8000, "cpm": 10.0, "ad_frequency_limit": {"value": {"d": 1000000000}}},
+        "s": {"id": "s", "targets": {"value": {"geo": ["spb"]}}, "volume": 20000, "cpm": 10.0, "ad_frequency_limit": {"value": {"d": 1000000000}}}
+      },
+      "params": {
+        "total_traffic_volume": 20000,
+        "tag_probabilities": {"geo:msk": 0.6, "geo:spb": 0.4},
+        "vocabs": {"geo": ["geo:msk", "geo:spb"]},
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1,
+        "seasonal_context": {"mode": "hour_of_day", "context": {"0": {"weight": 0.5, "user_activity_ratio": {"m": 0.5, "s": 1.0}, "tags_probability": {"geo": {"msk": 0.5, "spb": 0.5}}}}},
+        "period": {"period_start": "2024-01-01T00:00:00", "period_end": "2024-01-01T01:00:00"}
+      }
+    },
+    "output": {"m": 4000, "s": 5000},
+    "error": null,
+    "check_mode": null
+  },
+  {
+    "description": "[edge] vocabulary → hollow report, fall",
+    "input": {
+      "ads": {},
+      "params": {
+        "total_traffic_volume": 10000,
+        "tag_probabilities": {"geo:msk": 0.6, "geo:spb": 0.4},
+        "vocabs": {"geo": ["geo:msk", "geo:spb"]},
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1,
+        "seasonal_context": {"mode": "hour_of_day", "context": {"0": {"weight": 1.0, "user_activity_ratio": {}, "tags_probability": null}}},
+        "period": {"period_start": "2024-01-01T00:00:00", "period_end": "2024-01-01T01:00:00"}
+      }
+    },
+    "output": {},
+    "error": null,
+    "check_mode": null
+  },
+  {
+    "description": "[edge] hollow seasonal_context (There’s no proper clock): all slots missed → receiver 0",
+    "input": {
+      "ads": {
+        "a": {"id": "a", "targets": {"value": {"geo": ["msk"]}}, "volume": 3000, "cpm": 10.0, "ad_frequency_limit": {"value": {"d": 1000000000}}}
+      },
+      "params": {
+        "total_traffic_volume": 10000,
+        "tag_probabilities": {"geo:msk": 0.6, "geo:spb": 0.4},
+        "vocabs": {"geo": ["geo:msk", "geo:spb"]},
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1,
+        "seasonal_context": {"mode": "hour_of_day", "context": {}},
+        "period": {"period_start": "2024-01-01T00:00:00", "period_end": "2024-01-02T00:00:00"}
+      }
+    },
+    "output": {"a": 0},
+    "error": null,
+    "check_mode": null
+  },
+  {
+    "description": "[edge] total_traffic_volume=0 → slot total_t=0 passable → receiver 0",
+    "input": {
+      "ads": {
+        "a": {"id": "a", "targets": {"value": {"geo": ["msk"]}}, "volume": 3000, "cpm": 10.0, "ad_frequency_limit": {"value": {"d": 1000000000}}}
+      },
+      "params": {
+        "total_traffic_volume": 0,
+        "tag_probabilities": {"geo:msk": 0.6, "geo:spb": 0.4},
+        "vocabs": {"geo": ["geo:msk", "geo:spb"]},
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1,
+        "seasonal_context": {"mode": "hour_of_day", "context": {"0": {"weight": 1.0, "user_activity_ratio": {}, "tags_probability": null}}},
+        "period": {"period_start": "2024-01-01T00:00:00", "period_end": "2024-01-01T01:00:00"}
+      }
+    },
+    "output": {"a": 0},
+    "error": null,
+    "check_mode": null
+  },
+  {
+    "description": "[cpm-priority] narrow-pool msk=3000 divide hi(cpm=100) and lo(cpm=1): maximize_money plough off → hi > lo",
+    "input": {
+      "ads": {
+        "hi": {"id": "hi", "targets": {"value": {"geo": ["msk"]}}, "volume": 5000, "cpm": 100.0, "ad_frequency_limit": {"value": {"d": 1000000000}}},
+        "lo": {"id": "lo", "targets": {"value": {"geo": ["msk"]}}, "volume": 5000, "cpm": 1.0, "ad_frequency_limit": {"value": {"d": 1000000000}}}
+      },
+      "params": {
+        "total_traffic_volume": 5000,
+        "tag_probabilities": {"geo:msk": 0.6, "geo:spb": 0.4},
+        "vocabs": {"geo": ["geo:msk", "geo:spb"]},
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1,
+        "seasonal_context": {"mode": "hour_of_day", "context": {"0": {"weight": 1.0, "user_activity_ratio": {}, "tags_probability": null}}},
+        "period": {"period_start": "2024-01-01T00:00:00", "period_end": "2024-01-01T01:00:00"}
+      }
+    },
+    "output": {"greater": "hi", "lesser": "lo"},
+    "error": null,
+    "check_mode": "order_gt"
+  },
+  {
+    "description": "[hour_of_week] weekly, one-hour (Monday 00:00 = type 0), pooled → Advertisements receive full coverage 3000",
+    "input": {
+      "ads": {
+        "a": {"id": "a", "targets": {"value": {"geo": ["msk"]}}, "volume": 3000, "cpm": 10.0, "ad_frequency_limit": {"value": {"d": 1000000000}}}
+      },
+      "params": {
+        "total_traffic_volume": 100000,
+        "tag_probabilities": {"geo:msk": 0.6, "geo:spb": 0.4},
+        "vocabs": {"geo": ["geo:msk", "geo:spb"]},
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1,
+        "seasonal_context": {"mode": "hour_of_week", "context": {"0": {"weight": 1.0, "user_activity_ratio": {}, "tags_probability": null}}},
+        "period": {"period_start": "2024-01-01T00:00:00", "period_end": "2024-01-01T01:00:00"}
+      }
+    },
+    "output": {"key": "a", "value": 3000},
+    "error": null,
+    "check_mode": "key_value"
+  },
+  {
+    "description": "[user_activity_ratio available freq] uar=0.5 apply once over the volume: vol=3000, freq given → 3000·0.5=1500 (regression: without freq numb, centimetre. test_seasonal_bugs)",
+    "input": {
+      "ads": {
+        "a": {"id": "a", "targets": {"value": {"geo": ["msk"]}}, "volume": 3000, "cpm": 10.0, "ad_frequency_limit": {"value": {"d": 1000000000}}}
+      },
+      "params": {
+        "total_traffic_volume": 100000,
+        "tag_probabilities": {"geo:msk": 0.6, "geo:spb": 0.4},
+        "vocabs": {"geo": ["geo:msk", "geo:spb"]},
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1,
+        "seasonal_context": {"mode": "hour_of_day", "context": {"0": {"weight": 1.0, "user_activity_ratio": {"a": 0.5}, "tags_probability": null}}},
+        "period": {"period_start": "2024-01-01T00:00:00", "period_end": "2024-01-01T01:00:00"}
+      }
+    },
+    "output": {"key": "a", "value": 1500},
+    "error": null,
+    "check_mode": "key_value"
+  },
+  {
+    "description": "[tag-free] msk and spb noncompetitive: Both receive full contract volume",
+    "input": {
+      "ads": {
+        "m": {"id": "m", "targets": {"value": {"geo": ["msk"]}}, "volume": 3000, "cpm": 10.0, "ad_frequency_limit": {"value": {"d": 1000000000}}},
+        "s": {"id": "s", "targets": {"value": {"geo": ["spb"]}}, "volume": 2000, "cpm": 10.0, "ad_frequency_limit": {"value": {"d": 1000000000}}}
+      },
+      "params": {
+        "total_traffic_volume": 100000,
+        "tag_probabilities": {"geo:msk": 0.6, "geo:spb": 0.4},
+        "vocabs": {"geo": ["geo:msk", "geo:spb"]},
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1,
+        "seasonal_context": {"mode": "hour_of_day", "context": {"0": {"weight": 1.0, "user_activity_ratio": {}, "tags_probability": null}}},
+        "period": {"period_start": "2024-01-01T00:00:00", "period_end": "2024-01-01T01:00:00"}
+      }
+    },
+    "output": {"m": 3000, "s": 2000},
+    "error": null,
+    "check_mode": null
+  },
+  {
+    "description": "[regression/double-ratio] Frequency-free, user_activity_ratio=0.5, vol=3000 → 1500 (ratio apply once, not ratio²=750)",
+    "input": {
+      "ads": {
+        "a": {"id": "a", "targets": {"value": {"geo": ["msk"]}}, "volume": 3000, "cpm": 10.0, "ad_frequency_limit": {"value": {}}}
+      },
+      "params": {
+        "total_traffic_volume": 100000,
+        "tag_probabilities": {"geo:msk": 0.6, "geo:spb": 0.4},
+        "vocabs": {"geo": ["geo:msk", "geo:spb"]},
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1,
+        "seasonal_context": {"mode": "hour_of_day", "context": {"0": {"weight": 1.0, "user_activity_ratio": {"a": 0.5}, "tags_probability": null}}},
+        "period": {"period_start": "2024-01-01T00:00:00", "period_end": "2024-01-01T01:00:00"}
+      }
+    },
+    "output": {"a": 1500},
+    "error": null,
+    "check_mode": null
+  },
+  {
+    "description": "[validation] hourly override tags_probability — summation vocab > 1 (0.9+0.9=1.8) → INPUT_VALIDATION_ERROR (global tag_probabilities valid, bug only in hourly override)",
+    "input": {
+      "ads": {
+        "a": {"id": "a", "targets": {"value": {"geo": ["msk", "spb"]}}, "volume": 100000, "cpm": 10.0, "ad_frequency_limit": {"value": {"d": 1000000000}}}
+      },
+      "params": {
+        "total_traffic_volume": 1000,
+        "tag_probabilities": {"geo:msk": 0.6, "geo:spb": 0.4},
+        "vocabs": {"geo": ["geo:msk", "geo:spb"]},
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1,
+        "seasonal_context": {"mode": "hour_of_day", "context": {"0": {"weight": 1.0, "user_activity_ratio": {}, "tags_probability": {"geo": {"msk": 0.9, "spb": 0.9}}}}},
+        "period": {"period_start": "2024-01-01T00:00:00", "period_end": "2024-01-01T01:00:00"}
+      }
+    },
+    "output": null,
+    "error": "INPUT_VALIDATION_ERROR"
+  }
+]

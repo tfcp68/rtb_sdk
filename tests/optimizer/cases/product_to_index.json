@@ -1,0 +1,56 @@
+[
+  {
+    "input": {
+      "decision_variables": {"x": [0, 1, 2], "y": ["A", "B"]},
+      "combination": {"x": 0, "y": "A"}
+    },
+    "output": 0,
+    "error": null,
+    "description": "(0, A) → index 0"
+  },
+  {
+    "input": {
+      "decision_variables": {"x": [0, 1, 2], "y": ["A", "B"]},
+      "combination": {"x": 1, "y": "B"}
+    },
+    "output": 3,
+    "error": null,
+    "description": "(1, B) → index 3"
+  },
+  {
+    "input": {
+      "decision_variables": {"x": [0, 1, 2], "y": ["A", "B"]},
+      "combination": {"x": 2, "y": "B"}
+    },
+    "output": 5,
+    "error": null,
+    "description": "(2, B) → last index 5"
+  },
+  {
+    "input": {
+      "decision_variables": {"a": ["p", "q"]},
+      "combination": {"a": "q"}
+    },
+    "output": 1,
+    "error": null,
+    "description": "variable: q → index 1"
+  },
+  {
+    "input": {
+      "decision_variables": {"x": [0, 1], "y": ["A", "B"], "z": [10, 20, 30]},
+      "combination": {"x": 1, "y": "B", "z": 30}
+    },
+    "output": 11,
+    "error": null,
+    "description": "three variables: (1, B, 30) → index 11"
+  },
+  {
+    "input": {
+      "decision_variables": {"x": [0, 1], "y": ["A", "B"], "z": [10, 20, 30]},
+      "combination": {"x": 0, "y": "A", "z": 10}
+    },
+    "output": 0,
+    "error": null,
+    "description": "three variables: first (0, A, 10) → index 0"
+  }
+]

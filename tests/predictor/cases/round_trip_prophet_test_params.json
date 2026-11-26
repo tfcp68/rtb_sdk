@@ -1,0 +1,8 @@
+[
+  {
+    "description": "round-trip ProphetModelTestParams (daytime)",
+    "input": {"n_train": 2, "n_expected": 2, "resolution": "d"},
+    "output": true,
+    "error": null
+  }
+]

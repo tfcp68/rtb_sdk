@@ -1,0 +1,1862 @@
+[
+  {
+    "input": {
+      "request": {
+        "id": "req_1", "user_id": "user_1", "date": "2025-01-01T00:00:00",
+        "tags": {}
+      },
+      "ads": {}
+    },
+    "output": {},
+    "error": null,
+    "description": "Empty list of ads — empty AdsDict"
+  },
+  {
+    "input": {
+      "request": {
+        "id": "req_1", "user_id": "user_1", "date": "2025-01-01T00:00:00",
+        "tags": {"City": "City:Moscow"}
+      },
+      "ads": {
+        "ad_1": {
+          "id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"City": ["Moscow"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}
+        }
+      }
+    },
+    "output": {
+      "ad_1": {
+        "id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+        "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+        "active": true, "targets": {"City": ["Moscow"]},
+        "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+        "vocabulary_weights": {}, "tag_weights": {}
+      }
+    },
+    "error": null,
+    "description": "The ad exactly matches one by one vocab — filter"
+  },
+  {
+    "input": {
+      "request": {
+        "id": "req_1", "user_id": "user_1", "date": "2025-01-01T00:00:00",
+        "tags": {"City": "City:Moscow"}
+      },
+      "ads": {
+        "ad_1": {
+          "id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"City": ["Kazan"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}
+        }
+      }
+    },
+    "output": {},
+    "error": null,
+    "description": "The ad tag does not match the query tag — filtered out"
+  },
+  {
+    "input": {
+      "request": {
+        "id": "req_1", "user_id": "user_1", "date": "2025-01-01T00:00:00",
+        "tags": {"City": "City:Moscow"}
+      },
+      "ads": {
+        "ad_1": {
+          "id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"City": ["Moscow", "Kazan"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}
+        }
+      }
+    },
+    "output": {
+      "ad_1": {
+        "id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+        "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+        "active": true, "targets": {"City": ["Moscow", "Kazan"]},
+        "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+        "vocabulary_weights": {}, "tag_weights": {}
+      }
+    },
+    "error": null,
+    "description": "An ad with multiple tags in vocab — one coincidence is enough"
+  },
+  {
+    "input": {
+      "request": {
+        "id": "req_1", "user_id": "user_1", "date": "2025-01-01T00:00:00",
+        "tags": {"City": "City:Moscow", "Device": "Device:Smartphone"}
+      },
+      "ads": {
+        "ad_1": {
+          "id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"City": ["Moscow"], "Device": ["Smartphone"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}
+        }
+      }
+    },
+    "output": {
+      "ad_1": {
+        "id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+        "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+        "active": true, "targets": {"City": ["Moscow"], "Device": ["Smartphone"]},
+        "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+        "vocabulary_weights": {}, "tag_weights": {}
+      }
+    },
+    "error": null,
+    "description": "Two vocab poster — both coincide with the request, passing"
+  },
+  {
+    "input": {
+      "request": {
+        "id": "req_1", "user_id": "user_1", "date": "2025-01-01T00:00:00",
+        "tags": {"City": "City:Moscow", "Device": "Device:Smartphone"}
+      },
+      "ads": {
+        "ad_1": {
+          "id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"City": ["Moscow"], "Device": ["Tablet"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}
+        }
+      }
+    },
+    "output": {},
+    "error": null,
+    "description": "Two vocab poster — one doesn’t match, notice filtered out"
+  },
+  {
+    "input": {
+      "request": {
+        "id": "req_1", "user_id": "user_1", "date": "2025-01-01T00:00:00",
+        "tags": {"City": "City:Moscow"}
+      },
+      "ads": {
+        "ad_1": {
+          "id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}
+        }
+      }
+    },
+    "output": {
+      "ad_1": {
+        "id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+        "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+        "active": true, "targets": {},
+        "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+        "vocabulary_weights": {}, "tag_weights": {}
+      }
+    },
+    "error": null,
+    "description": "Announcement without targets — There is always an accurate matching"
+  },
+  {
+    "input": {
+      "request": {
+        "id": "req_1", "user_id": "user_1", "date": "2025-01-01T00:00:00",
+        "tags": {}
+      },
+      "ads": {
+        "ad_1": {
+          "id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"City": ["Moscow"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}
+        }
+      }
+    },
+    "output": {},
+    "error": null,
+    "description": "Tagless query, declaration vocab — cross-section, filtered out"
+  },
+  {
+    "input": {
+      "request": {
+        "id": "req_1", "user_id": "user_1", "date": "2025-01-01T00:00:00",
+        "tags": {"City": "City:Moscow", "Device": "Device:Smartphone"}
+      },
+      "ads": {
+        "ad_1": {
+          "id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"City": ["Moscow"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}
+        }
+      }
+    },
+    "output": {
+      "ad_1": {
+        "id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+        "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+        "active": true, "targets": {"City": ["Moscow"]},
+        "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+        "vocabulary_weights": {}, "tag_weights": {}
+      }
+    },
+    "error": null,
+    "description": "The request contains an extra vocab, non-advertising — announcement"
+  },
+  {
+    "input": {
+      "request": {
+        "id": "req_1", "user_id": "user_1", "date": "2025-01-01T00:00:00",
+        "tags": {"City": "City:Moscow"}
+      },
+      "ads": {
+        "ad_match": {
+          "id": "ad_match", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"City": ["Moscow"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}
+        },
+        "ad_no_match": {
+          "id": "ad_no_match", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"City": ["Kazan"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}
+        },
+        "ad_no_targets": {
+          "id": "ad_no_targets", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}
+        }
+      }
+    },
+    "output": {
+      "ad_match": {
+        "id": "ad_match", "cpm": 100, "priority": 1, "volume": 100,
+        "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+        "active": true, "targets": {"City": ["Moscow"]},
+        "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+        "vocabulary_weights": {}, "tag_weights": {}
+      },
+      "ad_no_targets": {
+        "id": "ad_no_targets", "cpm": 100, "priority": 1, "volume": 100,
+        "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+        "active": true, "targets": {},
+        "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+        "vocabulary_weights": {}, "tag_weights": {}
+      }
+    },
+    "error": null,
+    "description": "Several announcements — Only matching and no returns targets"
+  },
+  {
+    "input": {
+      "request": {"id": "req_1", "user_id": "user_1", "date": "2025-01-01T00:00:00",
+        "tags": {"Device": "Device:Smartphone"}},
+      "ads": {
+        "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"Device": ["Smartphone"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}}
+      }
+    },
+    "output": {
+      "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+        "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+        "active": true, "targets": {"Device": ["Smartphone"]},
+        "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+        "vocabulary_weights": {}, "tag_weights": {}}
+    },
+    "error": null,
+    "description": "Vocab Device: Smartphone tag matches — passing"
+  },
+  {
+    "input": {
+      "request": {"id": "req_1", "user_id": "user_1", "date": "2025-01-01T00:00:00",
+        "tags": {"Device": "Device:Tablet"}},
+      "ads": {
+        "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"Device": ["Smartphone"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}}
+      }
+    },
+    "output": {},
+    "error": null,
+    "description": "Vocab Device: Tag Tablet in query, Smartphone in the announcement — coincidentally, filtered out"
+  },
+  {
+    "input": {
+      "request": {"id": "req_1", "user_id": "user_1", "date": "2025-01-01T00:00:00",
+        "tags": {"Device": "Device:PC"}},
+      "ads": {
+        "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"Device": ["PC"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}}
+      }
+    },
+    "output": {
+      "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+        "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+        "active": true, "targets": {"Device": ["PC"]},
+        "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+        "vocabulary_weights": {}, "tag_weights": {}}
+    },
+    "error": null,
+    "description": "Vocab Device: PC tag matches — passing"
+  },
+  {
+    "input": {
+      "request": {"id": "req_1", "user_id": "user_1", "date": "2025-01-01T00:00:00",
+        "tags": {"Age": "Age:18-25"}},
+      "ads": {
+        "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"Age": ["18-25"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}}
+      }
+    },
+    "output": {
+      "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+        "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+        "active": true, "targets": {"Age": ["18-25"]},
+        "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+        "vocabulary_weights": {}, "tag_weights": {}}
+    },
+    "error": null,
+    "description": "Vocab Age: tag 18-25 coincidentally — passing"
+  },
+  {
+    "input": {
+      "request": {"id": "req_1", "user_id": "user_1", "date": "2025-01-01T00:00:00",
+        "tags": {"Age": "Age:26-35"}},
+      "ads": {
+        "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"Age": ["18-25"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}}
+      }
+    },
+    "output": {},
+    "error": null,
+    "description": "Vocab Age: requesting 26-35, poster 18-25 — coincidentally, filtered out"
+  },
+  {
+    "input": {
+      "request": {"id": "req_1", "user_id": "user_1", "date": "2025-01-01T00:00:00",
+        "tags": {"Gender": "Gender:M"}},
+      "ads": {
+        "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"Gender": ["M"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}}
+      }
+    },
+    "output": {
+      "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+        "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+        "active": true, "targets": {"Gender": ["M"]},
+        "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+        "vocabulary_weights": {}, "tag_weights": {}}
+    },
+    "error": null,
+    "description": "Vocab Gender: tag M matches — passing"
+  },
+  {
+    "input": {
+      "request": {"id": "req_1", "user_id": "user_1", "date": "2025-01-01T00:00:00",
+        "tags": {"Gender": "Gender:M"}},
+      "ads": {
+        "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"Gender": ["F"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}}
+      }
+    },
+    "output": {},
+    "error": null,
+    "description": "Vocab Gender: M-request, g-declar — coincidentally, filtered out"
+  },
+  {
+    "input": {
+      "request": {"id": "req_1", "user_id": "user_1", "date": "2025-01-01T00:00:00",
+        "tags": {}},
+      "ads": {
+        "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}}
+      }
+    },
+    "output": {
+      "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+        "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+        "active": true, "targets": {},
+        "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+        "vocabulary_weights": {}, "tag_weights": {}}
+    },
+    "error": null,
+    "description": "Request without tags and announcement without targets — hollow, passing"
+  },
+  {
+    "input": {
+      "request": {"id": "req_1", "user_id": "user_1", "date": "2025-01-01T00:00:00",
+        "tags": {"City": "City:Moscow"}},
+      "ads": {
+        "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"City": ["Moscow", "Kazan", "Peter"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}}
+      }
+    },
+    "output": {
+      "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+        "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+        "active": true, "targets": {"City": ["Moscow", "Kazan", "Peter"]},
+        "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+        "vocabulary_weights": {}, "tag_weights": {}}
+    },
+    "error": null,
+    "description": "Three tags in vocab, the request coincides with the first — passing"
+  },
+  {
+    "input": {
+      "request": {"id": "req_1", "user_id": "user_1", "date": "2025-01-01T00:00:00",
+        "tags": {"City": "City:Moscow"}},
+      "ads": {
+        "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"City": ["Kazan", "Moscow", "Peter"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}}
+      }
+    },
+    "output": {
+      "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+        "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+        "active": true, "targets": {"City": ["Kazan", "Moscow", "Peter"]},
+        "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+        "vocabulary_weights": {}, "tag_weights": {}}
+    },
+    "error": null,
+    "description": "Three tags in vocab, The request coincides with the average — passing"
+  },
+  {
+    "input": {
+      "request": {"id": "req_1", "user_id": "user_1", "date": "2025-01-01T00:00:00",
+        "tags": {"City": "City:Moscow"}},
+      "ads": {
+        "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"City": ["Kazan", "Peter", "Moscow"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}}
+      }
+    },
+    "output": {
+      "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+        "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+        "active": true, "targets": {"City": ["Kazan", "Peter", "Moscow"]},
+        "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+        "vocabulary_weights": {}, "tag_weights": {}}
+    },
+    "error": null,
+    "description": "Three tags in vocab, the request coincides with the last — passing"
+  },
+  {
+    "input": {
+      "request": {"id": "req_1", "user_id": "user_1", "date": "2025-01-01T00:00:00",
+        "tags": {"City": "City:Moscow"}},
+      "ads": {
+        "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"City": ["Kazan", "Peter", "Ufa"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}}
+      }
+    },
+    "output": {},
+    "error": null,
+    "description": "Three tags in vocab, None of them match the request — filtered out"
+  },
+  {
+    "input": {
+      "request": {"id": "req_1", "user_id": "user_1", "date": "2025-01-01T00:00:00",
+        "tags": {"City": "City:Moscow"}},
+      "ads": {
+        "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"City": ["Moscow", "Kazan", "Peter", "Ufa"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}}
+      }
+    },
+    "output": {
+      "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+        "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+        "active": true, "targets": {"City": ["Moscow", "Kazan", "Peter", "Ufa"]},
+        "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+        "vocabulary_weights": {}, "tag_weights": {}}
+    },
+    "error": null,
+    "description": "Four tags in vocab, the request coincides with the first — passing"
+  },
+  {
+    "input": {
+      "request": {"id": "req_1", "user_id": "user_1", "date": "2025-01-01T00:00:00",
+        "tags": {"City": "City:Moscow"}},
+      "ads": {
+        "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"City": ["Kazan", "Peter", "Ufa", "Samara"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}}
+      }
+    },
+    "output": {},
+    "error": null,
+    "description": "Four tags in vocab, none of them match — filtered out"
+  },
+  {
+    "input": {
+      "request": {"id": "req_1", "user_id": "user_1", "date": "2025-01-01T00:00:00",
+        "tags": {"Device": "Device:PC"}},
+      "ads": {
+        "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"Device": ["Smartphone", "Tablet", "PC"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}}
+      }
+    },
+    "output": {
+      "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+        "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+        "active": true, "targets": {"Device": ["Smartphone", "Tablet", "PC"]},
+        "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+        "vocabulary_weights": {}, "tag_weights": {}}
+    },
+    "error": null,
+    "description": "Three tags Device, The request coincides with the last PC — passing"
+  },
+  {
+    "input": {
+      "request": {"id": "req_1", "user_id": "user_1", "date": "2025-01-01T00:00:00",
+        "tags": {"Device": "Device:TV"}},
+      "ads": {
+        "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"Device": ["Smartphone", "Tablet", "PC"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}}
+      }
+    },
+    "output": {},
+    "error": null,
+    "description": "Three tags Device, The request for TV is not included in any — filtered out"
+  },
+  {
+    "input": {
+      "request": {"id": "req_1", "user_id": "user_1", "date": "2025-01-01T00:00:00",
+        "tags": {"Age": "Age:26-35"}},
+      "ads": {
+        "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"Age": ["18-25", "26-35"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}}
+      }
+    },
+    "output": {
+      "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+        "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+        "active": true, "targets": {"Age": ["18-25", "26-35"]},
+        "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+        "vocabulary_weights": {}, "tag_weights": {}}
+    },
+    "error": null,
+    "description": "Two Age tags, the request coincides with the second 26-35 — passing"
+  },
+  {
+    "input": {
+      "request": {"id": "req_1", "user_id": "user_1", "date": "2025-01-01T00:00:00",
+        "tags": {"Age": "Age:35-44"}},
+      "ads": {
+        "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"Age": ["18-25", "26-35"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}}
+      }
+    },
+    "output": {},
+    "error": null,
+    "description": "Two Age tags 18-25 and 26-35, request 35-44 doesn’t enter — filtered out"
+  },
+  {
+    "input": {
+      "request": {"id": "req_1", "user_id": "user_1", "date": "2025-01-01T00:00:00",
+        "tags": {"City": "City:Moscow"}},
+      "ads": {
+        "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"City": ["Moscow", "Kazan", "Peter", "Ufa", "Samara"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}}
+      }
+    },
+    "output": {
+      "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+        "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+        "active": true, "targets": {"City": ["Moscow", "Kazan", "Peter", "Ufa", "Samara"]},
+        "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+        "vocabulary_weights": {}, "tag_weights": {}}
+    },
+    "error": null,
+    "description": "Five tags in vocab, the request coincides with the first — passing"
+  },
+  {
+    "input": {
+      "request": {"id": "req_1", "user_id": "user_1", "date": "2025-01-01T00:00:00",
+        "tags": {"City": "City:Samara"}},
+      "ads": {
+        "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"City": ["Moscow", "Kazan", "Peter", "Ufa", "Samara"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}}
+      }
+    },
+    "output": {
+      "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+        "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+        "active": true, "targets": {"City": ["Moscow", "Kazan", "Peter", "Ufa", "Samara"]},
+        "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+        "vocabulary_weights": {}, "tag_weights": {}}
+    },
+    "error": null,
+    "description": "Five tags in vocab, The request coincides with the last Samara — passing"
+  },
+  {
+    "input": {
+      "request": {"id": "req_1", "user_id": "user_1", "date": "2025-01-01T00:00:00",
+        "tags": {"City": "City:Yekaterinburg"}},
+      "ads": {
+        "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"City": ["Moscow", "Kazan", "Peter", "Ufa", "Samara"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}}
+      }
+    },
+    "output": {},
+    "error": null,
+    "description": "Five tags in vocab, Ekaterinburg’s request is absent from all — filtered out"
+  },
+  {
+    "input": {
+      "request": {"id": "req_1", "user_id": "user_1", "date": "2025-01-01T00:00:00",
+        "tags": {"City": "City:Moscow", "Device": "Device:Smartphone"}},
+      "ads": {
+        "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"City": ["Kazan"], "Device": ["Smartphone"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}}
+      }
+    },
+    "output": {},
+    "error": null,
+    "description": "Two vocab: The city doesn’t match, The device matches — The city is blocking, filtered out"
+  },
+  {
+    "input": {
+      "request": {"id": "req_1", "user_id": "user_1", "date": "2025-01-01T00:00:00",
+        "tags": {"City": "City:Moscow", "Device": "Device:Smartphone"}},
+      "ads": {
+        "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"City": ["Moscow"], "Device": ["Tablet"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}}
+      }
+    },
+    "output": {},
+    "error": null,
+    "description": "Two vocab: The city’s a match, The device doesn’t match — The device is blocking, filtered out"
+  },
+  {
+    "input": {
+      "request": {"id": "req_1", "user_id": "user_1", "date": "2025-01-01T00:00:00",
+        "tags": {"City": "City:Moscow", "Device": "Device:Smartphone"}},
+      "ads": {
+        "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"City": ["Kazan"], "Device": ["Tablet"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}}
+      }
+    },
+    "output": {},
+    "error": null,
+    "description": "Two vocab: they don’t match — filtered out"
+  },
+  {
+    "input": {
+      "request": {"id": "req_1", "user_id": "user_1", "date": "2025-01-01T00:00:00",
+        "tags": {"City": "City:Moscow", "Age": "Age:18-25"}},
+      "ads": {
+        "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"City": ["Moscow"], "Age": ["18-25"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}}
+      }
+    },
+    "output": {
+      "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+        "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+        "active": true, "targets": {"City": ["Moscow"], "Age": ["18-25"]},
+        "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+        "vocabulary_weights": {}, "tag_weights": {}}
+    },
+    "error": null,
+    "description": "Two vocab City+Age — matching, passing"
+  },
+  {
+    "input": {
+      "request": {"id": "req_1", "user_id": "user_1", "date": "2025-01-01T00:00:00",
+        "tags": {"City": "City:Moscow", "Age": "Age:18-25"}},
+      "ads": {
+        "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"City": ["Moscow"], "Age": ["26-35"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}}
+      }
+    },
+    "output": {},
+    "error": null,
+    "description": "Two vocab City+Age: The city’s a match, Age doesn’t match — filtered out"
+  },
+  {
+    "input": {
+      "request": {"id": "req_1", "user_id": "user_1", "date": "2025-01-01T00:00:00",
+        "tags": {"Device": "Device:Smartphone", "Age": "Age:18-25"}},
+      "ads": {
+        "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"Device": ["Smartphone"], "Age": ["18-25"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}}
+      }
+    },
+    "output": {
+      "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+        "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+        "active": true, "targets": {"Device": ["Smartphone"], "Age": ["18-25"]},
+        "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+        "vocabulary_weights": {}, "tag_weights": {}}
+    },
+    "error": null,
+    "description": "Two vocab Device+Age — matching, passing"
+  },
+  {
+    "input": {
+      "request": {"id": "req_1", "user_id": "user_1", "date": "2025-01-01T00:00:00",
+        "tags": {"City": "City:Moscow", "Device": "Device:Smartphone", "Age": "Age:18-25"}},
+      "ads": {
+        "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"City": ["Moscow"], "Device": ["Smartphone"], "Age": ["18-25"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}}
+      }
+    },
+    "output": {
+      "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+        "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+        "active": true, "targets": {"City": ["Moscow"], "Device": ["Smartphone"], "Age": ["18-25"]},
+        "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+        "vocabulary_weights": {}, "tag_weights": {}}
+    },
+    "error": null,
+    "description": "Three vocab — all three of them, passing"
+  },
+  {
+    "input": {
+      "request": {"id": "req_1", "user_id": "user_1", "date": "2025-01-01T00:00:00",
+        "tags": {"City": "City:Moscow", "Device": "Device:Smartphone", "Age": "Age:18-25"}},
+      "ads": {
+        "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"City": ["Kazan"], "Device": ["Smartphone"], "Age": ["18-25"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}}
+      }
+    },
+    "output": {},
+    "error": null,
+    "description": "Three vocab: The city doesn’t match, The device and age are the same — filtered out"
+  },
+  {
+    "input": {
+      "request": {"id": "req_1", "user_id": "user_1", "date": "2025-01-01T00:00:00",
+        "tags": {"City": "City:Moscow", "Device": "Device:Smartphone", "Age": "Age:18-25"}},
+      "ads": {
+        "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"City": ["Moscow"], "Device": ["Tablet"], "Age": ["18-25"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}}
+      }
+    },
+    "output": {},
+    "error": null,
+    "description": "Three vocab: The device doesn’t match, matching — filtered out"
+  },
+  {
+    "input": {
+      "request": {"id": "req_1", "user_id": "user_1", "date": "2025-01-01T00:00:00",
+        "tags": {"City": "City:Moscow", "Device": "Device:Smartphone", "Age": "Age:18-25"}},
+      "ads": {
+        "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"City": ["Moscow"], "Device": ["Smartphone"], "Age": ["26-35"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}}
+      }
+    },
+    "output": {},
+    "error": null,
+    "description": "Three vocab: Age doesn’t match, matching — filtered out"
+  },
+  {
+    "input": {
+      "request": {"id": "req_1", "user_id": "user_1", "date": "2025-01-01T00:00:00",
+        "tags": {"City": "City:Moscow", "Device": "Device:Smartphone", "Age": "Age:18-25"}},
+      "ads": {
+        "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"City": ["Kazan"], "Device": ["Tablet"], "Age": ["26-35"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}}
+      }
+    },
+    "output": {},
+    "error": null,
+    "description": "Three vocab: none of them match — filtered out"
+  },
+  {
+    "input": {
+      "request": {"id": "req_1", "user_id": "user_1", "date": "2025-01-01T00:00:00",
+        "tags": {"City": "City:Kazan", "Device": "Device:Tablet", "Age": "Age:26-35"}},
+      "ads": {
+        "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true,
+          "targets": {"City": ["Moscow", "Kazan"], "Device": ["Smartphone", "Tablet"], "Age": ["18-25", "26-35"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}}
+      }
+    },
+    "output": {
+      "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+        "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+        "active": true,
+        "targets": {"City": ["Moscow", "Kazan"], "Device": ["Smartphone", "Tablet"], "Age": ["18-25", "26-35"]},
+        "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+        "vocabulary_weights": {}, "tag_weights": {}}
+    },
+    "error": null,
+    "description": "Three vocab by 2 tagged — The request falls into the second tags of each vocab, passing"
+  },
+  {
+    "input": {
+      "request": {"id": "req_1", "user_id": "user_1", "date": "2025-01-01T00:00:00",
+        "tags": {"City": "City:Moscow", "Device": "Device:Smartphone", "Age": "Age:18-25", "Gender": "Gender:M"}},
+      "ads": {
+        "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true,
+          "targets": {"City": ["Moscow"], "Device": ["Smartphone"], "Age": ["18-25"], "Gender": ["M"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}}
+      }
+    },
+    "output": {
+      "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+        "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+        "active": true,
+        "targets": {"City": ["Moscow"], "Device": ["Smartphone"], "Age": ["18-25"], "Gender": ["M"]},
+        "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+        "vocabulary_weights": {}, "tag_weights": {}}
+    },
+    "error": null,
+    "description": "Four vocab — match up, passing"
+  },
+  {
+    "input": {
+      "request": {"id": "req_1", "user_id": "user_1", "date": "2025-01-01T00:00:00",
+        "tags": {"City": "City:Moscow", "Device": "Device:Smartphone", "Age": "Age:18-25", "Gender": "Gender:M"}},
+      "ads": {
+        "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true,
+          "targets": {"City": ["Moscow"], "Device": ["Smartphone"], "Age": ["18-25"], "Gender": ["F"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}}
+      }
+    },
+    "output": {},
+    "error": null,
+    "description": "Four vocab: three-way, Gender doesn’t match — filtered out"
+  },
+  {
+    "input": {
+      "request": {"id": "req_1", "user_id": "user_1", "date": "2025-01-01T00:00:00",
+        "tags": {"City": "City:Moscow", "Device": "Device:Smartphone", "Age": "Age:18-25"}},
+      "ads": {
+        "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"City": ["Moscow"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}}
+      }
+    },
+    "output": {
+      "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+        "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+        "active": true, "targets": {"City": ["Moscow"]},
+        "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+        "vocabulary_weights": {}, "tag_weights": {}}
+    },
+    "error": null,
+    "description": "The request has 3 vocab, The announcement requires only the City — excess vocab request is ignored, passing"
+  },
+  {
+    "input": {
+      "request": {"id": "req_1", "user_id": "user_1", "date": "2025-01-01T00:00:00",
+        "tags": {"City": "City:Kazan", "Device": "Device:Smartphone", "Age": "Age:18-25"}},
+      "ads": {
+        "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"City": ["Moscow"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}}
+      }
+    },
+    "output": {},
+    "error": null,
+    "description": "The request has 3 vocab, The announcement requires only the City — The city doesn’t match, filtered out"
+  },
+  {
+    "input": {
+      "request": {"id": "req_1", "user_id": "user_1", "date": "2025-01-01T00:00:00",
+        "tags": {"City": "City:Moscow", "Device": "Device:Smartphone"}},
+      "ads": {
+        "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"City": ["Moscow"], "Device": ["Smartphone"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}}
+      }
+    },
+    "output": {
+      "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+        "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+        "active": true, "targets": {"City": ["Moscow"], "Device": ["Smartphone"]},
+        "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+        "vocabulary_weights": {}, "tag_weights": {}}
+    },
+    "error": null,
+    "description": "The request fully covers both vocab pronouncement — passing"
+  },
+  {
+    "input": {
+      "request": {"id": "req_1", "user_id": "user_1", "date": "2025-01-01T00:00:00",
+        "tags": {"City": "City:Moscow"}},
+      "ads": {
+        "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"City": ["Moscow"], "Device": ["Smartphone"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}}
+      }
+    },
+    "output": {},
+    "error": null,
+    "description": "Announcement demands City+Device, The request contains only the City — The device is not in the request, filtered out"
+  },
+  {
+    "input": {
+      "request": {"id": "req_1", "user_id": "user_1", "date": "2025-01-01T00:00:00",
+        "tags": {"Device": "Device:Smartphone"}},
+      "ads": {
+        "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"City": ["Moscow"], "Device": ["Smartphone"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}}
+      }
+    },
+    "output": {},
+    "error": null,
+    "description": "Announcement demands City+Device, The request contains only the device — The city is missing in the request, filtered out"
+  },
+  {
+    "input": {
+      "request": {"id": "req_1", "user_id": "user_1", "date": "2025-01-01T00:00:00",
+        "tags": {"City": "City:Moscow", "Device": "Device:Smartphone"}},
+      "ads": {
+        "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"City": ["Moscow"], "Device": ["Smartphone"], "Age": ["18-25"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}}
+      }
+    },
+    "output": {},
+    "error": null,
+    "description": "An announcement requires three vocab, The request contains only two — Age missing in the request, filtered out"
+  },
+  {
+    "input": {
+      "request": {"id": "req_1", "user_id": "user_1", "date": "2025-01-01T00:00:00",
+        "tags": {"Device": "Device:Smartphone"}},
+      "ads": {
+        "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"City": ["Moscow"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}}
+      }
+    },
+    "output": {},
+    "error": null,
+    "description": "Request has Device, The announcement requires the City — vocab never intersect, filtered out"
+  },
+  {
+    "input": {
+      "request": {"id": "req_1", "user_id": "user_1", "date": "2025-01-01T00:00:00",
+        "tags": {"City": "City:Moscow", "Device": "Device:Smartphone", "Age": "Age:18-25"}},
+      "ads": {
+        "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"City": ["Moscow"], "Device": ["Smartphone"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}}
+      }
+    },
+    "output": {
+      "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+        "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+        "active": true, "targets": {"City": ["Moscow"], "Device": ["Smartphone"]},
+        "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+        "vocabulary_weights": {}, "tag_weights": {}}
+    },
+    "error": null,
+    "description": "The request has three vocab, The announcement requires only two of them — Excess age in the request is ignored, match up, passing"
+  },
+  {
+    "input": {
+      "request": {"id": "req_1", "user_id": "user_1", "date": "2025-01-01T00:00:00",
+        "tags": {"Gender": "Gender:M"}},
+      "ads": {
+        "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"City": ["Moscow"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}}
+      }
+    },
+    "output": {},
+    "error": null,
+    "description": "Only Paul has the request, The announcement requires the City — vocab cross-over, filtered out"
+  },
+  {
+    "input": {
+      "request": {"id": "req_1", "user_id": "user_1", "date": "2025-01-01T00:00:00",
+        "tags": {"City": "City:Moscow", "Device": "Device:Smartphone",
+                 "Age": "Age:18-25", "Gender": "Gender:M"}},
+      "ads": {
+        "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"City": ["Moscow"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}}
+      }
+    },
+    "output": {
+      "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+        "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+        "active": true, "targets": {"City": ["Moscow"]},
+        "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+        "vocabulary_weights": {}, "tag_weights": {}}
+    },
+    "error": null,
+    "description": "The request has 4 vocab, The announcement requires only the City — others vocab request is ignored, The city’s a match, passing"
+  },
+  {
+    "input": {
+      "request": {"id": "req_1", "user_id": "user_1", "date": "2025-01-01T00:00:00",
+        "tags": {"City": "City:Moscow"}},
+      "ads": {
+        "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"City": ["Moscow"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}},
+        "ad_2": {"id": "ad_2", "cpm": 150, "priority": 2, "volume": 200,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"City": ["Kazan"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}}
+      }
+    },
+    "output": {
+      "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+        "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+        "active": true, "targets": {"City": ["Moscow"]},
+        "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+        "vocabulary_weights": {}, "tag_weights": {}}
+    },
+    "error": null,
+    "description": "Two announcements: first (Moscow), second (Kazan) — Only the first one comes back"
+  },
+  {
+    "input": {
+      "request": {"id": "req_1", "user_id": "user_1", "date": "2025-01-01T00:00:00",
+        "tags": {"City": "City:Moscow"}},
+      "ads": {
+        "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"City": ["Kazan"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}},
+        "ad_2": {"id": "ad_2", "cpm": 150, "priority": 2, "volume": 200,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"City": ["Moscow"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}}
+      }
+    },
+    "output": {
+      "ad_2": {"id": "ad_2", "cpm": 150, "priority": 2, "volume": 200,
+        "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+        "active": true, "targets": {"City": ["Moscow"]},
+        "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+        "vocabulary_weights": {}, "tag_weights": {}}
+    },
+    "error": null,
+    "description": "Two announcements: first (Kazan), second (Moscow) — Only the second one comes back"
+  },
+  {
+    "input": {
+      "request": {"id": "req_1", "user_id": "user_1", "date": "2025-01-01T00:00:00",
+        "tags": {"City": "City:Moscow"}},
+      "ads": {
+        "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"City": ["Kazan"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}},
+        "ad_2": {"id": "ad_2", "cpm": 150, "priority": 2, "volume": 200,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"City": ["Peter"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}}
+      }
+    },
+    "output": {},
+    "error": null,
+    "description": "Two announcements: they don’t match — returns empty AdsDict"
+  },
+  {
+    "input": {
+      "request": {"id": "req_1", "user_id": "user_1", "date": "2025-01-01T00:00:00",
+        "tags": {"City": "City:Moscow"}},
+      "ads": {
+        "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"City": ["Moscow"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}},
+        "ad_2": {"id": "ad_2", "cpm": 150, "priority": 2, "volume": 200,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"City": ["Moscow"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}}
+      }
+    },
+    "output": {
+      "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+        "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+        "active": true, "targets": {"City": ["Moscow"]},
+        "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+        "vocabulary_weights": {}, "tag_weights": {}},
+      "ad_2": {"id": "ad_2", "cpm": 150, "priority": 2, "volume": 200,
+        "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+        "active": true, "targets": {"City": ["Moscow"]},
+        "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+        "vocabulary_weights": {}, "tag_weights": {}}
+    },
+    "error": null,
+    "description": "Two announcements: matching — come back"
+  },
+  {
+    "input": {
+      "request": {"id": "req_1", "user_id": "user_1", "date": "2025-01-01T00:00:00",
+        "tags": {"City": "City:Moscow"}},
+      "ads": {
+        "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"City": ["Moscow"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}},
+        "ad_2": {"id": "ad_2", "cpm": 150, "priority": 2, "volume": 200,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"City": ["Kazan"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}},
+        "ad_3": {"id": "ad_3", "cpm": 200, "priority": 3, "volume": 300,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"City": ["Peter"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}}
+      }
+    },
+    "output": {
+      "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+        "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+        "active": true, "targets": {"City": ["Moscow"]},
+        "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+        "vocabulary_weights": {}, "tag_weights": {}}
+    },
+    "error": null,
+    "description": "Three announcements: The first one is the same — Only the first one comes back"
+  },
+  {
+    "input": {
+      "request": {"id": "req_1", "user_id": "user_1", "date": "2025-01-01T00:00:00",
+        "tags": {"City": "City:Moscow"}},
+      "ads": {
+        "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"City": ["Kazan"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}},
+        "ad_2": {"id": "ad_2", "cpm": 150, "priority": 2, "volume": 200,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"City": ["Moscow"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}},
+        "ad_3": {"id": "ad_3", "cpm": 200, "priority": 3, "volume": 300,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"City": ["Peter"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}}
+      }
+    },
+    "output": {
+      "ad_2": {"id": "ad_2", "cpm": 150, "priority": 2, "volume": 200,
+        "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+        "active": true, "targets": {"City": ["Moscow"]},
+        "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+        "vocabulary_weights": {}, "tag_weights": {}}
+    },
+    "error": null,
+    "description": "Three announcements: Only the second is the same — Only the second one comes back"
+  },
+  {
+    "input": {
+      "request": {"id": "req_1", "user_id": "user_1", "date": "2025-01-01T00:00:00",
+        "tags": {"City": "City:Moscow"}},
+      "ads": {
+        "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"City": ["Kazan"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}},
+        "ad_2": {"id": "ad_2", "cpm": 150, "priority": 2, "volume": 200,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"City": ["Peter"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}},
+        "ad_3": {"id": "ad_3", "cpm": 200, "priority": 3, "volume": 300,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"City": ["Moscow"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}}
+      }
+    },
+    "output": {
+      "ad_3": {"id": "ad_3", "cpm": 200, "priority": 3, "volume": 300,
+        "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+        "active": true, "targets": {"City": ["Moscow"]},
+        "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+        "vocabulary_weights": {}, "tag_weights": {}}
+    },
+    "error": null,
+    "description": "Three announcements: Only the third matched — Only the third returns"
+  },
+  {
+    "input": {
+      "request": {"id": "req_1", "user_id": "user_1", "date": "2025-01-01T00:00:00",
+        "tags": {"City": "City:Moscow"}},
+      "ads": {
+        "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"City": ["Moscow"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}},
+        "ad_2": {"id": "ad_2", "cpm": 150, "priority": 2, "volume": 200,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"City": ["Kazan"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}},
+        "ad_3": {"id": "ad_3", "cpm": 200, "priority": 3, "volume": 300,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"City": ["Moscow"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}}
+      }
+    },
+    "output": {
+      "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+        "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+        "active": true, "targets": {"City": ["Moscow"]},
+        "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+        "vocabulary_weights": {}, "tag_weights": {}},
+      "ad_3": {"id": "ad_3", "cpm": 200, "priority": 3, "volume": 300,
+        "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+        "active": true, "targets": {"City": ["Moscow"]},
+        "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+        "vocabulary_weights": {}, "tag_weights": {}}
+    },
+    "error": null,
+    "description": "Three announcements: first and third match, second — The first and third return"
+  },
+  {
+    "input": {
+      "request": {"id": "req_1", "user_id": "user_1", "date": "2025-01-01T00:00:00",
+        "tags": {"City": "City:Moscow"}},
+      "ads": {
+        "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}},
+        "ad_2": {"id": "ad_2", "cpm": 150, "priority": 2, "volume": 200,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"City": ["Moscow"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}}
+      }
+    },
+    "output": {
+      "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+        "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+        "active": true, "targets": {},
+        "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+        "vocabulary_weights": {}, "tag_weights": {}},
+      "ad_2": {"id": "ad_2", "cpm": 150, "priority": 2, "volume": 200,
+        "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+        "active": true, "targets": {"City": ["Moscow"]},
+        "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+        "vocabulary_weights": {}, "tag_weights": {}}
+    },
+    "error": null,
+    "description": "Two announcements: single-handed targets (always), matching — both return"
+  },
+  {
+    "input": {
+      "request": {"id": "req_1", "user_id": "user_1", "date": "2025-01-01T00:00:00",
+        "tags": {"City": "City:Moscow"}},
+      "ads": {
+        "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}},
+        "ad_2": {"id": "ad_2", "cpm": 150, "priority": 2, "volume": 200,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"City": ["Kazan"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}}
+      }
+    },
+    "output": {
+      "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+        "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+        "active": true, "targets": {},
+        "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+        "vocabulary_weights": {}, "tag_weights": {}}
+    },
+    "error": null,
+    "description": "Two announcements: single-handed targets (passing), one-off — returns without targets"
+  },
+  {
+    "input": {
+      "request": {"id": "req_1", "user_id": "user_1", "date": "2025-01-01T00:00:00",
+        "tags": {"City": "City:Peter"}},
+      "ads": {
+        "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"City": ["Moscow"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}},
+        "ad_2": {"id": "ad_2", "cpm": 150, "priority": 2, "volume": 200,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"City": ["Kazan"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}},
+        "ad_3": {"id": "ad_3", "cpm": 200, "priority": 3, "volume": 300,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"City": ["Ufa"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}}
+      }
+    },
+    "output": {},
+    "error": null,
+    "description": "Three announcements: None of them match the request — returns empty AdsDict"
+  },
+  {
+    "input": {
+      "request": {"id": "req_1", "user_id": "user_1", "date": "2025-01-01T00:00:00",
+        "tags": {"City": "City:Moscow"}},
+      "ads": {
+        "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"City": ["Moscow", "Kazan"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}},
+        "ad_2": {"id": "ad_2", "cpm": 150, "priority": 2, "volume": 200,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"City": ["Kazan"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}},
+        "ad_3": {"id": "ad_3", "cpm": 200, "priority": 3, "volume": 300,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"City": ["Moscow", "Peter"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}}
+      }
+    },
+    "output": {
+      "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+        "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+        "active": true, "targets": {"City": ["Moscow", "Kazan"]},
+        "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+        "vocabulary_weights": {}, "tag_weights": {}},
+      "ad_3": {"id": "ad_3", "cpm": 200, "priority": 3, "volume": 300,
+        "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+        "active": true, "targets": {"City": ["Moscow", "Peter"]},
+        "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+        "vocabulary_weights": {}, "tag_weights": {}}
+    },
+    "error": null,
+    "description": "Three advertisements with multi-tag: ad_1 ([Moscow,Kazan]) and ad_3 ([Moscow,Peter]) coincidentally, ad_2 ([Kazan]) no — come back ad_1 and ad_3"
+  },
+  {
+    "input": {
+      "request": {"id": "req_1", "user_id": "user_1", "date": "2025-01-01T00:00:00",
+        "tags": {"City": "City:Moscow"}},
+      "ads": {
+        "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"Device": ["Smartphone"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}}
+      }
+    },
+    "output": {},
+    "error": null,
+    "description": "Request has City, The announcement requires a device — vocab cross-over, for the device intersection empty, filtered out"
+  },
+  {
+    "input": {
+      "request": {"id": "req_1", "user_id": "user_1", "date": "2025-01-01T00:00:00",
+        "tags": {}},
+      "ads": {
+        "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"City": ["Moscow"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}},
+        "ad_2": {"id": "ad_2", "cpm": 150, "priority": 2, "volume": 200,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}}
+      }
+    },
+    "output": {
+      "ad_2": {"id": "ad_2", "cpm": 150, "priority": 2, "volume": 200,
+        "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+        "active": true, "targets": {},
+        "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+        "vocabulary_weights": {}, "tag_weights": {}}
+    },
+    "error": null,
+    "description": "Request empty, two-word: town-only (cross-section — filtered), second-hand targets — returns without targets"
+  },
+  {
+    "input": {
+      "request": {"id": "req_1", "user_id": "user_1", "date": "2025-01-01T00:00:00",
+        "tags": {"City": "City:Moscow", "Device": "Device:Smartphone"}},
+      "ads": {
+        "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true,
+          "targets": {"City": ["Moscow", "Kazan", "Peter"], "Device": ["Smartphone", "Tablet"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}}
+      }
+    },
+    "output": {
+      "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+        "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+        "active": true,
+        "targets": {"City": ["Moscow", "Kazan", "Peter"], "Device": ["Smartphone", "Tablet"]},
+        "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+        "vocabulary_weights": {}, "tag_weights": {}}
+    },
+    "error": null,
+    "description": "Two vocab by 3 and 2 tag — The request coincides with the first tag of each, passing"
+  },
+  {
+    "input": {
+      "request": {"id": "req_1", "user_id": "user_1", "date": "2025-01-01T00:00:00",
+        "tags": {"City": "City:Ufa", "Device": "Device:TV"}},
+      "ads": {
+        "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true,
+          "targets": {"City": ["Moscow", "Kazan", "Peter"], "Device": ["Smartphone", "Tablet"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}}
+      }
+    },
+    "output": {},
+    "error": null,
+    "description": "Two vocab by 3 and 2 tag — The request does not fall into any tags vocab, filtered out"
+  },
+  {
+    "input": {
+      "request": {"id": "req_1", "user_id": "user_1", "date": "2025-01-01T00:00:00",
+        "tags": {"City": "City:Moscow"}},
+      "ads": {
+        "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"City": ["Moscow"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}},
+        "ad_2": {"id": "ad_2", "cpm": 150, "priority": 2, "volume": 200,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"City": ["Moscow"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}},
+        "ad_3": {"id": "ad_3", "cpm": 200, "priority": 3, "volume": 300,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"City": ["Moscow"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}}
+      }
+    },
+    "output": {
+      "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+        "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+        "active": true, "targets": {"City": ["Moscow"]},
+        "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+        "vocabulary_weights": {}, "tag_weights": {}},
+      "ad_2": {"id": "ad_2", "cpm": 150, "priority": 2, "volume": 200,
+        "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+        "active": true, "targets": {"City": ["Moscow"]},
+        "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+        "vocabulary_weights": {}, "tag_weights": {}},
+      "ad_3": {"id": "ad_3", "cpm": 200, "priority": 3, "volume": 300,
+        "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+        "active": true, "targets": {"City": ["Moscow"]},
+        "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+        "vocabulary_weights": {}, "tag_weights": {}}
+    },
+    "error": null,
+    "description": "Three ads with the same vocab — all three of them, All three are back"
+  },
+  {
+    "input": {
+      "request": {"id": "req_1", "user_id": "user_1", "date": "2025-01-01T00:00:00",
+        "tags": {"City": "City:Moscow", "Device": "Device:Smartphone"}},
+      "ads": {
+        "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"City": ["Moscow"], "Device": ["Smartphone"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}},
+        "ad_2": {"id": "ad_2", "cpm": 150, "priority": 2, "volume": 200,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"City": ["Kazan"], "Device": ["Smartphone"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}},
+        "ad_3": {"id": "ad_3", "cpm": 200, "priority": 3, "volume": 300,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"City": ["Moscow"], "Device": ["Tablet"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}}
+      }
+    },
+    "output": {
+      "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+        "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+        "active": true, "targets": {"City": ["Moscow"], "Device": ["Smartphone"]},
+        "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+        "vocabulary_weights": {}, "tag_weights": {}}
+    },
+    "error": null,
+    "description": "Three ads with two vocab: ad_1 — matching, ad_2 — The city doesn’t match, ad_3 — The device doesn’t match, It just comes back ad_1"
+  },
+  {
+    "input": {
+      "request": {"id": "req_1", "user_id": "user_1", "date": "2025-01-01T00:00:00",
+        "tags": {"City": "City:Moscow", "Device": "Device:Smartphone",
+                 "Age": "Age:18-25", "Gender": "Gender:M"}},
+      "ads": {
+        "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true,
+          "targets": {"City": ["Moscow"], "Device": ["Smartphone"], "Age": ["18-25"], "Gender": ["M"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}},
+        "ad_2": {"id": "ad_2", "cpm": 150, "priority": 2, "volume": 200,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"City": ["Moscow"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}},
+        "ad_3": {"id": "ad_3", "cpm": 200, "priority": 3, "volume": 300,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}}
+      }
+    },
+    "output": {
+      "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+        "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+        "active": true,
+        "targets": {"City": ["Moscow"], "Device": ["Smartphone"], "Age": ["18-25"], "Gender": ["M"]},
+        "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+        "vocabulary_weights": {}, "tag_weights": {}},
+      "ad_2": {"id": "ad_2", "cpm": 150, "priority": 2, "volume": 200,
+        "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+        "active": true, "targets": {"City": ["Moscow"]},
+        "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+        "vocabulary_weights": {}, "tag_weights": {}},
+      "ad_3": {"id": "ad_3", "cpm": 200, "priority": 3, "volume": 300,
+        "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+        "active": true, "targets": {},
+        "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+        "vocabulary_weights": {}, "tag_weights": {}}
+    },
+    "error": null,
+    "description": "Three announcements: ad_1 fourfold vocab (match up), ad_2 single-handed vocab (coincidentally), ad_3 without targets — all three of them"
+  },
+  {
+    "input": {
+      "request": {"id": "req_1", "user_id": "user_1", "date": "2025-01-01T00:00:00",
+        "tags": {"City": "City:Moscow", "Device": "Device:Smartphone",
+                 "Age": "Age:18-25", "Gender": "Gender:M"}},
+      "ads": {
+        "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true,
+          "targets": {"City": ["Moscow"], "Device": ["Smartphone"], "Age": ["18-25"], "Gender": ["M"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}}
+      }
+    },
+    "output": {
+      "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+        "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+        "active": true,
+        "targets": {"City": ["Moscow"], "Device": ["Smartphone"], "Age": ["18-25"], "Gender": ["M"]},
+        "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+        "vocabulary_weights": {}, "tag_weights": {}}
+    },
+    "error": null,
+    "description": "Four vocab — match up, passing"
+  },
+  {
+    "input": {
+      "request": {"id": "req_1", "user_id": "user_1", "date": "2025-01-01T00:00:00",
+        "tags": {"City": "City:Moscow", "Device": "Device:Smartphone",
+                 "Age": "Age:18-25", "Gender": "Gender:M"}},
+      "ads": {
+        "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true,
+          "targets": {"City": ["Moscow"], "Device": ["Smartphone"], "Age": ["18-25"], "Gender": ["F"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}}
+      }
+    },
+    "output": {},
+    "error": null,
+    "description": "Four vocab: three-way, Paul ≠ M — single-handed vocab block, filtered out"
+  },
+  {
+    "input": {
+      "request": {"id": "req_1", "user_id": "user_1", "date": "2025-01-01T00:00:00",
+        "tags": {"City": "City:Moscow", "Device": "Device:Smartphone",
+                 "Age": "Age:18-25", "Gender": "Gender:M"}},
+      "ads": {
+        "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true,
+          "targets": {"City": ["Moscow", "Kazan"], "Device": ["Smartphone", "Tablet"],
+                      "Age": ["18-25", "26-35"], "Gender": ["M", "F"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}}
+      }
+    },
+    "output": {
+      "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+        "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+        "active": true,
+        "targets": {"City": ["Moscow", "Kazan"], "Device": ["Smartphone", "Tablet"],
+                    "Age": ["18-25", "26-35"], "Gender": ["M", "F"]},
+        "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+        "vocabulary_weights": {}, "tag_weights": {}}
+    },
+    "error": null,
+    "description": "Four vocab by 2 tag — The request falls into the first tag of each, passing"
+  },
+  {
+    "input": {
+      "request": {"id": "req_1", "user_id": "user_1", "date": "2025-01-01T00:00:00",
+        "tags": {"City": "City:Moscow"}},
+      "ads": {
+        "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"City": ["Kazan", "Peter", "Ufa", "Samara"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}},
+        "ad_2": {"id": "ad_2", "cpm": 150, "priority": 2, "volume": 200,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"City": ["Moscow", "Kazan", "Peter", "Ufa"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}},
+        "ad_3": {"id": "ad_3", "cpm": 200, "priority": 3, "volume": 300,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"City": ["Ufa", "Samara", "Yekaterinburg", "Novosibirsk"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}}
+      }
+    },
+    "output": {
+      "ad_2": {"id": "ad_2", "cpm": 150, "priority": 2, "volume": 200,
+        "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+        "active": true, "targets": {"City": ["Moscow", "Kazan", "Peter", "Ufa"]},
+        "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+        "vocabulary_weights": {}, "tag_weights": {}}
+    },
+    "error": null,
+    "description": "Three advertisements with 4 tag: ad_1 no Moscow, ad_2 there is Moscow, ad_3 no Moscow — It just comes back ad_2"
+  },
+  {
+    "input": {
+      "request": {"id": "req_1", "user_id": "user_1", "date": "2025-01-01T00:00:00",
+        "tags": {"City": "City:Moscow", "Device": "Device:Smartphone"}},
+      "ads": {
+        "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"City": ["Moscow"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}},
+        "ad_2": {"id": "ad_2", "cpm": 150, "priority": 2, "volume": 200,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"Device": ["Smartphone"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}},
+        "ad_3": {"id": "ad_3", "cpm": 200, "priority": 3, "volume": 300,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"Age": ["18-25"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}}
+      }
+    },
+    "output": {
+      "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+        "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+        "active": true, "targets": {"City": ["Moscow"]},
+        "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+        "vocabulary_weights": {}, "tag_weights": {}},
+      "ad_2": {"id": "ad_2", "cpm": 150, "priority": 2, "volume": 200,
+        "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+        "active": true, "targets": {"Device": ["Smartphone"]},
+        "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+        "vocabulary_weights": {}, "tag_weights": {}}
+    },
+    "error": null,
+    "description": "Three advertisements with different vocab: ad_1 city (eat), ad_2 requires a device (eat), ad_3 requires an age (not in the request) — first two"
+  },
+  {
+    "input": {
+      "request": {"id": "req_1", "user_id": "user_1", "date": "2025-01-01T00:00:00",
+        "tags": {"City": "City:Moscow", "Device": "Device:Smartphone", "Age": "Age:18-25"}},
+      "ads": {
+        "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"City": ["Moscow"], "Device": ["Smartphone"], "Age": ["18-25"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}},
+        "ad_2": {"id": "ad_2", "cpm": 150, "priority": 2, "volume": 200,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"City": ["Kazan"], "Device": ["Smartphone"], "Age": ["18-25"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}},
+        "ad_3": {"id": "ad_3", "cpm": 200, "priority": 3, "volume": 300,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"City": ["Moscow"], "Device": ["Tablet"], "Age": ["18-25"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}},
+        "ad_4": {"id": "ad_4", "cpm": 250, "priority": 4, "volume": 400,
+          "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+          "active": true, "targets": {"City": ["Moscow"], "Device": ["Smartphone"], "Age": ["26-35"]},
+          "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}}
+      }
+    },
+    "output": {
+      "ad_1": {"id": "ad_1", "cpm": 100, "priority": 1, "volume": 100,
+        "start_date": "0001-01-01T00:00:00", "end_date": "9999-12-31T00:00:00",
+        "active": true, "targets": {"City": ["Moscow"], "Device": ["Smartphone"], "Age": ["18-25"]},
+        "ad_frequency_limit": {}, "user_frequency_limit": {}, "parasitic_freq_limit": {},
+        "vocabulary_weights": {}, "tag_weights": {}}
+    },
+    "error": null,
+    "description": "Four ads with three vocab: Each is different from exactly one of the three vocab — only ad_1 coincides in all three"
+  }
+]

@@ -1,0 +1,14 @@
+[
+  {
+    "description": "dismiss resolution forecast, different resolution model",
+    "input": {"scenario": "resolution_mismatch"},
+    "output": null,
+    "error": "PARAMETER_ERROR_CODE"
+  },
+  {
+    "description": "rejects zero forecast_periods",
+    "input": {"scenario": "zero_forecast_periods"},
+    "output": null,
+    "error": "PARAMETER_ERROR_CODE"
+  }
+]

@@ -1,0 +1,38 @@
+[
+  {
+    "input": {
+      "priority": 50.0,
+      "max_priority": 100.0
+    },
+    "output": 0.5,
+    "error": null,
+    "description": "Priority is half the maximum — factor 0.5"
+  },
+  {
+    "input": {
+      "priority": 100.0,
+      "max_priority": 100.0
+    },
+    "output": 1.0,
+    "error": null,
+    "description": "Priority equals maximum — result 1.0"
+  },
+  {
+    "input": {
+      "priority": 50.0,
+      "max_priority": 0
+    },
+    "output": null,
+    "error": "AuctionError(AUCTION_MATH_ERROR_CODE, 'zero division')",
+    "description": "Max_priority = 0 — zeroing, throw away AuctionError"
+  },
+  {
+    "input": {
+      "priority": 0.0,
+      "max_priority": 100.0
+    },
+    "output": 0.0,
+    "error": null,
+    "description": "Zero priority with non-zero maximum — factor 0.0"
+  }
+]

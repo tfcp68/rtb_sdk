@@ -1,0 +1,14 @@
+{
+  "total_traffic_volume": 10000,
+  "tag_probabilities": {
+    "geo:msk": 0.6,
+    "geo:spb": 0.4
+  },
+  "vocabs": {
+    "geo": ["geo:msk", "geo:spb"]
+  },
+  "objective": "maximize_money",
+  "max_n_categories": 100,
+  "min_category_probability": 1e-06,
+  "n_threads": 1
+}

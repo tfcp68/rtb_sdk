@@ -1,0 +1,4 @@
+{
+  "ad_high_cpm_low_pri": "file://fixtures/ad/AD_HIGH_CPM_LOW_PRI.json",
+  "ad_low_cpm_high_pri": "file://fixtures/ad/AD_LOW_CPM_HIGH_PRI.json"
+}

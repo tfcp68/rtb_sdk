@@ -1,0 +1,312 @@
+[
+  {
+    "id": "Campaign_ea5f7d580a451649",
+    "name": "Campaign_4d61f9faeb01d35c",
+    "cpm": 180,
+    "priority": 3,
+    "limits": "normal",
+    "min_interval": 30,
+    "targets": {
+      "Device": [
+        "ANDROID_TV_A",
+        "ANDROID_SET_TOP_BOX_A",
+        "SET_TOP_BOX_A"
+      ],
+      "Region": [
+        "978039453340",
+        "915202053340",
+        "946620753340",
+        "952038632934"
+      ]
+    },
+    "user_frequency_limit": {
+      "d": 15,
+      "w": 52
+    },
+    "volume_weight": 0.25,
+    "ad_limits_rel": {
+      "t": 3.75,
+      "h": 2.5,
+      "d": 1.625
+    }
+  },
+  {
+    "id": "Campaign_1984973edd3946de",
+    "name": "Campaign_78f39f90f4505c10",
+    "cpm": 240,
+    "priority": 4,
+    "limits": "loose",
+    "min_interval": 20,
+    "targets": {
+      "Channel": [
+        "952037271457",
+        "965158348951",
+        "952026274912"
+      ]
+    },
+    "user_frequency_limit": {
+      "d": 21,
+      "w": 67
+    },
+    "volume_weight": 0.6449497459429777,
+    "ad_limits_rel": {
+      "h": 4.375,
+      "d": 2.25
+    }
+  },
+  {
+    "id": "Campaign_99cdede9ce7aa975",
+    "name": "Campaign_0823aa18c3c2ca3c",
+    "cpm": 170,
+    "priority": 3,
+    "limits": "normal",
+    "min_interval": 30,
+    "targets": {
+      "Channel": [
+        "952038842392",
+        "965160024615",
+        "952038318747",
+        "965157930035",
+        "952039366037"
+      ],
+      "Device": [
+        "ANDROID_TV_A",
+        "ANDROID_SET_TOP_BOX_A"
+      ]
+    },
+    "user_frequency_limit": {
+      "d": 12,
+      "w": 37
+    },
+    "volume_weight": 0.4051947889738467,
+    "ad_limits_rel": {
+      "t": 3.75,
+      "h": 2.5,
+      "d": 1.625
+    }
+  },
+  {
+    "id": "Campaign_2be6940a55eb7fa0",
+    "name": "Campaign_bfbd684ea6d38f9c",
+    "cpm": 150,
+    "priority": 2,
+    "limits": "normal",
+    "min_interval": 30,
+    "targets": {
+      "Device": [
+        "SMART_TV_PLATFORM_A",
+        "SMART_TV_PLATFORM_B",
+        "SMART_TV_PLATFORM_C",
+        "ANDROID_TV_A",
+        "ANDROID_SET_TOP_BOX_A"
+      ]
+    },
+    "user_frequency_limit": {
+      "d": 12,
+      "w": 37
+    },
+    "volume_weight": 0.3271050317343574,
+    "ad_limits_rel": {
+      "t": 3.75,
+      "h": 2.5,
+      "d": 1.625
+    }
+  },
+  {
+    "id": "Campaign_9e11981cace96198",
+    "name": "Campaign_30b60302c20096a3",
+    "cpm": 210,
+    "priority": 4,
+    "limits": "normal",
+    "min_interval": 60,
+    "targets": {
+      "Category": [
+        "937456303809",
+        "937473479365"
+      ]
+    },
+    "user_frequency_limit": {
+      "d": 9,
+      "w": 30
+    },
+    "volume_weight": 0.25,
+    "ad_limits_rel": {
+      "t": 3.75,
+      "h": 2.5,
+      "d": 1.625
+    }
+  },
+  {
+    "id": "Campaign_cf47c19ce9ef3c4d",
+    "name": "Campaign_18a033858fcef7cd",
+    "cpm": 190,
+    "priority": 3,
+    "limits": "tight",
+    "min_interval": 60,
+    "targets": {
+      "Device": [
+        "SET_TOP_BOX_A"
+      ],
+      "Region": [
+        "925674953340",
+        "936147853340",
+        "967566553340",
+        "946621486443",
+        "982166824201"
+      ]
+    },
+    "user_frequency_limit": {
+      "d": 7,
+      "w": 22
+    },
+    "volume_weight": 0.25,
+    "ad_limits_rel": {
+      "t": 2.75,
+      "h": 1.875,
+      "d": 1.375,
+      "w": 1.2875
+    }
+  },
+  {
+    "id": "Children_6bf1ef19c6c58f11",
+    "name": "Children_b0f1e3ceb0b3da30",
+    "cpm": 260,
+    "priority": 5,
+    "limits": "tight",
+    "min_interval": 120,
+    "targets": {
+      "Device": [
+        "ANDROID_TV_A"
+      ],
+      "Child": [
+        "true"
+      ]
+    },
+    "user_frequency_limit": {
+      "d": 4,
+      "w": 15
+    },
+    "volume_weight": 0.25,
+    "ad_limits_rel": {
+      "t": 2.75,
+      "h": 1.875,
+      "d": 1.375,
+      "w": 1.2875
+    }
+  },
+  {
+    "id": "Campaign_d2be11d252e8975a",
+    "name": "Campaign_15cc393e200b3c64",
+    "cpm": 170,
+    "priority": 3,
+    "limits": "normal",
+    "min_interval": 30,
+    "targets": {
+      "Region": [
+        "946621486443",
+        "982166824201",
+        "936148481714"
+      ],
+      "Device": [
+        "ANDROID_TV_A",
+        "ANDROID_SET_TOP_BOX_A"
+      ]
+    },
+    "user_frequency_limit": {
+      "d": 9,
+      "w": 30
+    },
+    "volume_weight": 0.25,
+    "ad_limits_rel": {
+      "t": 3.75,
+      "h": 2.5,
+      "d": 1.625
+    }
+  },
+  {
+    "id": "Campaign_ddf62e380a1dc1a3",
+    "name": "Campaign_a16460025af591cd",
+    "cpm": 300,
+    "priority": 5,
+    "limits": "loose",
+    "min_interval": 15,
+    "start_frac": 0.4,
+    "end_frac": 0.7,
+    "targets": {
+      "Category": [
+        "937473688823",
+        "961393278034"
+      ]
+    },
+    "user_frequency_limit": {
+      "d": 15,
+      "w": 45
+    },
+    "volume_weight": 0.25,
+    "ad_limits_rel": {
+      "h": 4.375,
+      "d": 2.25
+    }
+  },
+  {
+    "id": "Campaign_924ddc03b0454da6",
+    "name": "Campaign_82eaaf51f6f9f1de",
+    "cpm": 110,
+    "priority": 1,
+    "limits": "normal",
+    "min_interval": 30,
+    "targets": {
+      "Device": [
+        "ANDROID_TV_A"
+      ],
+      "Region": [
+        "978039453340",
+        "915202053340",
+        "946620753340",
+        "952038632934",
+        "925674953340",
+        "936147853340",
+        "967566553340",
+        "946621486443",
+        "982166824201",
+        "936148481714"
+      ]
+    },
+    "user_frequency_limit": {
+      "d": 12,
+      "w": 37
+    },
+    "volume_weight": 0.25,
+    "ad_limits_rel": {
+      "t": 3.75,
+      "h": 2.5,
+      "d": 1.625
+    }
+  },
+  {
+    "id": "Campaign_e8fc9f0e665e7017",
+    "name": "Campaign_b3953d44c96cf68e",
+    "cpm": 100,
+    "priority": 1,
+    "limits": "tight",
+    "min_interval": 45,
+    "targets": {
+      "Device": [
+        "SET_TOP_BOX_A",
+        "ANDROID_SET_TOP_BOX_A",
+        "ANDROID_TV_A"
+      ]
+    },
+    "user_frequency_limit": {
+      "d": 7,
+      "w": 27
+    },
+    "volume_weight": 0.25,
+    "ad_limits_rel": {
+      "t": 2.75,
+      "h": 1.875,
+      "d": 1.375,
+      "w": 1.2875
+    }
+  }
+]

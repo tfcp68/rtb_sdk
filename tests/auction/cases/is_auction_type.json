@@ -1,0 +1,32 @@
+[
+  {
+    "input": {"val": "precise"},
+    "output": true,
+    "error": null,
+    "description": "Type 'precise' — auction-type"
+  },
+  {
+    "input": {"val": "fuzzy"},
+    "output": true,
+    "error": null,
+    "description": "Type 'fuzzy' — auction-type"
+  },
+  {
+    "input": {"val": "invalid_type"},
+    "output": false,
+    "error": null,
+    "description": "Non-existent type — return False"
+  },
+  {
+    "input": {"val": ""},
+    "output": false,
+    "error": null,
+    "description": "Empty line — return False"
+  },
+  {
+    "input": {"val": "best_one"},
+    "output": false,
+    "error": null,
+    "description": "Choice function, non-auction — return False"
+  }
+]

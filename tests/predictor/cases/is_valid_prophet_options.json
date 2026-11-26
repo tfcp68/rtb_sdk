@@ -1,0 +1,74 @@
+[
+  {
+    "description": "valid ProphetOptions hollow seasonalities",
+    "input": {
+      "options": {
+        "__type": "ProphetOptions",
+        "model_type": "prophet",
+        "growth": "linear",
+        "changepoint_prior_scale": 0.05,
+        "seasonality_mode": "additive",
+        "seasonality_prior_scale": 10.0,
+        "yearly_seasonality": true,
+        "weekly_seasonality": true,
+        "n_changepoints": 25,
+        "changepoint_range": 0.8,
+        "seasonalities": {}
+      }
+    },
+    "output": true,
+    "error": null
+  },
+  {
+    "description": "valid ProphetOptions s multiplicative seasonality",
+    "input": {
+      "options": {
+        "__type": "ProphetOptions",
+        "model_type": "prophet",
+        "growth": "linear",
+        "changepoint_prior_scale": 0.001,
+        "seasonality_mode": "multiplicative",
+        "seasonality_prior_scale": 0.05,
+        "yearly_seasonality": false,
+        "weekly_seasonality": true,
+        "n_changepoints": 15,
+        "changepoint_range": 0.5,
+        "seasonalities": {}
+      }
+    },
+    "output": true,
+    "error": null
+  },
+  {
+    "description": "slippery — hollow dict",
+    "input": {"options": {}},
+    "output": false,
+    "error": null
+  },
+  {
+    "description": "slippery — false growth type",
+    "input": {
+      "options": {
+        "__type": "ProphetOptions",
+        "model_type": "prophet",
+        "growth": "exponential",
+        "changepoint_prior_scale": 0.05,
+        "seasonality_mode": "additive",
+        "seasonality_prior_scale": 10.0,
+        "yearly_seasonality": true,
+        "weekly_seasonality": true,
+        "n_changepoints": 25,
+        "changepoint_range": 0.8,
+        "seasonalities": {}
+      }
+    },
+    "output": false,
+    "error": null
+  },
+  {
+    "description": "slippery — None",
+    "input": {"options": null},
+    "output": false,
+    "error": null
+  }
+]

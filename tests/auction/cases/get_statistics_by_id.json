@@ -1,0 +1,46 @@
+[
+  {
+    "input": {
+      "statistics": {
+        "ad_1": {
+          "precise": {"m": 100},
+          "fuzzy":   {"m": 50}
+        }
+      },
+      "id": "ad_1"
+    },
+    "output": {
+      "precise": {"m": 100},
+      "fuzzy":   {"m": 50}
+    },
+    "error": null,
+    "description": "Existing id — returns statistics from the dictionary"
+  },
+  {
+    "input": {
+      "statistics": {},
+      "id": "unknown_ad"
+    },
+    "output": {
+      "precise": {},
+      "fuzzy":   {}
+    },
+    "error": null,
+    "description": "Non-existent id — returns a defaulted empty object"
+  },
+  {
+    "input": {
+      "statistics": {
+        "ad_1": {"precise": {"m": 100}, "fuzzy": {"m": 20}},
+        "ad_2": {"precise": {"m": 50},  "fuzzy": {}}
+      },
+      "id": "ad_2"
+    },
+    "output": {
+      "precise": {"m": 50},
+      "fuzzy":   {}
+    },
+    "error": null,
+    "description": "Several announcements in statistics — returns"
+  }
+]

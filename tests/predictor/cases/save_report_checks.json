@@ -1,0 +1,32 @@
+[
+  {
+    "description": "md-The report contains the necessary headings and returns TestMetrics",
+    "input": {"scenario": "md_content"},
+    "output": true,
+    "error": null
+  },
+  {
+    "description": "json-report contains a field accuracy correct start_date",
+    "input": {"scenario": "json_content"},
+    "output": true,
+    "error": null
+  },
+  {
+    "description": "png-The report is created and not empty",
+    "input": {"scenario": "png_exists"},
+    "output": true,
+    "error": null
+  },
+  {
+    "description": "dismisses result (length-match) recording",
+    "input": {"scenario": "rejects_invalid_result"},
+    "output": null,
+    "error": "WRONG_DATA_FORMAT"
+  },
+  {
+    "description": "md and json formats return the same metrics",
+    "input": {"scenario": "same_metrics_all_formats"},
+    "output": true,
+    "error": null
+  }
+]

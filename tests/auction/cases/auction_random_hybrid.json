@@ -1,0 +1,165 @@
+[
+  {
+    "input": {
+      "ads": {},
+      "parameters": {
+        "auction_type": "random_hybrid",
+        "ads_stats": {}
+      }
+    },
+    "output": null,
+    "error": null,
+    "description": "Empty dictionary — return None"
+  },
+  {
+    "input": {
+      "ads": {
+        "ad_1": {
+          "id": "ad_1", "cpm": 100, "priority": 1, "volume": 500,
+          "start_date": "0001-01-01T00:00:00",
+          "end_date": "9999-12-31T23:59:59.999999+00:00",
+          "active": true,
+          "targets": {},
+          "ad_frequency_limit": {"m": 500},
+          "user_frequency_limit": {},
+          "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}
+        }
+      },
+      "parameters": {
+        "auction_type": "random_hybrid",
+        "ads_stats": {}
+      }
+    },
+    "output": null,
+    "error": "AuctionError(WRONG_DATA_FORMAT_ERROR_CODE, 'Invalid price_probability: None')",
+    "description": "Absent price_probability — throw away AuctionError"
+  },
+  {
+    "input": {
+      "ads": {
+        "ad_1": {
+          "id": "ad_1", "cpm": 100, "priority": 1, "volume": 500,
+          "start_date": "0001-01-01T00:00:00",
+          "end_date": "9999-12-31T23:59:59.999999+00:00",
+          "active": true,
+          "targets": {},
+          "ad_frequency_limit": {"m": 500},
+          "user_frequency_limit": {},
+          "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}
+        }
+      },
+      "parameters": {
+        "auction_type": "random_hybrid",
+        "ads_stats": {},
+        "price_probability": 0
+      }
+    },
+    "output": null,
+    "error": "AuctionError(WRONG_DATA_FORMAT_ERROR_CODE, 'Invalid price_probability: 0')",
+    "description": "price_probability = 0 — off-range (0, 1), throw away AuctionError"
+  },
+  {
+    "input": {
+      "ads": {
+        "ad_1": {
+          "id": "ad_1", "cpm": 100, "priority": 1, "volume": 500,
+          "start_date": "0001-01-01T00:00:00",
+          "end_date": "9999-12-31T23:59:59.999999+00:00",
+          "active": true,
+          "targets": {},
+          "ad_frequency_limit": {"m": 500},
+          "user_frequency_limit": {},
+          "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}
+        }
+      },
+      "parameters": {
+        "auction_type": "random_hybrid",
+        "ads_stats": {},
+        "price_probability": 1
+      }
+    },
+    "output": null,
+    "error": "AuctionError(WRONG_DATA_FORMAT_ERROR_CODE, 'Invalid price_probability: 1')",
+    "description": "price_probability = 1 — off-range (0, 1), throw away AuctionError"
+  },
+  {
+    "input": {
+      "ads": {
+        "ad_1": {
+          "id": "ad_1", "cpm": 100, "priority": 1, "volume": 500,
+          "start_date": "0001-01-01T00:00:00",
+          "end_date": "9999-12-31T23:59:59.999999+00:00",
+          "active": true,
+          "targets": {},
+          "ad_frequency_limit": {"m": 500},
+          "user_frequency_limit": {},
+          "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}
+        }
+      },
+      "parameters": {
+        "auction_type": "random_hybrid",
+        "ads_stats": {
+          "ad_1": {"precise": {}, "fuzzy": {}}
+        },
+        "price_probability": 0.5
+      }
+    },
+    "output": {
+      "id": "ad_1", "cpm": 100, "priority": 1, "volume": 500,
+      "start_date": "0001-01-01T00:00:00",
+      "end_date": "9999-12-31T23:59:59.999999+00:00",
+      "active": true,
+      "targets": {},
+      "ad_frequency_limit": {"m": 500},
+      "user_frequency_limit": {},
+      "parasitic_freq_limit": {},
+      "vocabulary_weights": {}, "tag_weights": {}
+    },
+    "error": null,
+    "description": "The only announcement — both-branch (best_price/best_velocity) return him"
+  },
+  {
+    "input": {
+      "ads": {
+        "ad_1": {
+          "id": "ad_1", "cpm": 50, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00",
+          "end_date": "9999-12-31T23:59:59.999999+00:00",
+          "active": true,
+          "targets": {},
+          "ad_frequency_limit": {},
+          "user_frequency_limit": {},
+          "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}
+        },
+        "ad_2": {
+          "id": "ad_2", "cpm": 200, "priority": 1, "volume": 100,
+          "start_date": "0001-01-01T00:00:00",
+          "end_date": "9999-12-31T23:59:59.999999+00:00",
+          "active": true,
+          "targets": {},
+          "ad_frequency_limit": {},
+          "user_frequency_limit": {},
+          "parasitic_freq_limit": {},
+          "vocabulary_weights": {}, "tag_weights": {}
+        }
+      },
+      "parameters": {
+        "auction_type": "random_hybrid",
+        "ads_stats": {
+          "ad_1": {"precise": {}, "fuzzy": {}},
+          "ad_2": {"precise": {}, "fuzzy": {}}
+        },
+        "price_probability": 0.5
+      }
+    },
+    "output": null,
+    "check_output_type": true,
+    "error": null,
+    "description": "Several announcements — strategy-choice, returns one"
+  }
+]

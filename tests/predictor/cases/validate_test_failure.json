@@ -1,0 +1,14 @@
+[
+  {
+    "description": "dismiss expected_dates pass-through",
+    "input": {"scenario": "expected_dates_with_gap"},
+    "output": null,
+    "error": "PARAMETER_ERROR_CODE"
+  },
+  {
+    "description": "dismiss expected_dates noncontinuing training_dates",
+    "input": {"scenario": "expected_dates_not_continuous"},
+    "output": null,
+    "error": "PARAMETER_ERROR_CODE"
+  }
+]

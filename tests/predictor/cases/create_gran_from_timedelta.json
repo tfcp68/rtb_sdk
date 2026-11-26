@@ -1,0 +1,62 @@
+[
+  {
+    "description": "10 minute → 't'",
+    "input": {"minutes": 10},
+    "output": "t",
+    "error": null
+  },
+  {
+    "description": "1 hour → 'h'",
+    "input": {"hours": 1},
+    "output": "h",
+    "error": null
+  },
+  {
+    "description": "1 day → 'd'",
+    "input": {"days": 1},
+    "output": "d",
+    "error": null
+  },
+  {
+    "description": "1 weekday → 'w'",
+    "input": {"weeks": 1},
+    "output": "w",
+    "error": null
+  },
+  {
+    "description": "28 days → 'm'",
+    "input": {"days": 28},
+    "output": "m",
+    "error": null
+  },
+  {
+    "description": "30 days → 'm'",
+    "input": {"days": 30},
+    "output": "m",
+    "error": null
+  },
+  {
+    "description": "31 day → 'm'",
+    "input": {"days": 31},
+    "output": "m",
+    "error": null
+  },
+  {
+    "description": "15 days — unsupported, slip-up",
+    "input": {"days": 15},
+    "output": null,
+    "error": "PARAMETER_ERROR_CODE"
+  },
+  {
+    "description": "zero-point timedelta — slip-up",
+    "input": {"seconds": 0},
+    "output": null,
+    "error": "PARAMETER_ERROR_CODE"
+  },
+  {
+    "description": "365 days — too-length, slip-up",
+    "input": {"days": 365},
+    "output": null,
+    "error": "PARAMETER_ERROR_CODE"
+  }
+]

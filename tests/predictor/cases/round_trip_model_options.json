@@ -1,0 +1,8 @@
+[
+  {
+    "description": "round-trip ModelOptions s model_type=prophet",
+    "input": {"model_type": "prophet"},
+    "output": true,
+    "error": null
+  }
+]

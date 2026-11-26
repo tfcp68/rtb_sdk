@@ -1,0 +1,57 @@
+[
+  {
+    "input": {
+      "candidates": [
+        {"parameters": {"x": 2}, "estimation": -1.0}
+      ],
+      "equation": "x_squared"
+    },
+    "output": [4.0],
+    "error": null,
+    "description": "x^2: candidate x=2 → 4.0"
+  },
+  {
+    "input": {
+      "candidates": [
+        {"parameters": {"x": 0}, "estimation": 0.0},
+        {"parameters": {"x": 3}, "estimation": 0.0}
+      ],
+      "equation": "x_squared"
+    },
+    "output": [0.0, 9.0],
+    "error": null,
+    "description": "x^2: x=0 and x=3 → [0.0, 9.0]"
+  },
+  {
+    "input": {
+      "candidates": [
+        {"parameters": {"x": 1, "y": 2}, "estimation": 0.0},
+        {"parameters": {"x": 3, "y": 4}, "estimation": 0.0}
+      ],
+      "equation": "x_plus_y"
+    },
+    "output": [3.0, 7.0],
+    "error": null,
+    "description": "x+y: (1,2)→3.0 and (3,4)→7.0"
+  },
+  {
+    "input": {
+      "candidates": [
+        {"parameters": {"x": 5}, "estimation": 100.0}
+      ],
+      "equation": "constant_1"
+    },
+    "output": [1.0],
+    "error": null,
+    "description": "constant_1: baseline assessment ignored, always 1.0"
+  },
+  {
+    "input": {
+      "candidates": [],
+      "equation": "x_squared"
+    },
+    "output": [],
+    "error": null,
+    "description": "Empty list of candidates — returns a blank list"
+  }
+]

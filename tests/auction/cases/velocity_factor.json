@@ -1,0 +1,72 @@
+[
+  {
+    "input": {
+      "current_month_volume": 20.0,
+      "month_limit": 50.0,
+      "max_volume": 100.0
+    },
+    "output": 0.6,
+    "error": null,
+    "description": "With limits — counts the balance up to the limit"
+  },
+  {
+    "input": {
+      "current_month_volume": 20.0,
+      "month_limit": null,
+      "max_volume": 100.0
+    },
+    "output": 0.8,
+    "error": null,
+    "description": "No limit — accounted for max_volume"
+  },
+  {
+    "input": {
+      "current_month_volume": 20.0,
+      "month_limit": 0,
+      "max_volume": 100.0
+    },
+    "output": 0.8,
+    "error": null,
+    "description": "Zero limit — accounted for max_volume"
+  },
+  {
+    "input": {
+      "current_month_volume": 20.0,
+      "month_limit": null,
+      "max_volume": 0
+    },
+    "output": null,
+    "error": "AuctionError(AUCTION_MATH_ERROR_CODE, 'zero division')",
+    "description": "Max_volume=0 limitless — zeroing, throw away AuctionError"
+  },
+  {
+    "input": {
+      "current_month_volume": 20.0,
+      "month_limit": 9223372036854775807,
+      "max_volume": 100.0
+    },
+    "output": 0.8,
+    "error": null,
+    "description": "Limit INT_MAX — It is interpreted as the absence of a limit, exploit max_volume"
+  },
+  {
+    "input": {
+      "current_month_volume": 50.0,
+      "month_limit": 50.0,
+      "max_volume": 100.0
+    },
+    "output": 0.0,
+    "error": null,
+    "description": "Current volume equals limit — factor 0.0"
+  },
+  {
+    "input": {
+      "current_month_volume": 60.0,
+      "month_limit": 50.0,
+      "max_volume": 100.0
+    },
+    "output": -0.2,
+    "error": null,
+    "description": "Exceeding the limit — negative"
+  }
+]

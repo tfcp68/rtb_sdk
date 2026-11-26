@@ -1,0 +1,44 @@
+[
+  {
+    "description": "Rejects the invalid date string in DataFrame",
+    "input": {"scenario": "invalid_date_string"},
+    "output": null,
+    "error": "PARAMETER_ERROR_CODE"
+  },
+  {
+    "description": "Rejects the invalid value string in DataFrame",
+    "input": {"scenario": "invalid_value_string"},
+    "output": null,
+    "error": "PARAMETER_ERROR_CODE"
+  },
+  {
+    "description": "dismiss null date-bar",
+    "input": {"scenario": "null_date"},
+    "output": null,
+    "error": "PARAMETER_ERROR_CODE"
+  },
+  {
+    "description": "dismiss null column",
+    "input": {"scenario": "null_value"},
+    "output": null,
+    "error": "PARAMETER_ERROR_CODE"
+  },
+  {
+    "description": "rejects omissions in dates after determination resolution",
+    "input": {"scenario": "gap_in_dates"},
+    "output": null,
+    "error": "PARAMETER_ERROR_CODE"
+  },
+  {
+    "description": "rejects a nonexistent column",
+    "input": {"scenario": "missing_column"},
+    "output": null,
+    "error": "PARAMETER_ERROR_CODE"
+  },
+  {
+    "description": "dismiss DataFrame single-line",
+    "input": {"scenario": "single_row"},
+    "output": null,
+    "error": "PARAMETER_ERROR_CODE"
+  }
+]

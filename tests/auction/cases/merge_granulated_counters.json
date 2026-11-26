@@ -1,0 +1,26 @@
+[
+  {
+    "input": {"a": {}, "b": {}},
+    "output": {},
+    "error": null,
+    "description": "Both meters are empty — zero-sum"
+  },
+  {
+    "input": {"a": {"m": 100}, "b": {}},
+    "output": {"m": 100},
+    "error": null,
+    "description": "One meter is empty — return the values of the second"
+  },
+  {
+    "input": {"a": {"m": 100}, "b": {"m": 50}},
+    "output": {"m": 150},
+    "error": null,
+    "description": "Same key on both counters — summarise"
+  },
+  {
+    "input": {"a": {"m": 100, "d": 10}, "b": {"m": 50, "h": 5}},
+    "output": {"m": 150, "d": 10, "h": 5},
+    "error": null,
+    "description": "Different keys — combines and summarizes all granulations"
+  }
+]

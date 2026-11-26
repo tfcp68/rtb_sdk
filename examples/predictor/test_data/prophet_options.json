@@ -1,0 +1,17 @@
+{
+  "growth": "linear",
+  "changepoint_prior_scale": 0.05,
+  "seasonality_mode": "additive",
+  "seasonality_prior_scale": 10.0,
+  "yearly_seasonality": false,
+  "weekly_seasonality": true,
+  "n_changepoints": 10,
+  "changepoint_range": 0.8,
+  "seasonalities": {
+    "monthly": {
+      "name": "monthly",
+      "period": 30.5,
+      "fourier_order": 5
+    }
+  }
+}

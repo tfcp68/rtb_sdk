@@ -1,0 +1,48 @@
+[
+  {
+    "description": "valid PredictResult day-data",
+    "input": {
+      "result": {
+        "__type": "PredictResult",
+        "training_dates": [
+          "2024-01-01T00:00:00", "2024-01-02T00:00:00"
+        ],
+        "training_values": [100.0, 101.0],
+        "predict_dates": [
+          "2024-01-03T00:00:00", "2024-01-04T00:00:00"
+        ],
+        "predict_values": [102.0, 103.0]
+      }
+    },
+    "output": true,
+    "error": null
+  },
+  {
+    "description": "slippery — hollow dict",
+    "input": {"result": {}},
+    "output": false,
+    "error": null
+  },
+  {
+    "description": "slippery — lengthless training_dates and training_values",
+    "input": {
+      "result": {
+        "__type": "PredictResult",
+        "training_dates": [
+          "2024-01-01T00:00:00", "2024-01-02T00:00:00"
+        ],
+        "training_values": [100.0],
+        "predict_dates": ["2024-01-03T00:00:00"],
+        "predict_values": [102.0]
+      }
+    },
+    "output": false,
+    "error": null
+  },
+  {
+    "description": "slippery — None",
+    "input": {"result": null},
+    "output": false,
+    "error": null
+  }
+]

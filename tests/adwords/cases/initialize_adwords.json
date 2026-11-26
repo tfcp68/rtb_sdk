@@ -1,0 +1,115 @@
+[
+  {
+    "input": {
+      "ads": {
+        "ad_1": {
+          "id": "ad_1", "cpm": 10.0, "priority": 1, "volume": 0,
+          "start_date": "0001-01-01T00:00:00",
+          "end_date": "9999-12-31T23:59:59.999999",
+          "active": true,
+          "targets": {},
+          "ad_frequency_limit": {},
+          "user_frequency_limit": {},
+          "parasitic_freq_limit": {},
+          "vocabulary_weights": {},
+          "tag_weights": {}
+        },
+        "ad_2": {
+          "id": "ad_2", "cpm": 5.0, "priority": 1, "volume": 0,
+          "start_date": "0001-01-01T00:00:00",
+          "end_date": "9999-12-31T23:59:59.999999",
+          "active": true,
+          "targets": {},
+          "ad_frequency_limit": {},
+          "user_frequency_limit": {},
+          "parasitic_freq_limit": {},
+          "vocabulary_weights": {},
+          "tag_weights": {}
+        }
+      },
+      "algorithm": "a2_single_valued"
+    },
+    "output": null,
+    "check_output_type": true,
+    "error": null,
+    "description": "A2: correct initialization with 2 announcements"
+  },
+  {
+    "input": {
+      "ads": {
+        "ad_1": {
+          "id": "ad_1", "cpm": 10.0, "priority": 1, "volume": 0,
+          "budget": 100.0,
+          "start_date": "0001-01-01T00:00:00",
+          "end_date": "9999-12-31T23:59:59.999999",
+          "active": true,
+          "targets": {},
+          "ad_frequency_limit": {},
+          "user_frequency_limit": {},
+          "parasitic_freq_limit": {},
+          "vocabulary_weights": {},
+          "tag_weights": {}
+        }
+      },
+      "algorithm": "a3_small"
+    },
+    "output": null,
+    "check_output_type": true,
+    "error": null,
+    "description": "A3: Proper initialization with a budget > 0"
+  },
+  {
+    "input": {
+      "ads": {},
+      "algorithm": "a2_single_valued"
+    },
+    "output": null,
+    "error": "WRONG_DATA_FORMAT_ERROR_CODE",
+    "description": "hollow ads → mistake"
+  },
+  {
+    "input": {
+      "ads": {
+        "ad_1": {
+          "id": "ad_1", "cpm": 10.0, "priority": 1, "volume": 0,
+          "budget": 0.0,
+          "start_date": "0001-01-01T00:00:00",
+          "end_date": "9999-12-31T23:59:59.999999",
+          "active": true,
+          "targets": {},
+          "ad_frequency_limit": {},
+          "user_frequency_limit": {},
+          "parasitic_freq_limit": {},
+          "vocabulary_weights": {},
+          "tag_weights": {}
+        }
+      },
+      "algorithm": "a3_small"
+    },
+    "output": null,
+    "error": "WRONG_DATA_FORMAT_ERROR_CODE",
+    "description": "A3 + budget=0.0 → mistake"
+  },
+  {
+    "input": {
+      "ads": {
+        "ad_1": {
+          "id": "ad_1", "cpm": 10.0, "priority": 1, "volume": 0,
+          "start_date": "0001-01-01T00:00:00",
+          "end_date": "9999-12-31T23:59:59.999999",
+          "active": true,
+          "targets": {},
+          "ad_frequency_limit": {},
+          "user_frequency_limit": {},
+          "parasitic_freq_limit": {},
+          "vocabulary_weights": {},
+          "tag_weights": {}
+        }
+      },
+      "algorithm": "invalid_algo"
+    },
+    "output": null,
+    "error": "WRONG_DATA_FORMAT_ERROR_CODE",
+    "description": "faulty algorithm → mistake"
+  }
+]

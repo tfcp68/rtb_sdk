@@ -1,0 +1,62 @@
+[
+  {
+    "description": "valid ProphetModelPredictParams day-step",
+    "input": {
+      "data": {
+        "__type": "ProphetModelPredictParams",
+        "forecast_periods": 7,
+        "resolution": "d"
+      }
+    },
+    "output": true,
+    "error": null
+  },
+  {
+    "description": "valid ProphetModelPredictParams hour-step",
+    "input": {
+      "data": {
+        "__type": "ProphetModelPredictParams",
+        "forecast_periods": 24,
+        "resolution": "h"
+      }
+    },
+    "output": true,
+    "error": null
+  },
+  {
+    "description": "valid ProphetModelPredictParams 10-minute-step",
+    "input": {
+      "data": {
+        "__type": "ProphetModelPredictParams",
+        "forecast_periods": 1,
+        "resolution": "t"
+      }
+    },
+    "output": true,
+    "error": null
+  },
+  {
+    "description": "slippery — hollow dict",
+    "input": {"data": {}},
+    "output": false,
+    "error": null
+  },
+  {
+    "description": "slippery — false resolution",
+    "input": {
+      "data": {
+        "__type": "ProphetModelPredictParams",
+        "forecast_periods": 7,
+        "resolution": "year"
+      }
+    },
+    "output": false,
+    "error": null
+  },
+  {
+    "description": "slippery — None",
+    "input": {"data": null},
+    "output": false,
+    "error": null
+  }
+]

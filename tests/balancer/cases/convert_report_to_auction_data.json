@@ -1,0 +1,677 @@
+[
+  {
+    "description": "[ads_total] ads_total == value report",
+    "input": {
+      "ads": "file://fixtures/ads/ADS_TWO_GEO_PRICES.json",
+      "report": {
+        "banner_high": 3000,
+        "banner_low": 2000
+      },
+      "params": "file://fixtures/params/PARAMS_SINGLE_GEO.json"
+    },
+    "output": {
+      "field": "ads_total",
+      "value": 5000
+    },
+    "error": null,
+    "check_mode": "field_eq"
+  },
+  {
+    "description": "[ads_distribution] ads_distribution coincidental report",
+    "input": {
+      "ads": "file://fixtures/ads/ADS_TWO_GEO_PRICES.json",
+      "report": {
+        "banner_high": 1200,
+        "banner_low": 800
+      },
+      "params": "file://fixtures/params/PARAMS_SINGLE_GEO.json"
+    },
+    "output": {
+      "field": "ads_distribution",
+      "key": "banner_high",
+      "value": 1200
+    },
+    "error": null,
+    "check_mode": "field_sub_eq"
+  },
+  {
+    "description": "[ads_probabilities] ads_probabilities contains the keys of all advertisements",
+    "input": {
+      "ads": "file://fixtures/ads/ADS_TWO_GEO_PRICES.json",
+      "report": {
+        "banner_high": 3000,
+        "banner_low": 2000
+      },
+      "params": "file://fixtures/params/PARAMS_SINGLE_GEO.json"
+    },
+    "output": null,
+    "error": null,
+    "check_mode": "output_type"
+  },
+  {
+    "description": "[hollow report] ads_total=0 empty report",
+    "input": {
+      "ads": "file://fixtures/ads/ADS_SINGLE_GEO.json",
+      "report": {
+        "banner_1": 0
+      },
+      "params": "file://fixtures/params/PARAMS_SINGLE_GEO.json"
+    },
+    "output": {
+      "field": "ads_total",
+      "value": 0
+    },
+    "error": null,
+    "check_mode": "field_eq"
+  },
+  {
+    "description": "[two-dictionary] Successful conversion with two vocab s ads_distribution",
+    "input": {
+      "ads": {
+        "ad_1": {
+          "id": "ad_1",
+          "targets": {
+            "value": {
+              "geo": [
+                "msk"
+              ],
+              "age": [
+                "18-24"
+              ]
+            }
+          },
+          "volume": 5000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 99999
+            }
+          }
+        }
+      },
+      "report": {
+        "ad_1": 4000
+      },
+      "params": "file://fixtures/params/PARAMS_GEO_AGE.json"
+    },
+    "output": {
+      "field": "ads_total",
+      "value": 4000
+    },
+    "error": null,
+    "check_mode": "field_eq"
+  },
+  {
+    "description": "[precision] ads_distribution[banner_low] == report[banner_low] = 800",
+    "input": {
+      "ads": "file://fixtures/ads/ADS_TWO_GEO_PRICES.json",
+      "report": {
+        "banner_high": 1200,
+        "banner_low": 800
+      },
+      "params": "file://fixtures/params/PARAMS_SINGLE_GEO.json"
+    },
+    "output": {
+      "field": "ads_distribution",
+      "key": "banner_low",
+      "value": 800
+    },
+    "error": null,
+    "check_mode": "field_sub_eq"
+  },
+  {
+    "description": "[precision] ads_probabilities[banner_high] > 0 — Probability of a real-target announcement",
+    "input": {
+      "ads": "file://fixtures/ads/ADS_TWO_GEO_PRICES.json",
+      "report": {
+        "banner_high": 3000,
+        "banner_low": 2000
+      },
+      "params": "file://fixtures/params/PARAMS_SINGLE_GEO.json"
+    },
+    "output": {
+      "field": "ads_probabilities",
+      "key": "banner_high",
+      "min": 1e-09
+    },
+    "error": null,
+    "check_mode": "field_sub_gte"
+  },
+  {
+    "description": "[precision] ads_probabilities[banner_1] = P(geo:msk) = 0.6 target geo:msk",
+    "input": {
+      "ads": "file://fixtures/ads/ADS_SINGLE_GEO.json",
+      "report": {
+        "banner_1": 3000
+      },
+      "params": "file://fixtures/params/PARAMS_SINGLE_GEO.json"
+    },
+    "output": {
+      "field": "ads_probabilities",
+      "key": "banner_1",
+      "value": 0.6
+    },
+    "error": null,
+    "check_mode": "field_sub_eq"
+  },
+  {
+    "description": "[ads_total] report three-banner → ads_total == sum",
+    "input": {
+      "ads": {
+        "a1": {
+          "id": "a1",
+          "targets": {
+            "value": {
+              "geo": [
+                "msk"
+              ]
+            }
+          },
+          "volume": 5000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 99999
+            }
+          }
+        },
+        "a2": {
+          "id": "a2",
+          "targets": {
+            "value": {
+              "geo": [
+                "spb"
+              ]
+            }
+          },
+          "volume": 5000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 99999
+            }
+          }
+        },
+        "a3": {
+          "id": "a3",
+          "targets": {
+            "value": {
+              "geo": [
+                "msk",
+                "spb"
+              ]
+            }
+          },
+          "volume": 5000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 99999
+            }
+          }
+        }
+      },
+      "report": {
+        "a1": 3000,
+        "a2": 2000,
+        "a3": 1500
+      },
+      "params": {
+        "total_traffic_volume": 10000,
+        "tag_probabilities": {
+          "geo:msk": 0.6,
+          "geo:spb": 0.4
+        },
+        "vocabs": {
+          "geo": [
+            "geo:msk",
+            "geo:spb"
+          ]
+        },
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1
+      }
+    },
+    "output": {
+      "field": "ads_total",
+      "value": 6500
+    },
+    "error": null,
+    "check_mode": "field_eq"
+  },
+  {
+    "description": "[ads_distribution] distribution[a2] == report[a2]",
+    "input": {
+      "ads": {
+        "a1": {
+          "id": "a1",
+          "targets": {
+            "value": {
+              "geo": [
+                "msk"
+              ]
+            }
+          },
+          "volume": 5000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 99999
+            }
+          }
+        },
+        "a2": {
+          "id": "a2",
+          "targets": {
+            "value": {
+              "geo": [
+                "spb"
+              ]
+            }
+          },
+          "volume": 5000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 99999
+            }
+          }
+        }
+      },
+      "report": {
+        "a1": 3000,
+        "a2": 2000
+      },
+      "params": {
+        "total_traffic_volume": 10000,
+        "tag_probabilities": {
+          "geo:msk": 0.6,
+          "geo:spb": 0.4
+        },
+        "vocabs": {
+          "geo": [
+            "geo:msk",
+            "geo:spb"
+          ]
+        },
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1
+      }
+    },
+    "output": {
+      "field": "ads_distribution",
+      "key": "a2",
+      "value": 2000
+    },
+    "error": null,
+    "check_mode": "field_sub_eq"
+  },
+  {
+    "description": "[ads_probabilities] P(ad) > 0 real-target banner",
+    "input": {
+      "ads": {
+        "b1": {
+          "id": "b1",
+          "targets": {
+            "value": {
+              "geo": [
+                "msk"
+              ],
+              "age": [
+                "young"
+              ]
+            }
+          },
+          "volume": 5000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 99999
+            }
+          }
+        }
+      },
+      "report": {
+        "b1": 2000
+      },
+      "params": {
+        "total_traffic_volume": 10000,
+        "tag_probabilities": {
+          "geo:msk": 0.5,
+          "geo:spb": 0.5,
+          "age:young": 0.6,
+          "age:old": 0.4
+        },
+        "vocabs": {
+          "geo": [
+            "geo:msk",
+            "geo:spb"
+          ],
+          "age": [
+            "age:young",
+            "age:old"
+          ]
+        },
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1
+      }
+    },
+    "output": {
+      "field": "ads_probabilities",
+      "key": "b1",
+      "min": 0.01
+    },
+    "error": null,
+    "check_mode": "field_sub_gte"
+  },
+  {
+    "description": "[two-dictionary] ads_total == sum",
+    "input": {
+      "ads": {
+        "a1": {
+          "id": "a1",
+          "targets": {
+            "value": {
+              "geo": [
+                "msk"
+              ],
+              "age": [
+                "young"
+              ]
+            }
+          },
+          "volume": 5000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 99999
+            }
+          }
+        },
+        "a2": {
+          "id": "a2",
+          "targets": {
+            "value": {
+              "geo": [
+                "spb"
+              ],
+              "age": [
+                "old"
+              ]
+            }
+          },
+          "volume": 5000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 99999
+            }
+          }
+        }
+      },
+      "report": {
+        "a1": 1500,
+        "a2": 1000
+      },
+      "params": {
+        "total_traffic_volume": 10000,
+        "tag_probabilities": {
+          "geo:msk": 0.5,
+          "geo:spb": 0.5,
+          "age:young": 0.6,
+          "age:old": 0.4
+        },
+        "vocabs": {
+          "geo": [
+            "geo:msk",
+            "geo:spb"
+          ],
+          "age": [
+            "age:young",
+            "age:old"
+          ]
+        },
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1
+      }
+    },
+    "output": {
+      "field": "ads_total",
+      "value": 2500
+    },
+    "error": null,
+    "check_mode": "field_eq"
+  },
+  {
+    "description": "[probability] P(ad) = P(geo:msk)*P(age:young) = 0.5*0.6 = 0.3",
+    "input": {
+      "ads": {
+        "x": {
+          "id": "x",
+          "targets": {
+            "value": {
+              "geo": [
+                "msk"
+              ],
+              "age": [
+                "young"
+              ]
+            }
+          },
+          "volume": 5000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 99999
+            }
+          }
+        }
+      },
+      "report": {
+        "x": 1500
+      },
+      "params": {
+        "total_traffic_volume": 10000,
+        "tag_probabilities": {
+          "geo:msk": 0.5,
+          "geo:spb": 0.5,
+          "age:young": 0.6,
+          "age:old": 0.4
+        },
+        "vocabs": {
+          "geo": [
+            "geo:msk",
+            "geo:spb"
+          ],
+          "age": [
+            "age:young",
+            "age:old"
+          ]
+        },
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1
+      }
+    },
+    "output": {
+      "field": "ads_probabilities",
+      "key": "x",
+      "value": 0.3
+    },
+    "error": null,
+    "check_mode": "field_sub_eq"
+  },
+  {
+    "description": "[flat-head] tagging = tagged → P(ad) = 1.0",
+    "input": {
+      "ads": {
+        "all": {
+          "id": "all",
+          "targets": {
+            "value": {
+              "geo": []
+            }
+          },
+          "volume": 5000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 99999
+            }
+          }
+        }
+      },
+      "report": {
+        "all": 5000
+      },
+      "params": {
+        "total_traffic_volume": 10000,
+        "tag_probabilities": {
+          "geo:msk": 0.6,
+          "geo:spb": 0.4
+        },
+        "vocabs": {
+          "geo": [
+            "geo:msk",
+            "geo:spb"
+          ]
+        },
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1
+      }
+    },
+    "output": {
+      "field": "ads_probabilities",
+      "key": "all",
+      "value": 1.0
+    },
+    "error": null,
+    "check_mode": "field_sub_eq"
+  },
+  {
+    "description": "[structure] The result contains all the necessary fields",
+    "input": {
+      "ads": {
+        "b1": {
+          "id": "b1",
+          "targets": {
+            "value": {
+              "geo": [
+                "msk"
+              ]
+            }
+          },
+          "volume": 5000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 99999
+            }
+          }
+        }
+      },
+      "report": {
+        "b1": 3000
+      },
+      "params": {
+        "total_traffic_volume": 5000,
+        "tag_probabilities": {
+          "geo:msk": 0.6,
+          "geo:spb": 0.4
+        },
+        "vocabs": {
+          "geo": [
+            "geo:msk",
+            "geo:spb"
+          ]
+        },
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1
+      }
+    },
+    "output": null,
+    "error": null,
+    "check_mode": "output_type"
+  },
+  {
+    "description": "[hollow report] report zero-out → ads_total=0",
+    "input": {
+      "ads": {
+        "a1": {
+          "id": "a1",
+          "targets": {
+            "value": {
+              "geo": [
+                "msk"
+              ]
+            }
+          },
+          "volume": 5000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 99999
+            }
+          }
+        },
+        "a2": {
+          "id": "a2",
+          "targets": {
+            "value": {
+              "geo": [
+                "spb"
+              ]
+            }
+          },
+          "volume": 5000,
+          "cpm": 10.0,
+          "ad_frequency_limit": {
+            "value": {
+              "d": 99999
+            }
+          }
+        }
+      },
+      "report": {
+        "a1": 0,
+        "a2": 0
+      },
+      "params": {
+        "total_traffic_volume": 10000,
+        "tag_probabilities": {
+          "geo:msk": 0.6,
+          "geo:spb": 0.4
+        },
+        "vocabs": {
+          "geo": [
+            "geo:msk",
+            "geo:spb"
+          ]
+        },
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1
+      }
+    },
+    "output": {
+      "field": "ads_total",
+      "value": 0
+    },
+    "error": null,
+    "check_mode": "field_eq"
+  }
+]

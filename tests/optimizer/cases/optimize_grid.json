@@ -1,0 +1,136 @@
+[
+  {
+    "input": {
+      "decision_variables": {"x": ["A", "B", "C"]},
+      "estimated_candidates": [
+        {"parameters": {"x": "A"}, "estimation": 3.0},
+        {"parameters": {"x": "B"}, "estimation": 7.0},
+        {"parameters": {"x": "C"}, "estimation": 1.0}
+      ],
+      "state": {
+        "n_combinations": 3,
+        "n_step_combinations": 3,
+        "strategy_type": "maximize"
+      }
+    },
+    "output": {"estimation": 7.0, "parameters": {"x": "B"}},
+    "error": null,
+    "description": "Maximize: best-case x=B (estimation=7.0)"
+  },
+  {
+    "input": {
+      "decision_variables": {"x": ["A", "B", "C"]},
+      "estimated_candidates": [
+        {"parameters": {"x": "A"}, "estimation": 3.0},
+        {"parameters": {"x": "B"}, "estimation": 7.0},
+        {"parameters": {"x": "C"}, "estimation": 1.0}
+      ],
+      "state": {
+        "n_combinations": 3,
+        "n_step_combinations": 3,
+        "strategy_type": "minimize"
+      }
+    },
+    "output": {"estimation": 1.0, "parameters": {"x": "C"}},
+    "error": null,
+    "description": "Minimize: best-case x=C (estimation=1.0)"
+  },
+  {
+    "input": {
+      "decision_variables": {"x": [10, 20, 30, 40, 50]},
+      "estimated_candidates": [
+        {"parameters": {"x": 10}, "estimation": 0.1},
+        {"parameters": {"x": 20}, "estimation": 0.5},
+        {"parameters": {"x": 30}, "estimation": 0.9},
+        {"parameters": {"x": 40}, "estimation": 0.3},
+        {"parameters": {"x": 50}, "estimation": 0.7}
+      ],
+      "state": {
+        "n_combinations": 5,
+        "n_step_combinations": 5,
+        "strategy_type": "maximize"
+      }
+    },
+    "output": {"estimation": 0.9, "parameters": {"x": 30}},
+    "error": null,
+    "description": "Maximize: 5 candidate — maximum (x=30, est=0.9)"
+  },
+  {
+    "input": {
+      "decision_variables": {"x": [10, 20, 30, 40, 50]},
+      "estimated_candidates": [
+        {"parameters": {"x": 10}, "estimation": 0.1},
+        {"parameters": {"x": 20}, "estimation": 0.5},
+        {"parameters": {"x": 30}, "estimation": 0.9},
+        {"parameters": {"x": 40}, "estimation": 0.3},
+        {"parameters": {"x": 50}, "estimation": 0.7}
+      ],
+      "state": {
+        "n_combinations": 5,
+        "n_step_combinations": 5,
+        "strategy_type": "minimize"
+      }
+    },
+    "output": {"estimation": 0.1, "parameters": {"x": 10}},
+    "error": null,
+    "description": "Minimize: 5 candidate — select the minimum (x=10, est=0.1)"
+  },
+  {
+    "input": {
+      "decision_variables": {"x": ["only"]},
+      "estimated_candidates": [
+        {"parameters": {"x": "only"}, "estimation": 42.0}
+      ],
+      "state": {
+        "n_combinations": 1,
+        "n_step_combinations": 1,
+        "strategy_type": "maximize"
+      }
+    },
+    "output": {"estimation": 42.0, "parameters": {"x": "only"}},
+    "error": null,
+    "description": "The only candidate — returns without comparison"
+  },
+  {
+    "input": {
+      "decision_variables": null,
+      "estimated_candidates": [
+        {"parameters": {"x": "A"}, "estimation": 1.0}
+      ],
+      "state": {
+        "n_combinations": 1,
+        "n_step_combinations": 1,
+        "strategy_type": "maximize"
+      }
+    },
+    "output": null,
+    "error": "OptimizerError(PARAMETER_ERROR_CODE)",
+    "description": "Mistake: decision_variables=null"
+  },
+  {
+    "input": {
+      "decision_variables": {"x": ["A"]},
+      "estimated_candidates": null,
+      "state": {
+        "n_combinations": 1,
+        "n_step_combinations": 1,
+        "strategy_type": "maximize"
+      }
+    },
+    "output": null,
+    "error": "OptimizerError(PARAMETER_ERROR_CODE)",
+    "description": "Mistake: estimated_candidates=null"
+  },
+  {
+    "input": {
+      "decision_variables": {"x": ["A"]},
+      "estimated_candidates": [
+        {"parameters": {"x": "A"}, "estimation": 1.0}
+      ],
+      "state": null
+    },
+    "output": null,
+    "error": "OptimizerError(PARAMETER_ERROR_CODE)",
+    "description": "Mistake: state=null"
+  }
+]

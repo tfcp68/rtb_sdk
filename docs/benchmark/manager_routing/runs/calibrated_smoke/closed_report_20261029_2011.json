@@ -1,0 +1,1158 @@
+[
+ {
+  "policy": "random",
+  "days": [
+   5,
+   7
+  ],
+  "sample": 0.0022854344266506274,
+  "requests": 149092,
+  "pool": 95557,
+  "sent": 76638,
+  "ok": 25980,
+  "per_day": [
+   {
+    "pool": 46910,
+    "sent": 37689,
+    "ok": 13144,
+    "mgr_rev": 0.0,
+    "our_rev": 0.0,
+    "requests": 73958
+   },
+   {
+    "pool": 48647,
+    "sent": 38949,
+    "ok": 12836,
+    "mgr_rev": 0.0,
+    "our_rev": 0.0,
+    "requests": 75134
+   }
+  ],
+  "sent_pct_pool": 0.802013457936101,
+  "sent_pct_all": 0.5140316046467953,
+  "sellthrough": 0.33899632036326627,
+  "ok_pct_pool": 0.27187961112215747,
+  "manager_price": 150.0,
+  "manager_revenue": 3897000.0,
+  "our_revenue": 15797655.0,
+  "total_revenue": 19694655.0,
+  "our_impressions": 70967,
+  "our_requests": 72454,
+  "our_miss_nomatch": 0,
+  "our_miss_filtered": 1487,
+  "ours": [
+   {
+    "id": "Bank_32fadf807648685a",
+    "name": "Bank_24d40196bd94b649",
+    "cpm": 280.0,
+    "volume": 11549,
+    "impressions": 11549
+   },
+   {
+    "id": "Telecom_a430e1058e802ed7",
+    "name": "Telecom_d46ed517452394a2",
+    "cpm": 160.0,
+    "volume": 16865,
+    "impressions": 5950
+   },
+   {
+    "id": "Retail_ae5378fe75d88d37",
+    "name": "Retail_59c52779836b2bae",
+    "cpm": 140.0,
+    "volume": 13738,
+    "impressions": 2198
+   },
+   {
+    "id": "Campaign_d43266d29da2e25a",
+    "name": "Campaign_51288482374d537c",
+    "cpm": 90.0,
+    "volume": 10155,
+    "impressions": 75
+   },
+   {
+    "id": "Automotive_b7d620dcf2ae44e8",
+    "name": "Automotive_9e1edff89ac9a790",
+    "cpm": 250.0,
+    "volume": 7447,
+    "impressions": 7447
+   },
+   {
+    "id": "Campaign_09e7557444a06b7a",
+    "name": "Campaign_4d4dc901c2e49788",
+    "cpm": 200.0,
+    "volume": 14661,
+    "impressions": 9870
+   },
+   {
+    "id": "Property_367d15dbf1509432",
+    "name": "Property_5a34d256a53751c3",
+    "cpm": 320.0,
+    "volume": 9939,
+    "impressions": 9939
+   },
+   {
+    "id": "Retail_b535df6d86169eb7",
+    "name": "Retail_5d131e8ff2fd6390",
+    "cpm": 130.0,
+    "volume": 4255,
+    "impressions": 2188
+   },
+   {
+    "id": "Health_d1699700fb8a1b5a",
+    "name": "Health_0676356d6ba137b6",
+    "cpm": 150.0,
+    "volume": 1503,
+    "impressions": 26
+   },
+   {
+    "id": "Travel_2f3193f27ac76339",
+    "name": "Travel_3724963d1920e16a",
+    "cpm": 200.0,
+    "volume": 1659,
+    "impressions": 1192
+   },
+   {
+    "id": "Bank_2cab9f66938ff8ba",
+    "name": "Bank_93461467de106ae8",
+    "cpm": 200.0,
+    "volume": 1480,
+    "impressions": 121
+   },
+   {
+    "id": "Retail_1d9b06f4fef81318",
+    "name": "Retail_6162b5875d2e4e9b",
+    "cpm": 130.0,
+    "volume": 2950,
+    "impressions": 989
+   },
+   {
+    "id": "Children_1594181dc4501fdd",
+    "name": "Children_90daa9b022baf620",
+    "cpm": 110.0,
+    "volume": 2161,
+    "impressions": 1563
+   },
+   {
+    "id": "Children_ac436e8a5950c8cc",
+    "name": "Children_1aa561689b8b57e7",
+    "cpm": 150.0,
+    "volume": 421,
+    "impressions": 0
+   },
+   {
+    "id": "Campaign_a79617827e3dedb0",
+    "name": "Retail_8846b13f4335d7b7",
+    "cpm": 120.0,
+    "volume": 716,
+    "impressions": 67
+   },
+   {
+    "id": "Entertainment_0b9856205035bc36",
+    "name": "Entertainment_69bc7e453450b097",
+    "cpm": 170.0,
+    "volume": 871,
+    "impressions": 137
+   },
+   {
+    "id": "Entertainment_baec255767ade8d5",
+    "name": "Entertainment_a1dfc2a1e842d0a2",
+    "cpm": 220.0,
+    "volume": 2977,
+    "impressions": 542
+   },
+   {
+    "id": "Entertainment_31d82ddec3e133f8",
+    "name": "Entertainment_9237fb2e70bf48fc",
+    "cpm": 180.0,
+    "volume": 2695,
+    "impressions": 1015
+   },
+   {
+    "id": "Telecom_ac7afcd1cd75672e",
+    "name": "Campaign_4ada123d5805979b",
+    "cpm": 100.0,
+    "volume": 1488,
+    "impressions": 743
+   },
+   {
+    "id": "Entertainment_213478344bb646c3",
+    "name": "Entertainment_6e3c73f12bc64057",
+    "cpm": 90.0,
+    "volume": 936,
+    "impressions": 22
+   },
+   {
+    "id": "Retail_6715741489f4dba9",
+    "name": "Retail_de2dbf9477c474eb",
+    "cpm": 140.0,
+    "volume": 1309,
+    "impressions": 272
+   },
+   {
+    "id": "Health_0a2ad928707a5106",
+    "name": "Health_f41f5144a75c3d01",
+    "cpm": 160.0,
+    "volume": 1252,
+    "impressions": 726
+   },
+   {
+    "id": "Bank_54776942cfb844e7",
+    "name": "Bank_1da9a798e900c021",
+    "cpm": 300.0,
+    "volume": 1485,
+    "impressions": 1485
+   },
+   {
+    "id": "Automotive_863808cc6dd3d244",
+    "name": "Automotive_ee52e22a84292a1f",
+    "cpm": 210.0,
+    "volume": 265,
+    "impressions": 82
+   },
+   {
+    "id": "Campaign_ba871ae82518bb43",
+    "name": "Campaign_5cb77808ad316b86",
+    "cpm": 80.0,
+    "volume": 370,
+    "impressions": 68
+   },
+   {
+    "id": "Campaign_1b163be8b57b3ca9",
+    "name": "Campaign_c49a8ec579219c40",
+    "cpm": 85.0,
+    "volume": 38,
+    "impressions": 1
+   },
+   {
+    "id": "Campaign_07df51f771e93f7f",
+    "name": "Campaign_8bc4330af9c149de",
+    "cpm": 95.0,
+    "volume": 609,
+    "impressions": 0
+   },
+   {
+    "id": "Campaign_38d87027581188ef",
+    "name": "Campaign_e02df8d0c6b01b69",
+    "cpm": 60.0,
+    "volume": 29518,
+    "impressions": 662
+   },
+   {
+    "id": "Campaign_c6c74f0a1f8e7d7a",
+    "name": "Campaign_2320b836ad0f2d84",
+    "cpm": 75.0,
+    "volume": 17885,
+    "impressions": 2116
+   },
+   {
+    "id": "Campaign_167afe009b45df32",
+    "name": "Campaign_e5908cfe00510515",
+    "cpm": 70.0,
+    "volume": 9525,
+    "impressions": 517
+   },
+   {
+    "id": "Campaign_2f5cd7195244f118",
+    "name": "Campaign_ee21aa935c0ed10e",
+    "cpm": 230.0,
+    "volume": 11549,
+    "impressions": 3574
+   },
+   {
+    "id": "Campaign_3d0df9261c69b779",
+    "name": "Campaign_f3fec2802fa06a3c",
+    "cpm": 230.0,
+    "volume": 11549,
+    "impressions": 5831
+   }
+  ],
+  "hidden_manager": [
+   {
+    "id": "Campaign_ea5f7d580a451649",
+    "name": "Campaign_4d61f9faeb01d35c",
+    "volume": 9226,
+    "impressions": 3351
+   },
+   {
+    "id": "Campaign_1984973edd3946de",
+    "name": "Campaign_78f39f90f4505c10",
+    "volume": 12909,
+    "impressions": 5252
+   },
+   {
+    "id": "Campaign_99cdede9ce7aa975",
+    "name": "Campaign_0823aa18c3c2ca3c",
+    "volume": 2963,
+    "impressions": 1450
+   },
+   {
+    "id": "Campaign_2be6940a55eb7fa0",
+    "name": "Campaign_bfbd684ea6d38f9c",
+    "volume": 13068,
+    "impressions": 5641
+   },
+   {
+    "id": "Campaign_9e11981cace96198",
+    "name": "Campaign_30b60302c20096a3",
+    "volume": 13850,
+    "impressions": 2492
+   },
+   {
+    "id": "Campaign_cf47c19ce9ef3c4d",
+    "name": "Campaign_18a033858fcef7cd",
+    "volume": 336,
+    "impressions": 83
+   },
+   {
+    "id": "Children_6bf1ef19c6c58f11",
+    "name": "Children_b0f1e3ceb0b3da30",
+    "volume": 322,
+    "impressions": 30
+   },
+   {
+    "id": "Campaign_d2be11d252e8975a",
+    "name": "Campaign_15cc393e200b3c64",
+    "volume": 1776,
+    "impressions": 642
+   },
+   {
+    "id": "Campaign_ddf62e380a1dc1a3",
+    "name": "Campaign_a16460025af591cd",
+    "volume": 3805,
+    "impressions": 371
+   },
+   {
+    "id": "Campaign_924ddc03b0454da6",
+    "name": "Campaign_82eaaf51f6f9f1de",
+    "volume": 4830,
+    "impressions": 1197
+   },
+   {
+    "id": "Campaign_e8fc9f0e665e7017",
+    "name": "Campaign_b3953d44c96cf68e",
+    "volume": 36295,
+    "impressions": 5471
+   }
+  ],
+  "seconds": 1.6721489429473877
+ },
+ {
+  "policy": "hier_beta(m=20)",
+  "days": [
+   5,
+   7
+  ],
+  "sample": 0.0022854344266506274,
+  "requests": 149092,
+  "pool": 95557,
+  "sent": 76459,
+  "ok": 28594,
+  "per_day": [
+   {
+    "pool": 46910,
+    "sent": 37816,
+    "ok": 14431,
+    "mgr_rev": 0.0,
+    "our_rev": 0.0,
+    "requests": 73958
+   },
+   {
+    "pool": 48647,
+    "sent": 38643,
+    "ok": 14163,
+    "mgr_rev": 0.0,
+    "our_rev": 0.0,
+    "requests": 75134
+   }
+  ],
+  "sent_pct_pool": 0.8001402304383771,
+  "sent_pct_all": 0.5128310036755829,
+  "sellthrough": 0.37397821054421326,
+  "ok_pct_pool": 0.2992350115637787,
+  "manager_price": 150.0,
+  "manager_revenue": 4289100.0,
+  "our_revenue": 14784240.0,
+  "total_revenue": 19073340.0,
+  "our_impressions": 69322,
+  "our_requests": 72633,
+  "our_miss_nomatch": 0,
+  "our_miss_filtered": 3311,
+  "ours": [
+   {
+    "id": "Bank_32fadf807648685a",
+    "name": "Bank_24d40196bd94b649",
+    "cpm": 280.0,
+    "volume": 11549,
+    "impressions": 11549
+   },
+   {
+    "id": "Telecom_a430e1058e802ed7",
+    "name": "Telecom_d46ed517452394a2",
+    "cpm": 160.0,
+    "volume": 16865,
+    "impressions": 7575
+   },
+   {
+    "id": "Retail_ae5378fe75d88d37",
+    "name": "Retail_59c52779836b2bae",
+    "cpm": 140.0,
+    "volume": 13738,
+    "impressions": 2857
+   },
+   {
+    "id": "Campaign_d43266d29da2e25a",
+    "name": "Campaign_51288482374d537c",
+    "cpm": 90.0,
+    "volume": 10155,
+    "impressions": 72
+   },
+   {
+    "id": "Automotive_b7d620dcf2ae44e8",
+    "name": "Automotive_9e1edff89ac9a790",
+    "cpm": 250.0,
+    "volume": 7447,
+    "impressions": 6837
+   },
+   {
+    "id": "Campaign_09e7557444a06b7a",
+    "name": "Campaign_4d4dc901c2e49788",
+    "cpm": 200.0,
+    "volume": 14661,
+    "impressions": 7658
+   },
+   {
+    "id": "Property_367d15dbf1509432",
+    "name": "Property_5a34d256a53751c3",
+    "cpm": 320.0,
+    "volume": 9939,
+    "impressions": 9939
+   },
+   {
+    "id": "Retail_b535df6d86169eb7",
+    "name": "Retail_5d131e8ff2fd6390",
+    "cpm": 130.0,
+    "volume": 4255,
+    "impressions": 1199
+   },
+   {
+    "id": "Health_d1699700fb8a1b5a",
+    "name": "Health_0676356d6ba137b6",
+    "cpm": 150.0,
+    "volume": 1503,
+    "impressions": 101
+   },
+   {
+    "id": "Travel_2f3193f27ac76339",
+    "name": "Travel_3724963d1920e16a",
+    "cpm": 200.0,
+    "volume": 1659,
+    "impressions": 37
+   },
+   {
+    "id": "Bank_2cab9f66938ff8ba",
+    "name": "Bank_93461467de106ae8",
+    "cpm": 200.0,
+    "volume": 1480,
+    "impressions": 118
+   },
+   {
+    "id": "Retail_1d9b06f4fef81318",
+    "name": "Retail_6162b5875d2e4e9b",
+    "cpm": 130.0,
+    "volume": 2950,
+    "impressions": 100
+   },
+   {
+    "id": "Children_1594181dc4501fdd",
+    "name": "Children_90daa9b022baf620",
+    "cpm": 110.0,
+    "volume": 2161,
+    "impressions": 2161
+   },
+   {
+    "id": "Children_ac436e8a5950c8cc",
+    "name": "Children_1aa561689b8b57e7",
+    "cpm": 150.0,
+    "volume": 421,
+    "impressions": 0
+   },
+   {
+    "id": "Campaign_a79617827e3dedb0",
+    "name": "Retail_8846b13f4335d7b7",
+    "cpm": 120.0,
+    "volume": 716,
+    "impressions": 175
+   },
+   {
+    "id": "Entertainment_0b9856205035bc36",
+    "name": "Entertainment_69bc7e453450b097",
+    "cpm": 170.0,
+    "volume": 871,
+    "impressions": 78
+   },
+   {
+    "id": "Entertainment_baec255767ade8d5",
+    "name": "Entertainment_a1dfc2a1e842d0a2",
+    "cpm": 220.0,
+    "volume": 2977,
+    "impressions": 238
+   },
+   {
+    "id": "Entertainment_31d82ddec3e133f8",
+    "name": "Entertainment_9237fb2e70bf48fc",
+    "cpm": 180.0,
+    "volume": 2695,
+    "impressions": 888
+   },
+   {
+    "id": "Telecom_ac7afcd1cd75672e",
+    "name": "Campaign_4ada123d5805979b",
+    "cpm": 100.0,
+    "volume": 1488,
+    "impressions": 773
+   },
+   {
+    "id": "Entertainment_213478344bb646c3",
+    "name": "Entertainment_6e3c73f12bc64057",
+    "cpm": 90.0,
+    "volume": 936,
+    "impressions": 22
+   },
+   {
+    "id": "Retail_6715741489f4dba9",
+    "name": "Retail_de2dbf9477c474eb",
+    "cpm": 140.0,
+    "volume": 1309,
+    "impressions": 277
+   },
+   {
+    "id": "Health_0a2ad928707a5106",
+    "name": "Health_f41f5144a75c3d01",
+    "cpm": 160.0,
+    "volume": 1252,
+    "impressions": 492
+   },
+   {
+    "id": "Bank_54776942cfb844e7",
+    "name": "Bank_1da9a798e900c021",
+    "cpm": 300.0,
+    "volume": 1485,
+    "impressions": 1485
+   },
+   {
+    "id": "Automotive_863808cc6dd3d244",
+    "name": "Automotive_ee52e22a84292a1f",
+    "cpm": 210.0,
+    "volume": 265,
+    "impressions": 12
+   },
+   {
+    "id": "Campaign_ba871ae82518bb43",
+    "name": "Campaign_5cb77808ad316b86",
+    "cpm": 80.0,
+    "volume": 370,
+    "impressions": 2
+   },
+   {
+    "id": "Campaign_1b163be8b57b3ca9",
+    "name": "Campaign_c49a8ec579219c40",
+    "cpm": 85.0,
+    "volume": 38,
+    "impressions": 0
+   },
+   {
+    "id": "Campaign_07df51f771e93f7f",
+    "name": "Campaign_8bc4330af9c149de",
+    "cpm": 95.0,
+    "volume": 609,
+    "impressions": 111
+   },
+   {
+    "id": "Campaign_38d87027581188ef",
+    "name": "Campaign_e02df8d0c6b01b69",
+    "cpm": 60.0,
+    "volume": 29518,
+    "impressions": 1763
+   },
+   {
+    "id": "Campaign_c6c74f0a1f8e7d7a",
+    "name": "Campaign_2320b836ad0f2d84",
+    "cpm": 75.0,
+    "volume": 17885,
+    "impressions": 5241
+   },
+   {
+    "id": "Campaign_167afe009b45df32",
+    "name": "Campaign_e5908cfe00510515",
+    "cpm": 70.0,
+    "volume": 9525,
+    "impressions": 513
+   },
+   {
+    "id": "Campaign_2f5cd7195244f118",
+    "name": "Campaign_ee21aa935c0ed10e",
+    "cpm": 230.0,
+    "volume": 11549,
+    "impressions": 2654
+   },
+   {
+    "id": "Campaign_3d0df9261c69b779",
+    "name": "Campaign_f3fec2802fa06a3c",
+    "cpm": 230.0,
+    "volume": 11549,
+    "impressions": 4395
+   }
+  ],
+  "hidden_manager": [
+   {
+    "id": "Campaign_ea5f7d580a451649",
+    "name": "Campaign_4d61f9faeb01d35c",
+    "volume": 9226,
+    "impressions": 3711
+   },
+   {
+    "id": "Campaign_1984973edd3946de",
+    "name": "Campaign_78f39f90f4505c10",
+    "volume": 12909,
+    "impressions": 6333
+   },
+   {
+    "id": "Campaign_99cdede9ce7aa975",
+    "name": "Campaign_0823aa18c3c2ca3c",
+    "volume": 2963,
+    "impressions": 1693
+   },
+   {
+    "id": "Campaign_2be6940a55eb7fa0",
+    "name": "Campaign_bfbd684ea6d38f9c",
+    "volume": 13068,
+    "impressions": 6320
+   },
+   {
+    "id": "Campaign_9e11981cace96198",
+    "name": "Campaign_30b60302c20096a3",
+    "volume": 13850,
+    "impressions": 2498
+   },
+   {
+    "id": "Campaign_cf47c19ce9ef3c4d",
+    "name": "Campaign_18a033858fcef7cd",
+    "volume": 336,
+    "impressions": 87
+   },
+   {
+    "id": "Children_6bf1ef19c6c58f11",
+    "name": "Children_b0f1e3ceb0b3da30",
+    "volume": 322,
+    "impressions": 27
+   },
+   {
+    "id": "Campaign_d2be11d252e8975a",
+    "name": "Campaign_15cc393e200b3c64",
+    "volume": 1776,
+    "impressions": 730
+   },
+   {
+    "id": "Campaign_ddf62e380a1dc1a3",
+    "name": "Campaign_a16460025af591cd",
+    "volume": 3805,
+    "impressions": 359
+   },
+   {
+    "id": "Campaign_924ddc03b0454da6",
+    "name": "Campaign_82eaaf51f6f9f1de",
+    "volume": 4830,
+    "impressions": 1498
+   },
+   {
+    "id": "Campaign_e8fc9f0e665e7017",
+    "name": "Campaign_b3953d44c96cf68e",
+    "volume": 36295,
+    "impressions": 5338
+   }
+  ],
+  "seconds": 2.0007734298706055
+ },
+ {
+  "policy": "rule_trie(m=20)",
+  "days": [
+   5,
+   7
+  ],
+  "sample": 0.0022854344266506274,
+  "requests": 149092,
+  "pool": 95557,
+  "sent": 76257,
+  "ok": 27464,
+  "per_day": [
+   {
+    "pool": 46910,
+    "sent": 37532,
+    "ok": 13836,
+    "mgr_rev": 0.0,
+    "our_rev": 0.0,
+    "requests": 73958
+   },
+   {
+    "pool": 48647,
+    "sent": 38725,
+    "ok": 13628,
+    "mgr_rev": 0.0,
+    "our_rev": 0.0,
+    "requests": 75134
+   }
+  ],
+  "sent_pct_pool": 0.7980263089046329,
+  "sent_pct_all": 0.5114761355404717,
+  "sellthrough": 0.3601505435566571,
+  "ok_pct_pool": 0.2874096089245163,
+  "manager_price": 150.0,
+  "manager_revenue": 4119600.0,
+  "our_revenue": 14533895.0,
+  "total_revenue": 18653495.0,
+  "our_impressions": 70740,
+  "our_requests": 72835,
+  "our_miss_nomatch": 0,
+  "our_miss_filtered": 2095,
+  "ours": [
+   {
+    "id": "Bank_32fadf807648685a",
+    "name": "Bank_24d40196bd94b649",
+    "cpm": 280.0,
+    "volume": 11549,
+    "impressions": 11549
+   },
+   {
+    "id": "Telecom_a430e1058e802ed7",
+    "name": "Telecom_d46ed517452394a2",
+    "cpm": 160.0,
+    "volume": 16865,
+    "impressions": 2322
+   },
+   {
+    "id": "Retail_ae5378fe75d88d37",
+    "name": "Retail_59c52779836b2bae",
+    "cpm": 140.0,
+    "volume": 13738,
+    "impressions": 2092
+   },
+   {
+    "id": "Campaign_d43266d29da2e25a",
+    "name": "Campaign_51288482374d537c",
+    "cpm": 90.0,
+    "volume": 10155,
+    "impressions": 72
+   },
+   {
+    "id": "Automotive_b7d620dcf2ae44e8",
+    "name": "Automotive_9e1edff89ac9a790",
+    "cpm": 250.0,
+    "volume": 7447,
+    "impressions": 6887
+   },
+   {
+    "id": "Campaign_09e7557444a06b7a",
+    "name": "Campaign_4d4dc901c2e49788",
+    "cpm": 200.0,
+    "volume": 14661,
+    "impressions": 8017
+   },
+   {
+    "id": "Property_367d15dbf1509432",
+    "name": "Property_5a34d256a53751c3",
+    "cpm": 320.0,
+    "volume": 9939,
+    "impressions": 9939
+   },
+   {
+    "id": "Retail_b535df6d86169eb7",
+    "name": "Retail_5d131e8ff2fd6390",
+    "cpm": 130.0,
+    "volume": 4255,
+    "impressions": 2829
+   },
+   {
+    "id": "Health_d1699700fb8a1b5a",
+    "name": "Health_0676356d6ba137b6",
+    "cpm": 150.0,
+    "volume": 1503,
+    "impressions": 0
+   },
+   {
+    "id": "Travel_2f3193f27ac76339",
+    "name": "Travel_3724963d1920e16a",
+    "cpm": 200.0,
+    "volume": 1659,
+    "impressions": 37
+   },
+   {
+    "id": "Bank_2cab9f66938ff8ba",
+    "name": "Bank_93461467de106ae8",
+    "cpm": 200.0,
+    "volume": 1480,
+    "impressions": 118
+   },
+   {
+    "id": "Retail_1d9b06f4fef81318",
+    "name": "Retail_6162b5875d2e4e9b",
+    "cpm": 130.0,
+    "volume": 2950,
+    "impressions": 0
+   },
+   {
+    "id": "Children_1594181dc4501fdd",
+    "name": "Children_90daa9b022baf620",
+    "cpm": 110.0,
+    "volume": 2161,
+    "impressions": 2161
+   },
+   {
+    "id": "Children_ac436e8a5950c8cc",
+    "name": "Children_1aa561689b8b57e7",
+    "cpm": 150.0,
+    "volume": 421,
+    "impressions": 2
+   },
+   {
+    "id": "Campaign_a79617827e3dedb0",
+    "name": "Retail_8846b13f4335d7b7",
+    "cpm": 120.0,
+    "volume": 716,
+    "impressions": 0
+   },
+   {
+    "id": "Entertainment_0b9856205035bc36",
+    "name": "Entertainment_69bc7e453450b097",
+    "cpm": 170.0,
+    "volume": 871,
+    "impressions": 0
+   },
+   {
+    "id": "Entertainment_baec255767ade8d5",
+    "name": "Entertainment_a1dfc2a1e842d0a2",
+    "cpm": 220.0,
+    "volume": 2977,
+    "impressions": 237
+   },
+   {
+    "id": "Entertainment_31d82ddec3e133f8",
+    "name": "Entertainment_9237fb2e70bf48fc",
+    "cpm": 180.0,
+    "volume": 2695,
+    "impressions": 891
+   },
+   {
+    "id": "Telecom_ac7afcd1cd75672e",
+    "name": "Campaign_4ada123d5805979b",
+    "cpm": 100.0,
+    "volume": 1488,
+    "impressions": 808
+   },
+   {
+    "id": "Entertainment_213478344bb646c3",
+    "name": "Entertainment_6e3c73f12bc64057",
+    "cpm": 90.0,
+    "volume": 936,
+    "impressions": 22
+   },
+   {
+    "id": "Retail_6715741489f4dba9",
+    "name": "Retail_de2dbf9477c474eb",
+    "cpm": 140.0,
+    "volume": 1309,
+    "impressions": 413
+   },
+   {
+    "id": "Health_0a2ad928707a5106",
+    "name": "Health_f41f5144a75c3d01",
+    "cpm": 160.0,
+    "volume": 1252,
+    "impressions": 1074
+   },
+   {
+    "id": "Bank_54776942cfb844e7",
+    "name": "Bank_1da9a798e900c021",
+    "cpm": 300.0,
+    "volume": 1485,
+    "impressions": 1485
+   },
+   {
+    "id": "Automotive_863808cc6dd3d244",
+    "name": "Automotive_ee52e22a84292a1f",
+    "cpm": 210.0,
+    "volume": 265,
+    "impressions": 12
+   },
+   {
+    "id": "Campaign_ba871ae82518bb43",
+    "name": "Campaign_5cb77808ad316b86",
+    "cpm": 80.0,
+    "volume": 370,
+    "impressions": 0
+   },
+   {
+    "id": "Campaign_1b163be8b57b3ca9",
+    "name": "Campaign_c49a8ec579219c40",
+    "cpm": 85.0,
+    "volume": 38,
+    "impressions": 0
+   },
+   {
+    "id": "Campaign_07df51f771e93f7f",
+    "name": "Campaign_8bc4330af9c149de",
+    "cpm": 95.0,
+    "volume": 609,
+    "impressions": 0
+   },
+   {
+    "id": "Campaign_38d87027581188ef",
+    "name": "Campaign_e02df8d0c6b01b69",
+    "cpm": 60.0,
+    "volume": 29518,
+    "impressions": 2142
+   },
+   {
+    "id": "Campaign_c6c74f0a1f8e7d7a",
+    "name": "Campaign_2320b836ad0f2d84",
+    "cpm": 75.0,
+    "volume": 17885,
+    "impressions": 10243
+   },
+   {
+    "id": "Campaign_167afe009b45df32",
+    "name": "Campaign_e5908cfe00510515",
+    "cpm": 70.0,
+    "volume": 9525,
+    "impressions": 513
+   },
+   {
+    "id": "Campaign_2f5cd7195244f118",
+    "name": "Campaign_ee21aa935c0ed10e",
+    "cpm": 230.0,
+    "volume": 11549,
+    "impressions": 2609
+   },
+   {
+    "id": "Campaign_3d0df9261c69b779",
+    "name": "Campaign_f3fec2802fa06a3c",
+    "cpm": 230.0,
+    "volume": 11549,
+    "impressions": 4266
+   }
+  ],
+  "hidden_manager": [
+   {
+    "id": "Campaign_ea5f7d580a451649",
+    "name": "Campaign_4d61f9faeb01d35c",
+    "volume": 9226,
+    "impressions": 3657
+   },
+   {
+    "id": "Campaign_1984973edd3946de",
+    "name": "Campaign_78f39f90f4505c10",
+    "volume": 12909,
+    "impressions": 6333
+   },
+   {
+    "id": "Campaign_99cdede9ce7aa975",
+    "name": "Campaign_0823aa18c3c2ca3c",
+    "volume": 2963,
+    "impressions": 1694
+   },
+   {
+    "id": "Campaign_2be6940a55eb7fa0",
+    "name": "Campaign_bfbd684ea6d38f9c",
+    "volume": 13068,
+    "impressions": 6325
+   },
+   {
+    "id": "Campaign_9e11981cace96198",
+    "name": "Campaign_30b60302c20096a3",
+    "volume": 13850,
+    "impressions": 2280
+   },
+   {
+    "id": "Campaign_cf47c19ce9ef3c4d",
+    "name": "Campaign_18a033858fcef7cd",
+    "volume": 336,
+    "impressions": 87
+   },
+   {
+    "id": "Children_6bf1ef19c6c58f11",
+    "name": "Children_b0f1e3ceb0b3da30",
+    "volume": 322,
+    "impressions": 30
+   },
+   {
+    "id": "Campaign_d2be11d252e8975a",
+    "name": "Campaign_15cc393e200b3c64",
+    "volume": 1776,
+    "impressions": 731
+   },
+   {
+    "id": "Campaign_ddf62e380a1dc1a3",
+    "name": "Campaign_a16460025af591cd",
+    "volume": 3805,
+    "impressions": 337
+   },
+   {
+    "id": "Campaign_924ddc03b0454da6",
+    "name": "Campaign_82eaaf51f6f9f1de",
+    "volume": 4830,
+    "impressions": 1498
+   },
+   {
+    "id": "Campaign_e8fc9f0e665e7017",
+    "name": "Campaign_b3953d44c96cf68e",
+    "volume": 36295,
+    "impressions": 4492
+   }
+  ],
+  "seconds": 2.2243287563323975,
+  "inferred_rules": [
+   {
+    "tags": {
+     "Channel": "952037271457"
+    },
+    "count": 7408,
+    "successes": 6499,
+    "probability": 0.875850605319358,
+    "lift": 0.5349357897098386
+   },
+   {
+    "tags": {
+     "Channel": "965158348951"
+    },
+    "count": 6291,
+    "successes": 5707,
+    "probability": 0.9053744725577866,
+    "lift": 0.5644596569482672
+   },
+   {
+    "tags": {
+     "Channel": "952026274912"
+    },
+    "count": 5471,
+    "successes": 4842,
+    "probability": 0.8830483147536315,
+    "lift": 0.542133499144112
+   },
+   {
+    "tags": {
+     "Device": "ANDROID_TV_A",
+     "Channel": "952037271457"
+    },
+    "count": 3185,
+    "successes": 3021,
+    "probability": 0.9449439603285669,
+    "lift": 0.6040291447190473
+   },
+   {
+    "tags": {
+     "Device": "SET_TOP_BOX_A",
+     "Channel": "<none>"
+    },
+    "count": 71876,
+    "successes": 15560,
+    "probability": 0.216489716135823,
+    "lift": -0.12442509947369648
+   },
+   {
+    "tags": {
+     "Device": "SMART_TV_PLATFORM_B",
+     "Category": "<none>"
+    },
+    "count": 8340,
+    "successes": 5759,
+    "probability": 0.6902407904468187,
+    "lift": 0.34932597483729927
+   },
+   {
+    "tags": {
+     "Child": "<none>",
+     "Device": "SMART_TV_PLATFORM_B"
+    },
+    "count": 8340,
+    "successes": 5759,
+    "probability": 0.6899041238521074,
+    "lift": 0.34898930824258795
+   },
+   {
+    "tags": {
+     "Device": "SMART_TV_PLATFORM_C",
+     "Category": "<none>"
+    },
+    "count": 5690,
+    "successes": 4342,
+    "probability": 0.7622310439576636,
+    "lift": 0.42131622834814414
+   },
+   {
+    "tags": {
+     "Child": "<none>",
+     "Device": "SMART_TV_PLATFORM_C"
+    },
+    "count": 5690,
+    "successes": 4342,
+    "probability": 0.761926177829005,
+    "lift": 0.4210113622194855
+   },
+   {
+    "tags": {
+     "Channel": "<none>"
+    },
+    "count": 102350,
+    "successes": 24919,
+    "probability": 0.24348752853679975,
+    "lift": -0.09742728707271972
+   },
+   {
+    "tags": {
+     "Device": "SMART_TV_PLATFORM_A",
+     "Category": "<none>"
+    },
+    "count": 6517,
+    "successes": 4684,
+    "probability": 0.7183022957798468,
+    "lift": 0.37738748017032736
+   },
+   {
+    "tags": {
+     "Child": "<none>",
+     "Device": "SMART_TV_PLATFORM_A"
+    },
+    "count": 6517,
+    "successes": 4684,
+    "probability": 0.7178519925659504,
+    "lift": 0.376937176956431
+   },
+   {
+    "tags": {
+     "Child": "<none>"
+    },
+    "count": 112032,
+    "successes": 48167,
+    "probability": 0.42992377018091765,
+    "lift": 0.08900895457139818
+   },
+   {
+    "tags": {
+     "Category": "<none>"
+    },
+    "count": 112032,
+    "successes": 48167,
+    "probability": 0.42992377018091765,
+    "lift": 0.08900895457139818
+   },
+   {
+    "tags": {
+     "Device": "SET_TOP_BOX_A"
+    },
+    "count": 80192,
+    "successes": 19022,
+    "probability": 0.23723156505650264,
+    "lift": -0.10368325055301683
+   }
+  ]
+ }
+]

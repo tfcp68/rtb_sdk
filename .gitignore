@@ -1,0 +1,57 @@
+.vscode
+.env
+.omo
+__pycache__
+tmp_pytest/
+.idea
+.venv
+.pytest_cache_run
+.pytest_cache
+.pytest_tmp_local
+.backup
+.tmp_pdf_reader
+
+/CLAUDE.md
+
+# Test-generated reports and temporary files
+tests/auction/reports/
+tests/adwords/reports/
+tests/optimizer/reports/
+tests/predictor/reports/
+tests/predictor/tmp/
+tests/predictor/fixtures/
+tests/simulation/reports/
+tests/balancer/reports/
+tests/balancer/tmp/
+tests/reports/
+
+# Example-generated output files
+auction/reports/
+examples/auction/reports/
+examples/simulation/reports/
+examples/optimizer/reports/
+examples/predictor/test_data/output/
+
+.claude
+old
+data
+
+# Benchmark heavy data (gigabyte, arrayed, caches)
+benchmarks/logs/
+benchmarks/manager_eda/cache/
+*.parquet
+*.npy
+*.npz
+xgboos_optimizations/.venv-gpu/
+graphify-out/
+
+# Private source adapters, raw requests and generated example artifacts
+/.local/
+/examples/temporal_balancer/filtered_requests.json
+/examples/temporal_balancer/logs.csv
+/examples/simulation/report/
+/examples/generated_samples/
+
+# Local research replay inputs and raw run logs
+/docs/benchmark/reach_frequency/cumulative_freq/ab_log_*.csv
+/docs/benchmark/reach_frequency/cumulative_freq/fix_gain_output.txt

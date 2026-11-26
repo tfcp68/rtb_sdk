@@ -1,0 +1,38 @@
+[
+  {
+    "input": {"val": "a2_single_valued"},
+    "output": true,
+    "error": null,
+    "description": "a2_single_valued — validation"
+  },
+  {
+    "input": {"val": "a3_small"},
+    "output": true,
+    "error": null,
+    "description": "a3_small — validation"
+  },
+  {
+    "input": {"val": "greedy"},
+    "output": false,
+    "error": null,
+    "description": "greedy — faulty algorithm"
+  },
+  {
+    "input": {"val": ""},
+    "output": false,
+    "error": null,
+    "description": "blank-line — faulty algorithm"
+  },
+  {
+    "input": {"val": null},
+    "output": false,
+    "error": null,
+    "description": "null — faulty algorithm"
+  },
+  {
+    "input": {"val": 42},
+    "output": false,
+    "error": null,
+    "description": "number — faulty algorithm"
+  }
+]

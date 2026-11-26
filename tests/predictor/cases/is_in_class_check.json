@@ -1,0 +1,62 @@
+[
+  {
+    "description": "prophet — valid ModelTypeName",
+    "input": {"class_name": "ModelTypeName", "value": "prophet"},
+    "output": true,
+    "error": null
+  },
+  {
+    "description": "unknown_model — slippery ModelTypeName",
+    "input": {"class_name": "ModelTypeName", "value": "unknown_model"},
+    "output": false,
+    "error": null
+  },
+  {
+    "description": "totally_unknown — slippery ModelTypeName",
+    "input": {"class_name": "ModelTypeName", "value": "totally_unknown"},
+    "output": false,
+    "error": null
+  },
+  {
+    "description": "'d' — valid Gran",
+    "input": {"class_name": "Gran", "value": "d"},
+    "output": true,
+    "error": null
+  },
+  {
+    "description": "'h' — valid Gran",
+    "input": {"class_name": "Gran", "value": "h"},
+    "output": true,
+    "error": null
+  },
+  {
+    "description": "'t' — valid Gran",
+    "input": {"class_name": "Gran", "value": "t"},
+    "output": true,
+    "error": null
+  },
+  {
+    "description": "'w' — valid Gran",
+    "input": {"class_name": "Gran", "value": "w"},
+    "output": true,
+    "error": null
+  },
+  {
+    "description": "'m' — valid Gran",
+    "input": {"class_name": "Gran", "value": "m"},
+    "output": true,
+    "error": null
+  },
+  {
+    "description": "'x' — slippery Gran",
+    "input": {"class_name": "Gran", "value": "x"},
+    "output": false,
+    "error": null
+  },
+  {
+    "description": "blank-line — slippery Gran",
+    "input": {"class_name": "Gran", "value": ""},
+    "output": false,
+    "error": null
+  }
+]

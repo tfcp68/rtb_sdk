@@ -1,0 +1,156 @@
+[
+  {
+    "description": "[capacity] totality total_traffic_volume",
+    "input": {
+      "ads": {
+        "a": {"id": "a", "targets": {"value": {"geo": ["msk"]}}, "volume": 9000, "cpm": 10.0, "ad_frequency_limit": {"value": {"d": 1000000000}}},
+        "b": {"id": "b", "targets": {"value": {"geo": ["spb"]}}, "volume": 9000, "cpm": 10.0, "ad_frequency_limit": {"value": {"d": 1000000000}}}
+      },
+      "params": {
+        "total_traffic_volume": 5000,
+        "tag_probabilities": {"geo:msk": 0.6, "geo:spb": 0.4},
+        "vocabs": {"geo": ["geo:msk", "geo:spb"]},
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1,
+        "seasonal_context": {"mode": "hour_of_day", "context": {"0": {"weight": 1.0, "user_activity_ratio": {}, "tags_probability": null}}},
+        "period": {"period_start": "2024-01-01T00:00:00", "period_end": "2024-01-01T01:00:00"}
+      }
+    },
+    "output": 5000,
+    "error": null,
+    "check_mode": "total_lte"
+  },
+  {
+    "description": "[full delivery RoN] slot, traffic overflow → The announcement receives the entire contract volume 3000 (targets replace, Competing for all traffic)",
+    "input": {
+      "ads": {
+        "a": {"id": "a", "targets": {"value": {"geo": ["msk"]}}, "volume": 3000, "cpm": 10.0, "ad_frequency_limit": {"value": {"d": 1000000000}}}
+      },
+      "params": {
+        "total_traffic_volume": 100000,
+        "tag_probabilities": {"geo:msk": 0.6, "geo:spb": 0.4},
+        "vocabs": {"geo": ["geo:msk", "geo:spb"]},
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1,
+        "seasonal_context": {"mode": "hour_of_day", "context": {"0": {"weight": 1.0, "user_activity_ratio": {}, "tags_probability": null}}},
+        "period": {"period_start": "2024-01-01T00:00:00", "period_end": "2024-01-01T01:00:00"}
+      }
+    },
+    "output": {"key": "a", "value": 3000},
+    "error": null,
+    "check_mode": "key_value"
+  },
+  {
+    "description": "[Targeting Ignored] same ad on a rare tag (P=0.1), what seasonal_balance_traffic tagged ≤1000, It competes for all traffic here (targets→{}, P(ad)≈1.0). Restrictions Σx≤max_vol=5000 and Σx≤total=10000 → upon maximize_money The entire contract volume is completed = min(5000,10000) = 5000.",
+    "input": {
+      "ads": {
+        "a": {"id": "a", "targets": {"value": {"geo": ["rare"]}}, "volume": 5000, "cpm": 10.0, "ad_frequency_limit": {"value": {"d": 1000000000}}}
+      },
+      "params": {
+        "total_traffic_volume": 10000,
+        "tag_probabilities": {"geo:msk": 0.9, "geo:rare": 0.1},
+        "vocabs": {"geo": ["geo:msk", "geo:rare"]},
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1,
+        "seasonal_context": {"mode": "hour_of_day", "context": {"0": {"weight": 1.0, "user_activity_ratio": {}, "tags_probability": null}}},
+        "period": {"period_start": "2024-01-01T00:00:00", "period_end": "2024-01-01T01:00:00"}
+      }
+    },
+    "output": {"key": "a", "value": 5000},
+    "error": null,
+    "check_mode": "key_value"
+  },
+  {
+    "description": "[edge] vocabulary → hollow report",
+    "input": {
+      "ads": {},
+      "params": {
+        "total_traffic_volume": 10000,
+        "tag_probabilities": {"geo:msk": 0.6, "geo:spb": 0.4},
+        "vocabs": {"geo": ["geo:msk", "geo:spb"]},
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1,
+        "seasonal_context": {"mode": "hour_of_day", "context": {"0": {"weight": 1.0, "user_activity_ratio": {}, "tags_probability": null}}},
+        "period": {"period_start": "2024-01-01T00:00:00", "period_end": "2024-01-01T01:00:00"}
+      }
+    },
+    "output": {},
+    "error": null,
+    "check_mode": null
+  },
+  {
+    "description": "[edge] idle targets ({} = traffic): Advertisements compete for the entire pool and do not fall (P(ad)≈1)",
+    "input": {
+      "ads": {
+        "a": {"id": "a", "targets": {"value": {}}, "volume": 3000, "cpm": 10.0, "ad_frequency_limit": {"value": {"d": 1000000000}}}
+      },
+      "params": {
+        "total_traffic_volume": 10000,
+        "tag_probabilities": {"geo:msk": 0.6, "geo:spb": 0.4},
+        "vocabs": {"geo": ["geo:msk", "geo:spb"]},
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1,
+        "seasonal_context": {"mode": "hour_of_day", "context": {"0": {"weight": 1.0, "user_activity_ratio": {}, "tags_probability": null}}},
+        "period": {"period_start": "2024-01-01T00:00:00", "period_end": "2024-01-01T01:00:00"}
+      }
+    },
+    "output": {"key": "a", "min": 0},
+    "error": null,
+    "check_mode": "key_gte"
+  },
+  {
+    "description": "[RoN/cpm-priority] traffic (total=3000), Both are fighting the whole stream: dear hi(cpm=50) win lo(cpm=1)",
+    "input": {
+      "ads": {
+        "hi": {"id": "hi", "targets": {"value": {"geo": ["msk"]}}, "volume": 3000, "cpm": 50.0, "ad_frequency_limit": {"value": {"d": 1000000000}}},
+        "lo": {"id": "lo", "targets": {"value": {"geo": ["spb"]}}, "volume": 3000, "cpm": 1.0, "ad_frequency_limit": {"value": {"d": 1000000000}}}
+      },
+      "params": {
+        "total_traffic_volume": 3000,
+        "tag_probabilities": {"geo:msk": 0.6, "geo:spb": 0.4},
+        "vocabs": {"geo": ["geo:msk", "geo:spb"]},
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1,
+        "seasonal_context": {"mode": "hour_of_day", "context": {"0": {"weight": 1.0, "user_activity_ratio": {}, "tags_probability": null}}},
+        "period": {"period_start": "2024-01-01T00:00:00", "period_end": "2024-01-01T01:00:00"}
+      }
+    },
+    "output": {"greater": "hi", "lesser": "lo"},
+    "error": null,
+    "check_mode": "order_gt"
+  },
+  {
+    "description": "[RoN ignores the target] narrow-sided msk-The target competes for the entire stream (targets→{}, P(ad)≈1): vol=8000 ≤ total=10000 → fully delivered 8000",
+    "input": {
+      "ads": {
+        "a": {"id": "a", "targets": {"value": {"geo": ["msk"]}}, "volume": 8000, "cpm": 10.0, "ad_frequency_limit": {"value": {"d": 1000000000}}}
+      },
+      "params": {
+        "total_traffic_volume": 10000,
+        "tag_probabilities": {"geo:msk": 0.6, "geo:spb": 0.4},
+        "vocabs": {"geo": ["geo:msk", "geo:spb"]},
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 1e-06,
+        "n_threads": 1,
+        "seasonal_context": {"mode": "hour_of_day", "context": {"0": {"weight": 1.0, "user_activity_ratio": {}, "tags_probability": null}}},
+        "period": {"period_start": "2024-01-01T00:00:00", "period_end": "2024-01-01T01:00:00"}
+      }
+    },
+    "output": {"key": "a", "value": 8000},
+    "error": null,
+    "check_mode": "key_value"
+  }
+]

@@ -1,0 +1,25 @@
+{
+ "sample": 0.007618114755502092,
+ "q": 0.8,
+ "policy": "random",
+ "pool_devices": [
+  "ANDROID_TV_A",
+  "ANDROID_SET_TOP_BOX_A",
+  "SET_TOP_BOX_A",
+  "SMART_TV_PLATFORM_A",
+  "SMART_TV_PLATFORM_B",
+  "SMART_TV_PLATFORM_C",
+  "STREAMING_TV_BOX_A"
+ ],
+ "days": [
+  0,
+  4
+ ],
+ "seed": 42,
+ "prepared_signature": "8d878284379be2535b0445785f09ebecfda7c718308eb51ed2df9c4ec8ee5a81",
+ "prepared_source": "/home/gnevich/auction_platform/benchmarks/log_benchmark/../logs/janus_20261012_20261019.parquet",
+ "manager_ads": "benchmarks/closed_stand/manager_baseline50_20261012.json",
+ "our_ads": "/home/gnevich/auction_platform/benchmarks/closed_stand/../log_benchmark/ads_manual.json",
+ "manager_price": 150.0,
+ "fallback_204": false
+}

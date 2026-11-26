@@ -1,0 +1,16 @@
+[
+  {
+    "description": "round-trip TestMetrics field-wise",
+    "input": {
+      "accuracy": 0.9,
+      "precision": 0.8,
+      "mse": 1.0,
+      "autocorrelation": 0.1,
+      "mae": 0.5,
+      "lb_stat": 0.2,
+      "lb_sq_stat": 0.3
+    },
+    "output": true,
+    "error": null
+  }
+]

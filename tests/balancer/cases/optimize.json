@@ -1,0 +1,177 @@
+[
+  {
+    "description": "[standardization] one-off, cell msk (P=0.6), maximize_volume → round(total·P)=600",
+    "input": {
+      "ads": {
+        "solo": {"id": "solo", "targets": {"geo": ["geo:msk"]}, "min_vol": 0, "max_vol": 10000, "price": 1.0, "date_factor": 1.0, "freq": 99999}
+      },
+      "params": {
+        "total_traffic_volume": 1000,
+        "tag_probabilities": {"geo:msk": 0.6, "geo:spb": 0.4},
+        "vocabs": {"geo": ["geo:msk", "geo:spb"]},
+        "objective": "maximize_volume",
+        "max_n_categories": 100,
+        "min_category_probability": 0.01,
+        "n_threads": 1
+      }
+    },
+    "output": {"solo": 600},
+    "error": null
+  },
+  {
+    "description": "[disjunction] msk and spb noncompetitive: 600 and 400, sum=total",
+    "input": {
+      "ads": {
+        "ad_msk": {"id": "ad_msk", "targets": {"geo": ["geo:msk"]}, "min_vol": 0, "max_vol": 10000, "price": 1.0, "date_factor": 1.0, "freq": 99999},
+        "ad_spb": {"id": "ad_spb", "targets": {"geo": ["geo:spb"]}, "min_vol": 0, "max_vol": 10000, "price": 1.0, "date_factor": 1.0, "freq": 99999}
+      },
+      "params": {
+        "total_traffic_volume": 1000,
+        "tag_probabilities": {"geo:msk": 0.6, "geo:spb": 0.4},
+        "vocabs": {"geo": ["geo:msk", "geo:spb"]},
+        "objective": "maximize_volume",
+        "max_n_categories": 100,
+        "min_category_probability": 0.01,
+        "n_threads": 1
+      }
+    },
+    "output": {"ad_msk": 600, "ad_spb": 400},
+    "error": null
+  },
+  {
+    "description": "[objective=money] common-cell msk (ceiling 600) full-blown",
+    "input": {
+      "ads": {
+        "cheap": {"id": "cheap", "targets": {"geo": ["geo:msk"]}, "min_vol": 0, "max_vol": 10000, "price": 1.0, "date_factor": 1.0, "freq": 99999},
+        "rich": {"id": "rich", "targets": {"geo": ["geo:msk"]}, "min_vol": 0, "max_vol": 10000, "price": 10.0, "date_factor": 1.0, "freq": 99999}
+      },
+      "params": {
+        "total_traffic_volume": 1000,
+        "tag_probabilities": {"geo:msk": 0.6, "geo:spb": 0.4},
+        "vocabs": {"geo": ["geo:msk", "geo:spb"]},
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 0.01,
+        "n_threads": 1
+      }
+    },
+    "output": {"cheap": 0, "rich": 600},
+    "error": null
+  },
+  {
+    "description": "[empty_ads partly] weak below the threshold 0.5 → 0 and remains as a result; strong considered normal",
+    "input": {
+      "ads": {
+        "strong": {"id": "strong", "targets": {"geo": ["geo:msk"]}, "min_vol": 0, "max_vol": 10000, "price": 1.0, "date_factor": 1.0, "freq": 99999},
+        "weak": {"id": "weak", "targets": {"geo": ["geo:spb"]}, "min_vol": 0, "max_vol": 10000, "price": 1.0, "date_factor": 1.0, "freq": 99999}
+      },
+      "params": {
+        "total_traffic_volume": 1000,
+        "tag_probabilities": {"geo:msk": 0.6, "geo:spb": 0.4},
+        "vocabs": {"geo": ["geo:msk", "geo:spb"]},
+        "objective": "maximize_volume",
+        "max_n_categories": 100,
+        "min_category_probability": 0.5,
+        "n_threads": 1
+      }
+    },
+    "output": {"strong": 600, "weak": 0},
+    "error": null
+  },
+  {
+    "description": "[empty_ads fully] all ads below the threshold → hollow LP, zeros",
+    "input": {
+      "ads": {
+        "weak": {"id": "weak", "targets": {"geo": ["geo:spb"]}, "min_vol": 0, "max_vol": 10000, "price": 1.0, "date_factor": 1.0, "freq": 99999}
+      },
+      "params": {
+        "total_traffic_volume": 1000,
+        "tag_probabilities": {"geo:msk": 0.6, "geo:spb": 0.4},
+        "vocabs": {"geo": ["geo:msk", "geo:spb"]},
+        "objective": "maximize_volume",
+        "max_n_categories": 100,
+        "min_category_probability": 0.5,
+        "n_threads": 1
+      }
+    },
+    "output": {"weak": 0},
+    "error": null
+  },
+  {
+    "description": "[max_vol] contract max_vol=250 below the probabilistic ceiling 600 → cut-off 250",
+    "input": {
+      "ads": {
+        "capped": {"id": "capped", "targets": {"geo": ["geo:msk"]}, "min_vol": 0, "max_vol": 250, "price": 1.0, "date_factor": 1.0, "freq": 99999}
+      },
+      "params": {
+        "total_traffic_volume": 1000,
+        "tag_probabilities": {"geo:msk": 0.6, "geo:spb": 0.4},
+        "vocabs": {"geo": ["geo:msk", "geo:spb"]},
+        "objective": "maximize_volume",
+        "max_n_categories": 100,
+        "min_category_probability": 0.01,
+        "n_threads": 1
+      }
+    },
+    "output": {"capped": 250},
+    "error": null
+  },
+  {
+    "description": "[min_vol] floor 200 Cheaply knitted in a common cell (money): cheap=200, rich=400",
+    "input": {
+      "ads": {
+        "cheap": {"id": "cheap", "targets": {"geo": ["geo:msk"]}, "min_vol": 200, "max_vol": 10000, "price": 1.0, "date_factor": 1.0, "freq": 99999},
+        "rich": {"id": "rich", "targets": {"geo": ["geo:msk"]}, "min_vol": 0, "max_vol": 10000, "price": 10.0, "date_factor": 1.0, "freq": 99999}
+      },
+      "params": {
+        "total_traffic_volume": 1000,
+        "tag_probabilities": {"geo:msk": 0.6, "geo:spb": 0.4},
+        "vocabs": {"geo": ["geo:msk", "geo:spb"]},
+        "objective": "maximize_money",
+        "max_n_categories": 100,
+        "min_category_probability": 0.01,
+        "n_threads": 1
+      }
+    },
+    "output": {"cheap": 200, "rich": 400},
+    "error": null
+  },
+  {
+    "description": "[D=2] two-dictionary: P(ad)=P(geo:msk)·P(age:y)=0.6·0.5=0.3 → round(total·0.3)=300",
+    "input": {
+      "ads": {
+        "cross": {"id": "cross", "targets": {"geo": ["geo:msk"], "age": ["age:y"]}, "min_vol": 0, "max_vol": 10000, "price": 1.0, "date_factor": 1.0, "freq": 99999}
+      },
+      "params": {
+        "total_traffic_volume": 1000,
+        "tag_probabilities": {"geo:msk": 0.6, "geo:spb": 0.4, "age:y": 0.5, "age:o": 0.5},
+        "vocabs": {"geo": ["geo:msk", "geo:spb"], "age": ["age:y", "age:o"]},
+        "objective": "maximize_volume",
+        "max_n_categories": 100,
+        "min_category_probability": 0.01,
+        "n_threads": 1
+      }
+    },
+    "output": {"cross": 300},
+    "error": null
+  },
+  {
+    "description": "[few-cell] poster msk and spb (P(ad)=1.0): voluminous 600+400=1000",
+    "input": {
+      "ads": {
+        "wide": {"id": "wide", "targets": {"geo": ["geo:msk", "geo:spb"]}, "min_vol": 0, "max_vol": 10000, "price": 1.0, "date_factor": 1.0, "freq": 99999}
+      },
+      "params": {
+        "total_traffic_volume": 1000,
+        "tag_probabilities": {"geo:msk": 0.6, "geo:spb": 0.4},
+        "vocabs": {"geo": ["geo:msk", "geo:spb"]},
+        "objective": "maximize_volume",
+        "max_n_categories": 100,
+        "min_category_probability": 0.01,
+        "n_threads": 1
+      }
+    },
+    "output": {"wide": 1000},
+    "error": null
+  }
+]

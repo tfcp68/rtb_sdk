@@ -1,0 +1,56 @@
+[
+  {
+    "input": {
+      "ad_frequencies": {"m": 500},
+      "delta_date_factor": 1.0
+    },
+    "output": 500,
+    "error": null,
+    "description": "Only the monthly limit — return it"
+  },
+  {
+    "input": {
+      "ad_frequencies": {"m": 1000, "d": 24},
+      "delta_date_factor": 1.0
+    },
+    "output": 730.0,
+    "error": null,
+    "description": "Daily limit is stricter than monthly — returns"
+  },
+  {
+    "input": {
+      "ad_frequencies": {},
+      "delta_date_factor": 1.0
+    },
+    "output": "INT_INFINITY",
+    "error": null,
+    "description": "No limits — return INT_INFINITY"
+  },
+  {
+    "input": {
+      "ad_frequencies": {"h": 1},
+      "delta_date_factor": 1.0
+    },
+    "output": 730.0,
+    "error": null,
+    "description": "Only the hour limit 1/? — monthly 730"
+  },
+  {
+    "input": {
+      "ad_frequencies": {"t": 2},
+      "delta_date_factor": 1.0
+    },
+    "output": 8760.0,
+    "error": null,
+    "description": "Limit 2 behind 10 minute — monthly 2 × 4380 = 8760"
+  },
+  {
+    "input": {
+      "ad_frequencies": {"m": 0, "h": 1},
+      "delta_date_factor": 1.0
+    },
+    "output": 730.0,
+    "error": null,
+    "description": "Monthly Zero Limit Is Ignored, clockwork 730"
+  }
+]

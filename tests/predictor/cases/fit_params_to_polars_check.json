@@ -1,0 +1,26 @@
+[
+  {
+    "description": "return Polars DataFrame with the right columns and length",
+    "input": {"scenario": "round_trip"},
+    "output": true,
+    "error": null
+  },
+  {
+    "description": "Column names are saved from parameters date_column and value_column",
+    "input": {"scenario": "column_names"},
+    "output": true,
+    "error": null
+  },
+  {
+    "description": "significance DataFrame coincide with the original",
+    "input": {"scenario": "values_preserved"},
+    "output": true,
+    "error": null
+  },
+  {
+    "description": "The number of lines coincides with the length of the input data",
+    "input": {"scenario": "row_count"},
+    "output": true,
+    "error": null
+  }
+]

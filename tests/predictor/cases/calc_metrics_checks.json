@@ -1,0 +1,74 @@
+[
+  {
+    "description": "perfect forecast: accuracy=1, mse=0, mae=0",
+    "input": {"scenario": "perfect_forecast"},
+    "output": true,
+    "error": null
+  },
+  {
+    "description": "everything actual=0: points excluded MAPE → accuracy=1",
+    "input": {"scenario": "all_zeros_actual"},
+    "output": true,
+    "error": null
+  },
+  {
+    "description": "point: precision=0 (There are no pairs to compare directions)",
+    "input": {"scenario": "single_point_precision_zero"},
+    "output": true,
+    "error": null
+  },
+  {
+    "description": "poor prognosis: accuracy bottom-zero",
+    "input": {"scenario": "accuracy_capped_at_zero"},
+    "output": true,
+    "error": null
+  },
+  {
+    "description": "all the directions: precision=1",
+    "input": {"scenario": "precision_correct_directions"},
+    "output": true,
+    "error": null
+  },
+  {
+    "description": "all directions are opposite: precision=0",
+    "input": {"scenario": "precision_wrong_directions"},
+    "output": true,
+    "error": null
+  },
+  {
+    "description": "mse negatively",
+    "input": {"scenario": "mse_non_negative"},
+    "output": true,
+    "error": null
+  },
+  {
+    "description": "mae negatively",
+    "input": {"scenario": "mae_non_negative"},
+    "output": true,
+    "error": null
+  },
+  {
+    "description": "All metric fields are present as a result",
+    "input": {"scenario": "all_fields_present"},
+    "output": true,
+    "error": null
+  },
+  {
+    "description": "formula MSE: ((0)^2 + (2)^2) / 2 = 2.0",
+    "input": {"scenario": "mse_formula"},
+    "output": true,
+    "error": null
+  },
+  {
+    "description": "formula MAE: (0 + 2) / 2 = 1.0",
+    "input": {"scenario": "mae_formula"},
+    "output": true,
+    "error": null
+  },
+  {
+    "description": "erroneous predict_values",
+    "input": {"scenario": "raises_on_empty"},
+    "output": null,
+    "error": "PARAMETER_ERROR_CODE"
+  }
+]

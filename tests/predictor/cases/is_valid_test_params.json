@@ -1,0 +1,49 @@
+[
+  {
+    "description": "valid ProphetModelTestParams day-data",
+    "input": {
+      "data": {
+        "__type": "ProphetModelTestParams",
+        "training_dates": [
+          "2024-01-01T00:00:00", "2024-01-02T00:00:00",
+          "2024-01-03T00:00:00", "2024-01-04T00:00:00"
+        ],
+        "training_values": [100.0, 101.0, 102.0, 103.0],
+        "expected_dates": [
+          "2024-01-05T00:00:00", "2024-01-06T00:00:00"
+        ],
+        "expected_values": [104.0, 105.0],
+        "resolution": "d"
+      }
+    },
+    "output": true,
+    "error": null
+  },
+  {
+    "description": "slippery — hollow dict",
+    "input": {"data": {}},
+    "output": false,
+    "error": null
+  },
+  {
+    "description": "slippery — lengthless training_dates and training_values",
+    "input": {
+      "data": {
+        "__type": "ProphetModelTestParams",
+        "training_dates": ["2024-01-01T00:00:00", "2024-01-02T00:00:00"],
+        "training_values": [100.0],
+        "expected_dates": ["2024-01-03T00:00:00"],
+        "expected_values": [102.0],
+        "resolution": "d"
+      }
+    },
+    "output": false,
+    "error": null
+  },
+  {
+    "description": "slippery — None",
+    "input": {"data": null},
+    "output": false,
+    "error": null
+  }
+]

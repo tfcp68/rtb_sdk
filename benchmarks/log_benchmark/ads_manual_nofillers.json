@@ -1,0 +1,695 @@
+{
+ "meta": {
+  "description": "Manual set of companies under logic janus (Region=location, Device=device_type, Child=is_child, Category=content_category, Channel=channel_id). Category and Channel are mutually exclusive. Limits: ad_limits — rate-of-pace volume/period; user_frequency_limit — pair-value user×ad; min_interval secondwise. The stock-free option-company (filler_*).",
+  "n": 29
+ },
+ "ads": [
+  {
+   "id": "Bank_32fadf807648685a",
+   "name": "Bank_24d40196bd94b649",
+   "cpm": 280,
+   "priority": 5.0,
+   "targets": {
+    "Region": [
+     "978039453340",
+     "915202053340",
+     "946620753340",
+     "936147853340",
+     "952038632934",
+     "967566553340",
+     "925674953340"
+    ],
+    "Device": [
+     "WEB_BROWSER_A",
+     "ANDROID_TV_A",
+     "ANDROID_SET_TOP_BOX_A",
+     "SET_TOP_BOX_A"
+    ]
+   },
+   "limits": "normal",
+   "user_frequency_limit": {
+    "d": 25,
+    "w": 75
+   },
+   "min_interval": 30,
+   "_note": "federal: top-7 regions, basics"
+  },
+  {
+   "id": "Telecom_a430e1058e802ed7",
+   "name": "Telecom_d46ed517452394a2",
+   "cpm": 160,
+   "priority": 4.0,
+   "targets": {
+    "Device": [
+     "WEB_BROWSER_A",
+     "ANDROID_TV_A",
+     "ANDROID_SET_TOP_BOX_A"
+    ]
+   },
+   "limits": "loose",
+   "user_frequency_limit": {
+    "d": 35,
+    "w": 105
+   },
+   "min_interval": 20,
+   "_note": "device-wide"
+  },
+  {
+   "id": "Retail_ae5378fe75d88d37",
+   "name": "Retail_59c52779836b2bae",
+   "cpm": 140,
+   "priority": 3.5,
+   "targets": {
+    "Device": [
+     "WEB_BROWSER_A",
+     "ANDROID_TV_A"
+    ]
+   },
+   "limits": "normal",
+   "user_frequency_limit": {
+    "d": 30,
+    "w": 90
+   },
+   "min_interval": 0,
+   "_note": "web + android tv"
+  },
+  {
+   "id": "Campaign_d43266d29da2e25a",
+   "name": "Campaign_51288482374d537c",
+   "cpm": 90,
+   "priority": 3.0,
+   "targets": {
+    "Region": [
+     "978039453340",
+     "915202053340",
+     "946620753340",
+     "936147853340",
+     "952038632934",
+     "967566553340",
+     "925674953340",
+     "936150157378",
+     "982166824201",
+     "946621486443",
+     "936148481714",
+     "946621695901"
+    ],
+    "Device": [
+     "WEB_BROWSER_A",
+     "ANDROID_TV_A"
+    ]
+   },
+   "limits": "normal",
+   "user_frequency_limit": {
+    "d": 20,
+    "w": 60
+   },
+   "min_interval": 60
+  },
+  {
+   "id": "Automotive_b7d620dcf2ae44e8",
+   "name": "Automotive_9e1edff89ac9a790",
+   "cpm": 250,
+   "priority": 4.5,
+   "targets": {
+    "Category": [
+     "961393278034",
+     "937456303809"
+    ]
+   },
+   "limits": "normal",
+   "user_frequency_limit": {
+    "d": 25,
+    "w": 75
+   },
+   "min_interval": 30,
+   "_note": "VOD: two major categories"
+  },
+  {
+   "id": "Campaign_09e7557444a06b7a",
+   "name": "Campaign_4d4dc901c2e49788",
+   "cpm": 200,
+   "priority": 4.0,
+   "targets": {
+    "Region": [
+     "978039453340",
+     "915202053340",
+     "946620753340",
+     "936147853340",
+     "952038632934",
+     "967566553340",
+     "925674953340"
+    ]
+   },
+   "limits": "loose",
+   "user_frequency_limit": {
+    "d": 30,
+    "w": 90
+   },
+   "min_interval": 0,
+   "_note": "region, deviceless"
+  },
+  {
+   "id": "Property_367d15dbf1509432",
+   "name": "Property_5a34d256a53751c3",
+   "cpm": 320,
+   "priority": 4.5,
+   "targets": {
+    "Region": [
+     "978039453340",
+     "915202053340",
+     "946620753340"
+    ],
+    "Child": [
+     "false"
+    ]
+   },
+   "limits": "tight",
+   "user_frequency_limit": {
+    "d": 20,
+    "w": 60
+   },
+   "min_interval": 60,
+   "_note": "top-3 region, adult"
+  },
+  {
+   "id": "Retail_b535df6d86169eb7",
+   "name": "Retail_5d131e8ff2fd6390",
+   "cpm": 130,
+   "priority": 3.0,
+   "targets": {
+    "Category": [
+     "937473479365",
+     "937473688823",
+     "937474003010"
+    ]
+   },
+   "limits": "normal",
+   "user_frequency_limit": {
+    "d": 30,
+    "w": 90
+   },
+   "min_interval": 0
+  },
+  {
+   "id": "Health_d1699700fb8a1b5a",
+   "name": "Health_0676356d6ba137b6",
+   "cpm": 150,
+   "priority": 3.5,
+   "targets": {
+    "Region": [
+     "936147853340",
+     "952038632934",
+     "967566553340",
+     "925674953340",
+     "936150157378"
+    ],
+    "Device": [
+     "ANDROID_TV_A",
+     "ANDROID_SET_TOP_BOX_A",
+     "SET_TOP_BOX_A",
+     "SMART_TV_PLATFORM_A",
+     "SMART_TV_PLATFORM_B",
+     "SMART_TV_PLATFORM_C",
+     "STREAMING_TV_BOX_A"
+    ]
+   },
+   "limits": "normal",
+   "user_frequency_limit": {
+    "d": 25,
+    "w": 75
+   },
+   "min_interval": 30
+  },
+  {
+   "id": "Travel_2f3193f27ac76339",
+   "name": "Travel_3724963d1920e16a",
+   "cpm": 200,
+   "priority": 3.5,
+   "targets": {
+    "Channel": [
+     "952037271457",
+     "965158348951",
+     "952026274912",
+     "952038842392"
+    ]
+   },
+   "limits": "tight",
+   "user_frequency_limit": {
+    "d": 20,
+    "w": 60
+   },
+   "min_interval": 60,
+   "_note": "live: four-way"
+  },
+  {
+   "id": "Bank_2cab9f66938ff8ba",
+   "name": "Bank_93461467de106ae8",
+   "cpm": 200,
+   "priority": 4.0,
+   "targets": {
+    "Region": [
+     "978039453340"
+    ],
+    "Device": [
+     "WEB_BROWSER_A",
+     "ANDROID_TV_A"
+    ]
+   },
+   "limits": "normal",
+   "user_frequency_limit": {
+    "d": 25,
+    "w": 75
+   },
+   "min_interval": 30
+  },
+  {
+   "id": "Retail_1d9b06f4fef81318",
+   "name": "Retail_6162b5875d2e4e9b",
+   "cpm": 130,
+   "priority": 3.0,
+   "targets": {
+    "Device": [
+     "SMART_TV_PLATFORM_A",
+     "SMART_TV_PLATFORM_B",
+     "SMART_TV_PLATFORM_C"
+    ]
+   },
+   "limits": "normal",
+   "user_frequency_limit": {
+    "d": 30,
+    "w": 90
+   },
+   "min_interval": 0,
+   "_note": "smart-TV platform"
+  },
+  {
+   "id": "Children_1594181dc4501fdd",
+   "name": "Children_90daa9b022baf620",
+   "cpm": 110,
+   "priority": 3.0,
+   "targets": {
+    "Child": [
+     "true"
+    ]
+   },
+   "limits": "loose",
+   "user_frequency_limit": {
+    "d": 40,
+    "w": 120
+   },
+   "min_interval": 0,
+   "_note": "childish content (is_child=true)"
+  },
+  {
+   "id": "Children_ac436e8a5950c8cc",
+   "name": "Children_1aa561689b8b57e7",
+   "cpm": 150,
+   "priority": 3.5,
+   "targets": {
+    "Child": [
+     "true"
+    ],
+    "Region": [
+     "978039453340",
+     "915202053340",
+     "946620753340",
+     "936147853340",
+     "952038632934",
+     "967566553340",
+     "925674953340"
+    ]
+   },
+   "limits": "normal",
+   "user_frequency_limit": {
+    "d": 30,
+    "w": 90
+   },
+   "min_interval": 30
+  },
+  {
+   "id": "Campaign_a79617827e3dedb0",
+   "name": "Retail_8846b13f4335d7b7",
+   "cpm": 120,
+   "priority": 3.0,
+   "targets": {
+    "Channel": [
+     "965160024615",
+     "952038318747",
+     "965157930035",
+     "952039366037",
+     "952040413327"
+    ]
+   },
+   "limits": "normal",
+   "user_frequency_limit": {
+    "d": 25,
+    "w": 75
+   },
+   "min_interval": 0
+  },
+  {
+   "id": "Entertainment_0b9856205035bc36",
+   "name": "Entertainment_69bc7e453450b097",
+   "cpm": 170,
+   "priority": 4.0,
+   "targets": {
+    "Channel": [
+     "952037271457",
+     "952038842392",
+     "952039366037"
+    ]
+   },
+   "limits": "tight",
+   "user_frequency_limit": {
+    "d": 20,
+    "w": 60
+   },
+   "min_interval": 60
+  },
+  {
+   "id": "Entertainment_baec255767ade8d5",
+   "name": "Entertainment_a1dfc2a1e842d0a2",
+   "cpm": 220,
+   "priority": 4.5,
+   "targets": {
+    "Category": [
+     "961393278034"
+    ],
+    "Device": [
+     "WEB_BROWSER_A"
+    ]
+   },
+   "limits": "normal",
+   "user_frequency_limit": {
+    "d": 25,
+    "w": 75
+   },
+   "min_interval": 30
+  },
+  {
+   "id": "Entertainment_31d82ddec3e133f8",
+   "name": "Entertainment_9237fb2e70bf48fc",
+   "cpm": 180,
+   "priority": 4.0,
+   "targets": {
+    "Category": [
+     "937456303809",
+     "937473479365"
+    ],
+    "Region": [
+     "978039453340",
+     "915202053340",
+     "946620753340",
+     "936147853340",
+     "952038632934",
+     "967566553340",
+     "925674953340",
+     "936150157378",
+     "982166824201",
+     "946621486443",
+     "936148481714",
+     "946621695901"
+    ]
+   },
+   "limits": "normal",
+   "user_frequency_limit": {
+    "d": 30,
+    "w": 90
+   },
+   "min_interval": 0
+  },
+  {
+   "id": "Telecom_ac7afcd1cd75672e",
+   "name": "Campaign_4ada123d5805979b",
+   "cpm": 100,
+   "priority": 3.0,
+   "targets": {
+    "Device": [
+     "ANDROID_PHONE_A",
+     "IOS_PHONE_A",
+     "ANDROID_TABLET_A",
+     "IOS_TABLET_A"
+    ]
+   },
+   "limits": "loose",
+   "user_frequency_limit": {
+    "d": 35,
+    "w": 105
+   },
+   "min_interval": 0,
+   "_note": "mobile"
+  },
+  {
+   "id": "Entertainment_213478344bb646c3",
+   "name": "Entertainment_6e3c73f12bc64057",
+   "cpm": 90,
+   "priority": 3.0,
+   "targets": {
+    "Device": [
+     "ANDROID_PHONE_A",
+     "IOS_PHONE_A"
+    ],
+    "Region": [
+     "978039453340",
+     "915202053340",
+     "946620753340",
+     "936147853340",
+     "952038632934",
+     "967566553340",
+     "925674953340"
+    ]
+   },
+   "limits": "normal",
+   "user_frequency_limit": {
+    "d": 30,
+    "w": 90
+   },
+   "min_interval": 0
+  },
+  {
+   "id": "Retail_6715741489f4dba9",
+   "name": "Retail_de2dbf9477c474eb",
+   "cpm": 140,
+   "priority": 3.5,
+   "targets": {
+    "Region": [
+     "936148481714",
+     "946621486443",
+     "946621695901",
+     "915202367527"
+    ],
+    "Device": [
+     "WEB_BROWSER_A",
+     "ANDROID_TV_A",
+     "ANDROID_SET_TOP_BOX_A",
+     "SET_TOP_BOX_A"
+    ]
+   },
+   "limits": "normal",
+   "user_frequency_limit": {
+    "d": 25,
+    "w": 75
+   },
+   "min_interval": 0
+  },
+  {
+   "id": "Health_0a2ad928707a5106",
+   "name": "Health_f41f5144a75c3d01",
+   "cpm": 160,
+   "priority": 3.5,
+   "targets": {
+    "Category": [
+     "935221236911",
+     "998574152217",
+     "909258896386"
+    ],
+    "Child": [
+     "false"
+    ]
+   },
+   "limits": "normal",
+   "user_frequency_limit": {
+    "d": 25,
+    "w": 75
+   },
+   "min_interval": 30
+  },
+  {
+   "id": "Bank_54776942cfb844e7",
+   "name": "Bank_1da9a798e900c021",
+   "cpm": 300,
+   "priority": 5.0,
+   "targets": {
+    "Region": [
+     "978039453340",
+     "915202053340"
+    ],
+    "Device": [
+     "WEB_BROWSER_A"
+    ],
+    "Category": [
+     "961393278034",
+     "937456303809"
+    ]
+   },
+   "limits": "tight",
+   "user_frequency_limit": {
+    "d": 15,
+    "w": 45
+   },
+   "min_interval": 120,
+   "_note": "premium-targeting"
+  },
+  {
+   "id": "Automotive_863808cc6dd3d244",
+   "name": "Automotive_ee52e22a84292a1f",
+   "cpm": 210,
+   "priority": 4.0,
+   "targets": {
+    "Channel": [
+     "952026274912",
+     "965158348951"
+    ],
+    "Region": [
+     "978039453340",
+     "915202053340",
+     "946620753340",
+     "936147853340",
+     "952038632934",
+     "967566553340",
+     "925674953340"
+    ]
+   },
+   "limits": "normal",
+   "user_frequency_limit": {
+    "d": 20,
+    "w": 60
+   },
+   "min_interval": 60
+  },
+  {
+   "id": "Campaign_ba871ae82518bb43",
+   "name": "Campaign_5cb77808ad316b86",
+   "cpm": 80,
+   "priority": 2.5,
+   "targets": {
+    "Region": [
+     "982166824201"
+    ]
+   },
+   "limits": "loose",
+   "user_frequency_limit": {
+    "d": 40,
+    "w": 120
+   },
+   "min_interval": 0,
+   "_note": "single-location"
+  },
+  {
+   "id": "Campaign_1b163be8b57b3ca9",
+   "name": "Campaign_c49a8ec579219c40",
+   "cpm": 85,
+   "priority": 2.5,
+   "targets": {
+    "Region": [
+     "936150157378"
+    ],
+    "Device": [
+     "SET_TOP_BOX_A",
+     "ANDROID_SET_TOP_BOX_A"
+    ]
+   },
+   "limits": "normal",
+   "user_frequency_limit": {
+    "d": 30,
+    "w": 90
+   },
+   "min_interval": 0
+  },
+  {
+   "id": "Campaign_07df51f771e93f7f",
+   "name": "Campaign_8bc4330af9c149de",
+   "cpm": 95,
+   "priority": 3.0,
+   "targets": {
+    "Channel": [
+     "<other>"
+    ],
+    "Device": [
+     "ANDROID_TV_A"
+    ]
+   },
+   "limits": "normal",
+   "user_frequency_limit": {
+    "d": 30,
+    "w": 90
+   },
+   "min_interval": 0,
+   "_note": "channel-tail"
+  },
+  {
+   "id": "Campaign_2f5cd7195244f118",
+   "name": "Campaign_ee21aa935c0ed10e",
+   "cpm": 230,
+   "priority": 4.5,
+   "targets": {
+    "Region": [
+     "978039453340",
+     "915202053340",
+     "946620753340",
+     "936147853340",
+     "952038632934",
+     "967566553340",
+     "925674953340"
+    ],
+    "Device": [
+     "WEB_BROWSER_A",
+     "ANDROID_TV_A",
+     "ANDROID_SET_TOP_BOX_A",
+     "SET_TOP_BOX_A"
+    ]
+   },
+   "limits": "normal",
+   "user_frequency_limit": {
+    "d": 25,
+    "w": 75
+   },
+   "min_interval": 30,
+   "_note": "flight: half-time",
+   "start_frac": 0.0,
+   "end_frac": 0.5
+  },
+  {
+   "id": "Campaign_3d0df9261c69b779",
+   "name": "Campaign_f3fec2802fa06a3c",
+   "cpm": 230,
+   "priority": 4.5,
+   "targets": {
+    "Region": [
+     "978039453340",
+     "915202053340",
+     "946620753340",
+     "936147853340",
+     "952038632934",
+     "967566553340",
+     "925674953340"
+    ],
+    "Device": [
+     "WEB_BROWSER_A",
+     "ANDROID_TV_A",
+     "ANDROID_SET_TOP_BOX_A",
+     "SET_TOP_BOX_A"
+    ]
+   },
+   "limits": "normal",
+   "user_frequency_limit": {
+    "d": 25,
+    "w": 75
+   },
+   "min_interval": 30,
+   "_note": "flight: half-time",
+   "start_frac": 0.5,
+   "end_frac": 1.0
+  }
+ ]
+}

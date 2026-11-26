@@ -1,0 +1,49 @@
+[
+  {
+    "description": "faulty — idle model, options and data",
+    "input": {
+      "model": {},
+      "options": {},
+      "data": {}
+    },
+    "output": null,
+    "error": "PARAMETER_ERROR_CODE"
+  },
+  {
+    "description": "faulty — slippery model_type in options",
+    "input": {
+      "model": {
+        "__type": "CommonModel",
+        "type": "prophet",
+        "resolution": "d",
+        "description": null
+      },
+      "options": {
+        "__type": "ModelOptions",
+        "model_type": "unknown_model_type"
+      },
+      "data": {
+        "__type": "ProphetModelPredictParams",
+        "forecast_periods": 7,
+        "resolution": "d"
+      }
+    },
+    "output": null,
+    "error": "PARAMETER_ERROR_CODE"
+  },
+  {
+    "description": "faulty — data without forecast_periods",
+    "input": {
+      "model": {
+        "__type": "CommonModel",
+        "type": "prophet",
+        "resolution": "d",
+        "description": null
+      },
+      "options": {},
+      "data": {}
+    },
+    "output": null,
+    "error": "PARAMETER_ERROR_CODE"
+  }
+]

@@ -1,0 +1,26 @@
+[
+  {
+    "description": "round-trip ProphetOptions common serialize_options / deserialize_options",
+    "input": {"kind": "options"},
+    "output": true,
+    "error": null
+  },
+  {
+    "description": "round-trip PredictParams through serialize_predict_params / deserialize_predict_params",
+    "input": {"kind": "predict_params"},
+    "output": true,
+    "error": null
+  },
+  {
+    "description": "round-trip TestParams through serialize_test_params / deserialize_test_params",
+    "input": {"kind": "test_params"},
+    "output": true,
+    "error": null
+  },
+  {
+    "description": "unknown model_type in deserialize_options slip-up",
+    "input": {"kind": "unknown_options_type", "model_type": "nope"},
+    "output": null,
+    "error": "PARAMETER_ERROR_CODE"
+  }
+]
