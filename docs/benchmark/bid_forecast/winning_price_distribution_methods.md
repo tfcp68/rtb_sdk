@@ -237,11 +237,11 @@ Golden-section search is used to find $b^*$. Theorem 1 establishes the unique gl
 
 A segment-level KM estimate does not account for differences between requests within a segment. Let $\tau=(x,b,z,I)$, where $I$ indicates a loss; on a win the price is observed, while on a loss $z$ is unknown and $z\ge b$. In KMMN, probabilities $P(z,\mathrm{win}\mid x)$ and $P(b,\mathrm{lose}\mid x)$ are parameterized by a Markov network, a two-layer product-of-experts model linking the request and bid to price and outcome. A conditional KM estimate of the survival function is recovered from these quantities:
 
-$$
-\widehat S(b\mid x)=\prod_{j<b}\left(1-\frac{P(z=j,win\mid x)}{\sum_{z'\ge j}P(z=z',win\mid x)+\sum_{b'\ge j}P(b=b',lose\mid x)}\right),
+```math
+\widehat S(b\mid x)=\prod_{j<b}\left(1-\frac{P(z=j,\mathrm{win}\mid x)}{\sum_{z'\ge j}P(z=z',\mathrm{win}\mid x)+\sum_{b'\ge j}P(b=b',\mathrm{lose}\mid x)}\right),
 \qquad
 p_Z(z=j\mid x)=\widehat S(j\mid x)-\widehat S(j+1\mid x).
-$$
+```
 
 The network estimates probabilities from which KM computes a discrete survival function and PMF. Training uses the joint likelihood of observations, and the gradient is estimated using Gibbs sampling. The authors derive $p(z\mid x)$ for a request by summing over possible bids with weights from the empirical prior distribution of bids. This uses the approximation $p(b\mid x)\approx p(b)$.
 
