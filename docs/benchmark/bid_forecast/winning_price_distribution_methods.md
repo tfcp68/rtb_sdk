@@ -104,7 +104,7 @@ In simplified form, for segments $s$:
 
 $$
 F_{campaign}(b)=\sum_s \omega_s F_s(b),\qquad
-f_s(b)=\operatorname{LogNormal}(b;\mu_s,\sigma_s),\quad \omega_s\ge0,\quad\sum_s\omega_s=1.
+f_s(b)=\mathrm{LogNormal}(b;\mu_s,\sigma_s),\quad \omega_s\ge0,\quad\sum_s\omega_s=1.
 $$
 
 The model builds a bid distribution from segment components and relies on exchange bid history. It does not use a likelihood that accounts for censored DSP observations, where each loss only indicates the condition $z\ge b$. The authors compare two baselines: transferring the campaign's historical distribution and using a distribution concentrated at the segment's predicted mean. Across 1800 campaigns, the authors report a mean mixture RMSRE of 23,51%, versus 67,88% and 38,21% for the baselines, respectively. These results use RightMedia data.

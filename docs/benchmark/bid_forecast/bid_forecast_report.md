@@ -30,19 +30,19 @@ Training is compared under **full** information, when the exact price is known, 
 
 **Brier score: mean squared probability error.** For each request, the forecast is compared with the outcome, and the squared difference is then averaged:
 
-$$\operatorname{Brier}=\frac{1}{n}\sum_{i=1}^{n}(p_i-Y_i)^2.$$
+$$\mathrm{Brier}=\frac{1}{n}\sum_{i=1}^{n}(p_i-Y_i)^2.$$
 
 For example, a forecast $p_i=0{,}8$ has an error of $0{,}04$ for a win and $0{,}64$ for a loss. The Brier score ranges from $0$ to $1$; lower is better. It is not the percentage of incorrect decisions: a Brier score of $0{,}17$ does not mean 17% classification errors. Probability is evaluated over a series of outcomes, so even a correct forecast of $0{,}8$ will sometimes be followed by a loss.
 
 **Log-loss: logarithmic probability error.** It evaluates how much probability the model assigned to the outcome that actually occurred. If the participant won, the penalty is $-\ln p_i$; if it lost, the penalty is $-\ln(1-p_i)$:
 
-$$\operatorname{LogLoss}=-\frac{1}{n}\sum_{i=1}^{n}\left[Y_i\ln\tilde p_i+(1-Y_i)\ln(1-\tilde p_i)\right],\qquad \tilde p_i=\min(1-\varepsilon,\max(\varepsilon,p_i)),\quad \varepsilon=10^{-6}.$$
+$$\mathrm{LogLoss}=-\frac{1}{n}\sum_{i=1}^{n}\left[Y_i\ln\tilde p_i+(1-Y_i)\ln(1-\tilde p_i)\right],\qquad \tilde p_i=\min(1-\varepsilon,\max(\varepsilon,p_i)),\quad \varepsilon=10^{-6}.$$
 
 Log-loss especially strongly penalizes confident errors: after a loss, a forecast of $0{,}99$ incurs a penalty of about $4{,}61$, while a forecast of $0{,}6$ incurs about $0{,}92$. The natural logarithm is used. Lower is better; without bounding probabilities, the error is unbounded. Probabilities are clipped using the specified $\varepsilon$ so forecasts of $0$ and $1$ do not produce an infinite penalty. Log-loss is not an error rate either.
 
 **ECE: calibration error.** It checks whether stated confidence matches the observed win frequency. For example, about 70% of requests forecast near $0{,}7$ should be wins. Here, ECE is the request-count-weighted absolute difference between mean forecast and actual win fraction across 10 equal-width probability bins; lower is better. $n_k$ is the number of requests in bin $k$, $\bar p_k$ is the mean forecast, and $\bar Y_k$ is the mean outcome; an empty bin contributes zero.
 
-$$\operatorname{ECE}=\sum_{k=1}^{10}\frac{n_k}{n}\left|\bar p_k-\bar Y_k\right|.$$
+$$\mathrm{ECE}=\sum_{k=1}^{10}\frac{n_k}{n}\left|\bar p_k-\bar Y_k\right|.$$
 
 An ECE of $0{,}04$ means an average weighted discrepancy of 4 percentage points within the chosen bins. A low ECE alone does not prove that a forecast is useful: a constant probability close to the overall win rate may be well calibrated but fail to distinguish requests.
 
