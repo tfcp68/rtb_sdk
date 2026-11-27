@@ -21,11 +21,11 @@ Let $x$ denote request features known before bidding, $b$ the bid of the partici
 
 The bid $b$ is the participant's decision, not an observation of the market price. In a threshold model, a win occurs when $b > z$, giving the win probability
 
-$$F(b\mid x)=P(z<b\mid x),\qquad S(b\mid x)=P(z\ge b\mid x)=1-F(b\mid x).$$
+$$F(b\mid x)=P(z\lt b\mid x),\qquad S(b\mid x)=P(z\ge b\mid x)=1-F(b\mid x).$$
 
 $F$ is the CDF, or cumulative win probability. The **survival function** $S(b\mid x)$ gives the probability that market price $z$ is equal to or greater than bid $b$. If winning requires a bid strictly greater than the market price, then $S(b\mid x)$ is the probability of losing, or $1-F(b\mid x)$.
 
-For a continuous price with density $f(z\mid x)$, $F(b\mid x)=\int_{-\infty}^b f(z\mid x)\,dz$. For a discrete price grid, $F$ is calculated by summing the probability masses of intervals $p_l=P(z\in V_l\mid x)$. PDF and CDF answer different questions: the density maximum identifies the mode of the price distribution, while the CDF at $b$ gives the fraction of repeated, similar auctions that bid $b$ would win.
+For a continuous price with density $f(z\mid x)$, $`F(b\mid x)=\int_{-\infty}^b f(z\mid x)\,dz`$. For a discrete price grid, $F$ is calculated by summing the probability masses of intervals $p_l=P(z\in V_l\mid x)$. PDF and CDF answer different questions: the density maximum identifies the mode of the price distribution, while the CDF at $b$ gives the fraction of repeated, similar auctions that bid $b$ would win.
 
 In a first-price auction, the participant's bid is also the winner's payment. For DDN, the target is the minimum winning bid, defined by the maximum competing bid, not the second-price payment. Its distribution helps determine how far to shade the bid below the impression's value, accounting for win probability and overpayment risk. In a multi-slot auction, the ranking price for a position and the event “placing in the top k positions” also differ from a single winning price in a single-slot auction.
 
@@ -35,13 +35,15 @@ With ordinary DSP logs in a second-price auction, a winning bid reveals price $z
 
 For independent observations, the likelihood and its logarithm under right censoring are:
 
-$$L(\theta)=\prod_{i\in W} f_\theta(z_i\mid x_i)\;\prod_{i\in C} S_\theta(b_i\mid x_i),\qquad \ell(\theta)=\sum_{i\in W}\log f_\theta(z_i\mid x_i)+\sum_{i\in C}\log S_\theta(b_i\mid x_i).$$
+```math
+L(\theta)=\prod_{i\in W} f_\theta(z_i\mid x_i)\;\prod_{i\in C} S_\theta(b_i\mid x_i),\qquad \ell(\theta)=\sum_{i\in W}\log f_\theta(z_i\mid x_i)+\sum_{i\in C}\log S_\theta(b_i\mid x_i).
+```
 
 Notation:
 
 - $i$ is the observation (auction) index; $x_i$ is the vector of request features known before bidding.
 - $b_i$ is the bid of the participant being considered; $z_i$ is the market price in auction $i$. On a win, $z_i$ is observed; on a loss, only $z_i\ge b_i$ is known.
-- $\delta_i$ is the price-observability indicator: $\delta_i=1$ for a win and $\delta_i=0$ for a loss. Accordingly, $W=\{i:\delta_i=1\}$ is the set of indices of won auctions, and $C=\{i:\delta_i=0\}$ is the set of indices of lost auctions with censored prices.
+- $\delta_i$ is the price-observability indicator: $\delta_i=1$ for a win and $\delta_i=0$ for a loss. Accordingly, $`W=\{i:\delta_i=1\}`$ is the set of indices of won auctions, and $`C=\{i:\delta_i=0\}`$ is the set of indices of lost auctions with censored prices.
 - $\theta$ is the parameter vector of the market-price distribution model.
 - $f_\theta(z_i\mid x_i)$ is the conditional market-price density at $z_i$ given features $x_i$; it is the contribution from a won auction.
 - $S_\theta(b_i\mid x_i)=P_\theta(z_i\ge b_i\mid x_i)$ is the conditional survival function evaluated at $b_i$. Here $P_\theta$ is probability under the model with parameters $\theta$. This contribution from a lost auction accounts for the entire distribution tail starting at $b_i$.
@@ -110,7 +112,7 @@ The goal is to estimate the market-price distribution from features $x$ of an in
 
 On a price grid, the KM estimate of the survival function $S(b)$ is the product of conditional event-free fractions:
 
-$$\hat S(b)=\prod_{j<b}\left(1-\frac{d_j}{n_j}\right),\qquad \hat p(z=j)=\hat S(j)-\hat S(j+1),\qquad \hat F(b)=1-\hat S(b).$$
+$$\hat S(b)=\prod_{j\lt b}\left(1-\frac{d_j}{n_j}\right),\qquad \hat p(z=j)=\hat S(j)-\hat S(j+1),\qquad \hat F(b)=1-\hat S(b).$$
 
 Here, $d_j$ is the number of observed market prices at level $j$, and $n_j$ is the number of observations still at risk at that level, including bids right-censored above the threshold. The tree partitions the sample by feature values, and the survival function is estimated separately in each leaf. A forecast for a new impression comes from its corresponding leaf.
 
@@ -136,7 +138,7 @@ Thus, the price model produces discretized CDFs and PDFs of bids, and the final 
 
 DLF discretizes price into ordered intervals $V_l$ and predicts at each step the conditional probability $h_l=P(z\in V_l \mid z\text{ is not below previous thresholds}, x)$. An LSTM processes the price intervals sequentially. The interval probabilities, survival function, and CDF are recovered from the sequence of conditional probabilities:
 
-$$p_l=h_l\prod_{j<l}(1-h_j),\qquad S(b_l)=\prod_{j\le l}(1-h_j),\qquad F(b_l)=1-S(b_l).$$
+$$p_l=h_l\prod_{j\lt l}(1-h_j),\qquad S(b_l)=\prod_{j\le l}(1-h_j),\qquad F(b_l)=1-S(b_l).$$
 
 $p_l$ is the probability mass of an interval, $F$ is the win probability at the corresponding boundary bid, and $S$ is the loss probability. The training loss combines the negative log-likelihood of observed winning prices with a Bernoulli CDF term for auction outcomes. On a win, exact price $z$ is known; on a loss, only $z\ge b$ is known.
 
@@ -158,7 +160,9 @@ with log-likelihood contributions $\log f(w_i\mid x_i)$ for wins and $\log P(W_i
 
 The proposed MCNet goes further: a network predicts weights $\pi_k(x)$, means $\mu_k(x)$, and scales $\sigma_k(x)$ of a Gaussian mixture:
 
-$$f(w\mid x)=\sum_{k=1}^{K}\pi_k(x)\frac{1}{\sigma_k(x)}\phi\!\left(\frac{w-\mu_k(x)}{\sigma_k(x)}\right),\quad S(b\mid x)=\sum_{k=1}^{K}\pi_k(x)\Phi\!\left(\frac{\mu_k(x)-b}{\sigma_k(x)}\right).$$
+```math
+f(w\mid x)=\sum_{k=1}^{K}\pi_k(x)\frac{1}{\sigma_k(x)}\phi\!\left(\frac{w-\mu_k(x)}{\sigma_k(x)}\right),\quad S(b\mid x)=\sum_{k=1}^{K}\pi_k(x)\Phi\!\left(\frac{\mu_k(x)-b}{\sigma_k(x)}\right).
+```
 
 The $\pi$ weights are normalized with softmax, and positivity of $\sigma$ is ensured by exponential parameterization. The objective sums log densities for wins and log tail probabilities for losses. The CDF is obtained by integrating the mixture density. KM and censored Gaussian regression with constant variance are comparison baselines.
 
@@ -184,17 +188,21 @@ In a first-price auction, the winning DSP pays its own bid. DDN estimates the di
 
 DDN defines the threshold distribution using a parametric family, whose parameter vector $\alpha(x)$ is estimated by a neural network from auction features $x$. In open mode, parameters are estimated by maximizing the likelihood of observed prices $\hat b_i$:
 
-$$\max_{\theta}\sum_{i=1}^{n}\log f\!\left(\hat b_i;\alpha_\theta(x_i)\right).$$
+```math
+\max_{\theta}\sum_{i=1}^{n}\log f\!\left(\hat b_i;\alpha_\theta(x_i)\right).
+```
 
-where $f$ is the density of the selected family. In closed mode, the network is trained on outcome $y_i\in\{0,1\}$ (1 for a win) using the win probability $F(b_i;\alpha(x_i))$. The logarithmic loss is
+where $f$ is the density of the selected family. In closed mode, the network is trained on outcome $`y_i\in\{0,1\}`$ (1 for a win) using the win probability $F(b_i;\alpha(x_i))$. The logarithmic loss is
 
-$$L_{closed}=-\sum_{i=1}^{n}\left[y_i\log F\!\left(b_i;\alpha(x_i)\right)+(1-y_i)\log\!\left(1-F\!\left(b_i;\alpha(x_i)\right)\right)\right].$$
+```math
+L_{closed}=-\sum_{i=1}^{n}\left[y_i\log F\!\left(b_i;\alpha(x_i)\right)+(1-y_i)\log\!\left(1-F\!\left(b_i;\alpha(x_i)\right)\right)\right].
+```
 
 In §3.3 the authors consider four distribution families $D$: truncated normal, exponential, gamma, and lognormal. Their parameters $\alpha(x)$ are predicted by the model; the architecture could be LR, FM, FwFM, or a deeper network. Thus DDN is not an unrestricted “arbitrary” density: its shape is limited by the selected parametric family.
 
 The distribution is then used to maximize participant expected utility: the difference between impression value and payment, weighted by win probability. For impression value $v$ (written as $V$ in the original) and bid $b$, the authors define
 
-$$s(b;v,x)=(v-b)F(b\mid x),\qquad b^*=\arg\max_{0<b<v}(v-b)F(b\mid x).$$
+$$s(b;v,x)=(v-b)F(b\mid x),\qquad b^*=\arg\max_{0\lt b\lt v}(v-b)F(b\mid x).$$
 
 Golden-section search is used to find $b^*$. Theorem 1 establishes the unique global maximum and absence of a local minimum on $(0,v)$ **only** for four distribution families: truncated normal, exponential, gamma, and lognormal. §2 reviews prior approaches: segment-level distribution, point estimate, LogReg/qFwFM, and WinRate.
 
@@ -207,7 +215,7 @@ Golden-section search is used to find $b^*$. Theorem 1 establishes the unique gl
 A segment-level KM estimate does not account for differences between requests within a segment. Let $\tau=(x,b,z,I)$, where $I$ indicates a loss; on a win the price is observed, while on a loss $z$ is unknown and $z\ge b$. In KMMN, probabilities $P(z,\mathrm{win}\mid x)$ and $P(b,\mathrm{lose}\mid x)$ are parameterized by a Markov network, a two-layer product-of-experts model linking the request and bid to price and outcome. A conditional KM estimate of the survival function is recovered from these quantities:
 
 ```math
-\hat S(b\mid x)=\prod_{j<b}\left(1-\frac{P(z=j,\mathrm{win}\mid x)}{\sum_{z'\ge j}P(z=z',\mathrm{win}\mid x)+\sum_{b'\ge j}P(b=b',\mathrm{lose}\mid x)}\right),\qquad p_Z(z=j\mid x)=\hat S(j\mid x)-\hat S(j+1\mid x).
+\hat S(b\mid x)=\prod_{j\lt b}\left(1-\frac{P(z=j,\mathrm{win}\mid x)}{\sum_{z'\ge j}P(z=z',\mathrm{win}\mid x)+\sum_{b'\ge j}P(b=b',\mathrm{lose}\mid x)}\right),\qquad p_Z(z=j\mid x)=\hat S(j\mid x)-\hat S(j+1\mid x).
 ```
 
 The network estimates probabilities from which KM computes a discrete survival function and PMF. Training uses the joint likelihood of observations, and the gradient is estimated using Gibbs sampling. The authors derive $p(z\mid x)$ for a request by summing over possible bids with weights from the empirical prior distribution of bids. This uses the approximation $p(b\mid x)\approx p(b)$.
@@ -230,7 +238,7 @@ On a win, the known price $z$ is used in PDF and NLL terms and defines a neighbo
 
 TLF estimates the price distribution with a transformer. Price is discretized into intervals $V_l$. The model estimates probabilities $h_{i,l}$ that price falls in each interval, conditional on not having fallen into any previous interval. A vector representation of the request is copied for each price interval, augmented with positional encoding, and passed to a transformer encoder with self-attention. Interval masses and the win probability are calculated from the conditional probabilities:
 
-$$p_l=h_l\prod_{j<l}(1-h_j),\qquad W(b_l\mid x)=1-\prod_{j\le l}(1-h_j),\qquad S(b_l\mid x)=\prod_{j\le l}(1-h_j).$$
+$$p_l=h_l\prod_{j\lt l}(1-h_j),\qquad W(b_l\mid x)=1-\prod_{j\le l}(1-h_j),\qquad S(b_l\mid x)=\prod_{j\le l}(1-h_j).$$
 
 On a finite grid, residual mass after the final interval is $S(b_L)=\prod_{j\le L}(1-h_j)$. A separate tail interval or explicit boundary condition is needed for a normalized PMF over the whole price axis. ADM's softmax normalizes probabilities only across the specified intervals; the tail outside the grid is cut off unless a separate interval is provided. This follows from choosing finite distribution support and is not a verbatim claim by the DLF or TLF authors.
 
