@@ -71,7 +71,7 @@ def make_competitor(ads, seed, cpm_range=(0.7, 1.4), keep=0.7, limit_range=(0.6,
     return out
 
 
-TARGET_ATTRS = ("Устройство", "Регион", "Категория", "Канал")
+TARGET_ATTRS = ("Device", "Region", "Category", "Channel")
 
 
 def _random_targets(rng, vocabs):

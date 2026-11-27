@@ -318,18 +318,18 @@ def report(payload):
     for r in rows:
         groups.setdefault((r["regime"], r["model"]), []).append(r)
     a = payload["args"]
-    L = ["# Бенчмарк ставок на логах стенда (Wang 2016, Cui 2011)", "",
-         f"Seeds {a['seeds']}, sample {a['sample']}, train/val/test дни {a['train_days']}/{a['val_days']}/{a['test_days']}, "
-         f"резерв R={a['reserve']}, обучение до {a['train_cap']} строк. Среднее ± std по seed.", "",
-         "## Данные (запросы, ушедшие менеджеру)", "",
-         "| seed | фаза | строк | доля 204 (z=R) | доля с нашей ценностью v>0 | mean z | mean v (v>0) |",
+    L = ["# Bid Benchmark on Test Stand Logs (Wang 2016, Cui 2011)", "",
+         f"Seeds {a['seeds']}, sample {a['sample']}, train/validation/test days {a['train_days']}/{a['val_days']}/{a['test_days']}, "
+         f"reserve R={a['reserve']}, training capped at {a['train_cap']} rows. Mean ± standard deviation across seeds.", "",
+         "## Data (requests sent to the manager)", "",
+         "| seed | phase | rows | share of 204 responses (z=R) | share with own value v>0 | mean z | mean v (v>0) |",
          "|---:|---|---:|---:|---:|---:|---:|"]
     L += [f"| {d['seed']} | {d['phase']} | {d['rows']} | {d['share_204']:.3f} | {d['share_valued']:.3f} | "
           f"{d['mean_z']:.1f} | {d['mean_v_valued']:.1f} |" for d in payload["data"]]
-    head = ["режим", "модель", "Brier", "log-loss", "ECE", "CRPS"] + [f"win@{t} (бид; coverage; fallback win/бид)" for t in TARGETS]
-    L += ["", "## 1. Вероятность показа", "",
-          "Brier/log-loss/ECE — прогноз P(win) при случайной ставке U(R, B_MAX) на тесте; CRPS — по всей сетке ставок. "
-          "win@p и ставка считаются только по строкам, где F достигает p; coverage — их доля. Для недостижимых строк отдельно показаны win-rate и ставка GRID[-1]. Если строк нет, метрики равны ‘—’.", "",
+    head = ["regime", "model", "Brier", "log-loss", "ECE", "CRPS"] + [f"win@{t} (bid; coverage; fallback win rate/bid)" for t in TARGETS]
+    L += ["", "## 1. Impression Probability", "",
+          "Brier, log loss, and ECE score P(win) at a random bid U(R, B_MAX) on the test set. CRPS uses the full bid grid. "
+          "win@p and the bid use rows where F reaches p. Coverage is the share of those rows. For rows where F falls short of p, the report shows the win rate and the GRID[-1] bid separately. If no rows qualify, the metrics are shown as ‘—’.", "",
           "| " + " | ".join(head) + " |", "|" + "|".join("---" for _ in head) + "|"]
     for (regime, model), g in groups.items():
         if "brier" not in g[0]:
@@ -338,10 +338,10 @@ def report(payload):
         cells += [f"{_agg(g, f'win@{t}', '{:.3f}')} ({_agg(g, f'bid@{t}', '{:.0f}')}; {_agg(g, f'reachable@{t}', '{:.3f}')}; "
                   f"{_agg(g, f'fallback_win@{t}', '{:.3f}')}/{_agg(g, f'fallback_bid@{t}', '{:.0f}')})" for t in TARGETS]
         L.append("| " + " | ".join(cells) + " |")
-    head = ["режим", "модель", "прибыль / oracle", "прибыль", "показы", "win-rate (v>0)", "расход", "ожид./факт прибыль"]
-    L += ["", "## 2. Оптимальность цены", "",
-          "First-price: ставка b* = argmax_{b≤v} (v−b)·F̂(b). Прибыль = Σ(v−b)·1[b>z] на тесте. "
-          "oracle знает z и ставит z+1 — верхняя граница. «ожид./факт» — откалиброванность прогноза прибыли (1 = точно).", "",
+    head = ["regime", "model", "profit / oracle", "profit", "impressions", "win-rate (v>0)", "spend", "expected / actual profit"]
+    L += ["", "## 2. Bid Optimality", "",
+          "First-price bid b* = argmax_{b≤v} (v−b)·F̂(b). Test profit = Σ(v−b)·1[b>z]. "
+          "The oracle knows z and bids z+1, giving an upper bound. The expected-to-actual profit ratio measures forecast calibration (1 means an exact match).", "",
           "| " + " | ".join(head) + " |", "|" + "|".join("---" for _ in head) + "|"]
     for (regime, model), g in groups.items():
         ratio = [r["expected_profit"] / r["profit"] for r in g if r.get("expected_profit") is not None and r["profit"]]
@@ -349,10 +349,10 @@ def report(payload):
                  _agg(g, "wins", "{:.0f}"), _agg(g, "win_rate_valued", "{:.3f}"), _agg(g, "spend", "{:.0f}"),
                  f"{np.mean(ratio):.2f}" if ratio else ""]
         L.append("| " + " | ".join(cells) + " |")
-    head = ["режим", "модель", "Brier", "log-loss", "ECE", "CRPS"] + [f"win@{t} (бид; coverage; fallback win/бид)" for t in TARGETS]
-    L += ["", "## 1c. Вероятность показа — только запросы с конкуренцией (z > R)", "",
-          "Прогноз модели условлен на z > R: P(z < b | z > R) = (F(b) − F(R+1)) / (1 − F(R+1)) — "
-          "это операция над прогнозом, тестовые данные в ней не участвуют.", "",
+    head = ["regime", "model", "Brier", "log-loss", "ECE", "CRPS"] + [f"win@{t} (bid; coverage; fallback win rate/bid)" for t in TARGETS]
+    L += ["", "## 1c. Impression Probability on Requests with Competition (z > R)", "",
+          "The model forecast is conditioned on z > R as follows. P(z < b | z > R) = (F(b) − F(R+1)) / (1 − F(R+1)). "
+          "This calculation uses only the forecast.", "",
           "| " + " | ".join(head) + " |", "|" + "|".join("---" for _ in head) + "|"]
     for (regime, model), g in groups.items():
         if "brier_comp" not in g[0]:
@@ -362,9 +362,9 @@ def report(payload):
                   f"{_agg(g, f'reachable@{t}_comp', '{:.3f}')}; {_agg(g, f'fallback_win@{t}_comp', '{:.3f}')}/"
                   f"{_agg(g, f'fallback_bid@{t}_comp', '{:.0f}')})" for t in TARGETS]
         L.append("| " + " | ".join(cells) + " |")
-    head = ["режим", "модель", "прибыль / oracle", "прибыль", "показы", "win-rate (v>0)", "расход"]
-    L += ["", "## 2c. Оптимальность цены — только запросы с конкуренцией (z > R)", "",
-          "Ставки те же, что выше: модель не знает, какой запрос бесплатный. Прибыль и oracle — по тем же запросам.", "",
+    head = ["regime", "model", "profit / oracle", "profit", "impressions", "win-rate (v>0)", "spend"]
+    L += ["", "## 2c. Bid Optimality on Requests with Competition (z > R)", "",
+          "The bids are the same as above because the model cannot identify requests with no competition. Profit and oracle profit use the same subset of requests.", "",
           "| " + " | ".join(head) + " |", "|" + "|".join("---" for _ in head) + "|"]
     for (regime, model), g in groups.items():
         if "profit_comp" not in g[0]:
@@ -372,11 +372,11 @@ def report(payload):
         L.append("| " + " | ".join([regime, model, _agg(g, "profit_vs_oracle_comp", "{:.3f}"),
                                      _agg(g, "profit_comp", "{:.0f}"), _agg(g, "wins_comp", "{:.0f}"),
                                      _agg(g, "win_rate_valued_comp", "{:.3f}"), _agg(g, "spend_comp", "{:.0f}")]) + " |")
-    L += ["", "## Ограничения", "",
-          "- Replay: наш выигрыш не меняет состояние менеджера (частоты/объёмы) — стандартное допущение офлайн-оценки RTB.",
-          "- v не учитывает частотные лимиты и объёмы наших кампаний — только таргетинг и cpm.",
-          "- Цены менеджера — дискретная лестница cpm; логнормаль Cui для неё заведомо неточна.",
-          "- censored: при выигрыше видим z (feedback «минимальная ставка для выигрыша»), при проигрыше только z ≥ b."]
+    L += ["", "## Limitations", "",
+          "- Replay assumes our wins leave the manager’s state (frequency and volume) unchanged, as is standard in offline RTB evaluation.",
+          "- v uses only campaign targeting and CPM, omitting frequency limits and campaign volumes.",
+          "- Manager prices follow a discrete CPM ladder, which Cui’s lognormal model can only approximate.",
+          "- With censoring, a win reveals z through minimum winning bid feedback. A loss reveals only z ≥ b."]
     return "\n".join(L) + "\n"
 
 
@@ -388,7 +388,7 @@ def main(argv=None):
     p.add_argument("--our-ads", default=str(ROOT / "benchmarks/log_benchmark/ads_manual.json"))
     p.add_argument("--output-dir", default=str(Path(__file__).resolve().parents[3] / "docs/benchmark/bid_forecast/results/price"))
     p.add_argument("--seeds", type=lambda s: [int(x) for x in s.split(",")], default=[19, 43, 71])
-    p.add_argument("--sample", type=float, default=0.002, help="доля пользователей стенда")
+    p.add_argument("--sample", type=float, default=0.002, help="fraction of test stand users to sample")
     p.add_argument("--train-days", type=rng_arg, default=(0, 3))
     p.add_argument("--val-days", type=rng_arg, default=(3, 5))
     p.add_argument("--test-days", type=rng_arg, default=(5, 7))

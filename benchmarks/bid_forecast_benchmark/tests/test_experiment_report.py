@@ -25,7 +25,7 @@ class ExperimentReportTests(unittest.TestCase):
         for regime in ("full", "censored"):
             models = [r for r in new["raw_runs"] if r.get("regime") == regime]
             winner = max(models, key=lambda r: r["ours_total"])
-            self.assertIn(f'{regime.upper()} лидирует: {winner["strategy"]}', page)
+            self.assertIn(f'{regime.upper()} leader: {winner["strategy"]}', page)
             self.assertIn(fmt(winner["ours_total"]), page)
         full_nm = next(r["ours_total"] for r in new["raw_runs"] if r.get("regime") == "full" and r["strategy"] == "NM (wins-only global)")
         censored_nm = next(r["ours_total"] for r in new["raw_runs"] if r.get("regime") == "censored" and r["strategy"] == "NM (wins-only global)")
@@ -33,8 +33,8 @@ class ExperimentReportTests(unittest.TestCase):
 
     def test_charts_and_embedding_metadata_are_present(self):
         page = render(load(OLD), load(NEW), (OLD, NEW))
-        self.assertIn('aria-label="100 значений random по min–max"', page)
-        self.assertIn('aria-label="Стратегии против среднего random в отклонении"', page)
+        self.assertIn('aria-label="100 random runs on a min–max scale"', page)
+        self.assertIn('aria-label="Strategy differences from the random baseline mean"', page)
         self.assertIn('transform="rotate(-90 8 115)"', page)
         self.assertIn("sampled market requests", page)
         self.assertIn("fixed_scenario_validation --prepared", page)
@@ -58,7 +58,7 @@ class ExperimentReportTests(unittest.TestCase):
         baseline_metrics = metrics["baseline: truthful b=v"]
         self.assertIn(f'<td>{fmt(baseline_metrics["actual_replay"]["market_profit"])}</td>', page)
         self.assertIn("<td>—</td><td>", page)
-        self.assertIn("фиксированный probe", page)
+        self.assertIn("fixed probe", page)
         self.assertIn("0,9", page)
         self.assertIn("hindsight", page)
 
@@ -66,6 +66,6 @@ class ExperimentReportTests(unittest.TestCase):
         old = load(OLD)
         new = load(NEW.parent.parent / "fixed_scenario_train_only_100" / "fixed_scenario_validation.json")
         page = render(old, new, (OLD, NEW))
-        self.assertIn("Диагностика отсутствует", page)
+        self.assertIn("Diagnostics unavailable", page)
 if __name__ == "__main__":
     unittest.main()

@@ -45,7 +45,7 @@ def planned_match_counts(prep, ads, planning, pool_only=False):
             lookup = {label: i for i, label in enumerate(prep.vocabs[name])}
             missing = [tag for tag in tags if tag not in lookup]
             if missing:
-                raise ValueError(f"[{ad['id']}] нет тегов {missing[:3]} в словаре {name!r}")
+                raise ValueError(f"[{ad['id']}] tags {missing[:3]} are missing from vocabulary {name!r}")
             lut = np.zeros(len(lookup), dtype=bool)
             for tag in tags:
                 lut[lookup[tag]] = True

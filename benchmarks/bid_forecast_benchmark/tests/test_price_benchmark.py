@@ -81,5 +81,5 @@ def test_all_reachable_and_reports_cover_fallback_for_all_and_comp_sections():
                          "reserve": 50, "train_cap": 10}, "data": [], "results": [row]}
     rendered = report(payload)
     assert "coverage" in rendered and "fallback" in rendered
-    assert "Если строк нет" in rendered
+    assert "If no rows qualify" in rendered
     assert "## 1c." in rendered and "## 2c." in rendered
