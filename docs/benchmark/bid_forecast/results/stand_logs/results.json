@@ -1,0 +1,832 @@
+{
+  "title": "Closed-stand generated response logs; no valid market-price benchmark labels",
+  "environment": {
+    "python": "3.13.13",
+    "platform": "Windows-10-10.0.19045-SP0"
+  },
+  "numpy": "2.5.4",
+  "processor": "Intel64 Family 6 Model 42 Stepping 7, GenuineIntel",
+  "generator": "benchmarks/closed_stand/stand.py::simulate + Seller",
+  "prepared_signature": "8d878284379be2535b0445785f09ebecfda7c718308eb51ed2df9c4ec8ee5a81",
+  "prepared_source": "benchmarks/logs/prepared_20261012/_tmp",
+  "generator_command": "$REPO\\.venv\\Scripts\\python.exe -m articles_prorotypes.stand_benchmark --prepared $REPO\\benchmarks\\logs\\prepared_20261012_retry --manager-ads $REPO\\benchmarks\\closed_stand\\manager_target50_20261012.json --our-ads $REPO\\benchmarks\\log_benchmark\\ads_manual.json --output-dir $REPO\\docs\\benchmark\\bid_forecast\\results\\stand_logs --seeds 19,43,71 --max-requests 30000 --days 0:3 --validation-days 3:5 --test-days 5:7 --q 0.8 --manager-price 150",
+  "prepared_source_sha256": "ff4726d3d4c0533400ed241f51c4676b78a0cbea50f1417c5a729c7ecaa2a399",
+  "stand_source_sha256": {
+    "benchmarks\\closed_stand\\stand.py": "2e51ccc0c412cb6d131b702b62bc2f5c1d4ee67e71eedeb43e39b3c379bb3866",
+    "benchmarks\\closed_stand\\seller.py": "fefd6a1b69d1041953052a8f111d6ae54544ed0235cf15a4de475c4f273a0142",
+    "benchmarks\\log_benchmark\\ads.py": "4e74d18316b1e167ddba5d1b2c63c8f1ad9e90bc5bc9420062c2abf7d4713539",
+    "articles_prorotypes\\stand_benchmark.py": "455263d66913a4b37949c0d30ebe073357dad95cbdbcca5396d4d9d4cadd8295"
+  },
+  "git_commit": "2913f349ca54d27a8d951f0bae4d0507bd8ff43b",
+  "dirty_worktree": true,
+  "prepared_file_sha256": {
+    "$REPO\\benchmarks\\logs\\prepared_20261012_retry\\day_00_ts.npy": "cf68fb99f7d6cd0689c5ca67e48e88983caa85069917b7ca52514a688317ac70",
+    "$REPO\\benchmarks\\logs\\prepared_20261012_retry\\day_00_user.npy": "3688729f6b2d0a931a6e5cb365f9bb0ce046906fbf977efabbb896dd0f8f4cf8",
+    "$REPO\\benchmarks\\logs\\prepared_20261012_retry\\day_00_combo.npy": "032ee4266860aa8e3171250541703c8bd4658bd7390b5d5c6dc085a03ff33e0e",
+    "$REPO\\benchmarks\\logs\\prepared_20261012_retry\\day_01_ts.npy": "694cff4dd623a4756d7dbdf24983af182164ed2d8fffcc742a82d1c92f0e10e7",
+    "$REPO\\benchmarks\\logs\\prepared_20261012_retry\\day_01_user.npy": "a9dff7540986b0b489203cb210ec3b23bed24ccf43a72f651ab8ec99b78ea8c1",
+    "$REPO\\benchmarks\\logs\\prepared_20261012_retry\\day_01_combo.npy": "20006aff650d0905af07a627d8db16dc396ce88ab603c0801b697ea71baa4609",
+    "$REPO\\benchmarks\\logs\\prepared_20261012_retry\\day_02_ts.npy": "7150e97bb2143b49160800677e06f64ed0698a21d9ba8acd903f232d9ce5ec21",
+    "$REPO\\benchmarks\\logs\\prepared_20261012_retry\\day_02_user.npy": "caec389c18fd4f5eb4c0dd3f9b2d80ba7f2f0a206fbaf38202826188e6aceb92",
+    "$REPO\\benchmarks\\logs\\prepared_20261012_retry\\day_02_combo.npy": "3c651a0a14af075c5bbfd20dd0654dd757ab7e2cbebc24117374e5f95565dc08",
+    "$REPO\\benchmarks\\logs\\prepared_20261012_retry\\day_03_ts.npy": "c451459487b98d2b4def4f3ae4814413990e197272d03f195159c26259f3690c",
+    "$REPO\\benchmarks\\logs\\prepared_20261012_retry\\day_03_user.npy": "5be0418f83a33ae9c2888376ea342a86b86f0ad485e0998ce9e01b27d742f6bf",
+    "$REPO\\benchmarks\\logs\\prepared_20261012_retry\\day_03_combo.npy": "c5266da5568e87edf7c4201414694a3d9a42cfcb386ef31ae2ac3d519b950123",
+    "$REPO\\benchmarks\\logs\\prepared_20261012_retry\\day_04_ts.npy": "29f0585914b89f18a0f2a90e9e6ff178bc23808530a2320a56938f755557b265",
+    "$REPO\\benchmarks\\logs\\prepared_20261012_retry\\day_04_user.npy": "afb0c9e2efead923c4e68c6d1f9379f8e0ef991fd8583f5787b1ca7bd70e5d79",
+    "$REPO\\benchmarks\\logs\\prepared_20261012_retry\\day_04_combo.npy": "87f223eeed3dded28bf9f8fd171d2c9e4a9bafc0cbfb6c5659c4250e742d3cb6",
+    "$REPO\\benchmarks\\logs\\prepared_20261012_retry\\day_05_ts.npy": "4f00c3b8c5e432df76a3704042e51f32a6542bcfe31e695d925ec540f4ba9012",
+    "$REPO\\benchmarks\\logs\\prepared_20261012_retry\\day_05_user.npy": "bb89a62468626301dbac72bd1c6cb251f4a175686191235cd8f6f3003b041763",
+    "$REPO\\benchmarks\\logs\\prepared_20261012_retry\\day_05_combo.npy": "6db2ebfab3b5ea9abff1dd0ad046d787dd071f4a844c75eef897ad13046598b4",
+    "$REPO\\benchmarks\\logs\\prepared_20261012_retry\\day_06_ts.npy": "25f87d6cecae84e84719c47abebe551b67c41accf6eddb2da51ace341c73e0da",
+    "$REPO\\benchmarks\\logs\\prepared_20261012_retry\\day_06_user.npy": "11b3ff45da550465c29110ac9bee64eaa160c47de05caa85e548d31cf018ea7b",
+    "$REPO\\benchmarks\\logs\\prepared_20261012_retry\\day_06_combo.npy": "17d9f19993a89b1ab8f59b25abcc4143ce021cc28cf09d3a5d557bb1e2704f27"
+  },
+  "code_sha256": {
+    "articles_prorotypes\\stand_benchmark.py": "455263d66913a4b37949c0d30ebe073357dad95cbdbcca5396d4d9d4cadd8295",
+    "articles_prorotypes\\cui2011.py": "61a165bbd0291c6d60467f10509282d9eb968a7ffa83b63fefa37b28f452f87f",
+    "articles_prorotypes\\cui_features.py": "71bab7ca85dc1c1acee692f7596add8777d45db8e8ab8d734dc71e2ba834fb9f",
+    "articles_prorotypes\\wang2016.py": "fa5f35d485ba0131d7c87d3248844e7d24f9a0222c4f97d8728ba8b11adb58c0",
+    "benchmarks\\closed_stand\\stand.py": "2e51ccc0c412cb6d131b702b62bc2f5c1d4ee67e71eedeb43e39b3c379bb3866",
+    "benchmarks\\closed_stand\\seller.py": "fefd6a1b69d1041953052a8f111d6ae54544ed0235cf15a4de475c4f273a0142",
+    "benchmarks\\log_benchmark\\ads.py": "4e74d18316b1e167ddba5d1b2c63c8f1ad9e90bc5bc9420062c2abf7d4713539"
+  },
+  "manager_ads_sha256": "d1ca11741876c7661613774fb154a183b64b1e8178bb1dc4d92abe2ebb241493",
+  "our_ads_sha256": "9884ad45ee74e128519e81b44ef59ed73a75ae984940641f4a68d97c66c6dde9",
+  "requested_max_requests_per_seed_training_period": 30000,
+  "seeds": [
+    19,
+    43,
+    71
+  ],
+  "sample_fraction": 0.0002957077604578676,
+  "manager_price": 150,
+  "manager_price_semantics": "internal fixed payout for response 200, never interpreted as auction clearing price",
+  "split_days": {
+    "training": [
+      0,
+      3
+    ],
+    "validation": [
+      3,
+      5
+    ],
+    "test": [
+      5,
+      7
+    ]
+  },
+  "phases": [
+    {
+      "seed": 19,
+      "phase": "training",
+      "days": [
+        0,
+        3
+      ],
+      "requests_evaluated": 30804,
+      "pool_requests": 16082,
+      "sent": 12802,
+      "responses_200": 6845,
+      "sellthrough": 0.5346820809248555,
+      "seconds": 0.9314224720001221
+    },
+    {
+      "seed": 19,
+      "phase": "validation",
+      "days": [
+        3,
+        5
+      ],
+      "requests_evaluated": 16918,
+      "pool_requests": 10293,
+      "sent": 8209,
+      "responses_200": 4844,
+      "sellthrough": 0.5900840540869777,
+      "seconds": 0.47276902198791504
+    },
+    {
+      "seed": 19,
+      "phase": "test",
+      "days": [
+        5,
+        7
+      ],
+      "requests_evaluated": 19432,
+      "pool_requests": 12318,
+      "sent": 9807,
+      "responses_200": 5515,
+      "sellthrough": 0.5623534210257979,
+      "seconds": 0.6544814109802246
+    },
+    {
+      "seed": 43,
+      "phase": "training",
+      "days": [
+        0,
+        3
+      ],
+      "requests_evaluated": 30804,
+      "pool_requests": 16082,
+      "sent": 12844,
+      "responses_200": 6873,
+      "sellthrough": 0.5351136717533479,
+      "seconds": 1.3052821159362793
+    },
+    {
+      "seed": 43,
+      "phase": "validation",
+      "days": [
+        3,
+        5
+      ],
+      "requests_evaluated": 16918,
+      "pool_requests": 10293,
+      "sent": 8242,
+      "responses_200": 4871,
+      "sellthrough": 0.5909973307449649,
+      "seconds": 0.7634251117706299
+    },
+    {
+      "seed": 43,
+      "phase": "test",
+      "days": [
+        5,
+        7
+      ],
+      "requests_evaluated": 19432,
+      "pool_requests": 12318,
+      "sent": 9858,
+      "responses_200": 5511,
+      "sellthrough": 0.5590383444917834,
+      "seconds": 0.5389256477355957
+    },
+    {
+      "seed": 71,
+      "phase": "training",
+      "days": [
+        0,
+        3
+      ],
+      "requests_evaluated": 30804,
+      "pool_requests": 16082,
+      "sent": 12746,
+      "responses_200": 6815,
+      "sellthrough": 0.5346775458967519,
+      "seconds": 0.9406917095184326
+    },
+    {
+      "seed": 71,
+      "phase": "validation",
+      "days": [
+        3,
+        5
+      ],
+      "requests_evaluated": 16918,
+      "pool_requests": 10293,
+      "sent": 8209,
+      "responses_200": 4811,
+      "sellthrough": 0.5860640760141308,
+      "seconds": 0.48595547676086426
+    },
+    {
+      "seed": 71,
+      "phase": "test",
+      "days": [
+        5,
+        7
+      ],
+      "requests_evaluated": 19432,
+      "pool_requests": 12318,
+      "sent": 9828,
+      "responses_200": 5486,
+      "sellthrough": 0.5582010582010583,
+      "seconds": 0.5909252166748047
+    }
+  ],
+  "generated_log_sha256": {
+    "$REPO\\docs\\benchmark\\bid_forecast\\results\\stand_logs\\seed_19_training.parquet": "74ac9dc7ef9ee4db266de2f8a8a0c44b4378589b641bace9cf8bd635e5f49839",
+    "$REPO\\docs\\benchmark\\bid_forecast\\results\\stand_logs\\seed_19_validation.parquet": "243cf5473a7762684fb71b180ac92646eff9b048ddf03656bf49ebe554732929",
+    "$REPO\\docs\\benchmark\\bid_forecast\\results\\stand_logs\\seed_19_test.parquet": "9069b28d69c0d3bbffa2bd1243a63d25df887047f8b628e66ab7be93c2bfd0bf",
+    "$REPO\\docs\\benchmark\\bid_forecast\\results\\stand_logs\\seed_43_training.parquet": "36d038b704662150c252ad0c6aaaa1bc364d76b35855a15b727f7f41db8d1a96",
+    "$REPO\\docs\\benchmark\\bid_forecast\\results\\stand_logs\\seed_43_validation.parquet": "7b9df773fa97fa191011d513afa0c8d0f8af03ecf5f14ab2a8bb6affcc000762",
+    "$REPO\\docs\\benchmark\\bid_forecast\\results\\stand_logs\\seed_43_test.parquet": "dc4650828734eb655a7f5f2166d2695f7ffca6c82f8c921dbd22169d1afc8d84",
+    "$REPO\\docs\\benchmark\\bid_forecast\\results\\stand_logs\\seed_71_training.parquet": "7aeef7856c08bb7a61b5c1f94337ec29bd7a3a73ca507227c6a5c463822b7266",
+    "$REPO\\docs\\benchmark\\bid_forecast\\results\\stand_logs\\seed_71_validation.parquet": "1d8c5d7b74296a7a9519da1db66b07fb522354d3cc5efcb7ecde5b4c63c858a9",
+    "$REPO\\docs\\benchmark\\bid_forecast\\results\\stand_logs\\seed_71_test.parquet": "d27436754fa438e87a9add459cb5f4360a0fc4cc613088b410e36db4794b1f5d"
+  },
+  "results": [
+    {
+      "seed": 19,
+      "article": "stand_response_baseline",
+      "model": "TRAIN_CONSTANT",
+      "train_rows": 12802,
+      "validation_rows": 8209,
+      "test_rows": 9807,
+      "test_coverage": 9807,
+      "fit_seconds": 0.0,
+      "predict_seconds": 0.0,
+      "train_sha256": "05b5993e4b58afd124023ba556896b7806b1862635c7bd1848ec9933b0f1a97e",
+      "validation_sha256": "149916e7d02a165553b929b6330e60db3f70e9b03ed0811e451a5847aba4a24d",
+      "test_sha256": "9bcd49ca715858147baba6d20d24821ae65f80218c3bfb9309ae007d25d25940",
+      "validation_selection": null,
+      "train_positive_rate": 0.5346820809248555,
+      "validation_positive_rate": 0.5900840540869777,
+      "test_positive_rate": 0.5623534210257979,
+      "brier": 0.24687775394936165,
+      "log_loss": 0.6868945811329484,
+      "calibration_bins": [
+        {
+          "lower": 0.0,
+          "upper": 0.1,
+          "count": 0,
+          "mean_predicted": null,
+          "observed_rate": null
+        },
+        {
+          "lower": 0.1,
+          "upper": 0.2,
+          "count": 0,
+          "mean_predicted": null,
+          "observed_rate": null
+        },
+        {
+          "lower": 0.2,
+          "upper": 0.30000000000000004,
+          "count": 0,
+          "mean_predicted": null,
+          "observed_rate": null
+        },
+        {
+          "lower": 0.30000000000000004,
+          "upper": 0.4,
+          "count": 0,
+          "mean_predicted": null,
+          "observed_rate": null
+        },
+        {
+          "lower": 0.4,
+          "upper": 0.5,
+          "count": 0,
+          "mean_predicted": null,
+          "observed_rate": null
+        },
+        {
+          "lower": 0.5,
+          "upper": 0.6000000000000001,
+          "count": 9807,
+          "mean_predicted": 0.5346820809248555,
+          "observed_rate": 0.5623534210257979
+        },
+        {
+          "lower": 0.6000000000000001,
+          "upper": 0.7000000000000001,
+          "count": 0,
+          "mean_predicted": null,
+          "observed_rate": null
+        },
+        {
+          "lower": 0.7000000000000001,
+          "upper": 0.8,
+          "count": 0,
+          "mean_predicted": null,
+          "observed_rate": null
+        },
+        {
+          "lower": 0.8,
+          "upper": 0.9,
+          "count": 0,
+          "mean_predicted": null,
+          "observed_rate": null
+        },
+        {
+          "lower": 0.9,
+          "upper": 1.0,
+          "count": 0,
+          "mean_predicted": null,
+          "observed_rate": null
+        }
+      ]
+    },
+    {
+      "seed": 19,
+      "article": "stand_response_baseline",
+      "model": "VALIDATION_SELECTED_CONSTANT",
+      "train_rows": 12802,
+      "validation_rows": 8209,
+      "test_rows": 9807,
+      "test_coverage": 9807,
+      "fit_seconds": 0.0,
+      "predict_seconds": 0.0,
+      "train_sha256": "05b5993e4b58afd124023ba556896b7806b1862635c7bd1848ec9933b0f1a97e",
+      "validation_sha256": "149916e7d02a165553b929b6330e60db3f70e9b03ed0811e451a5847aba4a24d",
+      "test_sha256": "9bcd49ca715858147baba6d20d24821ae65f80218c3bfb9309ae007d25d25940",
+      "validation_selection": {
+        "selection_metric": "validation_log_loss",
+        "selected_probability": 0.5900840540869777,
+        "validation_rows": 8209
+      },
+      "train_positive_rate": 0.5346820809248555,
+      "validation_positive_rate": 0.5900840540869777,
+      "test_positive_rate": 0.5623534210257979,
+      "brier": 0.24688103889635343,
+      "log_loss": 0.6869305656659136,
+      "calibration_bins": [
+        {
+          "lower": 0.0,
+          "upper": 0.1,
+          "count": 0,
+          "mean_predicted": null,
+          "observed_rate": null
+        },
+        {
+          "lower": 0.1,
+          "upper": 0.2,
+          "count": 0,
+          "mean_predicted": null,
+          "observed_rate": null
+        },
+        {
+          "lower": 0.2,
+          "upper": 0.30000000000000004,
+          "count": 0,
+          "mean_predicted": null,
+          "observed_rate": null
+        },
+        {
+          "lower": 0.30000000000000004,
+          "upper": 0.4,
+          "count": 0,
+          "mean_predicted": null,
+          "observed_rate": null
+        },
+        {
+          "lower": 0.4,
+          "upper": 0.5,
+          "count": 0,
+          "mean_predicted": null,
+          "observed_rate": null
+        },
+        {
+          "lower": 0.5,
+          "upper": 0.6000000000000001,
+          "count": 9807,
+          "mean_predicted": 0.5900840540869778,
+          "observed_rate": 0.5623534210257979
+        },
+        {
+          "lower": 0.6000000000000001,
+          "upper": 0.7000000000000001,
+          "count": 0,
+          "mean_predicted": null,
+          "observed_rate": null
+        },
+        {
+          "lower": 0.7000000000000001,
+          "upper": 0.8,
+          "count": 0,
+          "mean_predicted": null,
+          "observed_rate": null
+        },
+        {
+          "lower": 0.8,
+          "upper": 0.9,
+          "count": 0,
+          "mean_predicted": null,
+          "observed_rate": null
+        },
+        {
+          "lower": 0.9,
+          "upper": 1.0,
+          "count": 0,
+          "mean_predicted": null,
+          "observed_rate": null
+        }
+      ]
+    },
+    {
+      "seed": 19,
+      "article": "Cui2011",
+      "model": null,
+      "status": "not_evaluable_on_stand_schema",
+      "reason": "stand emits 200/204 response, not observed campaign bids, submitted bids or external market prices"
+    },
+    {
+      "seed": 19,
+      "article": "Wang2016",
+      "model": null,
+      "status": "not_evaluable_on_stand_schema",
+      "reason": "stand emits 200/204 response, not observed campaign bids, submitted bids or external market prices"
+    },
+    {
+      "seed": 43,
+      "article": "stand_response_baseline",
+      "model": "TRAIN_CONSTANT",
+      "train_rows": 12844,
+      "validation_rows": 8242,
+      "test_rows": 9858,
+      "test_coverage": 9858,
+      "fit_seconds": 0.0,
+      "predict_seconds": 0.0,
+      "train_sha256": "6831b72db796dfd88d985479bf2f6b30610af76c7f5705380542571b13fe5634",
+      "validation_sha256": "f2c16c4c57639707866647b6b3aadaa7d10f77ef0d6a0c23346a28f0af421c7b",
+      "test_sha256": "6ce89006ae2a5e0eccb0f159a5b79583e5f9d7e75845d789f23cf024ef320ea5",
+      "validation_selection": null,
+      "train_positive_rate": 0.5351136717533479,
+      "validation_positive_rate": 0.5909973307449649,
+      "test_positive_rate": 0.5590383444917834,
+      "brier": 0.24708686384531073,
+      "log_loss": 0.6873133366315042,
+      "calibration_bins": [
+        {
+          "lower": 0.0,
+          "upper": 0.1,
+          "count": 0,
+          "mean_predicted": null,
+          "observed_rate": null
+        },
+        {
+          "lower": 0.1,
+          "upper": 0.2,
+          "count": 0,
+          "mean_predicted": null,
+          "observed_rate": null
+        },
+        {
+          "lower": 0.2,
+          "upper": 0.30000000000000004,
+          "count": 0,
+          "mean_predicted": null,
+          "observed_rate": null
+        },
+        {
+          "lower": 0.30000000000000004,
+          "upper": 0.4,
+          "count": 0,
+          "mean_predicted": null,
+          "observed_rate": null
+        },
+        {
+          "lower": 0.4,
+          "upper": 0.5,
+          "count": 0,
+          "mean_predicted": null,
+          "observed_rate": null
+        },
+        {
+          "lower": 0.5,
+          "upper": 0.6000000000000001,
+          "count": 9858,
+          "mean_predicted": 0.535113671753348,
+          "observed_rate": 0.5590383444917834
+        },
+        {
+          "lower": 0.6000000000000001,
+          "upper": 0.7000000000000001,
+          "count": 0,
+          "mean_predicted": null,
+          "observed_rate": null
+        },
+        {
+          "lower": 0.7000000000000001,
+          "upper": 0.8,
+          "count": 0,
+          "mean_predicted": null,
+          "observed_rate": null
+        },
+        {
+          "lower": 0.8,
+          "upper": 0.9,
+          "count": 0,
+          "mean_predicted": null,
+          "observed_rate": null
+        },
+        {
+          "lower": 0.9,
+          "upper": 1.0,
+          "count": 0,
+          "mean_predicted": null,
+          "observed_rate": null
+        }
+      ]
+    },
+    {
+      "seed": 43,
+      "article": "stand_response_baseline",
+      "model": "VALIDATION_SELECTED_CONSTANT",
+      "train_rows": 12844,
+      "validation_rows": 8242,
+      "test_rows": 9858,
+      "test_coverage": 9858,
+      "fit_seconds": 0.0,
+      "predict_seconds": 0.0,
+      "train_sha256": "6831b72db796dfd88d985479bf2f6b30610af76c7f5705380542571b13fe5634",
+      "validation_sha256": "f2c16c4c57639707866647b6b3aadaa7d10f77ef0d6a0c23346a28f0af421c7b",
+      "test_sha256": "6ce89006ae2a5e0eccb0f159a5b79583e5f9d7e75845d789f23cf024ef320ea5",
+      "validation_selection": {
+        "selection_metric": "validation_log_loss",
+        "selected_probability": 0.5909973307449649,
+        "validation_rows": 8242
+      },
+      "train_positive_rate": 0.5351136717533479,
+      "validation_positive_rate": 0.5909973307449649,
+      "test_positive_rate": 0.5590383444917834,
+      "brier": 0.24753585068200057,
+      "log_loss": 0.6882572738656607,
+      "calibration_bins": [
+        {
+          "lower": 0.0,
+          "upper": 0.1,
+          "count": 0,
+          "mean_predicted": null,
+          "observed_rate": null
+        },
+        {
+          "lower": 0.1,
+          "upper": 0.2,
+          "count": 0,
+          "mean_predicted": null,
+          "observed_rate": null
+        },
+        {
+          "lower": 0.2,
+          "upper": 0.30000000000000004,
+          "count": 0,
+          "mean_predicted": null,
+          "observed_rate": null
+        },
+        {
+          "lower": 0.30000000000000004,
+          "upper": 0.4,
+          "count": 0,
+          "mean_predicted": null,
+          "observed_rate": null
+        },
+        {
+          "lower": 0.4,
+          "upper": 0.5,
+          "count": 0,
+          "mean_predicted": null,
+          "observed_rate": null
+        },
+        {
+          "lower": 0.5,
+          "upper": 0.6000000000000001,
+          "count": 9858,
+          "mean_predicted": 0.5909973307449647,
+          "observed_rate": 0.5590383444917834
+        },
+        {
+          "lower": 0.6000000000000001,
+          "upper": 0.7000000000000001,
+          "count": 0,
+          "mean_predicted": null,
+          "observed_rate": null
+        },
+        {
+          "lower": 0.7000000000000001,
+          "upper": 0.8,
+          "count": 0,
+          "mean_predicted": null,
+          "observed_rate": null
+        },
+        {
+          "lower": 0.8,
+          "upper": 0.9,
+          "count": 0,
+          "mean_predicted": null,
+          "observed_rate": null
+        },
+        {
+          "lower": 0.9,
+          "upper": 1.0,
+          "count": 0,
+          "mean_predicted": null,
+          "observed_rate": null
+        }
+      ]
+    },
+    {
+      "seed": 43,
+      "article": "Cui2011",
+      "model": null,
+      "status": "not_evaluable_on_stand_schema",
+      "reason": "stand emits 200/204 response, not observed campaign bids, submitted bids or external market prices"
+    },
+    {
+      "seed": 43,
+      "article": "Wang2016",
+      "model": null,
+      "status": "not_evaluable_on_stand_schema",
+      "reason": "stand emits 200/204 response, not observed campaign bids, submitted bids or external market prices"
+    },
+    {
+      "seed": 71,
+      "article": "stand_response_baseline",
+      "model": "TRAIN_CONSTANT",
+      "train_rows": 12746,
+      "validation_rows": 8209,
+      "test_rows": 9828,
+      "test_coverage": 9828,
+      "fit_seconds": 0.0,
+      "predict_seconds": 0.0,
+      "train_sha256": "5fc03007aca7276a02c756298d212d9f765b54381180cff51007cc263e76cb0b",
+      "validation_sha256": "43ab68087199840da245b83d3280c210b589025468dec9332ff975e82dbc16ca",
+      "test_sha256": "fbff0d418b4edbc0482c7e42b1f57d540381b52916587d34615112c4be232e6b",
+      "validation_selection": null,
+      "train_positive_rate": 0.5346775458967519,
+      "validation_positive_rate": 0.5860640760141308,
+      "test_positive_rate": 0.5582010582010583,
+      "brier": 0.2471659924554079,
+      "log_loss": 0.6874719867508773,
+      "calibration_bins": [
+        {
+          "lower": 0.0,
+          "upper": 0.1,
+          "count": 0,
+          "mean_predicted": null,
+          "observed_rate": null
+        },
+        {
+          "lower": 0.1,
+          "upper": 0.2,
+          "count": 0,
+          "mean_predicted": null,
+          "observed_rate": null
+        },
+        {
+          "lower": 0.2,
+          "upper": 0.30000000000000004,
+          "count": 0,
+          "mean_predicted": null,
+          "observed_rate": null
+        },
+        {
+          "lower": 0.30000000000000004,
+          "upper": 0.4,
+          "count": 0,
+          "mean_predicted": null,
+          "observed_rate": null
+        },
+        {
+          "lower": 0.4,
+          "upper": 0.5,
+          "count": 0,
+          "mean_predicted": null,
+          "observed_rate": null
+        },
+        {
+          "lower": 0.5,
+          "upper": 0.6000000000000001,
+          "count": 9828,
+          "mean_predicted": 0.534677545896752,
+          "observed_rate": 0.5582010582010583
+        },
+        {
+          "lower": 0.6000000000000001,
+          "upper": 0.7000000000000001,
+          "count": 0,
+          "mean_predicted": null,
+          "observed_rate": null
+        },
+        {
+          "lower": 0.7000000000000001,
+          "upper": 0.8,
+          "count": 0,
+          "mean_predicted": null,
+          "observed_rate": null
+        },
+        {
+          "lower": 0.8,
+          "upper": 0.9,
+          "count": 0,
+          "mean_predicted": null,
+          "observed_rate": null
+        },
+        {
+          "lower": 0.9,
+          "upper": 1.0,
+          "count": 0,
+          "mean_predicted": null,
+          "observed_rate": null
+        }
+      ]
+    },
+    {
+      "seed": 71,
+      "article": "stand_response_baseline",
+      "model": "VALIDATION_SELECTED_CONSTANT",
+      "train_rows": 12746,
+      "validation_rows": 8209,
+      "test_rows": 9828,
+      "test_coverage": 9828,
+      "fit_seconds": 0.0,
+      "predict_seconds": 0.0,
+      "train_sha256": "5fc03007aca7276a02c756298d212d9f765b54381180cff51007cc263e76cb0b",
+      "validation_sha256": "43ab68087199840da245b83d3280c210b589025468dec9332ff975e82dbc16ca",
+      "test_sha256": "fbff0d418b4edbc0482c7e42b1f57d540381b52916587d34615112c4be232e6b",
+      "validation_selection": {
+        "selection_metric": "validation_log_loss",
+        "selected_probability": 0.5860640760141308,
+        "validation_rows": 8209
+      },
+      "train_positive_rate": 0.5346775458967519,
+      "validation_positive_rate": 0.5860640760141308,
+      "test_positive_rate": 0.5582010582010583,
+      "brier": 0.24738898458592865,
+      "log_loss": 0.6879475683500962,
+      "calibration_bins": [
+        {
+          "lower": 0.0,
+          "upper": 0.1,
+          "count": 0,
+          "mean_predicted": null,
+          "observed_rate": null
+        },
+        {
+          "lower": 0.1,
+          "upper": 0.2,
+          "count": 0,
+          "mean_predicted": null,
+          "observed_rate": null
+        },
+        {
+          "lower": 0.2,
+          "upper": 0.30000000000000004,
+          "count": 0,
+          "mean_predicted": null,
+          "observed_rate": null
+        },
+        {
+          "lower": 0.30000000000000004,
+          "upper": 0.4,
+          "count": 0,
+          "mean_predicted": null,
+          "observed_rate": null
+        },
+        {
+          "lower": 0.4,
+          "upper": 0.5,
+          "count": 0,
+          "mean_predicted": null,
+          "observed_rate": null
+        },
+        {
+          "lower": 0.5,
+          "upper": 0.6000000000000001,
+          "count": 9828,
+          "mean_predicted": 0.5860640760141308,
+          "observed_rate": 0.5582010582010583
+        },
+        {
+          "lower": 0.6000000000000001,
+          "upper": 0.7000000000000001,
+          "count": 0,
+          "mean_predicted": null,
+          "observed_rate": null
+        },
+        {
+          "lower": 0.7000000000000001,
+          "upper": 0.8,
+          "count": 0,
+          "mean_predicted": null,
+          "observed_rate": null
+        },
+        {
+          "lower": 0.8,
+          "upper": 0.9,
+          "count": 0,
+          "mean_predicted": null,
+          "observed_rate": null
+        },
+        {
+          "lower": 0.9,
+          "upper": 1.0,
+          "count": 0,
+          "mean_predicted": null,
+          "observed_rate": null
+        }
+      ]
+    },
+    {
+      "seed": 71,
+      "article": "Cui2011",
+      "model": null,
+      "status": "not_evaluable_on_stand_schema",
+      "reason": "stand emits 200/204 response, not observed campaign bids, submitted bids or external market prices"
+    },
+    {
+      "seed": 71,
+      "article": "Wang2016",
+      "model": null,
+      "status": "not_evaluable_on_stand_schema",
+      "reason": "stand emits 200/204 response, not observed campaign bids, submitted bids or external market prices"
+    }
+  ],
+  "limitations": [
+    "closed stand outputs manager's simulated 200/204 response only; no independent market-price labels",
+    "Wang exact-price ANLP/CDF cannot be validly computed: no market price or censored submitted-bid threshold exists",
+    "Cui winning-bid/campaign bid landscape also cannot be evaluated on this schema",
+    "Wang MM cannot be evaluated here; the Wang source only gives a brief description and external Wu et al. (2015) method, not a sufficient implementation specification"
+  ]
+}

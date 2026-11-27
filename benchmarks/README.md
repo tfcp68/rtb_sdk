@@ -14,6 +14,7 @@ runners, simulator engines and campaign configurations.
 | [Campaign reconstruction](closed_stand/RECONSTRUCTION.md) | Infer synthetic hidden campaign targeting from response feedback. | `docs/benchmark/manager_routing/runs/reconstruction/` |
 | `manager_eda/eda_manager.py`, `eda_relations.py` | Analyze incoming traffic and categorical dependencies. | `docs/benchmark/manager_traffic/reports/` |
 | `manager_eda/oracle_bounds.py` | Compute modeled routing ceilings. | `docs/benchmark/manager_traffic/analysis/` |
+| [Bid forecast prototypes](bid_forecast_benchmark/README.md) | Evaluate Cui and Wang bid-landscape models on synthetic data and stand logs. | `docs/benchmark/bid_forecast/` |
 
 For a public synthetic check without source data:
 

@@ -55,3 +55,4 @@ graphify-out/
 # Local research replay inputs and raw run logs
 /docs/benchmark/reach_frequency/cumulative_freq/ab_log_*.csv
 /docs/benchmark/reach_frequency/cumulative_freq/fix_gain_output.txt
+/benchmarks/bid_forecast_benchmark/run_logs/
