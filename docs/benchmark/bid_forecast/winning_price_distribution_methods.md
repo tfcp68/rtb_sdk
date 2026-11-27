@@ -120,9 +120,9 @@ The goal is to estimate the market-price distribution from features $x$ of an in
 On a price grid, the KM estimate of the survival function $S(b)$ is the product of conditional event-free fractions:
 
 $$
-\widehat S(b)=\prod_{j<b}\left(1-\frac{d_j}{n_j}\right),\qquad
-\widehat p(z=j)=\widehat S(j)-\widehat S(j+1),\qquad
-\widehat F(b)=1-\widehat S(b).
+\hat S(b)=\prod_{j<b}\left(1-\frac{d_j}{n_j}\right),\qquad
+\hat p(z=j)=\hat S(j)-\hat S(j+1),\qquad
+\hat F(b)=1-\hat S(b).
 $$
 
 Here, $d_j$ is the number of observed market prices at level $j$, and $n_j$ is the number of observations still at risk at that level, including bids right-censored above the threshold. The tree partitions the sample by feature values, and the survival function is estimated separately in each leaf. A forecast for a new impression comes from its corresponding leaf.
@@ -238,9 +238,9 @@ Golden-section search is used to find $b^*$. Theorem 1 establishes the unique gl
 A segment-level KM estimate does not account for differences between requests within a segment. Let $\tau=(x,b,z,I)$, where $I$ indicates a loss; on a win the price is observed, while on a loss $z$ is unknown and $z\ge b$. In KMMN, probabilities $P(z,\mathrm{win}\mid x)$ and $P(b,\mathrm{lose}\mid x)$ are parameterized by a Markov network, a two-layer product-of-experts model linking the request and bid to price and outcome. A conditional KM estimate of the survival function is recovered from these quantities:
 
 ```math
-\widehat S(b\mid x)=\prod_{j<b}\left(1-\frac{P(z=j,\mathrm{win}\mid x)}{\sum_{z'\ge j}P(z=z',\mathrm{win}\mid x)+\sum_{b'\ge j}P(b=b',\mathrm{lose}\mid x)}\right),
+\hat S(b\mid x)=\prod_{j<b}\left(1-\frac{P(z=j,\mathrm{win}\mid x)}{\sum_{z'\ge j}P(z=z',\mathrm{win}\mid x)+\sum_{b'\ge j}P(b=b',\mathrm{lose}\mid x)}\right),
 \qquad
-p_Z(z=j\mid x)=\widehat S(j\mid x)-\widehat S(j+1\mid x).
+p_Z(z=j\mid x)=\hat S(j\mid x)-\hat S(j+1\mid x).
 ```
 
 The network estimates probabilities from which KM computes a discrete survival function and PMF. Training uses the joint likelihood of observations, and the gradient is estimated using Gibbs sampling. The authors derive $p(z\mid x)$ for a request by summing over possible bids with weights from the empirical prior distribution of bids. This uses the approximation $p(b\mid x)\approx p(b)$.

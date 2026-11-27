@@ -20,9 +20,9 @@ The sum $M$ includes only won requests. $O$ is campaign revenue from served impr
 
 The model selects the bid that maximizes predicted margin among integer bids no greater than the available value:
 
-$$b_i^*=\arg\max_{b\in\mathcal{B},\,b\le v_i}(v_i-b)\widehat{F}(b\mid x_i),\qquad \mathcal{B}=\{0,1,\ldots,400\},$$
+$$b_i^*=\arg\max_{b\in\mathcal{B},\,b\le v_i}(v_i-b)\hat{F}(b\mid x_i),\qquad \mathcal{B}=\{0,1,\ldots,400\},$$
 
-where $\widehat{F}(b\mid x_i)$ estimates the strict win probability $P(Z_i<b\mid x_i)$. The bid depends only on the forecast, not on $Z_i$, which is unknown to the policy. If no campaign is available ($v_i=0$), the participant does not bid.
+where $\hat{F}(b\mid x_i)$ estimates the strict win probability $P(Z_i<b\mid x_i)$. The bid depends only on the forecast, not on $Z_i$, which is unknown to the policy. If no campaign is available ($v_i=0$), the participant does not bid.
 
 Training is compared under **full** information, when the exact price is known, and **censored** information, when the exact price is known after a win but a loss reveals only $Z_i\ge b_i$. Data are split by time: train for training, days $[0,3)$; validation for parameter selection, $[3,5)$; test for final evaluation, $[5,7)$. The main run had 88 290 / 59 458 / 68 221 requests, respectively; environment seed 1900, selected-user fraction 0.002, and 3 competing sellers. Campaign plans were calculated using train only; campaign states, but not the planning source, were reset between phases. The maximum training sample size was 30 000, and validation 15 000. Censored training bids are drawn from a continuous uniform distribution from 50 to 360, not from the integer grid of model bids.
 
@@ -64,7 +64,7 @@ Here, “online” means a sequential simulation with three competing managers a
 
 Mean total revenue across 100 random runs was **14 576 238**; the minimum was **14 561 124**, the maximum **14 585 295**, and the 5th / 50th / 95th percentiles were **14 568 452 / 14 576 155 / 14 582 803**. The runs vary the bid seed, not the market environment.
 
-Revenue and probability metrics in each row belong to the same online policy in the environment with three competing managers. “At model-selected bids” means the model selects bid $b_i^*$ and its forecast $p_i=\widehat F(b_i^*\mid x_i)$ is compared with the actual auction outcome $Y_i$. These are online decision results, not a separate experiment with a different bidding rule. Technically, diagnostics were computed in a deterministic replay of the same policy; replay revenues match the main runs.
+Revenue and probability metrics in each row belong to the same online policy in the environment with three competing managers. “At model-selected bids” means the model selects bid $b_i^*$ and its forecast $p_i=\hat F(b_i^*\mid x_i)$ is compared with the actual auction outcome $Y_i$. These are online decision results, not a separate experiment with a different bidding rule. Technically, diagnostics were computed in a deterministic replay of the same policy; replay revenues match the main runs.
 
 Probability metrics and actual win fraction are calculated only for requests with an available campaign ($v_i>0$); $n$ is their count, including cases with a zero bid. Total revenue $G$ covers the entire phase and includes external revenue. For shading and truthful, the actual win fraction is reported, but forecast, Brier, log-loss, and ECE are absent because these strategies do not predict probabilities. Fractions in the table range from $0$ to $1$: for example, $0{,}2091$ means 20,91%.
 
